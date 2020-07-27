@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HowlsList = (props) => {
     return (
         <>
             <header>
                 <h2>What are people howling about?</h2>
+                <Link
+                    to='/create-howl'    
+                >
+                    Start howling yourself!
+                </Link>
             </header> 
             <form>
                 <fieldset>
@@ -80,7 +86,6 @@ const HowlsList = (props) => {
                     </li>
                 </ol>
             </section>
-            <a href="">Start howling yourself!</a>
         </>
     );
 }
