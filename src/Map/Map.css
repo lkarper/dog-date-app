@@ -1,0 +1,9 @@
+.Map__map-container {
+    width: 500px;
+    height: 500px;
+}
+
+.Map__map-outer-container {
+    height: 500px;
+    width: 500px;
+}
