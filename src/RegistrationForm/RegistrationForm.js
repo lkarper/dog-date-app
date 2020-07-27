@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ValidateEmail from '../validation-components/ValidateEmail';
 
 const RegistrationForm = (props) => {
+
+    const [email, setEmail] = useState('');
+    const [emailValidationError, setEmailValidationError] = useState(null);
+    const [phone, setPhone] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [reenteredPassword, setReenteredPassword] = useState('');
+
     return (
         <section>
             <header>
@@ -10,7 +19,21 @@ const RegistrationForm = (props) => {
             <form class='signup-form'>
                 <div>
                     <label for="email">Email:</label>
-                    <input type="email" placeholder="example@example.com" id="email" name="email" />
+                    <input 
+                        type="email" 
+                        placeholder="example@example.com" 
+                        id="email" 
+                        name="email" 
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        aria-describedby='email-validation'
+                    />
+                </div>
+                <div role='alert'>
+                    <ValidateEmail 
+                        email={email}
+                        setEmailValidationError={setEmailValidationError}
+                    />
                 </div>
                 <div>
                     <label for="phone">Phone number:</label>
@@ -29,7 +52,12 @@ const RegistrationForm = (props) => {
                     <label for="reenter-password">Re-enter password:</label>
                     <input type="password" id="reenter-password" name="reenter-password" />
                 </div>
-                <button type="submit">Submit</button>
+                <button 
+                    type="submit"
+                    disabled={emailValidationError}
+                >
+                    Submit
+                </button>
             </form>
         </section>
     );
