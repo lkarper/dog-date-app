@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ValidateEmail from '../validation-components/ValidateEmail';
 import ValidatePhoneNumber from '../validation-components/ValidatePhoneNumber';
 import ValidateUsername from '../validation-components/ValidateUsername';
+import ValidatePassword from '../validation-components/ValidatePassword';
+import ValidateReenteredPassword from '../validation-components/ValidateReenteredPassword';
 
 const RegistrationForm = (props) => {
 
@@ -12,7 +14,18 @@ const RegistrationForm = (props) => {
     const [username, setUsername] = useState('');
     const [usernameValidationError, setUsernameValidationError] = useState(null);
     const [password, setPassword] = useState('');
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState([]);
+    const [passwordError, setPasswordError] = useState({
+        tooShort: true,
+        tooLong: false,
+        endSpaces: false,
+        upperCase: true,
+        lowerCase: true,
+        number: true,
+        specialChar: true,
+    });
     const [reenteredPassword, setReenteredPassword] = useState('');
+    const [reenteredPasswordError, setReenteredPasswordError] = useState(null);
 
     return (
         <section>
@@ -80,15 +93,52 @@ const RegistrationForm = (props) => {
                 </div>
                 <div>
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" />
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        value={password}
+                        aria-describedby="password-error-message"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        />
                 </div>
+                <ValidatePassword 
+                    password={password} 
+                    passwordErrorMessage={passwordErrorMessage}
+                    passwordError={passwordError}
+                    setPasswordErrorMessage={setPasswordErrorMessage}
+                    setPasswordError={setPasswordError}
+                />
                 <div>
                     <label htmlFor="reenter-password">Re-enter password:</label>
-                    <input type="password" id="reenter-password" name="reenter-password" />
+                    <input 
+                        type="password" 
+                        id="reenter-password" 
+                        name="reenter-password" 
+                        value={reenteredPassword}
+                        aria-describedby="reenter-password-validation"
+                        onChange={(e) => setReenteredPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <ValidateReenteredPassword 
+                    password={password}
+                    reenteredPassword={reenteredPassword}
+                    reenteredPasswordError={reenteredPasswordError}
+                    setReenteredPasswordError={setReenteredPasswordError}
+                /> 
+                <div role='alert'>
+
                 </div>
                 <button 
                     type="submit"
-                    disabled={emailValidationError || phoneValidationError || usernameValidationError}
+                    disabled={
+                        emailValidationError || 
+                        phoneValidationError || 
+                        usernameValidationError || 
+                        passwordErrorMessage.length || 
+                        reenteredPasswordError}
                 >
                     Submit
                 </button>
