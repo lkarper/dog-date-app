@@ -4,6 +4,8 @@ import Header from './Header/Header';
 import Landing from './Landing/Landing';
 import RegistrationForm from './RegistrationForm/RegistrationForm';
 import HowlsList from './HowlsList/HowlsList';
+import Homepage from './Homepage/Homepage';
+import CreateHowl from './CreateHowl/CreateHowl';
 import './App.css';
 
 const App = () => {
@@ -22,6 +24,14 @@ const App = () => {
         <Route 
           path='/howls'
           component={HowlsList}
+        />
+        <Route 
+          path='/home'
+          component={Homepage}
+        />
+        <Route 
+          path='/create-howl'
+          component={CreateHowl}
         />
       </main>
     </div>
