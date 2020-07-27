@@ -27,13 +27,20 @@ const RegistrationForm = (props) => {
     const [reenteredPassword, setReenteredPassword] = useState('');
     const [reenteredPasswordError, setReenteredPasswordError] = useState(null);
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    }
+
     return (
         <section>
             <header>
                 <h2>Even man's best friend needs a pack.</h2>
                 <p>Create an account to get started!</p>
             </header>
-            <form className='signup-form'>
+            <form 
+                className='signup-form'
+                onSubmit={(e) => handleSubmit(e)}
+            >
                 <div>
                     <label htmlFor="email">Email:</label>
                     <input 
