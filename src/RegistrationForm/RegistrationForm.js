@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ValidateEmail from '../validation-components/ValidateEmail';
 import ValidatePhoneNumber from '../validation-components/ValidatePhoneNumber';
+import ValidateUsername from '../validation-components/ValidateUsername';
 
 const RegistrationForm = (props) => {
 
@@ -9,6 +10,7 @@ const RegistrationForm = (props) => {
     const [phone, setPhone] = useState('');
     const [phoneValidationError, setPhoneValidationError] = useState(null);
     const [username, setUsername] = useState('');
+    const [usernameValidationError, setUsernameValidationError] = useState(null);
     const [password, setPassword] = useState('');
     const [reenteredPassword, setReenteredPassword] = useState('');
 
@@ -18,14 +20,15 @@ const RegistrationForm = (props) => {
                 <h2>Even man's best friend needs a pack.</h2>
                 <p>Create an account to get started!</p>
             </header>
-            <form class='signup-form'>
+            <form className='signup-form'>
                 <div>
                     <label htmlFor="email">Email:</label>
                     <input 
                         type="email" 
                         placeholder="example@example.com" 
                         id="email" 
-                        name="email" 
+                        name="email"
+                        value={email} 
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         aria-describedby='email-validation'
@@ -34,6 +37,7 @@ const RegistrationForm = (props) => {
                 <div role='alert'>
                     <ValidateEmail 
                         email={email}
+                        emailValidationError={emailValidationError}
                         setEmailValidationError={setEmailValidationError}
                     />
                 </div>
@@ -42,7 +46,8 @@ const RegistrationForm = (props) => {
                     <input 
                         type="tel" 
                         id="phone" 
-                        name="phone" 
+                        name="phone"
+                        value={phone} 
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
                         aria-describedby="phone-validation" 
                         onChange={(e) => setPhone(e.target.value)}
@@ -55,8 +60,23 @@ const RegistrationForm = (props) => {
                     /> 
                 </div>
                 <div>
-                    <label htmlFor="user-name">Username:</label>
-                    <input type="text" placeholder="Username" id="user-name" name="user-name" />
+                    <label htmlFor="username">Username:</label>
+                    <input 
+                        type="text" 
+                        placeholder="Username" 
+                        id="username" 
+                        name="username"
+                        value={username} 
+                        aria-describedby='username-validation'
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+                <div role='alert'>
+                    <ValidateUsername 
+                        username={username}
+                        usernameValidationError={usernameValidationError}
+                        setUsernameValidationError={setUsernameValidationError}
+                    />
                 </div>
                 <div>
                     <label htmlFor="password">Password:</label>
@@ -68,7 +88,7 @@ const RegistrationForm = (props) => {
                 </div>
                 <button 
                     type="submit"
-                    disabled={emailValidationError || phoneValidationError}
+                    disabled={emailValidationError || phoneValidationError || usernameValidationError}
                 >
                     Submit
                 </button>
