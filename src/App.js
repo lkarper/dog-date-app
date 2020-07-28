@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Header from './Header/Header';
 import Landing from './Landing/Landing';
 import RegistrationForm from './RegistrationForm/RegistrationForm';
+import LoginPage from './LoginPage/LoginPage';
 import HowlsList from './HowlsList/HowlsList';
 import Homepage from './Homepage/Homepage';
 import CreateHowl from './CreateHowl/CreateHowl';
@@ -16,6 +17,10 @@ const App = () => {
         <Route
           exact path='/'
           component={Landing}
+        />
+        <Route 
+          path='/login'
+          component={LoginPage}
         />
         <Route 
           path='/register'
