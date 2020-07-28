@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import ValidateEmail from '../validation-components/ValidateEmail';
 import ValidatePhoneNumber from '../validation-components/ValidatePhoneNumber';
 import ValidateUsername from '../validation-components/ValidateUsername';
 import ValidatePassword from '../validation-components/ValidatePassword';
 import ValidateReenteredPassword from '../validation-components/ValidateReenteredPassword';
+import STORE from '../STORE';
 
 const RegistrationForm = (props) => {
 
@@ -26,9 +28,29 @@ const RegistrationForm = (props) => {
     });
     const [reenteredPassword, setReenteredPassword] = useState('');
     const [reenteredPasswordError, setReenteredPasswordError] = useState(null);
+    const [submissionError, setSubmissionError] = useState(null);
+    const [emailAlreadyRegistered, setEmailAlreayRegistered] = useState(false);
+    const [usernameExists, setUsernameExists] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (STORE.users.find(user => user.email === email)) {
+            setEmailAlreayRegistered(true);
+        }
+        if (STORE.users.find(user => user.username === username)) {
+            setUsernameExists(true);
+        }
+        if (!emailAlreadyRegistered && ! usernameExists) {
+            const newUser = {
+                id: uuidv4(),
+                email,
+                username,
+                phone,
+                password
+            }
+            STORE.users.push(newUser);
+            props.history.push('/login');
+        }
     }
 
     return (
@@ -71,7 +93,7 @@ const RegistrationForm = (props) => {
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
                         aria-describedby="phone-validation" 
                         onChange={(e) => setPhone(e.target.value)}
-                        />
+                    />
                 </div>
                 <div role='alert'>
                     <ValidatePhoneNumber 
