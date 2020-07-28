@@ -1,0 +1,11 @@
+.ForwardGeocodeAddress__outer-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.ForwardGeocodeAddress__results {
+    height: 400px;
+    width: 400px;
+    overflow-y: scroll;
+}

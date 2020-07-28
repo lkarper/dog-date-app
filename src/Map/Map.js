@@ -1,13 +1,16 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
+import ForwardGeocodeAddress from '../ForwardGeocodeAddress/ForwardGeocodeAddress';
 import config from '../config';
 import './Map.css';
 
 const Map = (props) => {
 
-    const [markerCoordinates, setMarkerCoordinates] = useState({});
     const [map, setMap] = useState(null);
     const [marker, setMarker] = useState(null);
+    const [markerCoordinates, setMarkerCoordinates] = useState({ lat: 40.7812, lon: -73.9665 });
+    const [lat, setLat] = useState(40.7812);
+    const [lng, setLng] = useState(-73.9665);
 
     let mapContainer = useRef(null);
     let markerRef = useRef(null);
@@ -20,6 +23,27 @@ const Map = (props) => {
         markerRef = el;
     }
 
+    const setMarkerToMyLocation = () => {
+        navigator.geolocation.getCurrentPosition((position) => {
+
+            setMarkerCoordinates({
+                lat: position.coords.latitude,
+                lon: position.coords.longitude 
+            });
+        });
+    }
+
+    // useEffect(() => {
+    //     if (props.tempCoordinates.lat && props.tempCoordinates.lon) { 
+    //         if (lat !== props.tempCoordinates.lat) {
+    //             console.log('upper')
+    //             setLat(props.tempCoordinates.lat);
+    //         }
+    //         if (lng !== props.tempCoordinates.lon)
+    //             setLng(props.tempCoordinates.lon);
+    //     }
+    // }, [props.tempCoordinates]);
+
     useEffect(() => {
 
         const locationiqKey = config.mapbox_key;
@@ -28,7 +52,7 @@ const Map = (props) => {
             container: mapContainer,
             attributionControl: false,
             style: `https://tiles.locationiq.com/v2/streets/vector.json?key=${locationiqKey}`,
-            center: [-73.9665, 40.7812],
+            center: [markerCoordinates.lon, markerCoordinates.lat],
             zoom: 12
         });
 
@@ -37,27 +61,55 @@ const Map = (props) => {
         const marker = new mapboxgl.Marker(markerRef, {
             draggable: true,
         })
-            .setLngLat([-73.9665, 40.7812])
+            .setLngLat([markerCoordinates.lon, markerCoordinates.lat])
             .addTo(map);
         
         setMarker(marker);
 
         const onDragEnd = () => {
             const lngLat = marker.getLngLat();
-            setMarkerCoordinates(lngLat);
+            setMarkerCoordinates({ lat: lngLat.lat, lon: lngLat.lng });
         }
 
         marker.on('dragend', onDragEnd);
 
-    }, [props]);
+    }, [props.setTempCoordinates]);
+
+    useEffect(() => {
+        if (marker) {
+            map.setCenter([markerCoordinates.lon, markerCoordinates.lat]);
+            marker.setLngLat([markerCoordinates.lon, markerCoordinates.lat]).addTo(map);
+            setMarker(marker);
+
+            const onDragEnd = () => {
+                const lngLat = marker.getLngLat();
+                setMarkerCoordinates({ lat: lngLat.lat, lon: lngLat.lng });
+            }
+
+            marker.on('dragend', onDragEnd);
+
+            if (props.tempCoordinates.lat !== markerCoordinates.lat && props.tempCoordinates.lon !== markerCoordinates.lon) {
+                console.log('lower')
+                const { lat, lon } = markerCoordinates;
+                props.setTempCoordinates({
+                    lon,
+                    lat
+                });
+            }
+        }
+    }, [markerCoordinates, props.tempCoordinates, props.setTempCoordinates])
 
 
     return (
-        <div className='Map__map-outer-container'>
-            <div id='map-container' ref={el => setRefMap(el)} className='Map__map-container'>
+        <div className='MapForm__container'>
+            <div className='Map__map-outer-container'>
+                <button type='button' onClick={setMarkerToMyLocation}>Set marker to my location</button>
+                <div id='map-container' ref={el => setRefMap(el)} className='Map__map-container'>
+                </div>
+                <div className='Map__marker' ref={el => setRefMark(el)}></div>
+                <div id='coordinates' className='Map__coordinates'>Latitude: {markerCoordinates.lat}, Longitude: {markerCoordinates.lon}</div>
             </div>
-            <div className='Map__marker' ref={el => setRefMark(el)}></div>
-            <div id='coordinates' className='Map__coordinates'>{Object.keys(markerCoordinates).length ? `Latitude: ${markerCoordinates.lat}, Longitude: ${markerCoordinates.lng}`  : ''}</div>
+            <ForwardGeocodeAddress setMarkerCoordinates={setMarkerCoordinates} />
         </div>
     );
 }

@@ -1,0 +1,9 @@
+.MapForm__container {
+    display: flex;
+    flex-direction: row;
+}
+
+.MapForm__outer-container {
+    display: flex;
+    flex-direction: row;
+}

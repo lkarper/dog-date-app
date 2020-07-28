@@ -1,7 +1,12 @@
-import React from 'react';
-import Map from '../Map/Map';
+import React, { useState } from 'react';
+import MapForm from '../MapForm/MapForm';
+import CurrentLocation from '../CurrentLocation/CurrentLocation';
 
 const CreateHowl = (props) => {
+
+    const [coordinates, setCoordinates] = useState({});
+    const [address, setAddress] = useState('');
+
     return (
         <>
             <header>
@@ -13,7 +18,7 @@ const CreateHowl = (props) => {
                 <header>
                     <h2>Enter details below to create a howl</h2>
                 </header>
-                <form class='howl-form'>
+                <form className='howl-form'>
                     <fieldset>
                         <legend>Select your dog(s) to howl about</legend>
                         <div>
@@ -27,15 +32,30 @@ const CreateHowl = (props) => {
                     </fieldset>
                     <fieldset>
                         <legend>Where are you interested in meeting?</legend>
-                        <div>
-                            <label htmlFor='address'>Address:</label>
-                            <input type="text" id="address" name="address" />
+                        <div className='MapForm__outer-container'>
+                            <fieldset>
+                                <legend>Enter the address for your meeting place here</legend>
+                                <div>
+                                    <label htmlFor='address'>Address:</label>
+                                    <input 
+                                        type="text" 
+                                        id="address" 
+                                        name="address"
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)} 
+                                        required
+                                    />
+                                </div>
+                            </fieldset>
+                            <MapForm setCoordinates={setCoordinates} />
                         </div>
-                        <Map />
+                        <div role='alert'>
+                            <CurrentLocation address={address} coordinates={coordinates} />
+                        </div>
                     </fieldset>
                     <fieldset>
                         <legend>When are you interested in meeting?</legend>
-                        <fieldset class="sub-fieldset">
+                        <fieldset className="sub-fieldset">
                             <legend>Looking for a one-time meeting on a specific date:</legend>
                             <label htmlFor="once-date">Date:</label>
                             <input type="date" id="once-date" name="once-date" placeholder="yyyy-mm-dd" />
@@ -46,7 +66,7 @@ const CreateHowl = (props) => {
                             <button type="button">Add another time window on this date</button>
                         </fieldset>
                         <hr />
-                        <fieldset class="sub-fieldset">
+                        <fieldset className="sub-fieldset">
                             <legend>I'm open for dog dates during the following windows of time:</legend>
                             <label htmlFor="window-day-1">Day of the week:</label>
                             <select id="windodw-day-1">
@@ -67,7 +87,7 @@ const CreateHowl = (props) => {
                         </fieldset>
                     </fieldset>
                     <label htmlFor="howl-description">Add a personal message to go with your howl:</label>
-                    <textarea id="howl-description" name="howl-description" maxlength="2000" placeholder="(Write your personal message here)" aria-describedby="char-limit"></textarea>
+                    <textarea id="howl-description" name="howl-description" maxLength="2000" placeholder="(Write your personal message here)" aria-describedby="char-limit"></textarea>
                     <p id="char-limit">(Limited to 2000 characters.)</p>
                     <button type="submit">Submit</button>
                 </form>
