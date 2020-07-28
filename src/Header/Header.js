@@ -1,8 +1,48 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UserContext from '../contexts/UserContext';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 
 const Header = (props) => {
+
+    const context = useContext(UserContext);
+
+    const handleLogout = () => {
+        context.setUser({});
+    }
+
+    const location = Object.keys(props).includes('location') ? props.location.pathname : '/homepage';
+
+    const logoutLink = (
+        <Link
+            className="Header__link"
+            onClick={handleLogout}
+            to='/'
+        >
+            Logout
+        </Link>
+    );
+
+    const loginLink = (
+        <>
+            <Link 
+                className="Header__link" 
+                to='/register'
+            >
+                Register
+            </Link>
+            <Link
+                className="Header__link" 
+                to={{
+                    pathname: '/login',
+                    state: { from: location || '/' }
+                }}
+            >
+                Log in
+            </Link>
+        </>
+    );
+
     return (
         <header className="Header__header">
             <h1>
@@ -25,18 +65,7 @@ const Header = (props) => {
                 >
                     Howls
                 </NavLink>
-                <Link 
-                    className='Header__navlink' 
-                    to='/register'
-                >
-                    Register
-                </Link>
-                <Link 
-                    className='Header__navlink' 
-                    to='/login'
-                >
-                    Log in
-                </Link>
+                {Object.keys(context.user).length ? logoutLink : loginLink }
             </nav>
         </header>
     );
