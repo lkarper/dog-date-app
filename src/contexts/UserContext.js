@@ -2,6 +2,8 @@ import React, { useState, useEffect, createContext } from 'react';
 import STORE from '../STORE';
 
 const UserContext = createContext({
+    user: {},
+    dogs: [],
     setUser: () => {},
 });
 
@@ -10,7 +12,7 @@ export default UserContext;
 export const UserProvider = (props) => {
 
     const [user, setUser] = useState({});
-    const [dogs, setDogs] = useState({});
+    const [dogs, setDogs] = useState([]);
     
     useEffect(() => {
         if (Object.keys(user).length) {
