@@ -6,7 +6,7 @@ import './MapForm.css';
 const MapForm = (props) => {
     const { setCoordinates } = props;
 
-    const [tempCoordinates, setTempCoordinates] = useState({});
+    const [tempCoordinates, setTempCoordinates] = useState({ lat: 40.7812, lon: -73.9665 });
 
     return (
         <fieldset>
