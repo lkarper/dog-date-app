@@ -1,5 +1,6 @@
 import React from 'react';
 import UserContactInfo from '../UserContactInfo/UserContactInfo';
+import MyDogs from '../MyDogs/MyDogs';
 
 const Homepage = (props) => {
     return (
@@ -8,25 +9,7 @@ const Homepage = (props) => {
                 <h3>My Dog Dating Life</h3>
             </header>
             <UserContactInfo />
-            <section>
-                <header>
-                    <h3>My dogs</h3>
-                </header>
-                <ul>
-                    <li>
-                        <div>
-                            <p>[<em>placeholder for dog profile pic</em>]</p>
-                            <p>Dog 1</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p>[<em>placeholder for dog profile pic</em>]</p>
-                            <p>Dog 2</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
+            <MyDogs />
             <section>
                 <header>
                     <h3>My pack</h3>
