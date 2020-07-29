@@ -15,6 +15,7 @@ const LoginForm = (props) => {
         const user = STORE.users.find(user => user.username === username);
         if (user) {
             if (user.password === password) {
+                setLoginError(null);
                 context.setUser({
                     id: user.id,
                     email: user.email,
@@ -22,7 +23,11 @@ const LoginForm = (props) => {
                     username: user.username, 
                 });
                 props.history.push('/home');
+            } else {
+                setLoginError('Incorrect username or password.')
             }
+        } else {
+            setLoginError('Incorrect username or password.')
         }        
     }
 
@@ -61,6 +66,9 @@ const LoginForm = (props) => {
             >
                 Submit
             </button>
+            <div role='alert'>
+                {loginError ? <p>{loginError}</p> : ''}
+            </div>
         </form>
     )
 }
