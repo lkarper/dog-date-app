@@ -21,7 +21,7 @@ const LoginForm = (props) => {
                     phone: user.phone,
                     username: user.username, 
                 });
-                props.history.push('/homepage');
+                props.history.push('/home');
             }
         }        
     }
