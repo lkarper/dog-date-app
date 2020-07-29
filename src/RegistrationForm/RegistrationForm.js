@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import ValidateEmail from '../validation-components/ValidateEmail';
-import ValidatePhoneNumber from '../validation-components/ValidatePhoneNumber';
-import ValidateUsername from '../validation-components/ValidateUsername';
-import ValidatePassword from '../validation-components/ValidatePassword';
-import ValidateReenteredPassword from '../validation-components/ValidateReenteredPassword';
+import ValidateEmail from '../validation-components/registration-validation/ValidateEmail';
+import ValidatePhoneNumber from '../validation-components/registration-validation/ValidatePhoneNumber';
+import ValidateUsername from '../validation-components/registration-validation/ValidateUsername';
+import ValidatePassword from '../validation-components/registration-validation/ValidatePassword';
+import ValidateReenteredPassword from '../validation-components/registration-validation/ValidateReenteredPassword';
 import STORE from '../STORE';
 
 const RegistrationForm = (props) => {
