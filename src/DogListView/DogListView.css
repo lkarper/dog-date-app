@@ -1,0 +1,8 @@
+.DogListView__profile-pic {
+    height: 300px;
+    width: auto;
+}
+
+.DogListView__li {
+    list-style: none;
+}
