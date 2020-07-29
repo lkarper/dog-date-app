@@ -1,4 +1,5 @@
 import React from 'react';
+import UserContactInfo from '../UserContactInfo/UserContactInfo';
 
 const Homepage = (props) => {
     return (
@@ -6,13 +7,7 @@ const Homepage = (props) => {
             <header>
                 <h3>My Dog Dating Life</h3>
             </header>
-            <section>
-                <header>
-                    <h3>My contact info</h3>
-                    <p>Phone: 123-456-7890</p>
-                    <p>Email: email@email.com</p>
-                </header>
-            </section>
+            <UserContactInfo />
             <section>
                 <header>
                     <h3>My dogs</h3>
@@ -61,7 +56,7 @@ const Homepage = (props) => {
                         <p>Dog: Santos L. Halper</p>
                         <p>Avg. rating: 4.3 (15 reviews)</p>
                         <p>Availability:</p>
-                            <ul class="availability">
+                            <ul className="availability">
                                 <li>Saturday, August 10: 10:00 AM - 12:00 PM</li>
                             </ul>
                         <p>Location: 742 Evergreen Terrace, Springfield</p>
@@ -77,7 +72,7 @@ const Homepage = (props) => {
                     <li>
                         <h3>Looking for 1-3 small dogs for some fetch!</h3>
                         <p>Availability:</p>
-                            <ul class="availability">
+                            <ul className="availability">
                                 <li>Mondays: 1:00 - 3:00 PM</li>
                                 <li>Saturdays: 9:00 AM - 2:00 PM</li>
                             </ul>
