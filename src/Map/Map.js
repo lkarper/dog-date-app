@@ -9,8 +9,6 @@ const Map = (props) => {
     const [map, setMap] = useState(null);
     const [marker, setMarker] = useState(null);
     const [markerCoordinates, setMarkerCoordinates] = useState({ lat: 40.7812, lon: -73.9665 });
-    const [lat, setLat] = useState(40.7812);
-    const [lng, setLng] = useState(-73.9665);
 
     let mapContainer = useRef(null);
     let markerRef = useRef(null);
@@ -32,17 +30,6 @@ const Map = (props) => {
             });
         });
     }
-
-    // useEffect(() => {
-    //     if (props.tempCoordinates.lat && props.tempCoordinates.lon) { 
-    //         if (lat !== props.tempCoordinates.lat) {
-    //             console.log('upper')
-    //             setLat(props.tempCoordinates.lat);
-    //         }
-    //         if (lng !== props.tempCoordinates.lon)
-    //             setLng(props.tempCoordinates.lon);
-    //     }
-    // }, [props.tempCoordinates]);
 
     useEffect(() => {
 
