@@ -4,6 +4,7 @@ import STORE from '../STORE';
 const UserContext = createContext({
     user: {},
     dogs: [],
+    allDogs: [],
     howls: [],
     addHowl: () => {},
     setUser: () => {},
@@ -73,39 +74,8 @@ export const UserProvider = (props) => {
             "owner_description": "I recently adopted Nibbler after I found him in the wild on a work trip.  He isn't trained yet, but he's very sweet around people, once he gets to know them.  He's a bit shy around other dogs, very protective of his food, and I suspect that he needs to be socialized.  If your dog is an expert in bringing other dogs out of their shells, send me an email!"
         },
     ]);
-    const [howls, setHowls] = useState([
-        {
-            "id": "b4e0aabd-5ed7-414d-9fcb-a379704c1de3",
-            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
-            "dog_ids": [
-                "f3586d96-54fc-43bc-9cff-3564ad317ad6", 
-                "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1"
-            ],
-            "location": {
-                "address": 'Central Park',
-                "city": 'New York',
-                "state": 'NY',
-                "zipcode": '10024',
-                "lat": 40.7812,
-                "lon": -73.9665,
-            },
-            "meeting_type": "recurring",
-            "one_time_windows": [],
-            "recurring_windows": [
-                {
-                    "dayOfWeek": "Monday",
-                    "startTime": "10:00",
-                    "endTime": "13:00",
-                },
-                {
-                    "dayOfWeek": "Saturday",
-                    "startTime": "15:00",
-                    "endTime": "18:00",
-                },
-            ],
-            "personal_message": "Looking for a few dogs to howl with Seymour and Nibbler!"
-        },
-    ]);
+    const [allDogs, setAllDogs] = useState(STORE.dog_profiles);
+    const [howls, setHowls] = useState(STORE.howls);
     
     useEffect(() => {
         if (Object.keys(user).length) {
@@ -122,6 +92,7 @@ export const UserProvider = (props) => {
     const value = {
         user,
         dogs,
+        allDogs,
         howls,
         setUser,
         addHowl,
