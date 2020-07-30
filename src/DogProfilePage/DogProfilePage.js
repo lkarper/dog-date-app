@@ -12,7 +12,7 @@ const DogProfilePage = (props) => {
                 <h1>{dog_profile.name}</h1>
                 <img 
                     src={dog_profile.profile_img_url}
-                    alt={`Profile picture for the dog named ${dog_profile.name}.`} 
+                    alt={`Avatar for the dog named ${dog_profile.name}.`} 
                 />
                 <button type="button">Add Seymour to your pack</button>
             </header>

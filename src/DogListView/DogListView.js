@@ -12,7 +12,7 @@ const DogListView = (props) => {
                 <img
                     className='DogListView__profile-pic' 
                     src={profile_img_url} 
-                    alt={`Profile picture for the dog named ${name}.`} 
+                    alt={`Avatar of the dog named ${name}.`} 
                 />
                 <Link
                     to={`/dog-profile/${id}`}
