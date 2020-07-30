@@ -28,29 +28,39 @@ const RegistrationForm = (props) => {
     });
     const [reenteredPassword, setReenteredPassword] = useState('');
     const [reenteredPasswordError, setReenteredPasswordError] = useState(null);
-    const [submissionError, setSubmissionError] = useState(null);
-    const [emailAlreadyRegistered, setEmailAlreayRegistered] = useState(false);
+    const [emailAlreadyRegistered, setEmailAlreadyRegistered] = useState(false);
     const [usernameExists, setUsernameExists] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (STORE.users.find(user => user.email === email)) {
-            setEmailAlreayRegistered(true);
-        }
-        if (STORE.users.find(user => user.username === username)) {
-            setUsernameExists(true);
-        }
-        if (!emailAlreadyRegistered && ! usernameExists) {
-            const newUser = {
-                id: uuidv4(),
-                email,
-                username,
-                phone,
-                password
+        const promise1 = new Promise (resolve => {
+            if (STORE.users.find(user => user.email === email)) {
+                setEmailAlreadyRegistered(email);
+            } else {
+                setEmailAlreadyRegistered(false);
             }
-            STORE.users.push(newUser);
-            props.history.push('/login');
-        }
+        });
+        const promise2 = new Promise (resolve => {
+            if (STORE.users.find(user => user.username === username)) {
+                setUsernameExists(username);
+            } else {
+                setUsernameExists(false);
+            }
+        });
+        Promise.all([promise1, promise2])
+            .then(values => {
+                if (!emailAlreadyRegistered && !usernameExists) {
+                    const newUser = {
+                        id: uuidv4(),
+                        email,
+                        username,
+                        phone,
+                        password
+                    }
+                    STORE.users.push(newUser);
+                    props.history.push('/login');
+                }
+            });
     }
 
     return (
@@ -80,6 +90,7 @@ const RegistrationForm = (props) => {
                     <ValidateEmail 
                         email={email}
                         emailValidationError={emailValidationError}
+                        emailAlreadyRegistered={emailAlreadyRegistered}
                         setEmailValidationError={setEmailValidationError}
                     />
                 </div>
@@ -117,6 +128,7 @@ const RegistrationForm = (props) => {
                     <ValidateUsername 
                         username={username}
                         usernameValidationError={usernameValidationError}
+                        usernameExists={usernameExists}
                         setUsernameValidationError={setUsernameValidationError}
                     />
                 </div>
