@@ -6,6 +6,7 @@ const UserContext = createContext({
     dogs: [],
     allDogs: [],
     howls: [],
+    userSavedHowls: [],
     addHowl: () => {},
     setUser: () => {},
 });
@@ -20,6 +21,7 @@ export const UserProvider = (props) => {
         "phone": "123-456-7890",
         "username": "pjfry2000",
     });
+
     const [dogs, setDogs] = useState([ 
         {
             "id": 'f3586d96-54fc-43bc-9cff-3564ad317ad6',
@@ -76,6 +78,18 @@ export const UserProvider = (props) => {
     ]);
     const [allDogs, setAllDogs] = useState(STORE.dog_profiles);
     const [howls, setHowls] = useState(STORE.howls);
+    const [userSavedHowls, setUserSavedHowls] = useState([
+        {
+            "id": "0eada3bf-43a9-48c0-9458-c6bfccb4e790",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "howl_id": "6b731f04-75b7-4dd7-98e4-cf71fafd5a70",
+        },
+        {
+            "id": "11e3d68c-fca9-4792-9c86-11799cb4ca38",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "howl_id": "8d4bc1f2-f0b5-47ef-a551-91c69e924528",
+        },
+    ]);
     
     useEffect(() => {
         if (Object.keys(user).length) {
@@ -94,6 +108,7 @@ export const UserProvider = (props) => {
         dogs,
         allDogs,
         howls,
+        userSavedHowls,
         setUser,
         addHowl,
     };
