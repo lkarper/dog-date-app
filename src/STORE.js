@@ -3,7 +3,7 @@ export default {
         {
             "id": '61a8a24a-3f30-4f4b-ba1e-68474f25a4d1',
             "email": "sample@fake-email.com",
-            "phone": 123-456-7890,
+            "phone": "123-456-7890",
             "username": "pjfry2000",
             "password": "$walkingonsunshine123$",
         },
@@ -17,7 +17,7 @@ export default {
         {
             "id": 'fccf7cab-93e7-4b1b-ae26-a1f6e24f1b6d',
             "email": "sample3@fake-email.com",
-            "phone": 987-654-3210,
+            "phone": "987-654-3210",
             "username": "theAhnold",
             "password": "!HeyArn0ld!",
         },
@@ -154,6 +154,131 @@ export default {
             "owner_description": "Abner is a dog in recovery from an abusive past.  I just adopted her and so she is still learning how to live in a loving home.  She's very shy around new people, especially men, but I want to start introducting her to strangers very slowly.  She can be aggressive on the leash and around food, so I'm looking for a very patient dog to help her find her way."
         },
     ],
-    "howls": [],
+    "howls": [
+        {
+            "id": "b4e0aabd-5ed7-414d-9fcb-a379704c1de3",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "howl_title": 'Looking for some energetic pups near Central Park!',
+            "dog_ids": [
+                "f3586d96-54fc-43bc-9cff-3564ad317ad6", 
+                "777e047b-de08-43d7-aa08-a998b4a8430e"
+            ],
+            "location": {
+                "address": 'Central Park',
+                "city": 'New York',
+                "state": 'NY',
+                "zipcode": '10024',
+                "lat": 40.7812,
+                "lon": -73.9665,
+            },
+            "meeting_type": "recurring",
+            "one_time_windows": {},
+            "recurring_windows": [
+                {
+                    "dayOfWeek": "Monday",
+                    "startTime": "10:00",
+                    "endTime": "13:00",
+                },
+                {
+                    "dayOfWeek": "Saturday",
+                    "startTime": "15:00",
+                    "endTime": "18:00",
+                },
+            ],
+            "personal_message": "Looking for a few dogs to howl with Seymour and Nibbler!"
+        },
+        {
+            "id": "86d792db-3d1b-4c7c-9158-2a0336fdb2ba",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "howl_title": 'Heading to Acadia for the day; who wants to join me?',
+            "dog_ids": [
+                "f3586d96-54fc-43bc-9cff-3564ad317ad6",
+            ],
+            "location": {
+                "address": 'Acadia National Park',
+                "city": 'Bar Harbor',
+                "state": 'ME',
+                "zipcode": '04609',
+                "lat": 44.35,
+                "lon": -68.216667,
+            },
+            "meeting_type": "once",
+            "one_time_windows": {
+                "date": "2020-08-30",
+                "timeWindows": [
+                    {
+                        "startTime": "08:00",
+                        "endTime": "19:00"
+                    },
+                ],
+            },
+            "recurring_windows": [],
+            "personal_message": "Heading to Acadia for the day with my dog Seymour.  Looking for some well-trained dogs to hike with us."
+        },
+        {
+            "id": "6b731f04-75b7-4dd7-98e4-cf71fafd5a70",
+            "user_id": "51230acf-f502-4cd0-812b-e4dd59b04cb1",
+            "howl_title": 'Dogs love to play by the lake: join Santos!',
+            "dog_ids": [
+                "1eb7a4e4-ab97-4225-b764-12f72b659971",
+            ],
+            "location": {
+                "address": 'Lake Lookout',
+                "city": 'Springfield',
+                "state": 'MA',
+                "zipcode": '01109',
+                "lat": 42.114719256689966,
+                "lon": -72.5379143322001,
+            },
+            "meeting_type": "once",
+            "one_time_windows": {
+                "date": "2020-08-15",
+                "timeWindows": [
+                    {
+                        "startTime": "17:00",
+                        "endTime": "19:00"
+                    },
+                    {
+                        "startTime": "10:00",
+                        "endTime": "13:00"
+                    }
+                ],
+            },
+            "recurring_windows": [],
+            "personal_message": "Santos has a lot of energy and loves to run by the lake.  He's seemed a bit lonely lately, and I think that he's looking for another dog to run with."
+        },
+        {
+            "id": "8d4bc1f2-f0b5-47ef-a551-91c69e924528",
+            "user_id": "51230acf-f502-4cd0-812b-e4dd59b04cb1",
+            "howl_title": "Shout if you'll be at the farmer's market!",
+            "dog_ids": [
+                "7cb90576-b26c-4344-bb0b-915429e4fc2b",
+            ],
+            "location": {
+                "address": 'Forest Park',
+                "city": 'Springfield',
+                "state": 'MA',
+                "zipcode": '01108',
+                "lat": 42.0903723,
+                "lon": -72.5703659,
+            },
+            "meeting_type": "recurring",
+            "one_time_windows": {},
+            "recurring_windows": [
+                {
+                    "dayOfWeek": "Saturday",
+                    "startTime": "08:00",
+                    "endTime": "12:00",
+                },
+                {
+                    "dayOfWeek": "Sunday",
+                    "startTime": "13:00",
+                    "endTime": "17:00",
+                },
+            ],
+            "personal_message": "I take my dog Laddie to the park every weekend to visit the Farmer's Market.  He needs some extra mental stimulation, so I'm looking for some smart, energetic dogs to join us!"
+        },
+
+    ],
     "reviews": [],
 }
