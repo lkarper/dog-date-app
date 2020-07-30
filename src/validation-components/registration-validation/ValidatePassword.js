@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PasswordChecklist from './PasswordChecklist';
+import './ValidatePassword.css';
 
 const ValidatePassword = (props) => {
 
@@ -69,6 +70,7 @@ const ValidatePassword = (props) => {
             <PasswordChecklist passwordError={passwordError} />
             <div
                 role="alert"
+                className='ValidatePassword__password-error-message'
             >
                 <p id="password-error-message">
                     {passwordErrorMessage.length ? passwordErrorMessage.join(' ') : 'Password meets all requirements.'}
