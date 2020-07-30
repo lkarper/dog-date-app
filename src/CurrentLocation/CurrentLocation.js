@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const CurrentLocation = (props) => {
     
-    const { coordinates, address, setLocationError } = props;
+    const { coordinates } = props;
 
-    useEffect(() => {
-        if (address.trim().length) {
-            setLocationError(null);
-        } else {
-            setLocationError('Address or location name required.') 
-        }
-    }, [address, setLocationError])
-
-    if (address.trim().length) {
-        return (
-            <p id='current-location'>Location set to: {address} ({Object.keys(coordinates).length ? `${coordinates.lat}, ${coordinates.lon}` : 'No coordinates set'})</p>
-        );
-    }
-    
-    return <p id='current-location'>Enter a location above to set a meeting place. An address or location name is required; coordinates are optional.</p>;
-    
+    return (
+        <div role='alert'>
+            <p id='current-set-coordinates'>
+                {
+                    Object.keys(coordinates).length 
+                    ? `Coordinates set to: ${coordinates.lat}, ${coordinates.lon}.` 
+                    : 'No coordinates set (coordinates are optional).'
+                }
+            </p>
+        </div>
+    );
 }
 
 export default CurrentLocation;
