@@ -8,8 +8,14 @@ const OneTimeMeetingTimeWindow = (props) => {
     const [endTime, setEndTime] = useState(initialData.endTime);
 
     useEffect(() => {
-        updateTimeWindows(index, startTime, endTime);
-    }, [startTime, endTime])
+        if (initialData.startTime !== startTime) {
+            updateTimeWindows(index, startTime, endTime);
+        }
+        if (initialData.endTime !== endTime) {
+            updateTimeWindows(index, startTime, endTime);
+        }
+    
+    }, [startTime, endTime, index, initialData, updateTimeWindows]);
 
     return (
         <li>
