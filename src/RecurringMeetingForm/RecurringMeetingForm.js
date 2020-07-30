@@ -9,8 +9,21 @@ const RecurringMeetingForm = (props) => {
     const [endTime, setEndTime] = useState(currentData.endTime);
 
     useEffect(() => {
-        updateRecurringMeetingWindows(index, dayOfWeek, startTime, endTime);
-    }, [dayOfWeek, startTime, endTime])
+
+        if (currentData.dayOfWeek !== dayOfWeek || 
+            currentData.startTime !== startTime || 
+            currentData.endTime !== endTime) {
+            updateRecurringMeetingWindows(index, dayOfWeek, startTime, endTime);
+        }
+
+    }, [
+        dayOfWeek, 
+        startTime, 
+        endTime, 
+        index, 
+        currentData,
+        updateRecurringMeetingWindows
+    ]);
 
     return (
         <li>
