@@ -1,14 +1,15 @@
 import React, { useState, useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
 import MapForm from '../MapForm/MapForm';
-import CurrentLocation from '../CurrentLocation/CurrentLocation';
 import SelectDogForHowl from '../SelectDogForHowl/SelectDogForHowl';
-import './CreateHowl.css';
 import OneTimeMeetingForm from '../OneTimeMeetingForm/OneTimeMeetingForm';
 import RecurringMeetingForm from '../RecurringMeetingForm/RecurringMeetingForm';
 import ValidateDogSelection from '../validation-components/create-howl-validation/ValidateDogSelection';
 import ValidateTime from '../validation-components/create-howl-validation/ValidateTime';
 import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
+import LocationForm from '../LocationForm/LocationForm';
+import './CreateHowl.css';
 
 const CreateHowl = (props) => {
 
@@ -16,9 +17,14 @@ const CreateHowl = (props) => {
 
     const [dogsForHowl, setDogsForHowl] = useState([]);
     const [dogsForHowlError, setDogsForHowlError] = useState(null);
-    const [address, setAddress] = useState('');
+    const [location, setLocation] = useState({
+        address: '',
+        city: '',
+        state: '',
+        zipcode: '',
+    });
     const [coordinates, setCoordinates] = useState({});
-    const [locationError, setLocationError] = useState(null);
+    const [locationError, setLocationError] = useState([]);
     const [meetingType, setMeetingType] = useState('recurring');
     const [recurringMeetingWindows, setRecurringMeetingWindows] = useState([
         {
@@ -84,6 +90,22 @@ const CreateHowl = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const newHowl = {
+            id: uuidv4(),
+            user_id: context.user.id,
+            dog_ids: dogsForHowl,
+            location: {
+                ...location,
+                lat: coordinates.lat,
+                lon: coordinates.lon, 
+            },
+            meeting_type: meetingType,
+            one_time_windows: meetingType === 'once' ? oneTimeMeetingWindows : {},
+            recurring_windows: meetingType === 'recurring' ? recurringMeetingWindows : [],
+            personal_message: personalMessage,
+        };
+        context.addHowl(newHowl);
     }
 
     return (
@@ -101,7 +123,7 @@ const CreateHowl = (props) => {
                     <fieldset>
                         <legend>Select your dog(s) to howl about</legend>
                         <div className='CreateHowl__dog-select-container'>
-                            {context.dogs.map(dog => <SelectDogForHowl key={dog.id} dog={dog} updateDogsForHowl={updateDogsForHowl} /> )}
+                            {context.dogs.map(dog => <SelectDogForHowl key={dog.id} dog={dog} dogsForHowl={dogsForHowl} updateDogsForHowl={updateDogsForHowl} /> )}
                         </div>
                         <div role='alert'>
                             <ValidateDogSelection 
@@ -113,29 +135,14 @@ const CreateHowl = (props) => {
                     </fieldset>
                     <fieldset>
                         <legend>Where are you interested in meeting?</legend>
-                        <div className='MapForm__outer-container'>
-                            <fieldset>
-                                <legend>Enter the location for your meeting place here</legend>
-                                <div>
-                                    <label htmlFor='address'>Location (address or place):</label>
-                                    <input 
-                                        type="text" 
-                                        id="address" 
-                                        name="address"
-                                        value={address}
-                                        aria-describedby='current-location'
-                                        onChange={(e) => setAddress(e.target.value)} 
-                                        required
-                                    />
-                                </div>
-                            </fieldset>
-                            <MapForm setCoordinates={setCoordinates} />
-                        </div>
-                        <div role='alert'>
-                            <CurrentLocation 
-                                address={address} 
-                                coordinates={coordinates} 
-                                setLocationError={setLocationError}
+                        <div className='CreateHowl__map-outer-container'>
+                            <LocationForm
+                                setLocationError={setLocationError} 
+                                setLocation={setLocation}
+                            />
+                            <MapForm 
+                                coordinates={coordinates}
+                                setCoordinates={setCoordinates} 
                             />
                         </div>
                     </fieldset>
@@ -197,7 +204,6 @@ const CreateHowl = (props) => {
                                 meetingType={meetingType}
                                 oneTimeMeetingWindows={oneTimeMeetingWindows}
                                 recurringMeetingWindows={recurringMeetingWindows}
-                                timeError={timeError}
                                 setTimeError={setTimeError}
                             />
                         </div>
@@ -227,7 +233,7 @@ const CreateHowl = (props) => {
                         type="submit"
                         disabled={
                             dogsForHowlError ||
-                            locationError ||
+                            locationError.length ||
                             timeError ||
                             personalMessageError
                         }
