@@ -261,6 +261,7 @@ const CreateHowl = (props) => {
                             dogsForHowlError ||
                             locationError.length ||
                             timeError ||
+                            howlTitleError ||
                             personalMessageError
                         }
                     >Submit</button>
