@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const ValidateUsername = (props) => {
-    const { usernameValidationError } = props;
+    const { usernameValidationError, usernameExists } = props;
 
     useEffect(() => {
         const { username, setUsernameValidationError } = props;
@@ -14,10 +15,18 @@ const ValidateUsername = (props) => {
     }, [props]);
 
     if (usernameValidationError) {
-        return <p id='username-validation'>Username required and must be 3-72 characters in length.</p>;
+        return (
+            <p id='username-validation'>Username required and must be 3-72 characters in length.
+                {usernameExists ? `The username '${usernameExists}' is already linked to a registered account.  If that account belongs to you, <Link to='/login'>click here</Link> to log in.` : ''}
+            </p>
+        );
     }
 
-    return <p id='username-validation'>Username properly formatted.</p>;
+    return (
+        <p id='username-validation'>Username properly formatted.
+             {usernameExists ? `The username '${usernameExists}' is already linked to a registered account.  If that account belongs to you, ${<Link to='/login'>click here</Link>} to log in.` : ''}
+        </p>
+    );
 }
 
 export default ValidateUsername;
