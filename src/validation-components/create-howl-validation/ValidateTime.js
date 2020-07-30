@@ -5,7 +5,6 @@ const ValidateTime = (props) => {
         meetingType, 
         oneTimeMeetingWindows, 
         recurringMeetingWindows, 
-        timeError, 
         setTimeError 
     } = props;
 
