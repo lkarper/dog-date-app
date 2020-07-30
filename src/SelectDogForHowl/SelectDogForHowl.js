@@ -3,13 +3,19 @@ import './SelectDogForHowl.css';
 
 const SelectDogForHowl = (props) => {
 
-    const { dog, updateDogsForHowl } = props;
+    const { dog, dogsForHowl, updateDogsForHowl } = props;
 
     const [checked, setChecked] = useState(false);
 
     useEffect(() => {
-        updateDogsForHowl(dog.id, checked)
-    }, [checked]);
+
+        if (checked && !dogsForHowl.includes(dog.id)) {
+            updateDogsForHowl(dog.id, checked);
+        } else if (!checked && dogsForHowl.includes(dog.id)) {
+            updateDogsForHowl(dog.id, checked);
+        }
+
+    }, [checked, dog.id, dogsForHowl, updateDogsForHowl]);
 
     return (
         <div
@@ -37,7 +43,7 @@ const SelectDogForHowl = (props) => {
                 <img 
                     className='SelectDogForHowl__img'
                     src={dog.profile_img_url}
-                    alt={`Profile photo for the dog named ${dog.name}`}
+                    alt={`Avatar for the dog named ${dog.name}`}
                 />
                 </div>
             </label>
