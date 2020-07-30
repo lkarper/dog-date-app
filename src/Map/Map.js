@@ -6,6 +6,8 @@ import './Map.css';
 
 const Map = (props) => {
 
+    const { tempCoordinates, setTempCoordinates } = props;
+
     const [map, setMap] = useState(null);
     const [marker, setMarker] = useState(null);
     const [markerCoordinates, setMarkerCoordinates] = useState({ lat: 40.7812, lon: -73.9665 });
@@ -60,7 +62,7 @@ const Map = (props) => {
 
         marker.on('dragend', onDragEnd);
 
-    }, [props.setTempCoordinates]);
+    }, [props.setTempCoordinates, markerCoordinates.lat, markerCoordinates.lon]);
 
     useEffect(() => {
         if (marker) {
@@ -75,16 +77,15 @@ const Map = (props) => {
 
             marker.on('dragend', onDragEnd);
 
-            if (props.tempCoordinates.lat !== markerCoordinates.lat && props.tempCoordinates.lon !== markerCoordinates.lon) {
-                console.log('lower')
+            if (tempCoordinates.lat !== markerCoordinates.lat && tempCoordinates.lon !== markerCoordinates.lon) {
                 const { lat, lon } = markerCoordinates;
-                props.setTempCoordinates({
+                setTempCoordinates({
                     lon,
                     lat
                 });
             }
         }
-    }, [markerCoordinates, props.tempCoordinates, props.setTempCoordinates])
+    }, [markerCoordinates, tempCoordinates, setTempCoordinates, map, marker])
 
 
     return (
