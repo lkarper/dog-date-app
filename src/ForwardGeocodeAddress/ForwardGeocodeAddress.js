@@ -11,30 +11,31 @@ const ForwardGeocodeAddress = (props) => {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
+
+        const handleSearch = () => {
+
+            const query = encodeURIComponent(search);
+            const key = config.mapbox_key;
+            fetch(`https://us1.locationiq.com/v1/search.php?key=${key}&q=${query}&format=json`)
+                .then(res => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    throw new Error (res.statusText);
+                })
+                .then(res => {
+                    setResults(res);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
         if (search) {
             const timeout = setTimeout(handleSearch, 2000);
             return () => clearTimeout(timeout);
         }
-    }, [search]);
-
-    const handleSearch = () => {
-
-        const query = encodeURIComponent(search);
-        const key = config.mapbox_key;
-        fetch(`https://us1.locationiq.com/v1/search.php?key=${key}&q=${query}&format=json`)
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw new Error (res.statusText);
-            })
-            .then(res => {
-                setResults(res);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+    }, [search, setResults]);
 
     return (
         <div className='ForwardGeocodeAddress__outer-container'>
@@ -43,6 +44,7 @@ const ForwardGeocodeAddress = (props) => {
                 type="text" 
                 id="place-search" 
                 name="place-search"
+                aria-describedby='current-set-coordinates'
                 value={search}
                 onChange={(e) => setSearch(e.target.value)} 
             />
