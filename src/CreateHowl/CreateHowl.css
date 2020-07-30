@@ -4,7 +4,7 @@
     justify-content: center;
 }
 
-.CreateHowl__description-container {
+.CreateHowl__description-outer-container {
     display: flex;
     flex-direction: column;
 }
@@ -12,4 +12,9 @@
 .CreateHowl__map-outer-container {
     display: flex;
     flex-direction: row;
+}
+
+.CreateHowl__description-container {
+    display: flex;
+    flex-direction: column;
 }

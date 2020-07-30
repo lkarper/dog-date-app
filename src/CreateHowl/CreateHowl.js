@@ -10,6 +10,7 @@ import ValidateTime from '../validation-components/create-howl-validation/Valida
 import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
 import LocationForm from '../LocationForm/LocationForm';
 import './CreateHowl.css';
+import ValidateHowlTitle from '../validation-components/create-howl-validation/ValidateHowlTitle';
 
 const CreateHowl = (props) => {
 
@@ -45,6 +46,8 @@ const CreateHowl = (props) => {
         }
     );
     const [timeError, setTimeError] = useState(false);
+    const [howlTitle, setHowlTitle] = useState('');
+    const [howlTitleError, setHowlTitleError] = useState('');
     const [personalMessage, setPersonalMessage] = useState('');
     const [personalMessageError, setPersonalMessageError] = useState(null);
 
@@ -94,6 +97,7 @@ const CreateHowl = (props) => {
         const newHowl = {
             id: uuidv4(),
             user_id: context.user.id,
+            howl_title: howlTitle,
             dog_ids: dogsForHowl,
             location: {
                 ...location,
@@ -208,19 +212,41 @@ const CreateHowl = (props) => {
                             />
                         </div>
                     </fieldset>
-                    <div className='CreateHowl__description-container'>
-                        <label htmlFor="howl-description">Add a personal message to go with your howl:</label>
-                        <textarea 
-                            className='CreateHowl__description'
-                            id="howl-description" 
-                            name="howl-description" 
-                            maxLength="2000"
-                            rows='10' 
-                            placeholder="(Write your personal message here)" 
-                            aria-describedby="personal-message-validator"
-                            value={personalMessage}
-                            onChange={(e) => setPersonalMessage(e.target.value)}
-                        ></textarea>
+                    <div className='CreateHowl__description-outer-container'>
+                        <div className='CreateHowl__title-container'>
+                            <label htmlFor='howl-title'>Howl title:</label>
+                            <input 
+                                type='text'
+                                id='howl-title'
+                                name='howl-title'
+                                maxLength='100'
+                                aria-describedby='howl-title-validator'
+                                value={howlTitle}
+                                onChange={(e) => setHowlTitle(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div role='alert'>
+                            <ValidateHowlTitle 
+                                howlTitle={howlTitle}
+                                howlTitleError={howlTitleError}
+                                setHowlTitleError={setHowlTitleError}
+                            />
+                        </div>
+                        <div className='CreateHowl__description-container'>
+                            <label htmlFor="howl-description">Add a personal message to go with your howl:</label>
+                            <textarea 
+                                className='CreateHowl__description'
+                                id="howl-description" 
+                                name="howl-description" 
+                                maxLength="2000"
+                                rows='10' 
+                                placeholder="(Write your personal message here)" 
+                                aria-describedby="personal-message-validator"
+                                value={personalMessage}
+                                onChange={(e) => setPersonalMessage(e.target.value)}
+                            ></textarea>
+                        </div>
                     </div>
                     <div role='alert'>
                         <ValidatePersonalMessage 
