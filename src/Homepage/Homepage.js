@@ -39,17 +39,13 @@ const Homepage = (props) => {
                     <h3>My saved howls</h3>
                 </header>
                 <ul>
-                    <li>
-                        <h3>Race around the yard with me!</h3>
-                        <p>Dog: Santos L. Halper</p>
-                        <p>Avg. rating: 4.3 (15 reviews)</p>
-                        <p>Availability:</p>
-                            <ul className="availability">
-                                <li>Saturday, August 10: 10:00 AM - 12:00 PM</li>
-                            </ul>
-                        <p>Location: 742 Evergreen Terrace, Springfield</p>
-                        <p>No dogs interested yet...</p>
-                    </li>
+                    {context.userSavedHowls
+                        .map(savedHowl => (
+                            context.howls
+                            .find(howl => howl.id === savedHowl.howl_id)
+                        ))
+                        .map(howl => <HowlListItem key={howl.id} howl={howl} />)
+                    }
                 </ul>            
             </section>
             <section>
