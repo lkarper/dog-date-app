@@ -9,11 +9,34 @@ const OneTimeMeetingForm = (props) => {
     const [timeWindows, setTimeWindows] = useState(currentData.timeWindows);
 
     useEffect(() => {
-        setOneTimeMeetingWindows({
-            date,
-            timeWindows
+
+        if (currentData.date !== date) {
+            setOneTimeMeetingWindows({
+                date,
+                timeWindows
+            });
+        }
+
+        let update = false;
+
+        if (timeWindows.length !== currentData.timeWindows.length) {
+            update = true;
+        }
+
+        timeWindows.forEach(window => {
+            if (!currentData.timeWindows.find(tw => tw.startTime === window.startTime && tw.endTime === window.endTime)) {
+                update = true;
+            }
         });
-    }, [date, timeWindows]);
+
+        if (update) {
+            setOneTimeMeetingWindows({
+                date,
+                timeWindows
+            });
+        }
+
+    }, [date, timeWindows, currentData, setOneTimeMeetingWindows]);
 
     const updateTimeWindows = (index, startTime, endTime) => {
         const updatedTimeWindow = {
