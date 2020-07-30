@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UserContext from '../contexts/UserContext';
 import UserContactInfo from '../UserContactInfo/UserContactInfo';
 import MyDogs from '../MyDogs/MyDogs';
+import HowlListItem from '../HowlListItem/HowlListItem';
 
 const Homepage = (props) => {
+
+    const context = useContext(UserContext);
+
     return (
         <>
             <header>
@@ -52,16 +57,13 @@ const Homepage = (props) => {
                     <h3>My howls</h3>
                 </header>
                 <ul>
-                    <li>
-                        <h3>Looking for 1-3 small dogs for some fetch!</h3>
-                        <p>Availability:</p>
-                            <ul className="availability">
-                                <li>Mondays: 1:00 - 3:00 PM</li>
-                                <li>Saturdays: 9:00 AM - 2:00 PM</li>
-                            </ul>
-                        <p>Location: Central Park, New New York, New York</p>
-                        <p>2 dogs are interested!</p>
-                    </li>
+                    {context.howls
+                        .filter(howl => howl.user_id === context.user.id)
+                        .map(howl => (
+                            <HowlListItem key={howl.id} howl={howl} />
+                        ))
+                    }
+                    
                 </ul>
             </section>
             <section>
