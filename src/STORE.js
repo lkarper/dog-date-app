@@ -280,7 +280,34 @@ export default {
         },
 
     ],
-    "reviews": [],
+    "reviews": [
+        {
+            "id": "0adcdd30-a6dc-4235-8ca3-dab507b7307f",
+            "date_created": "2020-07-31T19:35:31.457Z",
+            "dog_id": "1eb7a4e4-ab97-4225-b764-12f72b659971",
+            "reviewer": "pjfry2000",
+            "friendliness_dogs": 4,
+            "friendliness_people": 4,
+            "playing_interest": 3,
+            "obedience": 2,
+            "profile_accuracy": 4,
+            "location_suitability": 3,
+            "location": {
+                "address": "Lake Lookout",
+                "city": "Springfield",
+                "state": "MA",
+                "zipcode": "01109",
+                "lat": 42.114719256689966,
+                "lon": -72.5379143322001,
+            },
+            "when": {
+                "date": "2020-08-15",
+                "startTime": "17:00",
+                "endTime": "19:00",
+            },
+            "personal_message": "Santos is a good, friendly dog.  The lake area was very busy, and it was difficult for the dogs to run around, since there were so many people around.  That being said, I highly recommend Santos!",
+        },
+    ],
     "user_saved_howls": [
         {
             "id": "0eada3bf-43a9-48c0-9458-c6bfccb4e790",
@@ -291,6 +318,23 @@ export default {
             "id": "11e3d68c-fca9-4792-9c86-11799cb4ca38",
             "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
             "howl_id": "8d4bc1f2-f0b5-47ef-a551-91c69e924528",
+        },
+    ],
+    "pack_members": [
+        {
+            "id": "c5029d40-a4a1-45ea-8b58-8dbbaf16679f",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "pack_member_id": "1eb7a4e4-ab97-4225-b764-12f72b659971"
+        },
+        {
+            "id": "ceeae974-26dc-4d46-9963-71fcb177a774",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "pack_member_id": "7cb90576-b26c-4344-bb0b-915429e4fc2b"
+        },
+        {
+            "id": "58594361-57e4-4980-b895-c4d5c6e6c760",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "pack_member_id": "cb6e6549-faac-45ae-9170-b11c869cd239"
         },
     ],
 }
