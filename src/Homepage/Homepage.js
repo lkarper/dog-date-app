@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
-import UserContext from '../contexts/UserContext';
+import React from 'react';
 import UserContactInfo from '../UserContactInfo/UserContactInfo';
 import MyDogs from '../MyDogs/MyDogs';
-import HowlListItem from '../HowlListItem/HowlListItem';
 import MyPack from '../MyPack/MyPack';
+import MySavedHowls from '../MySavedHowls/MySavedHowls';
+import MyHowls from '../MyHowls/MyHowls';
+import ReviewsOfMyDogs from '../ReviewsOfMyDogs/ReviewsOfMyDogs';
 
 const Homepage = (props) => {
-
-    const context = useContext(UserContext);
 
     return (
         <>
@@ -17,46 +16,9 @@ const Homepage = (props) => {
             <UserContactInfo />
             <MyDogs />
             <MyPack />
-            <section>
-                <header>
-                    <h3>My saved howls</h3>
-                </header>
-                <ul>
-                    {context.userSavedHowls
-                        .map(savedHowl => (
-                            context.howls
-                            .find(howl => howl.id === savedHowl.howl_id)
-                        ))
-                        .map(howl => <HowlListItem key={howl.id} howl={howl} />)
-                    }
-                </ul>            
-            </section>
-            <section>
-                <header>
-                    <h3>My howls</h3>
-                </header>
-                <ul>
-                    {context.howls
-                        .filter(howl => howl.user_id === context.user.id)
-                        .map(howl => (
-                            <HowlListItem key={howl.id} howl={howl} />
-                        ))
-                    }
-                    
-                </ul>
-            </section>
-            <section>
-                <header>
-                    <h3>Recent reviews of my dogs</h3>
-                </header>
-                <ul>
-                    <li>
-                        <h3>Review of Seymour</h3>
-                        <p>Left by: B. Simpson</p>
-                        <p>From Seymour's playdate with Santos L. Halper on February 10, 2020</p>
-                    </li>
-                </ul>
-            </section>
+            <MySavedHowls />
+            <MyHowls />
+            <ReviewsOfMyDogs />
         </>
     );
 }
