@@ -8,6 +8,8 @@ const UserContext = createContext({
     howls: [],
     userSavedHowls: [],
     packMembers: [],
+    reviews: [],
+    addReview: () => {},
     addHowl: () => {},
     setUser: () => {},
 });
@@ -79,6 +81,7 @@ export const UserProvider = (props) => {
     ]);
     const [allDogs, setAllDogs] = useState(STORE.dog_profiles);
     const [howls, setHowls] = useState(STORE.howls);
+    const [reviews, setReviews] = useState(STORE.reviews);
     const [userSavedHowls, setUserSavedHowls] = useState([
         {
             "id": "0eada3bf-43a9-48c0-9458-c6bfccb4e790",
@@ -113,12 +116,21 @@ export const UserProvider = (props) => {
         if (Object.keys(user).length) {
             const dogs = STORE.dog_profiles.filter(dog => dog.owner_id === user.id);
             setDogs(dogs);
+            const savedHowls = STORE.user_saved_howls.filter(howl => howl.user_id === user.id);
+            setUserSavedHowls(savedHowls);
+            const userPackMembers = STORE.pack_members.filter(pm => pm.user_id === user.id);
+            setUserPackMembers(userPackMembers);
         }
     }, [user]);
 
     const addHowl = (newHowl) => {
         const updatedHowls = [...howls, newHowl];
         setHowls(updatedHowls);
+    }
+
+    const addReview = (newReview) => {
+        const updatedReviews = [ ... reviews, newReview];
+        setReviews(updatedReviews);
     }
 
     const value = {
@@ -128,6 +140,8 @@ export const UserProvider = (props) => {
         howls,
         userSavedHowls,
         packMembers,
+        reviews,
+        addReview,
         setUser,
         addHowl,
     };
