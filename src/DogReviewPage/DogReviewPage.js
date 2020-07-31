@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
 import DogReviewForm from '../DogReviewForm/DogReviewForm';
 import DogListView from '../DogListView/DogListView';
@@ -31,6 +32,32 @@ const DogReviewPage = (props) => {
         startTime: '',
         endTime: '',
     });
+    const [reviewAdded, setReviewAdded] = useState(false);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const newReview = {
+            id: uuidv4(),
+            date_created: new Date().toJSON(),
+            dog_id,
+            reviewer: context.user.username,
+            friendliness_dogs: parseInt(friendlinessDogsP),
+            friendliness_people: parseInt(friendlinessPeopleP),
+            playing_interest: parseInt(playingInterestP),
+            obedience: parseInt(obedienceP),
+            profile_accuracy: parseInt(profileAccuracyP),
+            location_suitability: parseInt(locationSuitabilityP),
+            location: {
+                ...locationP,
+                ...coordinatesP,
+            },
+            when: whenP,
+            personal_message: personalMessageP
+        };
+        context.addReview(newReview);
+        setReviewAdded(true);
+        // What to do when review has been added?
+    }
 
     if (!dog) {
         const pack = context.packMembers.map(pm => 
@@ -91,6 +118,7 @@ const DogReviewPage = (props) => {
                 setPersonalMessageP={setPersonalMessageP}
                 whenP={whenP}
                 setWhenP={setWhenP}
+                handleSubmit={handleSubmit}
             />
         </section>
     );
