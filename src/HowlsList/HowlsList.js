@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import UserContext from '../contexts/UserContext';
 import { Link } from 'react-router-dom';
+import HowlListItem from '../HowlListItem/HowlListItem';
 
 const HowlsList = (props) => {
+
+    const context = useContext(UserContext);
+    const { howls } = context;
+
     return (
         <>
             <header>
@@ -61,29 +67,7 @@ const HowlsList = (props) => {
                     <h2>Dogs howling for a playmate</h2>
                 </header>
                 <ol>
-                    <li>
-                        <h2>Looking for 1-3 small dogs for some fetch!</h2>
-                        <p>Dog: Seymour</p>
-                        <p>Avg. rating: 4.7 (10 reviews)</p>
-                        <p>Availability:</p>
-                            <ul class="availability">
-                                <li>Mondays: 1:00 - 3:00 PM</li>
-                                <li>Saturdays: 9:00 AM - 2:00 PM</li>
-                            </ul>
-                        <p>Location: Central Park, New New York, New York</p>
-                        <p>2 dogs are interested!</p>
-                    </li>
-                    <li>
-                        <h2>Race around the yard with me!</h2>
-                        <p>Dog: Santos L. Halper</p>
-                        <p>Avg. rating: 4.3 (15 reviews)</p>
-                        <p>Availability:</p>
-                            <ul class="availability">
-                                <li>Saturday, August 10: 10:00 AM - 12:00 PM</li>
-                            </ul>
-                        <p>Location: 742 Evergreen Terrace, Springfield</p>
-                        <p>No dogs interested yet...</p>
-                    </li>
+                    {howls.map(howl => <HowlListItem key={howl.id} howl={howl} />)}
                 </ol>
             </section>
         </>
