@@ -8,6 +8,7 @@ import './DogReviewForm.css';
 const DogReviewForm = (props) => {
 
     const { 
+        dogName,
         friendlinessDogsP,
         friendlinessPeopleP,
         playingInterestP,
@@ -131,7 +132,7 @@ const DogReviewForm = (props) => {
     return (
         <form className='review-form'>
             <fieldset>
-                <legend>How would you rate Seymour on the following:</legend>
+                <legend>How would you rate {dogName} on the following:</legend>
                 <ReviewFormStarRater 
                     classSuffix='fd'
                     currentState={friendlinessDogs}
@@ -203,7 +204,7 @@ const DogReviewForm = (props) => {
                 </fieldset>
                     <hr />
                 <fieldset className="sub-fieldset">
-                    <legend>Where did your dog play with Seymour?</legend>
+                    <legend>Where did your dog play with {dogName}?</legend>
                     <div className='DogReviewForm__map-outer-container'>
                         <LocationForm
                             setLocationError={setLocationError} 
@@ -225,13 +226,13 @@ const DogReviewForm = (props) => {
             <fieldset>
                 <legend>Add a personal note here</legend>
                 <div className='DogReviewForm__message-container'>
-                    <label htmlFor="review-note">Add a personal message to go with your howl:</label>
+                    <label htmlFor="review-note">Add a personal note to go with your review:</label>
                     <textarea 
                         id="review-note" 
                         name="review-note" 
                         maxLength="2000" 
                         rows='10'
-                        placeholder="(Write your personal message here)" 
+                        placeholder="(Write your personal note here.)" 
                         aria-describedby="personal-message-validator"
                         value={personalMessage}
                         onChange={(e) => setPersonalMessage(e.target.value)}
