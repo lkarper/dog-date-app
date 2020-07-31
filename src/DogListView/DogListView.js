@@ -17,7 +17,7 @@ const DogListView = (props) => {
                 <Link
                     to={`/dog-profile/${id}`}
                 >
-                    {name}
+                    View {name}'s profile
                 </Link>
             </div>
         </li>
