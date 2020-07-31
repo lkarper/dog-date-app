@@ -29,6 +29,7 @@ const DogReviewForm = (props) => {
         setLocationP,
         setPersonalMessageP,
         setWhenP,
+        handleSubmit,
     } = props;
 
     const [friendlinessDogs, setFriendlinessDogs] = useState('');
@@ -130,7 +131,10 @@ const DogReviewForm = (props) => {
     const maxDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
 
     return (
-        <form className='review-form'>
+        <form 
+            onSubmit={handleSubmit}
+            className='review-form'
+        >
             <fieldset>
                 <legend>How would you rate {dogName} on the following:</legend>
                 <ReviewFormStarRater 
