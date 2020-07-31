@@ -1,0 +1,9 @@
+.DogReviewForm__map-outer-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.DogReviewForm__message-container {
+    display: flex;
+    flex-direction: column;
+}
