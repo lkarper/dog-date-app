@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import DogProfileCharacteristics from '../DogProfileCharacteristics/DogProfileCharacteristics';
 import HowlListItem from '../HowlListItem/HowlListItem';
@@ -51,7 +52,10 @@ const DogProfilePage = (props) => {
                 <header>
                     <h2>Reviews of {dog_profile.name}</h2>
                 </header>
-                <a href="">Leave your own review of {dog_profile.name}</a>
+                {context.user.id === dog_profile.owner_id 
+                    ? '' 
+                    : <Link to={`/leave-review/${dog_profile.id}`}>Leave your own review of {dog_profile.name}</Link>
+                }
                 <ul>
                     <li>
                         <h2>Seymour is a great dog!</h2>
