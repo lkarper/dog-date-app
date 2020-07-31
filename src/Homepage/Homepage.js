@@ -3,6 +3,7 @@ import UserContext from '../contexts/UserContext';
 import UserContactInfo from '../UserContactInfo/UserContactInfo';
 import MyDogs from '../MyDogs/MyDogs';
 import HowlListItem from '../HowlListItem/HowlListItem';
+import MyPack from '../MyPack/MyPack';
 
 const Homepage = (props) => {
 
@@ -15,25 +16,7 @@ const Homepage = (props) => {
             </header>
             <UserContactInfo />
             <MyDogs />
-            <section>
-                <header>
-                    <h3>My pack</h3>
-                </header>
-                <ul>
-                    <li>
-                        <div>
-                            <p>[<em>placeholder for pack member profile pic</em>]</p>
-                            <p>Pack member 1</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p>[<em>placeholder for pack member profile pic</em>]</p>
-                            <p>Pack member 2</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
+            <MyPack />
             <section>
                 <header>
                     <h3>My saved howls</h3>
