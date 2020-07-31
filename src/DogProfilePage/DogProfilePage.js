@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 import DogProfileCharacteristics from '../DogProfileCharacteristics/DogProfileCharacteristics';
 import HowlListItem from '../HowlListItem/HowlListItem';
+import DogProfilePageHeaderButtons from '../DogProfilePageHeaderButtons/DogProfilePageHeaderButtons';
 
 const DogProfilePage = (props) => {
 
@@ -19,7 +20,11 @@ const DogProfilePage = (props) => {
                     src={dog_profile.profile_img_url}
                     alt={`Avatar for the dog named ${dog_profile.name}.`} 
                 />
-                <button type="button">Add Seymour to your pack</button>
+                <DogProfilePageHeaderButtons 
+                    owner_id={dog_profile.owner_id}
+                    dog_id={dog_profile.id}
+                    dog_name={dog_profile.name}
+                />
             </header>
             <section>
                 <header>
@@ -36,7 +41,7 @@ const DogProfilePage = (props) => {
             </section>
             <section>
                 <header>
-                    <h2>Howls about Seymour</h2>
+                    <h2>Howls about {dog_profile.name}</h2>
                 </header>
                 <ul>
                     {howlsBy.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
@@ -44,9 +49,9 @@ const DogProfilePage = (props) => {
             </section>
             <section>
                 <header>
-                    <h2>Reviews of Seymour</h2>
+                    <h2>Reviews of {dog_profile.name}</h2>
                 </header>
-                <a href="">Leave your own review of Seymour</a>
+                <a href="">Leave your own review of {dog_profile.name}</a>
                 <ul>
                     <li>
                         <h2>Seymour is a great dog!</h2>
