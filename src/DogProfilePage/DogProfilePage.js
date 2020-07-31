@@ -4,6 +4,8 @@ import UserContext from '../contexts/UserContext';
 import DogProfileCharacteristics from '../DogProfileCharacteristics/DogProfileCharacteristics';
 import HowlListItem from '../HowlListItem/HowlListItem';
 import DogProfilePageHeaderButtons from '../DogProfilePageHeaderButtons/DogProfilePageHeaderButtons';
+import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
+import DogAverageRating from '../DogAverageRating/DogAverageRating';
 
 const DogProfilePage = (props) => {
 
@@ -12,6 +14,7 @@ const DogProfilePage = (props) => {
     const { id } = props.match.params;
     const dog_profile = context.allDogs.find(profile => profile.id === id);
     const howlsBy = context.howls.filter(howl => howl.dog_ids.includes(id));
+    const reviews = context.reviews.filter(review => review.dog_id === id);
 
     return (
         <>
@@ -56,13 +59,19 @@ const DogProfilePage = (props) => {
                     ? '' 
                     : <Link to={`/leave-review/${dog_profile.id}`}>Leave your own review of {dog_profile.name}</Link>
                 }
-                <ul>
-                    <li>
-                        <h2>Seymour is a great dog!</h2>
-                        <p>Left by: B. Simpson</p>
-                        <p>From Seymour's playdate with Santos L. Halper on February 10, 2020</p>
-                    </li>
-                </ul>
+                {reviews.length 
+                    ? 
+                        <div>
+                            <DogAverageRating 
+                                reviews={reviews}
+                            />
+                            <ul>
+                                {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
+                            </ul>
+                        </div>
+                    :
+                        <p>No reviews of {dog_profile.name} yet.</p>
+            }
             </section>
         </>
     )
