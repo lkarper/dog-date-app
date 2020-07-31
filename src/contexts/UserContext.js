@@ -129,7 +129,7 @@ export const UserProvider = (props) => {
     }
 
     const addReview = (newReview) => {
-        const updatedReviews = [ ... reviews, newReview];
+        const updatedReviews = [ ...reviews, newReview];
         setReviews(updatedReviews);
     }
 
