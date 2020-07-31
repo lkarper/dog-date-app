@@ -8,6 +8,7 @@ import HowlsList from './HowlsList/HowlsList';
 import Homepage from './Homepage/Homepage';
 import CreateHowl from './CreateHowl/CreateHowl';
 import DogProfilePage from './DogProfilePage/DogProfilePage';
+import DogReviewPage from './DogReviewPage/DogReviewPage';
 import './App.css';
 
 const App = () => {
@@ -42,6 +43,10 @@ const App = () => {
         <Route
           path='/dog-profile/:id'
           component={DogProfilePage} 
+        />
+        <Route 
+          path='/leave-review/:dog_id'
+          component={DogReviewPage}
         />
       </main>
     </div>
