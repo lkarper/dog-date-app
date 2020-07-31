@@ -7,7 +7,7 @@ const ValidateZipCode = (props) => {
     useEffect(() => {
         
         if (!/(^[0-9]{5}$)|(^[0-9]{5}-[0-9]{4}$)/.test(zipcode)) {
-            setZipcodeError(`ZIP code is required an must match format '12345' or '12345-6789'.`);
+            setZipcodeError(`ZIP code is required and must match format '12345' or '12345-6789'.`);
         } else {
             setZipcodeError('');
         }
