@@ -16,7 +16,7 @@ const MyDogs = (props) => {
                 {dogs.map(dog => <DogListView key={dog.id} dog={dog} />)}
             </ul>
         </section>
-);
+    );
 }
 
 export default MyDogs;
