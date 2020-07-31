@@ -7,6 +7,7 @@ const UserContext = createContext({
     allDogs: [],
     howls: [],
     userSavedHowls: [],
+    packMembers: [],
     addHowl: () => {},
     setUser: () => {},
 });
@@ -90,6 +91,23 @@ export const UserProvider = (props) => {
             "howl_id": "8d4bc1f2-f0b5-47ef-a551-91c69e924528",
         },
     ]);
+    const [packMembers, setUserPackMembers] = useState([
+        {
+            "id": "c5029d40-a4a1-45ea-8b58-8dbbaf16679f",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "pack_member_id": "1eb7a4e4-ab97-4225-b764-12f72b659971"
+        },
+        {
+            "id": "ceeae974-26dc-4d46-9963-71fcb177a774",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "pack_member_id": "7cb90576-b26c-4344-bb0b-915429e4fc2b"
+        },
+        {
+            "id": "58594361-57e4-4980-b895-c4d5c6e6c760",
+            "user_id": "61a8a24a-3f30-4f4b-ba1e-68474f25a4d1",
+            "pack_member_id": "cb6e6549-faac-45ae-9170-b11c869cd239"
+        },
+    ]);
     
     useEffect(() => {
         if (Object.keys(user).length) {
@@ -109,6 +127,7 @@ export const UserProvider = (props) => {
         allDogs,
         howls,
         userSavedHowls,
+        packMembers,
         setUser,
         addHowl,
     };
