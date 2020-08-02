@@ -11,6 +11,8 @@ const UserContext = createContext({
     reviews: [],
     addReview: () => {},
     addHowl: () => {},
+    addPackMember: () => {},
+    removePackMember: () => {},
     setUser: () => {},
 });
 
@@ -133,6 +135,16 @@ export const UserProvider = (props) => {
         setReviews(updatedReviews);
     }
 
+    const addPackMember = (newPackMember) => {
+        const updatedPackMembers = [...packMembers, newPackMember ];
+        setUserPackMembers(updatedPackMembers);
+    }
+
+    const removePackMember = (id_to_remove) => {
+        const updatedPackMembers = packMembers.filter(pm => pm.pack_member_id !== id_to_remove);
+        setUserPackMembers(updatedPackMembers);
+    }
+
     const value = {
         user,
         dogs,
@@ -144,6 +156,8 @@ export const UserProvider = (props) => {
         addReview,
         setUser,
         addHowl,
+        addPackMember,
+        removePackMember,
     };
 
     return (
