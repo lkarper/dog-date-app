@@ -15,6 +15,7 @@ const UserContext = createContext({
     removePackMember: () => {},
     setUser: () => {},
     addDogProfile: () => {},
+    updateDogProfile: () => {},
 });
 
 export default UserContext;
@@ -153,6 +154,15 @@ export const UserProvider = (props) => {
         setAllDogs(updateAllDogs);
     }
 
+    const updateDogProfile = (newDogProfile) => {
+        const updatedDogs = dogs.filter(dog => dog.id !== newDogProfile.id);
+        updatedDogs.push(newDogProfile);
+        setDogs(updatedDogs);
+        const updatedAllDogs = allDogs.filter(dog => dog.id !== newDogProfile.id);
+        updatedAllDogs.push(newDogProfile);
+        setAllDogs(updatedAllDogs);
+    }
+
     const value = {
         user,
         dogs,
@@ -167,6 +177,7 @@ export const UserProvider = (props) => {
         addPackMember,
         removePackMember,
         addDogProfile,
+        updateDogProfile,
     };
 
     return (
