@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ValidateDogProfileName from '../../validation-components/create-dog-profile-validation/ValidateDogProfileName';
 import ValidateDogProfileAge from '../../validation-components/create-dog-profile-validation/ValidateDogProfileAge';
 import ValidateDogProfileSex from '../../validation-components/create-dog-profile-validation/ValidateDogProfileSex';
 
 const BasicInfo = (props) => {
+
+    const {
+        nameP,
+        setNameP,
+        nameErrorP,
+        setNameErrorP,
+        ageYearsP,
+        setAgeYearsP,
+        ageMonthsP,
+        setAgeMonthsP,
+        ageErrorP,
+        setAgeErrorP,
+        sexP,
+        setSexP,
+        sexErrorP,
+        setSexErrorP,
+        breedP,
+        setBreedP,
+        weightP,
+        setWeightP
+    } = props.data;
 
     const [name, setName] = useState('');
     const [nameError, setNameError] = useState('');
@@ -14,6 +35,60 @@ const BasicInfo = (props) => {
     const [sexError, setSexError] = useState('');
     const [breed, setBreed] = useState('');
     const [weight, setWeight] = useState('');
+
+    useEffect(() => {
+        if (name !== nameP) {
+            setNameP(name);
+        }
+    }, [name, nameP, setNameP]);
+
+    useEffect(() => {
+        if (nameError !== nameErrorP) {
+            setNameErrorP(nameError);
+        }
+    }, [nameError, nameErrorP, setNameErrorP]);
+
+    useEffect(() => {
+        if (ageYears !== ageYearsP) {
+            setAgeYearsP(ageYears);
+        }
+    }, [ageYears, ageYearsP, setAgeYearsP]);
+
+    useEffect(() => {
+        if (ageMonths !== ageMonthsP) {
+            setAgeMonthsP(ageMonths);
+        }
+    }, [ageMonths, ageMonthsP, setAgeMonthsP]);
+
+    useEffect(() => {
+        if (ageError !== ageErrorP) {
+            setAgeErrorP(ageError);
+        }
+    }, [ageError, ageErrorP, setAgeErrorP]);
+
+    useEffect(() => {
+        if (sex !== sexP) {
+            setSexP(sex);
+        }
+    }, [sex, sexP, setSexP]);
+
+    useEffect(() => {
+        if (sexError !== sexErrorP) {
+            setSexErrorP(sexError);
+        }
+    }, [sexError, sexErrorP, setSexErrorP]);
+
+    useEffect(() => {
+        if (breed !== breedP) {
+            setBreedP(breed);
+        }
+    }, [breed, breedP, setBreedP]);
+
+    useEffect(() => {
+        if (weight !== weightP) {
+            setWeightP(weight);
+        }
+    }, [weight, weightP, setWeightP]);
 
     const checkAgeYears = (age) => {
         if (isNaN(age)) {
@@ -119,8 +194,8 @@ const BasicInfo = (props) => {
                         type="radio" 
                         id="male-unneutered" 
                         name="sex" 
-                        value="male-unneutered"
-                        checked={sex === 'male-unneutered'}
+                        value="Male, unneutered"
+                        checked={sex === 'Male, unneutered'}
                         aria-describedby='sex-validator'
                         onChange={(e) => setSex(e.target.value)} 
                         required
@@ -132,8 +207,8 @@ const BasicInfo = (props) => {
                         type="radio" 
                         id="female-unspayed" 
                         name="sex" 
-                        value="female-unspayed" 
-                        checked={sex === 'female-unspayed'}
+                        value="Female, unspayed" 
+                        checked={sex === 'Female, unspayed'}
                         aria-describedby='sex-validator'
                         onChange={(e) => setSex(e.target.value)}
                         required
@@ -145,8 +220,8 @@ const BasicInfo = (props) => {
                         type="radio" 
                         id="male-neutered" 
                         name="sex" 
-                        value="male-neutered" 
-                        checked={sex === 'male-neutered'}
+                        value="Male, neutered" 
+                        checked={sex === 'Male, neutered'}
                         aria-describedby='sex-validator'
                         onChange={(e) => setSex(e.target.value)}
                         required
@@ -158,8 +233,8 @@ const BasicInfo = (props) => {
                         type="radio" 
                         id="female-spayed" 
                         name="sex" 
-                        value="female-spayed" 
-                        checked={sex === 'female-spayed'}
+                        value="Female, spayed" 
+                        checked={sex === 'Female, spayed'}
                         aria-describedby='sex-validator'
                         onChange={(e) => setSex(e.target.value)}
                         required
@@ -181,9 +256,11 @@ const BasicInfo = (props) => {
                     id="breed" 
                     name="breed" 
                     maxLength='72'
+                    aria-describedby='breed-optional'
                     value={breed}
                     onChange={(e) => setBreed(e.target.value)}
                 />
+                <p id='breed-optional'>(Optional; max 72 characters.)</p>
             </div>
             <div>
                 <label htmlFor="weight">Weight (in lbs):</label>
@@ -192,15 +269,12 @@ const BasicInfo = (props) => {
                     id="weight" 
                     name="weight" 
                     min="1" 
-                    max="300" 
+                    max="300"
+                    aria-describedby='weight-optional' 
                     value={weight}
                     onChange={(e) => checkWeight(e.target.value)}
                 />
-            </div>
-            <div>
-                <label htmlFor="profile-pic">Profile picture:</label>
-                <input type="file" id="profile-pic" name="profile-pic" accept="image/png, image/jpeg" aria-describedby="file-type"/>
-                <p id="file-type">(.png or .jpg only)</p>
+                <p id='weight-optional'>(Optional; max. 300 lbs.)</p>
             </div>
         </fieldset>
     );
