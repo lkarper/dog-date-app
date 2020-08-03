@@ -26,15 +26,15 @@ const BasicInfo = (props) => {
         setWeightP
     } = props.data;
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState(nameP);
     const [nameError, setNameError] = useState('');
-    const [ageYears, setAgeYears] = useState('');
-    const [ageMonths, setAgeMonths] = useState('');
+    const [ageYears, setAgeYears] = useState(ageYearsP);
+    const [ageMonths, setAgeMonths] = useState(ageMonthsP);
     const [ageError, setAgeError] = useState('');
-    const [sex, setSex] = useState('');
+    const [sex, setSex] = useState(sexP);
     const [sexError, setSexError] = useState('');
-    const [breed, setBreed] = useState('');
-    const [weight, setWeight] = useState('');
+    const [breed, setBreed] = useState(breedP);
+    const [weight, setWeight] = useState(weightP);
 
     useEffect(() => {
         if (name !== nameP) {

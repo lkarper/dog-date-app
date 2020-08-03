@@ -6,20 +6,21 @@ import './UploadDogProfilePhoto.css';
 
 const UploadDogProfilePhoto = (props) => {
     
-    const { imgUrlP, setImgUrlP, uploadDogProfile } = props;
+    const { imgUrlP, setImgUrlP, uploadDogProfile, suffix } = props;
 
     const [imgFile, setImgFile] = useState();
-    const [imgUrl, setImgUrl] = useState('');
+    const [imgUrl, setImgUrl] = useState(imgUrlP);
     const [showLoading, setShowLoading] = useState(false);
     const [uploadError, setUploadError] = useState('');
+    const [uploadSuccess, setUploadSuccess] = useState(false);
 
     useEffect(() => {
         if (imgUrl !== imgUrlP) {
             setImgUrlP(imgUrl);
-        } else if (imgUrlP) {
+        } else if (imgUrlP === null || (uploadSuccess && imgUrl === imgUrlP)) {
             uploadDogProfile();
         }
-    }, [imgUrl, imgUrlP, setImgUrlP]);
+    }, [imgUrl, imgUrlP, setImgUrlP, uploadDogProfile, uploadSuccess]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -43,16 +44,51 @@ const UploadDogProfilePhoto = (props) => {
                 setUploadError('');
                 setShowLoading(false);
                 setImgUrl(resJson.secure_url);
+                setUploadSuccess(true);
             })
             .catch(error => {
                 console.log("error", error);
                 setUploadError(error)
                 setShowLoading(false);
+                setUploadSuccess(false);
             });
     }
 
+    const noPhoto = () => {
+        setImgUrl(null);
+    }
+
+    let imagePreview = '';
+    
+    if (imgUrl && !imgFile) {
+        imagePreview = (
+            <>
+                <button onClick={uploadDogProfile}>Keep current profile picture</button>
+                <p>Current image:</p>
+                <img 
+                    src={imgUrl} 
+                    alt='Avatar preview.' 
+                    className='UploadDogProfilePhoto__img-preview'
+                />
+            </>
+        );
+    } else if (imgFile) {
+        imagePreview = (
+            <> 
+                <p>Image preview</p>
+                <img 
+                    src={URL.createObjectURL(imgFile)} 
+                    alt='Avatar preview.' 
+                    className='UploadDogProfilePhoto__img-preview'
+                />
+                {showLoading && <FontAwesomeIcon icon={faSpinner} spin />}
+                {uploadError ? <p>Upload failed.  Please try again.</p> : ''}
+            </>
+        );
+    }
+
     return (
-        <section>
+        <section className={`UploaddogProfilePhoto__outer-section${suffix}`}>
             <header>
                 <h2>Upload a photo for your dog's profile</h2>
             </header>
@@ -75,26 +111,13 @@ const UploadDogProfilePhoto = (props) => {
                 >
                     Upload
                 </button>
-                <button onClick={uploadDogProfile}>Nevermind</button>
+                <button onClick={noPhoto}>Don't use a photo</button>
             </form>
             <div 
                 role='alert'
-                className='UploadDogProfilePhoto__img-preview-container'
+                className={`UploadDogProfilePhoto__img-preview-container${suffix}`}
             >
-                {imgFile 
-                    ?
-                        <> 
-                            <p>Image preview</p>
-                            <img 
-                                src={URL.createObjectURL(imgFile)} 
-                                alt='Avatar preview.' 
-                                className='UploadDogProfilePhoto__img-preview'
-                            />
-                            {showLoading && <FontAwesomeIcon icon={faSpinner} spin />}
-                            {uploadError ? <p>Upload failed.  Please try again.</p> : ''}
-                        </>
-                    : ''
-                }
+                {imagePreview}
             </div>
         </section>
     );

@@ -48,24 +48,24 @@ const DogDescription = (props) => {
         setPersonalMessageErrorP,
     } = props.data;
 
-    const [energy, setEnergy] = useState('');
+    const [energy, setEnergy] = useState(energyP);
     const [energyError, setEnergyError] = useState('');
-    const [temperment, setTemperment] = useState('');
+    const [temperment, setTemperment] = useState(tempermentP);
     const [tempermentError, setTempermentError] = useState('');
-    const [obedience, setObedience] = useState('');
+    const [obedience, setObedience] = useState(obedienceP);
     const [obedienceError, setObedienceError] = useState('');
-    const [dislikesPuppies, setDislikesPuppies] = useState('');
-    const [dislikesMen, setDislikesMen] = useState('');
-    const [dislikesWomen, setDislikesWomen] = useState('');
-    const [noChildren, setNoChildren] = useState('');
-    const [recentlyAdopted, setRecentlyAdopted] = useState('');
-    const [lovesPeople, setLovesPeople] = useState('');
-    const [leashAggression, setLeashAggression] = useState('');
-    const [elderlyDog, setElderlyDog] = useState('');
-    const [littleExperience, setLittleExperience] = useState('');
-    const [muchExperience, setMuchExperience] = useState('');
-    const [foodAggression, setFoodAggression] = useState('');
-    const [personalMessage, setPersonalMessage] = useState('');
+    const [dislikesPuppies, setDislikesPuppies] = useState(dislikesPuppiesP);
+    const [dislikesMen, setDislikesMen] = useState(dislikesMenP);
+    const [dislikesWomen, setDislikesWomen] = useState(dislikesWomenP);
+    const [noChildren, setNoChildren] = useState(noChildrenP);
+    const [recentlyAdopted, setRecentlyAdopted] = useState(recentlyAdoptedP);
+    const [lovesPeople, setLovesPeople] = useState(lovesPeopleP);
+    const [leashAggression, setLeashAggression] = useState(leashAggressionP);
+    const [elderlyDog, setElderlyDog] = useState(elderlyDogP);
+    const [littleExperience, setLittleExperience] = useState(littleExperienceP);
+    const [muchExperience, setMuchExperience] = useState(muchExperienceP);
+    const [foodAggression, setFoodAggression] = useState(foodAggressionP);
+    const [personalMessage, setPersonalMessage] = useState(personalMessageP);
     const [personalMessageError, setPersonalMessageError] = useState('');
 
     useEffect(() => {
