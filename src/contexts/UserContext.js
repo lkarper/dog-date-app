@@ -14,6 +14,7 @@ const UserContext = createContext({
     addPackMember: () => {},
     removePackMember: () => {},
     setUser: () => {},
+    addDogProfile: () => {},
 });
 
 export default UserContext;
@@ -145,6 +146,13 @@ export const UserProvider = (props) => {
         setUserPackMembers(updatedPackMembers);
     }
 
+    const addDogProfile = (newDogProfile) => {
+        const updateDogs = [...dogs, newDogProfile];
+        setDogs(updateDogs);
+        const updateAllDogs = [...allDogs, newDogProfile];
+        setAllDogs(updateAllDogs);
+    }
+
     const value = {
         user,
         dogs,
@@ -158,6 +166,7 @@ export const UserProvider = (props) => {
         addHowl,
         addPackMember,
         removePackMember,
+        addDogProfile,
     };
 
     return (
