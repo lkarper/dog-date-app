@@ -1,45 +1,75 @@
 import React, { useState, useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
 import BasicInfo from '../CreateDogProfileFormComponents/BasicInfo/BasicInfo';
 import DogDescription from '../CreateDogProfileFormComponents/DogDescription/DogDescription';
 import UploadDogProfilePhoto from '../CreateDogProfileFormComponents/UploadDogProfilePhoto/UploadDogProfilePhoto';
+import './CreateDogProfile.css';
 
 const CreateDogProfile = (props) => {
+
+    const { dog_profile = {}, suffix = '' } = props;
+
+    const { 
+        id = '',
+        name = '',
+        profile_img_url = '',
+        age_years = 0,
+        age_months = 0,
+        sex = '',
+        breed = '',
+        weight = 0,
+        energy = '',
+        temperment = '',
+        obedience = '',
+        dislikes_puppies = false,
+        dislikes_men = false,
+        dislikes_women = false,
+        dislikes_children = false,
+        recently_adopted = false,
+        prefers_people = false,
+        leash_aggression = false,
+        elderly_dog = false,
+        little_time_with_other_dogs = false,
+        much_experience_with_other_dogs = false,
+        aggressive = false,
+        owner_description = '',
+    } = dog_profile;
 
     const context = useContext(UserContext);
 
     const [infoForm, setInfoForm] = useState(true);
     const [imgUploadForm, setImgUploadForm] = useState(false);
-    const [nameP, setNameP] = useState('');
+    const [nameP, setNameP] = useState(name);
     const [nameErrorP, setNameErrorP] = useState('');
-    const [ageYearsP, setAgeYearsP] = useState('');
-    const [ageMonthsP, setAgeMonthsP] = useState('');
+    const [ageYearsP, setAgeYearsP] = useState(age_years);
+    const [ageMonthsP, setAgeMonthsP] = useState(age_months);
     const [ageErrorP, setAgeErrorP] = useState('');
-    const [sexP, setSexP] = useState('');
+    const [sexP, setSexP] = useState(sex);
     const [sexErrorP, setSexErrorP] = useState('');
-    const [breedP, setBreedP] = useState('');
-    const [weightP, setWeightP] = useState('');
-    const [energyP, setEnergyP] = useState('');
+    const [breedP, setBreedP] = useState(breed);
+    const [weightP, setWeightP] = useState(weight);
+    const [energyP, setEnergyP] = useState(energy);
     const [energyErrorP, setEnergyErrorP] = useState('');
-    const [tempermentP, setTempermentP] = useState('');
+    const [tempermentP, setTempermentP] = useState(temperment);
     const [tempermentErrorP, setTempermentErrorP] = useState('');
-    const [obedienceP, setObedienceP] = useState('');
+    const [obedienceP, setObedienceP] = useState(obedience);
     const [obedienceErrorP, setObedienceErrorP] = useState('');
-    const [dislikesPuppiesP, setDislikesPuppiesP] = useState('');
-    const [dislikesMenP, setDislikesMenP] = useState('');
-    const [dislikesWomenP, setDislikesWomenP] = useState('');
-    const [noChildrenP, setNoChildrenP] = useState('');
-    const [recentlyAdoptedP, setRecentlyAdoptedP] = useState('');
-    const [lovesPeopleP, setLovesPeopleP] = useState('');
-    const [leashAggressionP, setLeashAggressionP] = useState('');
-    const [elderlyDogP, setElderlyDogP] = useState('');
-    const [littleExperienceP, setLittleExperienceP] = useState('');
-    const [muchExperienceP, setMuchExperienceP] = useState('');
-    const [foodAggressionP, setFoodAggressionP] = useState('');
-    const [personalMessageP, setPersonalMessageP] = useState('');
+    const [dislikesPuppiesP, setDislikesPuppiesP] = useState(dislikes_puppies);
+    const [dislikesMenP, setDislikesMenP] = useState(dislikes_men);
+    const [dislikesWomenP, setDislikesWomenP] = useState(dislikes_women);
+    const [noChildrenP, setNoChildrenP] = useState(dislikes_children);
+    const [recentlyAdoptedP, setRecentlyAdoptedP] = useState(recently_adopted);
+    const [lovesPeopleP, setLovesPeopleP] = useState(prefers_people);
+    const [leashAggressionP, setLeashAggressionP] = useState(leash_aggression);
+    const [elderlyDogP, setElderlyDogP] = useState(elderly_dog);
+    const [littleExperienceP, setLittleExperienceP] = useState(little_time_with_other_dogs);
+    const [muchExperienceP, setMuchExperienceP] = useState(much_experience_with_other_dogs);
+    const [foodAggressionP, setFoodAggressionP] = useState(aggressive);
+    const [personalMessageP, setPersonalMessageP] = useState(owner_description);
     const [personalMessageErrorP, setPersonalMessageErrorP] = useState('');
-    const [imgUrlP, setImgUrlP] = useState('');
+    const [imgUrlP, setImgUrlP] = useState(profile_img_url);
 
     const handleInfoSubmit = (event) => {
         event.preventDefault();
@@ -48,7 +78,7 @@ const CreateDogProfile = (props) => {
 
     const uploadDogProfile = () => {
         const newDogProfile = {
-            id: uuidv4(),
+            id: id || uuidv4(),
             owner_id: context.user.id,
             name: nameP,
             profile_img_url: imgUrlP,
@@ -74,19 +104,29 @@ const CreateDogProfile = (props) => {
             owner_description: personalMessageP,
         };
 
-        context.addDogProfile(newDogProfile);
-        props.history.push(`/dog-profile/${newDogProfile.id}`);
+        if (Object.keys(dog_profile).length === 0) {
+            context.addDogProfile(newDogProfile);
+            props.history.push(`/dog-profile/${newDogProfile.id}`);
+        } else {
+            context.updateDogProfile(newDogProfile);
+            props.setShowEdit(false);
+        }
+        
+        
     }
 
     if (infoForm) {
         return (
             <>
-                <header>
+                <header 
+                    className={`CreateDogProfile__header${suffix}`}
+                    aria-hidden={suffix ? true : false}
+                >
                     <h1>Create a Profile</h1>
                 </header>
-                <section>
+                <section className={`CreateDogProfile__outer-section${suffix}`}>
                     <header>
-                        <h2>Start barking about your dog!</h2>
+                        <h2>{suffix ? `Edit your dog's profile` : 'Start barking about your dog!'}</h2>
                     </header>
                     <form 
                         onSubmit={handleInfoSubmit}
@@ -178,10 +218,10 @@ const CreateDogProfile = (props) => {
         if (!imgUploadForm) {
             return (
                 <>
-                    <header>
+                    <header className={`CreateDogProfile__header${suffix}`}>
                         <h1>Create a Profile</h1>
                     </header>
-                    <section>
+                    <section className={`CreateDogProfile__outer-section${suffix}`}>
                         <header>
                             <h2>Would you like to upload a photo for your dog's profile?</h2>
                         </header>
@@ -193,17 +233,18 @@ const CreateDogProfile = (props) => {
         }
         return (
             <>
-                <header>
+                <header className={`CreateDogProfile__header${suffix}`}>
                     <h1>Create a Profile</h1>
                 </header>
                 <UploadDogProfilePhoto 
                     imgUrlP={imgUrlP}
                     setImgUrlP={setImgUrlP}
                     uploadDogProfile={uploadDogProfile}
+                    suffix={suffix}
                 />
             </>
         );
     }
 }
 
-export default CreateDogProfile;
+export default withRouter(CreateDogProfile);
