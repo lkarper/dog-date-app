@@ -1,0 +1,4 @@
+.DogDescription__message-container {
+    display: flex;
+    flex-direction: column;
+}
