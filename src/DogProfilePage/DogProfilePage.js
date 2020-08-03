@@ -25,9 +25,7 @@ const DogProfilePage = (props) => {
                     alt={`Avatar for the dog named ${dog_profile.name}.`} 
                 />
                 <DogProfilePageHeaderButtons 
-                    owner_id={dog_profile.owner_id}
-                    dog_id={dog_profile.id}
-                    dog_name={dog_profile.name}
+                    dog_profile={dog_profile}
                 />
             </header>
             <section>
