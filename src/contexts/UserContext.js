@@ -16,6 +16,8 @@ const UserContext = createContext({
     setUser: () => {},
     addDogProfile: () => {},
     updateDogProfile: () => {},
+    addSavedHowl: () => {},
+    removeSavedHowl: () => {},
 });
 
 export default UserContext;
@@ -163,6 +165,16 @@ export const UserProvider = (props) => {
         setAllDogs(updatedAllDogs);
     }
 
+    const addSavedHowl = (newHowl) => {
+        const updatedHowls = [...userSavedHowls, newHowl];
+        setUserSavedHowls(updatedHowls);
+    }
+
+    const removeSavedHowl = (idToRemove) => {
+        const updatedHowls = userSavedHowls.filter(howl => howl.howl_id !== idToRemove);
+        setUserSavedHowls(updatedHowls);
+    }
+
     const value = {
         user,
         dogs,
@@ -178,6 +190,8 @@ export const UserProvider = (props) => {
         removePackMember,
         addDogProfile,
         updateDogProfile,
+        addSavedHowl,
+        removeSavedHowl,
     };
 
     return (
