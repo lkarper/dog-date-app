@@ -15,11 +15,11 @@ const StateSelector = (props) => {
                 id='state'
                 name='state'
                 value={state}
-                aria-describedby='state-validator'
+                aria-describedby={props.notRequired ? null : 'state-validator'}
                 onChange={(e) => setState(e.target.value)}
-                required
+                required={!props.notRequired}
             >
-                <option value=''>Select a state:</option>
+                <option value=''>{props.notRequired ? 'All states' : 'Select a state:'}</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
