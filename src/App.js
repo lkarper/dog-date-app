@@ -10,6 +10,8 @@ import CreateHowl from './CreateHowl/CreateHowl';
 import DogProfilePage from './DogProfilePage/DogProfilePage';
 import DogReviewPage from './DogReviewPage/DogReviewPage';
 import './App.css';
+import CreateDogProfile from './CreateDogProfile/CreateDogProfile';
+import HowlPageView from './HowlPageView/HowlPageView';
 
 const App = () => {
   return (
@@ -29,8 +31,12 @@ const App = () => {
           component={RegistrationForm}
         />
         <Route 
-          path='/howls'
+          exact path='/howls'
           component={HowlsList}
+        />
+        <Route 
+          path='/howls/:howl_id'
+          component={HowlPageView}
         />
         <Route 
           path='/home'
@@ -47,6 +53,10 @@ const App = () => {
         <Route 
           path='/leave-review/:dog_id'
           component={DogReviewPage}
+        />
+        <Route 
+          path='/create-dog-profile'
+          component={CreateDogProfile}
         />
       </main>
     </div>
