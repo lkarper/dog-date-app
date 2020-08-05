@@ -1,0 +1,4 @@
+.ReviewFormStarRater__rate-container {
+    display: flex;
+    flex-direction: column;
+}
