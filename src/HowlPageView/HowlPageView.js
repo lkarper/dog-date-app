@@ -6,6 +6,8 @@ import StaticMap from '../StaticMap/StaticMap';
 import STORE from '../STORE';
 import HowlPageDogProfile from '../HowlPageDogProfile/HowlPageDogProfile';
 import HowlPageButtons from '../HowlPageButtons/HowlPageButtons';
+import TimeWindow from '../TimeWindow/TimeWindow';
+import './HowlPageView.css';
 
 const HowlPageView  = (props) => {
 
@@ -26,27 +28,33 @@ const HowlPageView  = (props) => {
     if (howl) {
         if (howl.meeting_type === 'once') {
             howlDateTime = (            
-                <div>
+                <div className='HowlPageView__time-list'>
                     <p>Date: {moment(howl.one_time_windows.date).format("dddd, MMMM Do, YYYY")}</p>
                     <ul>
-                        {howl.one_time_windows.timeWindows.map((window, i) => (
-                            <li key={i}>
-                                <p>Start time: {window.startTime}</p>
-                                <p>End time: {window.endTime}</p>
-                            </li>
-                        ))}
+                        {howl.one_time_windows.timeWindows
+                            .sort((a,b) => parseInt(a.startTime.split(':')[0]) - parseInt(b.startTime.split(':')[0]))
+                            .map((window, i) => (
+                                <li key={i}>
+                                    <TimeWindow 
+                                        startTime={window.startTime}
+                                        endTime={window.endTime}
+                                    />
+                                </li>
+                            ))}
                     </ul>
                 </div>
             );
         } else {
             howlDateTime = (
-                <div>
+                <div className='HowlPageView__time-list'>
                     <ul>
                         {howl.recurring_windows.map((window, i) => (
                             <li key={i}>
                                 <p>{window.dayOfWeek}</p>
-                                <p>Start time: {window.startTime}</p>
-                                <p>End time: {window.endTime}</p>
+                                <TimeWindow
+                                    startTime={window.startTime}
+                                    endTime={window.endTime}
+                                />
                             </li>
                         ))}
                     </ul>
@@ -69,49 +77,51 @@ const HowlPageView  = (props) => {
 
     return (
         <>
-            <header>
+            <header className='HowlPageView__header'>
                 <h1>{howl.howl_title}</h1>
-                <p>{howl.personal_message}</p>
             </header>
-            <section>
+            <section className='HowlPageView__section section'>
+                <header>
+                    <h2>About this howl:</h2>
+                </header>
+                <p>{howl.personal_message}</p>
+            </section>
+            <section className='HowlPageView__section section'>
                 <header>
                     <h2>Availability</h2>
                 </header>
                 {howlDateTime}
             </section>
-            <section>
+            <section className='HowlPageView__section section'>
                 <header>
                     <h2>Location</h2>
                 </header>
-                <section>
-                    <header>
-                        <h3>Address:</h3>
-                    </header>
+                <div className='HowlPageView__address'>
                     <p>{howl.location.address}</p>
                     <p>{howl.location.city}</p>
                     <p>{howl.location.state}{', '}{howl.location.zipcode}</p>
-                    {howl.location.lat && howl.location.lon 
-                        ? 
-                            <StaticMap 
-                                lat={howl.location.lat}
-                                lon={howl.location.lon}
-                            />
-                        : ''
-                    }
-                </section>
-                <section>
-                    <header>
-                        <h2>Contact info for {user.username}</h2>
-                    </header>
-                    <p>Phone: {user.phone || '(Not given.)'}</p>
-                    <p>Email: {user.email}</p>
-                </section>
+                </div>
+                {howl.location.lat && howl.location.lon 
+                    ? 
+                        <StaticMap 
+                            lat={howl.location.lat}
+                            lon={howl.location.lon}
+                        />
+                    : <p>Map not available for this location.</p>
+                }
             </section>
-            <section>
+            <section className='HowlPageView__section section'>
+                <header>
+                    <h2>Contact info for {user.username}</h2>
+                </header>
+                <p>Phone: {user.phone || '(Not given.)'}</p>
+                <p>Email: {user.email}</p>
+            </section>
+            <section className='HowlPageView__section section'>
                 <header>
                     <h2>Dogs in this howl</h2>
                 </header>
-                <ul>
+                <ul className='HowlPageView__dog-list'>
                     {howl.dog_ids
                         .map(id => context.allDogs.find(dog => dog.id === id))
                         .map(dog_profile => 
