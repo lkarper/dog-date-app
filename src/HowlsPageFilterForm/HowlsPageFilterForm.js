@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import StateSelector from '../StateSelector/StateSelector';
 import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
+import './HowlsPageFilterForm.css';
 
 const HowlsPageFilterForm = (props) => {
 
@@ -38,10 +39,15 @@ const HowlsPageFilterForm = (props) => {
     }, [ratingFilter, ratingFilterP, setRatingFilterP]);
 
     return (
-            <form onSubmit={handleSubmit}>
-            <fieldset>
+        <form 
+            className='HowlsPageFilterForm__form'
+            onSubmit={handleSubmit}
+        >
+            <fieldset
+                className='HowlsPageFilterForm__fieldset'
+            >
                 <legend>Filter howls by:</legend>
-                <fieldset className="sub-fieldset">
+                <fieldset className="HowlsPageFilterForm__sub-fieldset">
                     <legend>Location</legend>
                     <StateSelector 
                         setState={setState}
@@ -58,7 +64,10 @@ const HowlsPageFilterForm = (props) => {
                         onChange={(e) => setZipcode(e.target.value)}
                     />
                 </div>
-                <div role='alert'>
+                <div 
+                    className='HowlsPageFilterForm__zipcode-alert'
+                    role='alert'
+                >
                     <ValidateZipCode 
                         zipcode={zipcode}
                         zipcodeError={zipcodeError}
@@ -67,7 +76,7 @@ const HowlsPageFilterForm = (props) => {
                     />
                 </div>
                 </fieldset>
-                <fieldset className="sub-fieldset">
+                <fieldset className='HowlsPageFilterForm__sub-fieldset'>
                     <legend>Average rating of dog(s)</legend>
                     <div>
                         <input 
