@@ -1,4 +1,9 @@
-.MapForm__container {
+.MapForm__coordinates-fieldset {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MapForm__set-coordinates-button {
+    margin: 20px auto;
 }
