@@ -32,7 +32,6 @@ const DogReviewPage = (props) => {
         startTime: '',
         endTime: '',
     });
-    const [reviewAdded, setReviewAdded] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -55,8 +54,6 @@ const DogReviewPage = (props) => {
             personal_message: personalMessageP
         };
         context.addReview(newReview);
-        setReviewAdded(true);
-        // What to do when review has been added?
         props.history.push(`/dog-profile/${dog_id}`);
     }
 
