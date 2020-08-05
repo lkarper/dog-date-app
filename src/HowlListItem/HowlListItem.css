@@ -1,0 +1,19 @@
+.HowlListItem__li {
+    list-style: none;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px auto;
+    width: 90vw;
+}
+
+.HowlListItem__h3 {
+    text-align: center;
+}
+
+.HowlListItem__location-li {
+    list-style: none;
+}
+
+.HowlListItem__date {
+    font-weight: bold;
+}
