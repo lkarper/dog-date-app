@@ -1,0 +1,13 @@
+.HowlsList__h1 {
+    text-align: center;
+}
+
+.HowlsList__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.HowlsList__list {
+    padding: 0;
+}
