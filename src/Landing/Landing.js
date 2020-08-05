@@ -1,50 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Landing.css';
 
 const Landing = (props) => {
     return (
         <>
-            <section>
+            <header>
+                <h1>Welcome to Dog Date!</h1>
+            </header>
+            <section className='Landing__section section'>
                 <header>
                     <h2>What is Dog Date?</h2>
                 </header>
-                <p>Nisi eu et elit laborum anim culpa voluptate incididunt irure. Elit laboris non reprehenderit enim
-                    cillum labore aute non. Fugiat sunt consequat incididunt ex voluptate nostrud eu excepteur. Tempor
-                    sint voluptate eiusmod anim elit amet magna anim duis cillum nulla occaecat culpa.
-                </p>
+                <p>Dog Date is an app that helps you find playdates for your dog!</p>
+                <p>This is a demo version of Dog Date designed to get initial feedback from users.  This means that the site is not yet hooked up to a back-end server.  You will be able to sample all of Dog Date's features, but any resources that you create (new profiles, new accounts, new howls, etc.) will not be saved.  Upon page load, you will be automatically signed into a dummy account.  If you log out, simply refresh the page and you will be logged back in automatically.</p>
             </section>
-            <section>
+            <section className='Landing__section section'>
                 <header>
-                    <h2>Create a profile for your dog!</h2>
+                    <h2>What can Dog Date do?</h2>
                 </header>
-                    <p>[<em>placeholder for screenshot of profile page</em>]</p>
-                    <p>Quis aliquip fugiat ullamco eiusmod voluptate anim in enim sit Lorem duis pariatur. Consectetur
-                        occaecat laborum voluptate qui velit enim esse commodo veniam consectetur deserunt. Commodo ex
-                        deserunt commodo nulla excepteur officia officia. Eu Lorem Lorem irure nisi. Quis consectetur minim
-                        sint officia Lorem cupidatat mollit sit nisi.
-                    </p>
-            </section>
-            <section>
-                <header>
-                    <h2>View Dogs Looking for a Friend Near you...</h2>
-                </header>
-                <p>[<em>placeholder for screenshot of pack-members-wanted page</em>]</p>
-                <p>Quis aliquip fugiat ullamco eiusmod voluptate anim in enim sit Lorem duis pariatur. Consectetur
-                    occaecat laborum voluptate qui velit enim esse commodo veniam consectetur deserunt. Commodo ex
-                    deserunt commodo nulla excepteur officia officia. Eu Lorem Lorem irure nisi. Quis consectetur minim
-                    sint officia Lorem cupidatat mollit sit nisi.
-                </p>
-            </section>
-            <section>
-                <header>
-                    <h2>...or get your dog's profile howling and let others know your good dog is looking for a playmate!</h2>
-                </header>
-                <p>[<em>placeholder for screenshot of date creation page</em>]</p>
-                <p>Quis aliquip fugiat ullamco eiusmod voluptate anim in enim sit Lorem duis pariatur. Consectetur
-                    occaecat laborum voluptate qui velit enim esse commodo veniam consectetur deserunt. Commodo ex
-                    deserunt commodo nulla excepteur officia officia. Eu Lorem Lorem irure nisi. Quis consectetur minim
-                    sint officia Lorem cupidatat mollit sit nisi.
-                </p>
+                <section>
+                    <header>
+                        <h3>Howl about your dog and see what others are howling about!</h3>
+                    </header>
+                    <p>On Dog Date, you find playmates for your dog by <Link to='/create-howl'>creating</Link> and <Link to='/howls'>viewing</Link> "Howls".  Howls are essentially a message from a user that he or she is looking for playmates for his or her canine companion(s)!  There are two types of Howls: "one-time" and "recurring" playdates.  "One-time" playdates are requests for a playdate on a specific date.  Users post a date, available time frames, and a proposed location, and then wait for other interested users to contact them.  "Recurring" Howls, on the other hand, let users know that a user is generally available at certain times for a playdate (e.g. Saturdays from 11:00 am - 4:00 pm).</p>
+                    <p>On the <Link to='/howls'>Howls page</Link> users can filter howls by zipcode, state, or the average rating of dogs in the Howl (more on ratings below.)</p>
+                    <p>Note: At the moment, all of the Howls are demo requests and do not actually represent real-world dogs and users.</p>
+                </section>
+                <section>
+                    <header>
+                        <h3>Create profiles for your dogs!</h3>
+                    </header>
+                    <p>Whether you have one or one-hundred dogs, you can <Link to='/create-dog-profile'>create profiles</Link> for them on Dog Date.  You can set a profile picture for your dog, characterize its energy-levels, obedience, experience with other dogs, and more!  This allows others to decide if your dog is the right playmate for their dog!</p>
+                </section>
+                <section>
+                    <header>
+                        <h3>View the profiles of other users' dogs</h3>
+                    </header>
+                    <p>You can also view profiles of other users' dogs and even save those profiles by adding them to your pack!  A dog's profile page not only gives you a description and photo of a user's dog, but it likewise gives you a handy list of Howls about that dog and reviews of that dog by other users.  This allows you quickly to see when and where that dog is available to play and to decide if that dog is the right dog date for your pooch!</p>
+                </section>
+                <section>
+                    <header>
+                        <h3>Not sure where to start?</h3>
+                    </header>
+                    <p>Check out the demo <Link to='/home'>Homepage</Link> and see what Dog Dog is all about!</p>
+                </section>
             </section>
             <Link to='/register'>Get started by registering an account!</Link>
             <p>or</p>
