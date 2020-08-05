@@ -4,6 +4,7 @@ import UserContext from '../contexts/UserContext';
 import DogProfileCharacteristics from '../DogProfileCharacteristics/DogProfileCharacteristics';
 import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
 import DogAverageRating from '../DogAverageRating/DogAverageRating';
+import './HowlPageDogProfile.css';
 
 const HowlPageDogProfile = (props) => {
 
@@ -14,8 +15,8 @@ const HowlPageDogProfile = (props) => {
     const reviews = context.reviews.filter(review => review.dog_id === dog_profile.id);
 
     return (
-        <li>
-            <header>
+        <li className='HowlPageDogProfile__li'>
+            <header className='HowlPageDogProfile__header'>
                 <h3>
                     <Link
                         to={`/dog-profile/${dog_profile.id}`}    
@@ -24,26 +25,30 @@ const HowlPageDogProfile = (props) => {
                     </Link>
                 </h3>
                 <img 
+                    className='HowlPageDogProfile__img'
                     src={dog_profile.profile_img_url}
                     alt={`Avatar for the dog named ${dog_profile.name}.`} 
                 />
             </header>
             <section>
                 <header>
-                    <h3>About {dog_profile.name}:</h3>
+                    <h4>About {dog_profile.name}:</h4>
                 </header>
                 <p>{dog_profile.owner_description}</p>
-                <section>
-                    <p>Age: {dog_profile.age_months ? `${dog_profile.age_years} years, ${dog_profile.age_months}, months` : `${dog_profile.age_years}`}</p>
-                    <p>Breed: {dog_profile.breed || `(not listed)`}</p>
-                    <p>Weight: {dog_profile.weight ? `${dog_profile.weight} lbs` : `(Not listed)`}</p>
-                    <p>Sex: {dog_profile.sex || `(not listed)`}</p>
-                </section>
-            <DogProfileCharacteristics dog_profile={dog_profile}/>
+                <p>Age: {dog_profile.age_months ? `${dog_profile.age_years} years, ${dog_profile.age_months}, months` : `${dog_profile.age_years}`}</p>
+                <p>Breed: {dog_profile.breed || `(not listed)`}</p>
+                <p>Weight: {dog_profile.weight ? `${dog_profile.weight} lbs` : `(Not listed)`}</p>
+                <p>Sex: {dog_profile.sex || `(not listed)`}</p>
             </section>
             <section>
                 <header>
-                    <h2>Reviews of {dog_profile.name}</h2>
+                    <h4>Characteristics</h4>
+                </header>
+                <DogProfileCharacteristics dog_profile={dog_profile}/>
+            </section>
+            <section>
+                <header>
+                    <h4>Reviews of {dog_profile.name}</h4>
                 </header>
                 {context.user.id === dog_profile.owner_id 
                     ? '' 
