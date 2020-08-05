@@ -1,9 +1,17 @@
 .DogReviewForm__map-outer-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .DogReviewForm__message-container {
     display: flex;
     flex-direction: column;
+}
+
+.DogReviewForm__review-form {
+    width: 100%;
+}
+
+.DogReviewForm__input-container {
+    margin: 5px;
 }

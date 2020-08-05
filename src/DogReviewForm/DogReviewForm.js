@@ -132,8 +132,8 @@ const DogReviewForm = (props) => {
 
     return (
         <form 
+            className='DogReviewForm__review-form'
             onSubmit={handleSubmit}
-            className='review-form'
         >
             <fieldset>
                 <legend>How would you rate {dogName} on the following:</legend>
@@ -173,40 +173,45 @@ const DogReviewForm = (props) => {
                 <legend>Meeting and Location</legend>
                 <fieldset className="sub-fieldset">
                     <legend>When did your dogs play?</legend>
-                    <label htmlFor="date">Date:</label>
-                    <input 
-                        type="date" 
-                        id="date" 
-                        name="date" 
-                        placeholder="yyyy-mm-dd" 
-                        value={date}
-                        max={maxDate}
-                        onChange={(e) => setDate(e.target.value)}
-                        required    
-                    />
-                    <label htmlFor="start-time">Start time:</label>
-                    <input 
-                        type="time" 
-                        id="start-time" 
-                        name="start-time" 
-                        placeholder="10:30" 
-                        value={startTime}
-                        onChange={(e) => setStartTime(e.target.value)}
-                        required
-                    />
-                    <label htmlFor="end-time">End time:</label>
-                    <input 
-                        type="time" 
-                        id="end-time" 
-                        name="end-time" 
-                        placeholder="16:00" 
-                        min={startTime}
-                        value={endTime}
-                        onChange={(e) => setEndTime(e.target.value)}
-                        required
-                    />
+                    <div className='DogReviewForm__input-container'>
+                        <label htmlFor="date">Date: </label>
+                        <input 
+                            type="date" 
+                            id="date" 
+                            name="date" 
+                            placeholder="yyyy-mm-dd" 
+                            value={date}
+                            max={maxDate}
+                            onChange={(e) => setDate(e.target.value)}
+                            required    
+                        />
+                    </div>
+                    <div className='DogReviewForm__input-container'>
+                        <label htmlFor="start-time">Start time: </label>
+                        <input 
+                            type="time" 
+                            id="start-time" 
+                            name="start-time" 
+                            placeholder="10:30" 
+                            value={startTime}
+                            onChange={(e) => setStartTime(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='DogReviewForm__input-container'>
+                        <label htmlFor="end-time">End time: </label>
+                        <input 
+                            type="time" 
+                            id="end-time" 
+                            name="end-time" 
+                            placeholder="16:00" 
+                            min={startTime}
+                            value={endTime}
+                            onChange={(e) => setEndTime(e.target.value)}
+                            required
+                        />
+                    </div>
                 </fieldset>
-                    <hr />
                 <fieldset className="sub-fieldset">
                     <legend>Where did your dog play with {dogName}?</legend>
                     <div className='DogReviewForm__map-outer-container'>
