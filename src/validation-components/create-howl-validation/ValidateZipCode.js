@@ -18,7 +18,7 @@ const ValidateZipCode = (props) => {
             setZipcodeError('');
         }
 
-    }, [zipcode, setZipcodeError]);
+    }, [zipcode, setZipcodeError, notRequired]);
 
     if (zipcodeError) {
         return <p id='zipcode-validator'>{zipcodeError}</p>;
