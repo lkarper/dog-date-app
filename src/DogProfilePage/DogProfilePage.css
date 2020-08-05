@@ -1,0 +1,23 @@
+.DogProfilePage__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.DogProfilePage__profile-img {
+    width: 80vw;
+    height: auto;
+    margin: 10px 0;
+}
+
+.DogProfilePage__about-section p {
+    margin: 10px;
+}
+
+.DogProfilePage__howls-list {
+    padding: 0;
+}
+
+.DogProfilePage__reviews-list {
+    padding: 0;
+}
