@@ -1,0 +1,19 @@
+.HowlPageDogProfile__li {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0;
+}
+
+.HowlPageDogProfile__img {
+    width: 75%;
+    height: auto;
+    align-self: center;
+}
+
+.HowlPageDogProfile__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
