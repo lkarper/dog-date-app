@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react';
 import UserContext from '../contexts/UserContext';
 import { Link } from 'react-router-dom';
 import HowlListItem from '../HowlListItem/HowlListItem';
-
 import { calculateAverageWithArrayOfReviews } from '../DogAverageRating/DogAverageRating';
 import HowlsPageFilterForm from '../HowlsPageFilterForm/HowlsPageFilterForm';
+import './HowlsList.css';
 
 const HowlsList = (props) => {
 
@@ -51,9 +51,14 @@ const HowlsList = (props) => {
 
     return (
         <>
-            <header>
-                <h2>What are people howling about?</h2>
+            <header className='HowlsList__header'>
+                <h1
+                    className='HowlsList__h1'
+                >
+                    What are people howling about?
+                </h1>
                 <Link
+                    className='HowlsList__create-link'
                     to='/create-howl'    
                 >
                     Start howling yourself!
@@ -70,16 +75,17 @@ const HowlsList = (props) => {
                     handleSubmit,
                 }}
             />
-            <section>
+            <section className='HowlsList__section section'>
                 <header>
                     <h2>Dogs howling for a playmate</h2>
                 </header>
                 <div role='alert'>
+                    <p>Now showing {howls.length} {howls.length === 1 ? 'howl' : 'howls'}</p>
                     {howls.length === 0 
                         ?
                             <p>No howls found that match those search criteria.  Adust your parameters and try again.</p>
                         :
-                            <ol>
+                            <ol className='HowlsList__list'>
                                 {howls.map(howl => <HowlListItem key={howl.id} howl={howl} />)}
                             </ol>
                     }
