@@ -9,8 +9,8 @@ import ValidateDogSelection from '../validation-components/create-howl-validatio
 import ValidateTime from '../validation-components/create-howl-validation/ValidateTime';
 import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
 import LocationForm from '../LocationForm/LocationForm';
-import './CreateHowl.css';
 import ValidateHowlTitle from '../validation-components/create-howl-validation/ValidateHowlTitle';
+import './CreateHowl.css';
 
 const CreateHowl = (props) => {
 
@@ -115,15 +115,17 @@ const CreateHowl = (props) => {
     return (
         <>
             <header>
-                <h2>Howl now!</h2>
+                <h1>Howl now!</h1>
                 <p>Look for friends for your dog!</p>
             </header>
-        
-            <section>
+            <section className='CreateHowl__section section'>
                 <header>
                     <h2>Enter details below to create a howl</h2>
                 </header>
-                <form onSubmit={handleSubmit}>
+                <form 
+                    className='CreateHowl__howl-form'
+                    onSubmit={handleSubmit}
+                >
                     <fieldset>
                         <legend>Select your dog(s) to howl about</legend>
                         <div className='CreateHowl__dog-select-container'>
@@ -214,8 +216,11 @@ const CreateHowl = (props) => {
                     </fieldset>
                     <div className='CreateHowl__description-outer-container'>
                         <div className='CreateHowl__title-container'>
-                            <label htmlFor='howl-title'>Howl title:</label>
+                            <label 
+                                className='CreateHowl__title-label'
+                                htmlFor='howl-title'>Howl title: </label>
                             <input 
+                                className='CreateHowl__title-input'
                                 type='text'
                                 id='howl-title'
                                 name='howl-title'
