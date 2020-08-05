@@ -1,0 +1,16 @@
+.HowlsPageFilterForm__form {
+    padding: 10px;
+    width: 100%;
+}
+
+.HowlsPageFilterForm__sub-fieldset {
+    border: none;
+}
+
+.HowlsPageFilterForm__sub-fieldset > legend {
+    font-weight: bold;    
+}
+
+.HowlsPageFilterForm__zipcode-alert {
+    height: 50px;
+}
