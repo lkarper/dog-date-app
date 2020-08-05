@@ -1,8 +1,19 @@
 .DogListView__profile-pic {
-    height: 300px;
-    width: auto;
+    width: 75%;
+    height: auto;
 }
 
 .DogListView__li {
     list-style: none;
+    padding: 10px;
+}
+
+.DogListView__dog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.DogListView__profile-link {
+    margin: 5px;
 }
