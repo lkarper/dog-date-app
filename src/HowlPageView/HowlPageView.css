@@ -1,0 +1,19 @@
+.HowlPageView__header {
+    text-align: center;
+}
+
+.HowlPageView__time-list {
+    align-self: flex-start;
+}
+
+.HowlPageView__address {
+    align-self: flex-start;
+}
+
+.HowlPageView__address p {
+    margin: 5px;
+}
+
+.HowlPageView__dog-list {
+    padding: 0;
+}
