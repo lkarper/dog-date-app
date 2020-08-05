@@ -45,13 +45,12 @@ const Header = (props) => {
 
     return (
         <header className="Header__header">
-            <h1>
-                <Link 
-                    to='/'
-                >
-                    Dog Date
-                </Link>
-            </h1>
+            <Link 
+                className='Header__dog-date'
+                to='/'
+            >
+                Dog Date
+            </Link>
             <nav>
                 <NavLink 
                     className='Header__navlink' 
