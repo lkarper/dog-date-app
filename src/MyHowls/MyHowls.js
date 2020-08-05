@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import HowlListItem from '../HowlListItem/HowlListItem';
+import './MyHowls.css';
 
 const MyHowls = (props) => {
     
@@ -10,13 +11,13 @@ const MyHowls = (props) => {
         .filter(howl => howl.user_id === context.user.id);
 
     return (
-        <section>
+        <section className='MyHowls__section section'>
             <header>
                 <h3>My howls</h3>
             </header>
             {myHowls.length 
                 ?
-                    <ul>
+                    <ul className='MyHowls__list'>
                         {myHowls.map(howl => <HowlListItem key={howl.id} howl={howl} />)} 
                     </ul>
                 : 
