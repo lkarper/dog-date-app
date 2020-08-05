@@ -8,10 +8,11 @@ import HowlsList from './HowlsList/HowlsList';
 import Homepage from './Homepage/Homepage';
 import CreateHowl from './CreateHowl/CreateHowl';
 import DogProfilePage from './DogProfilePage/DogProfilePage';
-import DogReviewPage from './DogReviewPage/DogReviewPage';
-import './App.css';
+import CreateDogReviewPage from './CreateDogReviewPage/CreateDogReviewPage';
 import CreateDogProfile from './CreateDogProfile/CreateDogProfile';
 import HowlPageView from './HowlPageView/HowlPageView';
+import ReviewPage from './ReviewPage/ReviewPage';
+import './App.css';
 
 const App = () => {
   return (
@@ -51,8 +52,12 @@ const App = () => {
           component={DogProfilePage} 
         />
         <Route 
+          path='/reviews/:id'
+          component={ReviewPage}
+        />
+        <Route 
           path='/leave-review/:dog_id'
-          component={DogReviewPage}
+          component={CreateDogReviewPage}
         />
         <Route 
           path='/create-dog-profile'
