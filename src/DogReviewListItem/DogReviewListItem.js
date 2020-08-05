@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import moment from 'moment';
 import UserContext from '../contexts/UserContext';
 import { Link } from 'react-router-dom';
+import './DogReviewListItem.css';
 
 const DogReviewListItem = (props) => {
 
@@ -32,7 +33,7 @@ const DogReviewListItem = (props) => {
     ) / 6;
 
     return (
-        <li>
+        <li className='DogReviewListItem__li'>
             <h3><Link to={`/reviews/${id}`}>Review of {dog.name}</Link></h3>
             <p>Reviewed by {reviewer} on {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
             <p>Overall rating: {averageRating.toFixed(2)} stars</p>
