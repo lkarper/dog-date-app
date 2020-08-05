@@ -1,9 +1,9 @@
 import React from 'react';
 
 const ForwardGeocodeResult = (props) => {
-    const { result, setMarkerCoordinates } = props;
+    const { result, setMarkerCoordinates, setHidden } = props;
 
-    const handleClick = () => {
+    const handleClick = (event) => {
         const { lat, lon } = result;
         setMarkerCoordinates({
             lat,
