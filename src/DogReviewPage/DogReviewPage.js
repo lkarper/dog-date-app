@@ -57,6 +57,7 @@ const DogReviewPage = (props) => {
         context.addReview(newReview);
         setReviewAdded(true);
         // What to do when review has been added?
+        props.history.push(`/dog-profile/${dog_id}`);
     }
 
     if (!dog) {
@@ -68,13 +69,13 @@ const DogReviewPage = (props) => {
         return (
             <section>
                 <header>
-                    <h2>Dog not found</h2>
+                    <h1>Dog not found</h1>
                 </header>
                 <p>We couldn't find the dog that you're attempting to review.</p>
                 {pack.length 
                 ?             
                     <div>
-                        <h3>Would you like to review one of your pack members?</h3>
+                        <h2>Would you like to review one of your pack members?</h2>
                         <ul>
                             {pack.map(dog => 
                                 <div key={dog.id}>
@@ -92,9 +93,9 @@ const DogReviewPage = (props) => {
     }
 
     return (
-        <section>
+        <section className='DogReviewPage__section section'>
             <header>
-                <h2>Use this form to leave a review of {dog.name}</h2>
+                <h1>Use this form to leave a review of {dog.name}</h1>
             </header>
             <DogReviewForm
                 dogName={dog.name}
