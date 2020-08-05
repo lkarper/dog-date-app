@@ -11,7 +11,7 @@ const Homepage = (props) => {
     return (
         <>
             <header>
-                <h3>My Dog Dating Life</h3>
+                <h1>My Dog Dating Life</h1>
             </header>
             <UserContactInfo />
             <MyDogs />
