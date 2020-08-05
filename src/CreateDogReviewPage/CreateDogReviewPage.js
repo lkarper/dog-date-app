@@ -5,7 +5,7 @@ import UserContext from '../contexts/UserContext';
 import DogReviewForm from '../DogReviewForm/DogReviewForm';
 import DogListView from '../DogListView/DogListView';
 
-const DogReviewPage = (props) => {
+const CreateDogReviewPage = (props) => {
 
     const { dog_id } = props.match.params;
 
@@ -122,4 +122,4 @@ const DogReviewPage = (props) => {
     );
 }
 
-export default DogReviewPage;
+export default CreateDogReviewPage;
