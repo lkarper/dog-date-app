@@ -1,5 +1,5 @@
 .Header__header {
-    width: 100%;
+    width: 100vw;
     height: 100px;
     position: fixed;
     left: 0;
@@ -11,9 +11,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 5px;
 }
 
 .Header__navlink, .Header__link {
     margin: 5px;
     padding: 5px;
+}
+
+.Header__dog-date {
+    padding: 5px 10px;
+    font-size: 24px;
 }
