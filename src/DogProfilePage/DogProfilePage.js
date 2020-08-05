@@ -6,6 +6,7 @@ import HowlListItem from '../HowlListItem/HowlListItem';
 import DogProfilePageHeaderButtons from '../DogProfilePageHeaderButtons/DogProfilePageHeaderButtons';
 import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
 import DogAverageRating from '../DogAverageRating/DogAverageRating';
+import './DogProfilePage.css';
 
 const DogProfilePage = (props) => {
 
@@ -18,9 +19,10 @@ const DogProfilePage = (props) => {
 
     return (
         <>
-            <header>
+            <header className='DogProfilePage__header'>
                 <h1>{dog_profile.name}</h1>
                 <img 
+                    className='DogProfilePage__profile-img'
                     src={dog_profile.profile_img_url}
                     alt={`Avatar for the dog named ${dog_profile.name}.`} 
                 />
@@ -28,29 +30,32 @@ const DogProfilePage = (props) => {
                     dog_profile={dog_profile}
                 />
             </header>
-            <section>
-                <header>
-                    <h2>About {dog_profile.name}:</h2>
+            <section className='DogProfilePage__about-section'>
+                <header className='DogProfilePage__header'>
+                    <h2>About {dog_profile.name}</h2>
                 </header>
                 <p>{dog_profile.owner_description}</p>
-                <section>
-                    <p>Age: {dog_profile.age_months ? `${dog_profile.age_years} years, ${dog_profile.age_months}, months` : `${dog_profile.age_years}`}</p>
-                    <p>Breed: {dog_profile.breed || `(not listed)`}</p>
-                    <p>Weight: {dog_profile.weight ? `${dog_profile.weight} lbs` : `(Not listed)`}</p>
-                    <p>Sex: {dog_profile.sex || `(not listed)`}</p>
-                </section>
+                <p>Age: {dog_profile.age_months ? `${dog_profile.age_years} years, ${dog_profile.age_months}, months` : `${dog_profile.age_years}`}</p>
+                <p>Breed: {dog_profile.breed || `(not listed)`}</p>
+                <p>Weight: {dog_profile.weight ? `${dog_profile.weight} lbs` : `(Not listed)`}</p>
+                <p>Sex: {dog_profile.sex || `(not listed)`}</p>
+            </section>
+            <section>
+                <header className='DogProfilePage__header'>
+                    <h2>Characteristics</h2>
+                </header>
                <DogProfileCharacteristics dog_profile={dog_profile}/>
             </section>
             <section>
-                <header>
+                <header className='DogProfilePage__header'>
                     <h2>Howls about {dog_profile.name}</h2>
                 </header>
-                <ul>
+                <ul className='DogProfilePage__howls-list'>
                     {howlsBy.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
                 </ul>
             </section>
             <section>
-                <header>
+                <header className='DogProfilePage__header'>
                     <h2>Reviews of {dog_profile.name}</h2>
                 </header>
                 {context.user.id === dog_profile.owner_id 
@@ -63,7 +68,7 @@ const DogProfilePage = (props) => {
                             <DogAverageRating 
                                 reviews={reviews}
                             />
-                            <ul>
+                            <ul className='DogProfilePage__reviews-list'>
                                 {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
                             </ul>
                         </div>
