@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import DogListView from '../DogListView/DogListView';
+import './MyDogs.css';
 
 const MyDogs = (props) => {
 
@@ -8,11 +10,12 @@ const MyDogs = (props) => {
     const { dogs } = context;
 
     return (
-        <section>
+        <section className='MyDogs__section section'>
             <header>
-                <h3>My dogs</h3>
+                <h2>My dogs</h2>
             </header>
-            <ul>
+            <Link to='/create-dog-profile'>Create a new dog profile!</Link>
+            <ul className='MyDogs__list'>
                 {dogs.map(dog => <DogListView key={dog.id} dog={dog} />)}
             </ul>
         </section>
