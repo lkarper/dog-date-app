@@ -30,7 +30,7 @@ const StaticMap = (props) => {
             zoom: 12
         });
 
-        const marker = new mapboxgl.Marker(markerRef)
+        new mapboxgl.Marker(markerRef)
             .setLngLat([lon, lat])
             .addTo(map);
 
