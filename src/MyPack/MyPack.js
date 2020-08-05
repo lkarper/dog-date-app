@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 import DogListView from '../DogListView/DogListView';
+import './MyPack.css';
 
 const MyPack = (props) => {
 
@@ -12,13 +13,13 @@ const MyPack = (props) => {
         );
 
     return (
-        <section>
+        <section className='MyPack__section section'>
             <header>
-                <h3>My Pack</h3>
+                <h2>My Pack</h2>
             </header>
             {pack.length 
                 ?             
-                    <ul>
+                    <ul className='MyPack__list'>
                         {pack.map(dog => <DogListView key={dog.id} dog={dog} />)}
                     </ul>
                 :
