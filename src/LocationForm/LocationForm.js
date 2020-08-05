@@ -4,6 +4,7 @@ import ValidateCity from '../validation-components/create-howl-validation/Valida
 import StateSelector from '../StateSelector/StateSelector';
 import ValidateState from '../validation-components/create-howl-validation/ValidateState';
 import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
+import './LocationForm.css';
 
 const LocationForm = (props) => {
 
@@ -51,7 +52,7 @@ const LocationForm = (props) => {
     }, [address, city, state, zipcode, setLocation]);
 
     return (
-        <fieldset>
+        <fieldset className='LocationForm__fieldset'>
             <legend>Enter the location for your meeting place here</legend>
             <div>
                 <label htmlFor='address'>Location or street address:</label>
