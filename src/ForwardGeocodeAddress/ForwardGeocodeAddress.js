@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ForwardGeocodeResult from '../ForwardGeocodeResult/ForwardGeocodeResult';
 import config from '../config';
+import NativeClickListener from '../utils/NativeClickListener';
 import './ForwardGeocodeAddress.css';
 
 const ForwardGeocodeAddress = (props) => {
@@ -9,6 +10,11 @@ const ForwardGeocodeAddress = (props) => {
 
     const [results, setResults] = useState([]);
     const [search, setSearch] = useState('');
+    const [hidden, setHidden] = useState(true);
+
+    useEffect(() => {
+        setHidden(true);
+    }, [props]);
 
     useEffect(() => {
 
@@ -24,6 +30,7 @@ const ForwardGeocodeAddress = (props) => {
                     throw new Error (res.statusText);
                 })
                 .then(res => {
+                    setHidden(false);
                     setResults(res);
                 })
                 .catch(error => {
@@ -37,25 +44,42 @@ const ForwardGeocodeAddress = (props) => {
         }
     }, [search, setResults]);
 
+    const handleFocus = (event) => {
+        if (results.length) {
+            setHidden(false);
+        }
+    }
+
     return (
-        <div className='ForwardGeocodeAddress__outer-container'>
-            <label htmlFor='place-search'>Search for a place by name or address:</label>
+        <div 
+            className='ForwardGeocodeAddress__outer-container'
+        >
             <input 
+                className='ForwardGeocodeAddress__search-input'
                 type="text" 
                 id="place-search" 
                 name="place-search"
+                placeholder='Search by name or address'
                 aria-describedby='current-set-coordinates'
+                aria-label='Search for a place by name or address.'
                 value={search}
+                onFocus={handleFocus}
                 onChange={(e) => setSearch(e.target.value)} 
             />
-            <div 
-                className='ForwardGeocodeAddress__results'
-                role='alert'
+            <NativeClickListener
+                className={`ForwardGeocodeAddress__click-container ${hidden ? 'hidden' : ''}`}
+                onClick={() => setHidden(true)}
             >
-                <ol>
-                    {results.map(result => <ForwardGeocodeResult key={result.place_id} result={result} setMarkerCoordinates={setMarkerCoordinates} />)}
+                <ol className={`ForwardGeocodeAddress__results ${hidden ? 'hidden' : ''}`}>
+                    {results.map(result => 
+                        <ForwardGeocodeResult 
+                            key={result.place_id} 
+                            result={result} 
+                            setMarkerCoordinates={setMarkerCoordinates} 
+                            setHidden={setHidden}
+                        />)}
                 </ol>
-            </div>
+            </NativeClickListener>
         </div>
     )
 }
