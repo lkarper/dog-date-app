@@ -89,15 +89,21 @@ const Map = (props) => {
 
 
     return (
-        <div className='MapForm__container'>
+        <div className='Map__search-container'>
             <div className='Map__map-outer-container'>
-                <button type='button' onClick={setMarkerToMyLocation}>Set marker to my location</button>
+                <ForwardGeocodeAddress setMarkerCoordinates={setMarkerCoordinates} />
                 <div id='map-container' ref={el => setRefMap(el)} className='Map__map-container'>
                 </div>
                 <div className='Map__marker' ref={el => setRefMark(el)}></div>
                 <div id='coordinates' className='Map__coordinates'>Latitude: {markerCoordinates.lat}, Longitude: {markerCoordinates.lon}</div>
             </div>
-            <ForwardGeocodeAddress setMarkerCoordinates={setMarkerCoordinates} />
+            <button 
+                className='Map__set-marker-button'
+                type='button' 
+                onClick={setMarkerToMyLocation}
+            >
+                Set marker to my location
+            </button>
         </div>
     );
 }
