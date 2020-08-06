@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
 import CreateDogProfile from '../CreateDogProfile/CreateDogProfile';
@@ -32,13 +33,26 @@ const DogProfilePageHeaderButtons = (props) => {
         }
     }
 
+    const removeDogProfileCheck = () => {
+        const confirmation = window.confirm(`Are you sure that you'd like to delete ${name}'s profile?`);
+        if (confirmation) {
+            context.removeDogProfile(id);
+        }
+        props.history.push('/home');
+    }
+
     if (owner_id === context.user.id) {
         return (
-            <>
+            <div className='DogProfilePageHeaderButtons__container'>
                 <button
                     onClick={() => setShowEdit(true)}
                 >
                     Edit profile
+                </button>
+                <button
+                    onClick={removeDogProfileCheck}
+                >
+                    Delete profile
                 </button>
                 {showEdit 
                     ? 
@@ -49,12 +63,12 @@ const DogProfilePageHeaderButtons = (props) => {
                         />
                     : ''
                 }
-            </>
+            </div>
         );
     } else {
         if (isAPackMember) {
             return (
-                <div>
+                <div className='DogProfilePageHeaderButtons__container'>
                     <p>{name} is a member of your pack!</p>
                     <button 
                         type="button"
@@ -80,4 +94,4 @@ const DogProfilePageHeaderButtons = (props) => {
     }
 }
 
-export default DogProfilePageHeaderButtons;
+export default withRouter(DogProfilePageHeaderButtons);
