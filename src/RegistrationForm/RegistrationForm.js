@@ -6,6 +6,7 @@ import ValidateUsername from '../validation-components/registration-validation/V
 import ValidatePassword from '../validation-components/registration-validation/ValidatePassword';
 import ValidateReenteredPassword from '../validation-components/registration-validation/ValidateReenteredPassword';
 import STORE from '../STORE';
+import './RegistrationForm.css';
 
 const RegistrationForm = (props) => {
     
@@ -68,9 +69,9 @@ const RegistrationForm = (props) => {
     }
 
     return (
-        <section>
-            <header>
-                <h2>Even man's best friend needs a pack.</h2>
+        <section className='RegistrationForm__section section'>
+            <header className='RegistrationForm__header'>
+                <h1>Even man's best friend needs a pack.</h1>
                 <p>Create an account to get started!</p>
             </header>
             <form 
@@ -173,9 +174,6 @@ const RegistrationForm = (props) => {
                     reenteredPasswordError={reenteredPasswordError}
                     setReenteredPasswordError={setReenteredPasswordError}
                 /> 
-                <div role='alert'>
-
-                </div>
                 <button 
                     type="submit"
                     disabled={
