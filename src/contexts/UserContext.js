@@ -9,6 +9,7 @@ const UserContext = createContext({
     userSavedHowls: [],
     packMembers: [],
     reviews: [],
+    reviewComments: [],
     addReview: () => {},
     addHowl: () => {},
     addPackMember: () => {},
@@ -18,6 +19,7 @@ const UserContext = createContext({
     updateDogProfile: () => {},
     addSavedHowl: () => {},
     removeSavedHowl: () => {},
+    addComment: () => {},
 });
 
 export default UserContext;
@@ -117,6 +119,7 @@ export const UserProvider = (props) => {
             "pack_member_id": "cb6e6549-faac-45ae-9170-b11c869cd239"
         },
     ]);
+    const [reviewComments, setReviewComments] = useState(STORE.review_comments);
     
     useEffect(() => {
         if (Object.keys(user).length) {
@@ -175,6 +178,11 @@ export const UserProvider = (props) => {
         setUserSavedHowls(updatedHowls);
     }
 
+    const addComment = (newComment) => {
+        const updatedComments = [...reviewComments, newComment];
+        setReviewComments(updatedComments);
+    }
+
     const value = {
         user,
         dogs,
@@ -183,6 +191,7 @@ export const UserProvider = (props) => {
         userSavedHowls,
         packMembers,
         reviews,
+        reviewComments,
         addReview,
         setUser,
         addHowl,
@@ -192,6 +201,7 @@ export const UserProvider = (props) => {
         updateDogProfile,
         addSavedHowl,
         removeSavedHowl,
+        addComment,
     };
 
     return (
