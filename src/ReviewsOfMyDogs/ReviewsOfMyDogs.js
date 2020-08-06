@@ -20,7 +20,7 @@ const ReviewsOfMyDogs = (props) => {
     return (
         <section>
             <header>
-                <h3>Recent reviews of my dogs</h3>
+                <h3>Reviews of my dogs</h3>
             </header>
             {reviewsOfMyDogs.length
                 ?
