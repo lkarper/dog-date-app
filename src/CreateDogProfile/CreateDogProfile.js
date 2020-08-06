@@ -111,8 +111,6 @@ const CreateDogProfile = (props) => {
             context.updateDogProfile(newDogProfile);
             props.setShowEdit(false);
         }
-        
-        
     }
 
     if (infoForm) {
@@ -128,6 +126,7 @@ const CreateDogProfile = (props) => {
                     <header>
                         <h2>{suffix ? `Edit your dog's profile` : 'Start barking about your dog!'}</h2>
                     </header>
+                    {suffix && <button className={`CreateDogProfile__close-button${suffix}`}onClick={() => props.setShowEdit(false)}>&#10006;</button>}
                     <form 
                         onSubmit={handleInfoSubmit}
                         className='profile-creation-form'
