@@ -11,6 +11,8 @@ const UserContext = createContext({
     reviews: [],
     reviewComments: [],
     addReview: () => {},
+    removeReview: () => {},
+    updateReview: () => {},
     addHowl: () => {},
     removeHowl: () => {},
     updateHowl: () => {},
@@ -155,6 +157,16 @@ export const UserProvider = (props) => {
         setReviews(updatedReviews);
     }
 
+    const updateReview = (newReview) => {
+        const updatedReviews = [...reviews.filter(r => r.id !== newReview.id), newReview];
+        setReviews(updatedReviews);
+    }
+
+    const removeReview = (idToRemove) => {
+        const updatedReviews = reviews.filter(r => r.id !== idToRemove);
+        setReviews(updatedReviews);
+    }
+
     const addPackMember = (newPackMember) => {
         const updatedPackMembers = [...packMembers, newPackMember ];
         setUserPackMembers(updatedPackMembers);
@@ -225,6 +237,8 @@ export const UserProvider = (props) => {
         addComment,
         removeHowl,
         updateHowl,
+        updateReview,
+        removeReview,
     };
 
     return (

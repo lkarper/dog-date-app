@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { withRouter } from 'react-router-dom';
+import UserContext from '../contexts/UserContext';
 import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
 import MapForm from '../MapForm/MapForm';
 import LocationForm from '../LocationForm/LocationForm';
@@ -7,132 +10,103 @@ import './DogReviewForm.css';
 
 const DogReviewForm = (props) => {
 
+    const context = useContext(UserContext);
+
     const { 
         dogName,
-        friendlinessDogsP,
-        friendlinessPeopleP,
-        playingInterestP,
-        obedienceP,
-        profileAccuracyP,
-        locationSuitabilityP,
-        coordinatesP,
-        locationP,
-        personalMessageP,
-        whenP,
-        setFriendlinessDogsP,
-        setFriendlinessPeopleP,
-        setPlayingInterestP,
-        setObedienceP,
-        setProfileAccuracyP,
-        setLocationSuitabilityP,
-        setCoordinatesP,
-        setLocationP,
-        setPersonalMessageP,
-        setWhenP,
-        handleSubmit,
+        dog_id,
+        suffix = '',
+        review = {
+            id: '',
+            date_created: '',
+            dog_id: '',
+            reviewer: '',
+            friendliness_dogs: '',
+            friendliness_people: '',
+            playing_interest: '',
+            obedience: '',
+            profile_accuracy: '',
+            location_suitability: '',
+            location: {
+                address: '',
+                city: '',
+                state: '',
+                zipcode: '',
+                lat: 0,
+                lon: 0,
+            },
+            when: {
+                date: '',
+                startTime: '',
+                endTime: '',
+            },
+            personal_message: '',
+        },
     } = props;
 
-    const [friendlinessDogs, setFriendlinessDogs] = useState('');
-    const [friendlinessPeople, setFriendlinessPeople] = useState('');
-    const [playingInterest, setPlayingInterest] = useState('');
-    const [obedience, setObedience] = useState('');
-    const [profileAccuracy, setProfileAccuracy] = useState('');
-    const [locationSuitability, setLocationSuitability] = useState('');
-    const [coordinates, setCoordinates] = useState({});
+    const [friendlinessDogs, setFriendlinessDogs] = useState(review.friendliness_dogs);
+    const [friendlinessPeople, setFriendlinessPeople] = useState(review.friendliness_people);
+    const [playingInterest, setPlayingInterest] = useState(review.playing_interest);
+    const [obedience, setObedience] = useState(review.obedience);
+    const [profileAccuracy, setProfileAccuracy] = useState(review.profile_accuracy);
+    const [locationSuitability, setLocationSuitability] = useState(review.location_suitability);
+    const [coordinates, setCoordinates] = useState({
+        lat: review.location.lat,
+        lon: review.location.lon,
+    });
     const [location, setLocation] = useState({
-        address: '',
-        city: '',
-        state: '',
-        zipcode: '',
+        address: review.location.address,
+        city: review.location.city,
+        state: review.location.state,
+        zipcode: review.location.zipcode,
     });
     const [locationError, setLocationError] = useState([]);
-    const [personalMessage, setPersonalMessage] = useState('');
+    const [personalMessage, setPersonalMessage] = useState(review.personal_message);
     const [personalMessageError, setPersonalMessageError] = useState('');
-    const [date, setDate] = useState('')
-    const [startTime, setStartTime] = useState('')
-    const [endTime, setEndTime] = useState('');
-
-    useEffect(() => {
-        const newWhen = {
-            date,
-            startTime,
-            endTime,
-        };
-        if (whenP.date !== date || whenP.startTime !== startTime || whenP.endTime !== endTime) {
-            setWhenP(newWhen);
-        } 
-    }, [date, startTime, endTime, whenP, setWhenP]);
-
-    useEffect(() => {
-        if (personalMessageP !== personalMessage) {
-            setPersonalMessageP(personalMessage);
-        }
-    }, [personalMessage, personalMessageP, setPersonalMessageP]);
-
-    useEffect(() => {
-        if (locationP.address !== location.address || 
-            locationP.city !== location.city || 
-            locationP.state !== location.state || 
-            locationP.zipcode !== location.zipcode) {
-            setLocationP(location);
-        }
-    }, [location, locationP, setLocationP]);
-
-    useEffect(() => {
-        if (friendlinessDogsP !== friendlinessDogs) {
-            setFriendlinessDogsP(friendlinessDogs);
-        }
-    }, [friendlinessDogsP, setFriendlinessDogsP, friendlinessDogs]);
-
-    useEffect(() => {
-        if (friendlinessPeopleP !== friendlinessPeople) {
-            setFriendlinessPeopleP(friendlinessPeople);
-        }
-    }, [friendlinessPeople, friendlinessPeopleP, setFriendlinessPeopleP]);
-
-    useEffect(() => {
-        if (playingInterestP !== playingInterest) {
-            setPlayingInterestP(playingInterest);
-        }
-    }, [playingInterest, playingInterestP, setPlayingInterestP]);
-
-    useEffect(() => {
-        if (obedienceP !== obedience) {
-            setObedienceP(obedience);
-        }
-    }, [obedience, obedienceP, setObedienceP]);
-
-    useEffect(() => {
-        if (profileAccuracyP !== profileAccuracy) {
-            setProfileAccuracyP(profileAccuracy);
-        }
-    }, [profileAccuracy, profileAccuracyP, setProfileAccuracyP]);
-
-    useEffect(() => {
-        if (locationSuitabilityP !== locationSuitability) {
-            setLocationSuitabilityP(locationSuitability);
-        }
-    }, [locationSuitability, locationSuitabilityP, setLocationSuitabilityP]);
-
-    useEffect(() => {
-        if (Object.keys(coordinatesP).length !== 2) {
-            setCoordinatesP(coordinates);        
-        } else {
-            if (coordinatesP.lon !== coordinates.lon || coordinatesP.lat !== coordinates.lat) {
-                setCoordinatesP({
-                    lat: coordinates.lat,
-                    lon: coordinates.lon,
-                });
-            }
-        }
-    }, [coordinates, coordinatesP, setCoordinatesP]);
+    const [date, setDate] = useState(review.when.date)
+    const [startTime, setStartTime] = useState(review.when.startTime)
+    const [endTime, setEndTime] = useState(review.when.endTime);
 
     const today = new Date();
     const maxDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const newReview = {
+            id: review.id || uuidv4(),
+            date_created: new Date().toJSON(),
+            dog_id,
+            reviewer: context.user.username,
+            friendliness_dogs: parseInt(friendlinessDogs),
+            friendliness_people: parseInt(friendlinessPeople),
+            playing_interest: parseInt(playingInterest),
+            obedience: parseInt(obedience),
+            profile_accuracy: parseInt(profileAccuracy),
+            location_suitability: parseInt(locationSuitability),
+            location: {
+                ...location,
+                ...coordinates,
+            },
+            when: {
+                date,
+                startTime,
+                endTime,
+            },
+            personal_message: personalMessage,
+        };
+        if (suffix) {
+            context.updateReview(newReview);
+            props.setShowEdit(false);
+        } else {
+            context.addReview(newReview);
+            props.history.push(`/dog-profile/${dog_id}`);
+        }
+
+    }
+
     return (
         <form 
-            className='DogReviewForm__review-form'
+            className={`DogReviewForm__review-form${suffix}`}
             onSubmit={handleSubmit}
         >
             <fieldset>
@@ -216,6 +190,7 @@ const DogReviewForm = (props) => {
                     <legend>Where did your dog play with {dogName}?</legend>
                     <div className='DogReviewForm__map-outer-container'>
                         <LocationForm
+                            location={location}
                             setLocationError={setLocationError} 
                             setLocation={setLocation}
                         />
@@ -263,4 +238,4 @@ const DogReviewForm = (props) => {
     );
 }
 
-export default DogReviewForm;
+export default withRouter(DogReviewForm);

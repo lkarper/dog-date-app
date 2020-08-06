@@ -5,7 +5,7 @@ const ReviewFormStarRater = (props) => {
 
     const { classSuffix, currentState, setter, legendText } = props;
 
-    const [starRating, setStarRating] = useState('');
+    const [starRating, setStarRating] = useState(currentState.toString());
 
     useEffect(() => {
         if (currentState !== starRating) {
