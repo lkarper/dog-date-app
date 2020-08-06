@@ -1,3 +1,11 @@
 .MyDogs__list {
     padding: 0;
 }
+
+@media screen and (min-width: 750px) {
+    .MyDogs__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}

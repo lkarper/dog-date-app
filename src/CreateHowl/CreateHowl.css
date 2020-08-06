@@ -32,3 +32,9 @@
 .CreateHowl__title-input {
     width: 70vw;
 }
+
+@media screen and (min-width: 750px) {
+    .CreateHowl__map-outer-container {
+        flex-direction: row;
+    }
+}

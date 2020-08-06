@@ -14,3 +14,9 @@
 .HowlsPageFilterForm__zipcode-alert {
     height: 50px;
 }
+
+@media screen and (min-width: 750px) {
+    .HowlsPageFilterForm__form {
+        width: 80%;
+    }
+}

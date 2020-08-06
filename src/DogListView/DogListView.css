@@ -17,3 +17,13 @@
 .DogListView__profile-link {
     margin: 5px;
 }
+
+@media screen and (min-width: 750px) {
+    .DogListView__profile-pic {
+        width: 50%;
+    }
+    
+    .DogListView__li {
+        width: 50%;
+    }
+}

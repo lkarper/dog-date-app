@@ -1,3 +1,27 @@
 .CreateDogProfile__header-edit {
     display: none;
 }
+
+.CreateDogProfile__outer-section {
+    width: 100%;
+    padding: 20px;
+}
+
+.CreateDogProfile__close-button-edit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 5px;
+}
+
+@media screen and (min-width: 750px) {
+    .CreateDogProfile__outer-section-edit {
+        position: absolute;
+        height: 75vh;
+        overflow: auto;
+        background-color: white;
+        border: 1px solid black;
+        padding: 5px;
+        margin: 25px;
+    }
+}
