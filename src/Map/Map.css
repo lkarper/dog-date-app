@@ -1,10 +1,10 @@
 .Map__map-container {
-    width: 300px;
-    height: 300px;
+    width: 275px;
+    height: 275px;
 }
 
 .Map__map-outer-container {
-    width: 300px;
+    width: 275px;
     margin: 0;
     position: relative;
 }

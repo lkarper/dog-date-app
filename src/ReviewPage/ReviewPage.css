@@ -9,3 +9,15 @@
 .ReviewPage__reviews-list {
     padding: 0;
 }
+
+.ReviewPage__edit-container {
+    width: 100%;
+    position: relative;
+}
+
+.ReviewPage__edit-cancel-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+}
