@@ -7,6 +7,8 @@ import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
 import StaticMap from '../StaticMap/StaticMap';
 import TimeWindow from '../TimeWindow/TimeWindow';
 import './ReviewPage.css';
+import ReviewComments from '../ReviewComments/ReviewComments';
+import AddCommentForm from '../AddCommentForm/AddCommentForm';
 
 const ReviewPage = (props) => {
 
@@ -95,6 +97,13 @@ const ReviewPage = (props) => {
                 <h3>Date and time:</h3> 
                 <p>{moment(when.date).format("dddd, MMMM Do, YYYY")}</p>
                 {<TimeWindow startTime={when.startTime} endTime={when.endTime} />}
+            </section>
+            <section className='ReviewPage__section section'>
+                <header>
+                    <h2>Comments</h2>
+                </header>
+                <ReviewComments reviewId={id}/>
+                {Object.keys(context.user).length && <AddCommentForm reviewId={id}/>}
             </section>
             <section className='ReviewPage__section section'>
                 <header>
