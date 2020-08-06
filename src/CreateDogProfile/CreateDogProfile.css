@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 750px) {
     .CreateDogProfile__outer-section-edit {
-        position: absolute;
+        position: fixed;
         height: 75vh;
         overflow: auto;
         background-color: white;
