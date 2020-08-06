@@ -1,0 +1,11 @@
+.ReviewPage__header h1 {
+    text-align: center;
+}
+
+.ReviewPage__header {
+    padding: 10px;
+}
+
+.ReviewPage__reviews-list {
+    padding: 0;
+}
