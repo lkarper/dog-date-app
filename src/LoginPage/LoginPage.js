@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import STORE from '../STORE';
 
@@ -32,45 +33,51 @@ const LoginForm = (props) => {
     }
 
     return (
-        <form onSubmit={(e) => handleLogin(e)}>
-            <div>
-                <label
-                    htmlFor='username'
+        <section className='section'>
+            <header>
+                <h1>Log in</h1>
+            </header>
+            <form onSubmit={(e) => handleLogin(e)}>
+                <div>
+                    <label
+                        htmlFor='username'
+                    >
+                        Username:
+                    </label>
+                    <input 
+                        type='text'
+                        id='username'
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label
+                        htmlFor='password'
+                    >
+                        Password:
+                    </label>
+                    <input 
+                        type='password'
+                        id='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <button
+                    type='submit'
+                    disabled={!username || !password}
                 >
-                    Username:
-                </label>
-                <input 
-                    type='text'
-                    id='username'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor='password'
-                >
-                    Password:
-                </label>
-                <input 
-                    type='password'
-                    id='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            <button
-                type='submit'
-                disabled={!username || !password}
-            >
-                Submit
-            </button>
-            <div role='alert'>
-                {loginError ? <p>{loginError}</p> : ''}
-            </div>
-        </form>
-    )
+                    Submit
+                </button>
+                <div role='alert'>
+                    {loginError ? <p>{loginError}</p> : ''}
+                </div>
+            </form>
+            <p>Don't have an account? <Link to='/register'>Register</Link></p>
+        </section>
+    );
 }
 
 export default LoginForm;
