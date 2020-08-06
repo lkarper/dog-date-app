@@ -104,6 +104,7 @@ const Map = (props) => {
             >
                 Set marker to my location
             </button>
+            <p className='Map__marker-draggable-p'>(Marker is draggable.)</p>
         </div>
     );
 }
