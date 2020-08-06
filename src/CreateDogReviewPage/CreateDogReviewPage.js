@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
@@ -6,6 +6,10 @@ import DogReviewForm from '../DogReviewForm/DogReviewForm';
 import DogListView from '../DogListView/DogListView';
 
 const CreateDogReviewPage = (props) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [props]);
 
     const { dog_id } = props.match.params;
 

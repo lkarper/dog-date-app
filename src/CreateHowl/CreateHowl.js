@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
 import MapForm from '../MapForm/MapForm';
@@ -13,6 +13,10 @@ import ValidateHowlTitle from '../validation-components/create-howl-validation/V
 import './CreateHowl.css';
 
 const CreateHowl = (props) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [props]);
 
     const context = useContext(UserContext);
 

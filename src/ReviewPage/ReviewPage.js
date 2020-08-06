@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
@@ -9,6 +9,10 @@ import TimeWindow from '../TimeWindow/TimeWindow';
 import './ReviewPage.css';
 
 const ReviewPage = (props) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [props]);
 
     const context = useContext(UserContext);
 

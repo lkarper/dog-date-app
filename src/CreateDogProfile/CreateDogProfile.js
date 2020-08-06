@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
@@ -8,6 +8,12 @@ import UploadDogProfilePhoto from '../CreateDogProfileFormComponents/UploadDogPr
 import './CreateDogProfile.css';
 
 const CreateDogProfile = (props) => {
+
+    useEffect(() => {
+        if (!Object.keys(props).includes('suffix')) {
+            window.scrollTo(0, 0);
+        }
+    }, [props]);
 
     const { dog_profile = {}, suffix = '' } = props;
 

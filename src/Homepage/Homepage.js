@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UserContactInfo from '../UserContactInfo/UserContactInfo';
 import MyDogs from '../MyDogs/MyDogs';
 import MyPack from '../MyPack/MyPack';
@@ -7,6 +7,10 @@ import MyHowls from '../MyHowls/MyHowls';
 import ReviewsOfMyDogs from '../ReviewsOfMyDogs/ReviewsOfMyDogs';
 
 const Homepage = (props) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [props]);
 
     return (
         <>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ValidateEmail from '../validation-components/registration-validation/ValidateEmail';
 import ValidatePhoneNumber from '../validation-components/registration-validation/ValidatePhoneNumber';
@@ -8,6 +8,10 @@ import ValidateReenteredPassword from '../validation-components/registration-val
 import STORE from '../STORE';
 
 const RegistrationForm = (props) => {
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [props]);
 
     const [email, setEmail] = useState('');
     const [emailValidationError, setEmailValidationError] = useState(null);

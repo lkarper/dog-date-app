@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import UserContext from '../contexts/UserContext';
@@ -10,6 +10,10 @@ import TimeWindow from '../TimeWindow/TimeWindow';
 import './HowlPageView.css';
 
 const HowlPageView  = (props) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [props]);
 
     const context = useContext(UserContext);
 
