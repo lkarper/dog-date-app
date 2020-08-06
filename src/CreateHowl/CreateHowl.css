@@ -33,8 +33,31 @@
     width: 70vw;
 }
 
+.CreateHowl__section-edit {
+    position: relative;
+}
+
+.CreateHowl__close-button-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+}
+
 @media screen and (min-width: 750px) {
     .CreateHowl__map-outer-container {
         flex-direction: row;
     }
+
+    .CreateHowl__section-edit.section {
+        position: absolute;
+        height: 75vh;
+        overflow: auto;
+        background-color: white;
+        border: 1px solid black;
+        padding: 5px;
+        margin: 25px;
+        z-index: 10;
+        width: 80%;
+    }    
 }
