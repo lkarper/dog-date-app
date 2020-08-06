@@ -308,6 +308,15 @@ export default {
             "personal_message": "Santos is a good, friendly dog.  The lake area was very busy, and it was difficult for the dogs to run around, since there were so many people around.  That being said, I highly recommend Santos!",
         },
     ],
+    "review_comments": [
+        {
+            "id": '38894dc5-7960-4449-942f-cfe3f0898d9f',
+            "review_id": "0adcdd30-a6dc-4235-8ca3-dab507b7307f",
+            "commenter": "bart_man",
+            "date_time": "2020-08-06T13:55:38.886Z",
+            "comment": "Santos had a great time playing with Nibbler!  We should do it again soon, maybe at a less-busy park nearby!"
+        },
+    ],
     "user_saved_howls": [
         {
             "id": "0eada3bf-43a9-48c0-9458-c6bfccb4e790",
