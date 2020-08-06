@@ -52,12 +52,17 @@ const Header = (props) => {
                 Dog Date
             </Link>
             <nav>
-                <NavLink 
-                    className='Header__navlink' 
-                    to='/home'
-                >
-                    Homepage
-                </NavLink>
+                {Object.keys(context.user).length 
+                    ? 
+                        <NavLink 
+                            className='Header__navlink' 
+                            to='/home'
+                        >
+                            Homepage
+                        </NavLink>
+                    : 
+                        ''
+                }
                 <NavLink 
                     className='Header__navlink'  
                     to='/howls'
