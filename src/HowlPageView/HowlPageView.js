@@ -1,13 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import UserContext from '../contexts/UserContext';
 import StaticMap from '../StaticMap/StaticMap';
 import STORE from '../STORE';
 import HowlPageDogProfile from '../HowlPageDogProfile/HowlPageDogProfile';
-import HowlPageButtons from '../HowlPageButtons/HowlPageButtons';
 import TimeWindow from '../TimeWindow/TimeWindow';
 import './HowlPageView.css';
+import HowlPageUserButtons from '../HowlPageUserButtons/HowlPageUserButtons';
 
 const HowlPageView  = (props) => {
 
@@ -83,6 +82,7 @@ const HowlPageView  = (props) => {
         <>
             <header className='HowlPageView__header'>
                 <h1>{howl.howl_title}</h1>
+                <HowlPageUserButtons howl={howl} />
             </header>
             <section className='HowlPageView__section section'>
                 <header>
@@ -137,15 +137,6 @@ const HowlPageView  = (props) => {
                     }
                 </ul>
             </section>
-            {Object.keys(context.user).length && howl.user_id !== context.user.id
-                ? 
-                    <HowlPageButtons 
-                        user_id={context.user.id}
-                        howl_id={howl.id}
-                    />
-                : ''
-            }
-            {Object.keys(context.user).length === 0 && <Link to='/login'>Log in to save howls!</Link>}
         </>
     );
 }
