@@ -17,7 +17,12 @@ const ReviewComments = (props) => {
 
     return (
         <ul className='ReviewComments__list'>
-            {comments.map(comment => <Comment key={comment.id} comment={comment} />)}
+            {comments
+                .sort((a, b) => a.date_time - b.date_time)
+                .map(comment => 
+                    <Comment key={comment.id} comment={comment} />
+                )
+            }
         </ul>
     );
 }

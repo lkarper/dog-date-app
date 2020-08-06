@@ -5,13 +5,13 @@ const SelectDogForHowl = (props) => {
 
     const { dog, dogsForHowl, updateDogsForHowl } = props;
 
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(dogsForHowl.includes(dog.id));
 
     useEffect(() => {
 
-        if (checked && !dogsForHowl.includes(dog.id)) {
+        if (checked === true && !dogsForHowl.includes(dog.id)) {
             updateDogsForHowl(dog.id, checked);
-        } else if (!checked && dogsForHowl.includes(dog.id)) {
+        } else if (checked === false && dogsForHowl.includes(dog.id)) {
             updateDogsForHowl(dog.id, checked);
         }
 

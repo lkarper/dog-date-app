@@ -10,7 +10,7 @@ const Map = (props) => {
 
     const [map, setMap] = useState(null);
     const [marker, setMarker] = useState(null);
-    const [markerCoordinates, setMarkerCoordinates] = useState({ lat: 40.7812, lon: -73.9665 });
+    const [markerCoordinates, setMarkerCoordinates] = useState(tempCoordinates);
 
     let mapContainer = useRef(null);
     let markerRef = useRef(null);

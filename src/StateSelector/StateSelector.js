@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 const StateSelector = (props) => {
 
-    const [state, setState] = useState('');
+    const { propState = '' } = props;
+
+    const [state, setState] = useState(propState);
 
     useEffect(() => {
-        props.setState(state);
-    }, [state, props])
+        if (state !== propState) {
+            props.setState(state);
+        }
+    }, [state, props, propState])
 
     return (
         <div>

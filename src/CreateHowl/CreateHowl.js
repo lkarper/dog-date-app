@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { withRouter } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import MapForm from '../MapForm/MapForm';
 import SelectDogForHowl from '../SelectDogForHowl/SelectDogForHowl';
@@ -14,45 +15,65 @@ import './CreateHowl.css';
 
 const CreateHowl = (props) => {
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [props]);
-
-    const context = useContext(UserContext);
-
-    const [dogsForHowl, setDogsForHowl] = useState([]);
-    const [dogsForHowlError, setDogsForHowlError] = useState(null);
-    const [location, setLocation] = useState({
-        address: '',
-        city: '',
-        state: '',
-        zipcode: '',
-    });
-    const [coordinates, setCoordinates] = useState({});
-    const [locationError, setLocationError] = useState([]);
-    const [meetingType, setMeetingType] = useState('recurring');
-    const [recurringMeetingWindows, setRecurringMeetingWindows] = useState([
-        {
-            dayOfWeek: '',
-            startTime: '',
-            endTime: '',
-        },
-    ]);
-    const [oneTimeMeetingWindows, setOneTimeMeetingWindows] = useState(
-        {
-            date: '',
-            timeWindows: [
+    const {
+        suffix = '',
+        howl = {
+            dog_ids: [],
+            howl_title: '',
+            id: '',
+            location: {
+                address: '',
+                city: '',
+                lat: 0,
+                lon: 0,
+                state: '',
+                zipcode: '',
+            },
+            meeting_type: '',
+            one_time_windows:         
+            {
+                date: '',
+                timeWindows: [
+                    {
+                        startTime: '',
+                        endTime: '',
+                    },
+                ],
+            },
+            personal_message: '',
+            recurring_windows: [
                 {
+                    dayOfWeek: '',
                     startTime: '',
                     endTime: '',
                 },
             ],
-        }
-    );
+            user_id: '',
+        },
+    } = props;
+
+    const context = useContext(UserContext);
+
+    const [dogsForHowl, setDogsForHowl] = useState(howl.dog_ids);
+    const [dogsForHowlError, setDogsForHowlError] = useState(null);
+    const [location, setLocation] = useState({
+        address: howl.location.address,
+        city: howl.location.city,
+        state: howl.location.state,
+        zipcode: howl.location.zipcode,
+    });
+    const [coordinates, setCoordinates] = useState({
+        lat: howl.location.lat,
+        lon: howl.location.lon,
+    });
+    const [locationError, setLocationError] = useState([]);
+    const [meetingType, setMeetingType] = useState(howl.meeting_type || 'recurring');
+    const [recurringMeetingWindows, setRecurringMeetingWindows] = useState(howl.recurring_windows);
+    const [oneTimeMeetingWindows, setOneTimeMeetingWindows] = useState(howl.one_time_windows);
     const [timeError, setTimeError] = useState(false);
-    const [howlTitle, setHowlTitle] = useState('');
+    const [howlTitle, setHowlTitle] = useState(howl.howl_title);
     const [howlTitleError, setHowlTitleError] = useState('');
-    const [personalMessage, setPersonalMessage] = useState('');
+    const [personalMessage, setPersonalMessage] = useState(howl.personal_message);
     const [personalMessageError, setPersonalMessageError] = useState(null);
 
     const updateDogsForHowl = (id, checkedBool) => {
@@ -99,7 +120,7 @@ const CreateHowl = (props) => {
         event.preventDefault();
 
         const newHowl = {
-            id: uuidv4(),
+            id: howl.id || uuidv4(),
             user_id: context.user.id,
             howl_title: howlTitle,
             dog_ids: dogsForHowl,
@@ -113,171 +134,183 @@ const CreateHowl = (props) => {
             recurring_windows: meetingType === 'recurring' ? recurringMeetingWindows : [],
             personal_message: personalMessage,
         };
-        context.addHowl(newHowl);
+        if (suffix) {
+            context.updateHowl(newHowl);
+            props.setShowEdit(false);
+        } else {
+            context.addHowl(newHowl);
+            props.history.push('/home');
+        }
     }
 
     return (
-        <>
+        <section className={`CreateHowl__section${suffix} section`}>
             <header>
-                <h1>Howl now!</h1>
-                <p>Look for friends for your dog!</p>
+                <h2>Enter details below to create a howl</h2>
             </header>
-            <section className='CreateHowl__section section'>
-                <header>
-                    <h2>Enter details below to create a howl</h2>
-                </header>
-                <form 
-                    className='CreateHowl__howl-form'
-                    onSubmit={handleSubmit}
-                >
-                    <fieldset>
-                        <legend>Select your dog(s) to howl about</legend>
-                        <div className='CreateHowl__dog-select-container'>
-                            {context.dogs.map(dog => <SelectDogForHowl key={dog.id} dog={dog} dogsForHowl={dogsForHowl} updateDogsForHowl={updateDogsForHowl} /> )}
-                        </div>
-                        <div role='alert'>
-                            <ValidateDogSelection 
-                                dogsForHowl={dogsForHowl}
-                                dogsForHowlError={dogsForHowlError}
-                                setDogsForHowlError={setDogsForHowlError}
-                            />
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Where are you interested in meeting?</legend>
-                        <div className='CreateHowl__map-outer-container'>
-                            <LocationForm
-                                setLocationError={setLocationError} 
-                                setLocation={setLocation}
-                            />
-                            <MapForm 
-                                coordinates={coordinates}
-                                setCoordinates={setCoordinates} 
-                            />
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>When are you interested in meeting?</legend>
-                        <fieldset>
-                            <legend>What type of howl would you like to create?</legend>
-                            <div>
-                                <input 
-                                    type='radio'
-                                    name='meeting-type'
-                                    id='meet-once'
-                                    value='once'
-                                    checked={meetingType === 'once'}
-                                    onChange={(e) => setMeetingType(e.target.value)}
-                                    required
-                                />
-                                <label htmlFor='meet-once'>One time meeting</label>
-                            </div>
-                            <div>
-                                <input 
-                                    type='radio'
-                                    name='meeting-type'
-                                    id='recurring-meeting'
-                                    value='recurring'
-                                    checked={meetingType === 'recurring'}
-                                    onChange={(e) => setMeetingType(e.target.value)}
-                                    required
-                                />
-                                <label htmlFor='recurring-meeting'>Recurring meeting</label>
-                            </div>
-                        </fieldset>
-                        {meetingType === 'once' 
-                            ? 
-                                <div>    
-                                    <OneTimeMeetingForm 
-                                        currentData={oneTimeMeetingWindows}
-                                        setOneTimeMeetingWindows={setOneTimeMeetingWindows}
-                                    />
-                                </div> 
-                            :  
-                                <div>
-                                    <ol>
-                                        {recurringMeetingWindows.map((window, i) => 
-                                            <RecurringMeetingForm 
-                                                key={i} 
-                                                index={i}
-                                                currentData={window} 
-                                                updateRecurringMeetingWindows={updateRecurringMeetingWindows} 
-                                                removeRecurringMeetingWindow={removeRecurringMeetingWindow}    
-                                            />)
-                                        }
-                                    </ol>
-                                    <button onClick={addRecurringMeetingWindow} type="button">Click to add another window</button>
-                                </div>
-                        }
-                        <div role='alert'>
-                            <ValidateTime 
-                                meetingType={meetingType}
-                                oneTimeMeetingWindows={oneTimeMeetingWindows}
-                                recurringMeetingWindows={recurringMeetingWindows}
-                                setTimeError={setTimeError}
-                            />
-                        </div>
-                    </fieldset>
-                    <div className='CreateHowl__description-outer-container'>
-                        <div className='CreateHowl__title-container'>
-                            <label 
-                                className='CreateHowl__title-label'
-                                htmlFor='howl-title'>Howl title: </label>
-                            <input 
-                                className='CreateHowl__title-input'
-                                type='text'
-                                id='howl-title'
-                                name='howl-title'
-                                maxLength='100'
-                                aria-describedby='howl-title-validator'
-                                value={howlTitle}
-                                onChange={(e) => setHowlTitle(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div role='alert'>
-                            <ValidateHowlTitle 
-                                howlTitle={howlTitle}
-                                howlTitleError={howlTitleError}
-                                setHowlTitleError={setHowlTitleError}
-                            />
-                        </div>
-                        <div className='CreateHowl__description-container'>
-                            <label htmlFor="howl-description">Add a personal message to go with your howl:</label>
-                            <textarea 
-                                className='CreateHowl__description'
-                                id="howl-description" 
-                                name="howl-description" 
-                                maxLength="2000"
-                                rows='10' 
-                                placeholder="(Write your personal message here)" 
-                                aria-describedby="personal-message-validator"
-                                value={personalMessage}
-                                onChange={(e) => setPersonalMessage(e.target.value)}
-                            ></textarea>
-                        </div>
+            {suffix 
+                ? 
+                    <button 
+                        className={`CreateHowl__close-button${suffix}`}
+                        onClick={() => props.setShowEdit(false)}
+                    >
+                        &#10006;
+                    </button> 
+                : 
+                    ''
+            }
+            <form 
+                className='CreateHowl__howl-form'
+                onSubmit={handleSubmit}
+            >
+                <fieldset>
+                    <legend>Select your dog(s) to howl about</legend>
+                    <div className='CreateHowl__dog-select-container'>
+                        {context.dogs.map(dog => <SelectDogForHowl key={dog.id} dog={dog} dogsForHowl={dogsForHowl} updateDogsForHowl={updateDogsForHowl} /> )}
                     </div>
                     <div role='alert'>
-                        <ValidatePersonalMessage 
-                            personalMessage={personalMessage}
-                            personalMessageError={personalMessageError}
-                            setPersonalMessageError={setPersonalMessageError}
+                        <ValidateDogSelection 
+                            dogsForHowl={dogsForHowl}
+                            dogsForHowlError={dogsForHowlError}
+                            setDogsForHowlError={setDogsForHowlError}
                         />
                     </div>
-                    <button 
-                        type="submit"
-                        disabled={
-                            dogsForHowlError ||
-                            locationError.length ||
-                            timeError ||
-                            howlTitleError ||
-                            personalMessageError
-                        }
-                    >Submit</button>
-                </form>
-            </section>
-        </>
+                </fieldset>
+                <fieldset>
+                    <legend>Where are you interested in meeting?</legend>
+                    <div className='CreateHowl__map-outer-container'>
+                        <LocationForm
+                            setLocationError={setLocationError} 
+                            setLocation={setLocation}
+                            location={location}
+                        />
+                        <MapForm 
+                            coordinates={coordinates}
+                            setCoordinates={setCoordinates} 
+                        />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>When are you interested in meeting?</legend>
+                    <fieldset>
+                        <legend>What type of howl would you like to create?</legend>
+                        <div>
+                            <input 
+                                type='radio'
+                                name='meeting-type'
+                                id='meet-once'
+                                value='once'
+                                checked={meetingType === 'once'}
+                                onChange={(e) => setMeetingType(e.target.value)}
+                                required
+                            />
+                            <label htmlFor='meet-once'>One time meeting</label>
+                        </div>
+                        <div>
+                            <input 
+                                type='radio'
+                                name='meeting-type'
+                                id='recurring-meeting'
+                                value='recurring'
+                                checked={meetingType === 'recurring'}
+                                onChange={(e) => setMeetingType(e.target.value)}
+                                required
+                            />
+                            <label htmlFor='recurring-meeting'>Recurring meeting</label>
+                        </div>
+                    </fieldset>
+                    {meetingType === 'once' 
+                        ? 
+                            <div>    
+                                <OneTimeMeetingForm 
+                                    currentData={oneTimeMeetingWindows}
+                                    setOneTimeMeetingWindows={setOneTimeMeetingWindows}
+                                />
+                            </div> 
+                        :  
+                            <div>
+                                <ol>
+                                    {recurringMeetingWindows.map((window, i) => 
+                                        <RecurringMeetingForm 
+                                            key={i} 
+                                            index={i}
+                                            currentData={window} 
+                                            updateRecurringMeetingWindows={updateRecurringMeetingWindows} 
+                                            removeRecurringMeetingWindow={removeRecurringMeetingWindow}    
+                                        />)
+                                    }
+                                </ol>
+                                <button onClick={addRecurringMeetingWindow} type="button">Click to add another window</button>
+                            </div>
+                    }
+                    <div role='alert'>
+                        <ValidateTime 
+                            meetingType={meetingType}
+                            oneTimeMeetingWindows={oneTimeMeetingWindows}
+                            recurringMeetingWindows={recurringMeetingWindows}
+                            setTimeError={setTimeError}
+                        />
+                    </div>
+                </fieldset>
+                <div className='CreateHowl__description-outer-container'>
+                    <div className='CreateHowl__title-container'>
+                        <label 
+                            className='CreateHowl__title-label'
+                            htmlFor='howl-title'>Howl title: </label>
+                        <input 
+                            className='CreateHowl__title-input'
+                            type='text'
+                            id='howl-title'
+                            name='howl-title'
+                            maxLength='100'
+                            aria-describedby='howl-title-validator'
+                            value={howlTitle}
+                            onChange={(e) => setHowlTitle(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div role='alert'>
+                        <ValidateHowlTitle 
+                            howlTitle={howlTitle}
+                            howlTitleError={howlTitleError}
+                            setHowlTitleError={setHowlTitleError}
+                        />
+                    </div>
+                    <div className='CreateHowl__description-container'>
+                        <label htmlFor="howl-description">Add a personal message to go with your howl:</label>
+                        <textarea 
+                            className='CreateHowl__description'
+                            id="howl-description" 
+                            name="howl-description" 
+                            maxLength="2000"
+                            rows='10' 
+                            placeholder="(Write your personal message here)" 
+                            aria-describedby="personal-message-validator"
+                            value={personalMessage}
+                            onChange={(e) => setPersonalMessage(e.target.value)}
+                        ></textarea>
+                    </div>
+                </div>
+                <div role='alert'>
+                    <ValidatePersonalMessage 
+                        personalMessage={personalMessage}
+                        personalMessageError={personalMessageError}
+                        setPersonalMessageError={setPersonalMessageError}
+                    />
+                </div>
+                <button 
+                    type="submit"
+                    disabled={
+                        dogsForHowlError ||
+                        locationError.length ||
+                        timeError ||
+                        howlTitleError ||
+                        personalMessageError
+                    }
+                >Submit</button>
+            </form>
+        </section>
     );
 }
 
-export default CreateHowl;
+export default withRouter(CreateHowl);

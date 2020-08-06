@@ -6,13 +6,14 @@ import RegistrationForm from './RegistrationForm/RegistrationForm';
 import LoginPage from './LoginPage/LoginPage';
 import HowlsList from './HowlsList/HowlsList';
 import Homepage from './Homepage/Homepage';
-import CreateHowl from './CreateHowl/CreateHowl';
+import CreateHowlPage from './CreateHowlPage/CreateHowlPage';
 import DogProfilePage from './DogProfilePage/DogProfilePage';
 import CreateDogReviewPage from './CreateDogReviewPage/CreateDogReviewPage';
 import CreateDogProfile from './CreateDogProfile/CreateDogProfile';
 import HowlPageView from './HowlPageView/HowlPageView';
 import ReviewPage from './ReviewPage/ReviewPage';
 import './App.css';
+
 
 const App = () => {
   return (
@@ -45,7 +46,7 @@ const App = () => {
         />
         <Route 
           path='/create-howl'
-          component={CreateHowl}
+          component={CreateHowlPage}
         />
         <Route
           path='/dog-profile/:id'

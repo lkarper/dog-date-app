@@ -8,15 +8,15 @@ import './LocationForm.css';
 
 const LocationForm = (props) => {
 
-    const { setLocation, setLocationError } = props;
+    const { setLocation, setLocationError, location } = props;
 
-    const [address, setAddress] = useState('');
+    const [address, setAddress] = useState(location.address);
     const [addressError, setAddressError] = useState('');
-    const [city, setCity] = useState('');
+    const [city, setCity] = useState(location.city);
     const [cityError, setCityError] = useState('');
-    const [state, setState] = useState('');
+    const [state, setState] = useState(location.state);
     const [stateError, setStateError] = useState('');
-    const [zipcode, setZipcode] = useState('');
+    const [zipcode, setZipcode] = useState(location.zipcode);
     const [zipcodeError, setZipcodeError] = useState('');
 
     useEffect(() => {
@@ -93,6 +93,7 @@ const LocationForm = (props) => {
                 />
             </div>
             <StateSelector 
+                propState={state}
                 setState={setState}
             />
             <div role='alert'>

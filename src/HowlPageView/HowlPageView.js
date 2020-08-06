@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import moment from 'moment';
 import UserContext from '../contexts/UserContext';
 import StaticMap from '../StaticMap/StaticMap';
@@ -7,6 +7,7 @@ import HowlPageDogProfile from '../HowlPageDogProfile/HowlPageDogProfile';
 import TimeWindow from '../TimeWindow/TimeWindow';
 import './HowlPageView.css';
 import HowlPageUserButtons from '../HowlPageUserButtons/HowlPageUserButtons';
+import CreateHowl from '../CreateHowl/CreateHowl';
 
 const HowlPageView  = (props) => {
 
@@ -17,6 +18,8 @@ const HowlPageView  = (props) => {
     const context = useContext(UserContext);
 
     const { howl_id } = props.match.params;
+
+    const [showEdit, setShowEdit] = useState(false);
 
     const howl = context.howls.find(howl => howl.id === howl_id);
 
@@ -82,8 +85,9 @@ const HowlPageView  = (props) => {
         <>
             <header className='HowlPageView__header'>
                 <h1>{howl.howl_title}</h1>
-                <HowlPageUserButtons howl={howl} />
+                <HowlPageUserButtons howl={howl} setShowEdit={setShowEdit} />
             </header>
+            {showEdit && <CreateHowl howl={howl} suffix='-edit' setShowEdit={setShowEdit} />}
             <section className='HowlPageView__section section'>
                 <header>
                     <h2>About this howl:</h2>

@@ -6,7 +6,7 @@ import CurrentLocation from '../CurrentLocation/CurrentLocation';
 const MapForm = (props) => {
     const { coordinates, setCoordinates } = props;
 
-    const [tempCoordinates, setTempCoordinates] = useState({ lat: 40.7812, lon: -73.9665 });
+    const [tempCoordinates, setTempCoordinates] = useState(coordinates);
 
     return (
         <fieldset className='MapForm__coordinates-fieldset'>
