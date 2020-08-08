@@ -27,7 +27,7 @@ const MyHowls = (props) => {
                     </>
             }
         </section>
-    )
+    );
 }
 
 export default MyHowls;
