@@ -76,19 +76,29 @@ const UploadDogProfilePhoto = (props) => {
         imagePreview = (
             <> 
                 <p>Image preview</p>
-                <img 
-                    src={URL.createObjectURL(imgFile)} 
-                    alt='Avatar preview.' 
-                    className='UploadDogProfilePhoto__img-preview'
-                />
-                {showLoading && <FontAwesomeIcon icon={faSpinner} spin />}
+                <div className='UploadDogProfilePhoto__outer-container'>
+                    {showLoading && 
+                        <div className='UploadDogProfilePhoto__loading-container'>
+                            <FontAwesomeIcon 
+                                className='UploadDogProfilePhoto__loading' 
+                                icon={faSpinner} 
+                                spin 
+                            />
+                        </div>
+                    }
+                    <img 
+                        src={URL.createObjectURL(imgFile)} 
+                        alt='Avatar preview.' 
+                        className='UploadDogProfilePhoto__img-preview'
+                    />
+                </div>
                 {uploadError ? <p>Upload failed.  Please try again.</p> : ''}
             </>
         );
     }
 
     return (
-        <section className={`UploaddogProfilePhoto__outer-section${suffix}`}>
+        <section className={`UploadDogProfilePhoto__outer-section${suffix}`}>
             <header>
                 <h2>Upload a photo for your dog's profile</h2>
             </header>
