@@ -25,6 +25,8 @@ const UserContext = createContext({
     addSavedHowl: () => {},
     removeSavedHowl: () => {},
     addComment: () => {},
+    updateComment: () => {},
+    removeComment: () => {},
 });
 
 export default UserContext;
@@ -215,6 +217,16 @@ export const UserProvider = (props) => {
         setReviewComments(updatedComments);
     }
 
+    const updateComment = (updatedComment) => {
+        const updatedComments = [...reviewComments.filter(com => com.id !== updatedComment.id), updatedComment];
+        setReviewComments(updatedComments);
+    }
+
+    const removeComment = (idToRemove) => {
+        const updatedComments = [...reviewComments.filter(com => com.id !== idToRemove)];
+        setReviewComments(updatedComments);
+    }
+
     const value = {
         user,
         dogs,
@@ -239,6 +251,8 @@ export const UserProvider = (props) => {
         updateHowl,
         updateReview,
         removeReview,
+        updateComment,
+        removeComment,
     };
 
     return (

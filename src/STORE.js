@@ -314,7 +314,8 @@ export default {
             "review_id": "0adcdd30-a6dc-4235-8ca3-dab507b7307f",
             "commenter": "bart_man",
             "date_time": "2020-08-06T13:55:38.886Z",
-            "comment": "Santos had a great time playing with Nibbler!  We should do it again soon, maybe at a less-busy park nearby!"
+            "comment": "Santos had a great time playing with Nibbler!  We should do it again soon, maybe at a less-busy park nearby!",
+            "edited": false,
         },
     ],
     "user_saved_howls": [

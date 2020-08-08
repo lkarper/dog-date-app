@@ -143,8 +143,8 @@ const ReviewPage = (props) => {
                     <header>
                         <h2>Comments</h2>
                     </header>
-                    <ReviewComments reviewId={id}/>
-                    {Object.keys(context.user).length && <AddCommentForm reviewId={id}/>}
+                    <ReviewComments reviewId={id} />
+                    {Object.keys(context.user).length && <AddCommentForm reviewId={id} />}
                 </section>
                 <section className='ReviewPage__section section'>
                     <header>

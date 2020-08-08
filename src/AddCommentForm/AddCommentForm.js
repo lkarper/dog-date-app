@@ -7,20 +7,32 @@ const AddCommentForm = (props) => {
 
     const context = useContext(UserContext);
 
-    const { reviewId } = props;
+    const { 
+        reviewId, 
+        oldComment = '',
+        suffix = '',
+        id = '',
+    } = props;
 
-    const [commentText, setCommentText] = useState('');
+    const [commentText, setCommentText] = useState(oldComment);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const newComment = {
-            id: uuidv4(),
+            id: id || uuidv4(),
             review_id: reviewId,
             commenter: context.user.username,
             date_time: new Date().toJSON(),
             comment: commentText,
+            edited: !!suffix
         };
-        context.addComment(newComment);
+
+        if (suffix) {
+            context.updateComment(newComment);
+            props.setShowEdit(false);
+        } else {
+            context.addComment(newComment);
+        }
         setCommentText('');
     }
 
@@ -46,8 +58,7 @@ const AddCommentForm = (props) => {
                 Submit
             </button>
         </form>
-    )
-
+    );
 }
 
 export default AddCommentForm;
