@@ -19,6 +19,8 @@ const Landing = (props) => {
                 </header>
                 <p>Dog Date is an app that helps you find playdates for your dog!</p>
                 <p>This is a demo version of Dog Date designed to get initial feedback from users.  This means that the site is not yet hooked up to a back-end server.  You will be able to sample all of Dog Date's features, but any resources that you create (new profiles, new accounts, new howls, etc.) will not be saved.  Upon page load, you will be automatically signed into a dummy account.  If you log out, simply refresh the page and you will be logged back in automatically.</p>
+                <p>After you test the app, please fill out this <a className="Landing__feedback-link" href="https://forms.gle/ua1uXTDHWFqq49Hs5" target="_blank" rel="noopener noreferrer">form</a>!</p>
+                <p>Thank you! Thanks you! Thank you!</p>
             </section>
             <section className='Landing__section section'>
                 <header>
@@ -37,6 +39,7 @@ const Landing = (props) => {
                         <h3>Create profiles for your dogs!</h3>
                     </header>
                     <p>Whether you have one or one-hundred dogs, you can <Link to='/create-dog-profile'>create profiles</Link> for them on Dog Date.  You can set a profile picture for your dog, characterize its energy-levels, obedience, experience with other dogs, and more!  This allows others to decide if your dog is the right playmate for their dog!</p>
+                    <p>Other users can leave reviews of your dog(s) and their dates, and then you can comment on those reviews in response.</p>
                 </section>
                 <section>
                     <header>

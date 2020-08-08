@@ -1,3 +1,7 @@
 .Landing__section.section section {
     align-self: flex-start;
 }
+
+.Landing__feedback-link {
+    font-size: 24px;
+}
