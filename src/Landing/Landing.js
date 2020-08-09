@@ -20,7 +20,7 @@ const Landing = (props) => {
                 <p>Dog Date is an app that helps you find playdates for your dog!</p>
                 <p>This is a demo version of Dog Date designed to get initial feedback from users.  This means that the site is not yet hooked up to a back-end server.  You will be able to sample all of Dog Date's features, but any resources that you create (new profiles, new accounts, new howls, etc.) will not be saved.  Upon page load, you will be automatically signed into a dummy account.  If you log out, simply refresh the page and you will be logged back in automatically.</p>
                 <p>After you test the app, please fill out this <a className="Landing__feedback-link" href="https://forms.gle/ua1uXTDHWFqq49Hs5" target="_blank" rel="noopener noreferrer">form</a>!</p>
-                <p>Thank you! Thanks you! Thank you!</p>
+                <p>Thank you! Thank you! Thank you!</p>
             </section>
             <section className='Landing__section section'>
                 <header>
