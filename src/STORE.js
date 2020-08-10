@@ -47,7 +47,7 @@ export default {
             "little_time_with_other_dogs": false,
             "much_experience_with_other_dogs": true,
             "aggressive": false,
-            "owner_description": "Seymour is a sweet dog who loves walking on sunshine, swimming, and eating meatballs.  He enjoys playing with other dogs, though he enjoys smaller dogs more than older ones.  If you see us in Central Park, come say hi!"
+            "owner_description": "Seymour is a sweet dog who loves walking on sunshine, swimming, and eating meatballs.  He enjoys playing with other dogs, though he gets along better with smaller dogs.  If you see us in Central Park, come say hi!"
         },
         {
             "id": '777e047b-de08-43d7-aa08-a998b4a8430e',
