@@ -21,7 +21,9 @@ const HowlsList = (props) => {
     const [ratingFilterP, setRatingFilterP] = useState('');
     const [typeOfMeetingP, setTypeOfMeetingP] = useState('');
     const [daysOfWeekP, setDaysOfWeekP] = useState([]);
+    const [recurringMeetingWindowsP, setRecurringMeetingWindowsP] = useState([]);
     const [dateP, setDateP]= useState('');
+    const [timeWindowsP, setTimeWindowsP] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -72,6 +74,56 @@ const HowlsList = (props) => {
                 }
             });
         }
+        if (daysOfWeekP.length !== 0 && recurringMeetingWindowsP.length !== 0) {
+            filteredHowls = filteredHowls.filter(howl => {
+                if (howl.meeting_type === 'once') {
+                    let includeHowl = false;
+                    if (daysOfWeekP.includes(moment(howl.one_time_windows.date).format("dddd"))) {
+                        const day = moment(howl.one_time_windows.date).format("dddd");
+                        if (!recurringMeetingWindowsP.find(win => win[Object.keys(win)[0]].dayOfWeek === day)) {
+                            includeHowl = true;
+                        }
+                        howl.one_time_windows.timeWindows.forEach(window => {
+                            recurringMeetingWindowsP.forEach(win => {
+                                const windowP = win[Object.keys(win)[0]];
+                                if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
+                                    (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
+                                    (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
+                                        includeHowl = true;
+                                    }
+                            });    
+                        });
+                    }
+                    return includeHowl;
+                } else {
+                    let includeHowl = false;
+                    howl.recurring_windows.forEach(window => {
+                        if (daysOfWeekP.includes(window.dayOfWeek)) {
+                            let notFound = true;
+                            daysOfWeekP.forEach(day => {
+                                recurringMeetingWindowsP.forEach(win => {
+                                    if (win[Object.keys(win)[0]].dayOfWeek === day) {
+                                        notFound = false;
+                                    }
+                                });
+                            });
+                            if (notFound) {
+                                return true;
+                            }
+                            recurringMeetingWindowsP.forEach(win => {
+                                const windowP = win[Object.keys(win)[0]];
+                                if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
+                                    (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
+                                    (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
+                                        includeHowl = true;
+                                    }
+                            });    
+                        }
+                    });
+                    return includeHowl;
+                }
+            });
+        }
         if (dateP) {
             filteredHowls = filteredHowls.filter(howl => {
                 if (howl.meeting_type === 'once') {
@@ -81,6 +133,39 @@ const HowlsList = (props) => {
                     howl.recurring_windows.forEach(window => {
                         if (moment(dateP).format("dddd") === window.dayOfWeek) {
                             includeHowl = true;
+                        }
+                    });
+                    return includeHowl;
+                }
+            });
+        }
+        if (dateP && timeWindowsP.length !== 0) {
+            filteredHowls = filteredHowls.filter(howl => {
+                if (howl.meeting_type === 'once') {
+                    let includeHowl = false;
+                    if (howl.one_time_windows.date === dateP) {
+                        howl.one_time_windows.timeWindows.forEach(window => {
+                            timeWindowsP.forEach(windowP => {
+                                if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
+                                    (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
+                                    (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
+                                        includeHowl = true;
+                                    }
+                            });    
+                        });
+                    }
+                    return includeHowl;
+                } else {
+                    let includeHowl = false;
+                    howl.recurring_windows.forEach(window => {
+                        if (moment(dateP).format("dddd") === window.dayOfWeek) {
+                            timeWindowsP.forEach(windowP => {
+                                if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
+                                    (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
+                                    (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
+                                        includeHowl = true;
+                                    }
+                            });    
                         }
                     });
                     return includeHowl;
@@ -119,6 +204,10 @@ const HowlsList = (props) => {
                     setDaysOfWeekP,
                     dateP,
                     setDateP,
+                    timeWindowsP,
+                    setTimeWindowsP,
+                    recurringMeetingWindowsP,
+                    setRecurringMeetingWindowsP,
                     handleSubmit,
                 }}
             />

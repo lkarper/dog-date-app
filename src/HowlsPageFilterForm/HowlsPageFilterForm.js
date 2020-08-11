@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import StateSelector from '../StateSelector/StateSelector';
 import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
-import './HowlsPageFilterForm.css';
 import HowlsPageAdvancedSearch from '../HowlsPageAdvancedSearch/HowlsPageAdvancedSearch';
+import './HowlsPageFilterForm.css';
 
 const HowlsPageFilterForm = (props) => {
 
@@ -19,6 +19,10 @@ const HowlsPageFilterForm = (props) => {
         setDaysOfWeekP,
         dateP,
         setDateP,
+        timeWindowsP,
+        setTimeWindowsP,
+        recurringMeetingWindowsP,
+        setRecurringMeetingWindowsP,
         handleSubmit,
     } = props.data;
 
@@ -27,6 +31,7 @@ const HowlsPageFilterForm = (props) => {
     const [zipcode, setZipcode] = useState('');
     const [zipcodeError, setZipcodeError] = useState('');
     const [ratingFilter, setRatingFilter] = useState('');
+    const [timeErrorP, setTimeErrorP] = useState('');
 
     useEffect(() => {
         if (state !== stateP) {
@@ -147,6 +152,12 @@ const HowlsPageFilterForm = (props) => {
                                     setDaysOfWeekP,
                                     dateP,
                                     setDateP,
+                                    timeWindowsP,
+                                    setTimeWindowsP,
+                                    timeErrorP,
+                                    recurringMeetingWindowsP,
+                                    setRecurringMeetingWindowsP,
+                                    setTimeErrorP,
                                 }}
                             />
                         </>
@@ -160,7 +171,7 @@ const HowlsPageFilterForm = (props) => {
             </fieldset>
             <button 
                 type='submit'
-                disabled={zipcodeError}
+                disabled={zipcodeError || timeErrorP}
             >
                 Search howls
             </button>

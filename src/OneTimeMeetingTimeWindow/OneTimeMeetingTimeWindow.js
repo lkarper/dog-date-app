@@ -3,7 +3,13 @@ import './OneTimeMeetingTimeWindow.css';
 
 const OneTimeMeetingTimeWindow = (props) => {
 
-    const { index, initialData, updateTimeWindows, removeTimeWindow } = props;
+    const { 
+        index, 
+        initialData, 
+        updateTimeWindows, 
+        removeTimeWindow,
+        type = '', 
+    } = props;
 
     const [startTime, setStartTime] = useState(initialData.startTime);
     const [endTime, setEndTime] = useState(initialData.endTime);
@@ -45,7 +51,7 @@ const OneTimeMeetingTimeWindow = (props) => {
                     onChange={(e) => setEndTime(e.target.value)}
                 />
             </div>
-            {index !== 0 ? <button type='button' onClick={() => removeTimeWindow(index)}>Remove window</button> : ''}
+            {index !== 0 || type === 'search' ? <button type='button' onClick={() => removeTimeWindow(index)}>Remove window</button> : ''}
         </li>   
     );
 }

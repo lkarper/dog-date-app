@@ -3,9 +3,19 @@ import './RecurringMeetingForm.css';
 
 const RecurringMeetingForm = (props) => {
 
-    const { index, currentData, updateRecurringMeetingWindows, removeRecurringMeetingWindow } = props;
+    const { 
+        index, 
+        currentData = {
+            dayOfWeek: '',
+            startTime: '',
+            endTime: '',
+        }, 
+        updateRecurringMeetingWindows, 
+        removeRecurringMeetingWindow,
+        type = '', 
+    } = props;
 
-    const [dayOfWeek, setDayOfWeek] = useState(currentData.dayOfWeek);
+    const [dayOfWeek, setDayOfWeek] = useState(props.dayOfWeek || currentData.dayOfWeek);
     const [startTime, setStartTime] = useState(currentData.startTime);
     const [endTime, setEndTime] = useState(currentData.endTime);
 
@@ -30,25 +40,29 @@ const RecurringMeetingForm = (props) => {
         <li>
             <fieldset className="sub-fieldset">
                 <legend>I'm open for dog dates during the following windows of time:</legend>
-                <div className='RecurringMeetingForm__input-container'>
-                    <label htmlFor={`window-day-${index + 1}`}>Day of the week:</label>
-                    <select 
-                        id={`window-day-${index + 1}`}
-                        value={dayOfWeek}
-                        onChange={(e) => setDayOfWeek(e.target.value)}
-                        aria-describedby={`day-validator-${index + 1}`}
-                        required
-                    >
-                        <option value="">--Select a day--</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Sunday">Sunday</option>
-                    </select>
-                </div>
+                {type !== 'search'
+                    ?
+                        <div className='RecurringMeetingForm__input-container'>
+                            <label htmlFor={`window-day-${index + 1}`}>Day of the week:</label>
+                            <select 
+                                id={`window-day-${index + 1}`}
+                                value={dayOfWeek}
+                                onChange={(e) => setDayOfWeek(e.target.value)}
+                                aria-describedby={`day-validator-${index + 1}`}
+                                required
+                            >
+                                <option value="">--Select a day--</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                        </div>
+                    :   ''
+                }
                 <div className='RecurringMeetingForm__input-container'>
                     <label htmlFor={`window-start-time-${index + 1}`} >I'm available from:</label>
                     <input 
@@ -76,7 +90,8 @@ const RecurringMeetingForm = (props) => {
                         required
                     />
                 </div>
-                {index !== 0 
+                {type === 'search' && <button type='button' onClick={() => removeRecurringMeetingWindow(index)}>Remove this window</button>}
+                {index !== 0 && type !== 'search'
                     ? <button type='button' onClick={() => removeRecurringMeetingWindow(index)}>Remove this window</button>
                     : ''
                 }
