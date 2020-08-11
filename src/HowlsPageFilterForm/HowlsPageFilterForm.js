@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import StateSelector from '../StateSelector/StateSelector';
 import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
 import './HowlsPageFilterForm.css';
