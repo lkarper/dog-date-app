@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StateSelector from '../StateSelector/StateSelector';
 import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
 import './HowlsPageFilterForm.css';
+import HowlsPageAdvancedSearch from '../HowlsPageAdvancedSearch/HowlsPageAdvancedSearch';
 
 const HowlsPageFilterForm = (props) => {
 
@@ -14,14 +15,16 @@ const HowlsPageFilterForm = (props) => {
         setRatingFilterP,
         typeOfMeetingP,
         setTypeOfMeetingP,
+        daysOfWeekP,
+        setDaysOfWeekP,
         handleSubmit,
     } = props.data;
 
+    const [showAdvanced, setShowAdvanced] = useState(false);
     const [state, setState] = useState('');
     const [zipcode, setZipcode] = useState('');
     const [zipcodeError, setZipcodeError] = useState('');
     const [ratingFilter, setRatingFilter] = useState('');
-    const [typeOfMeeting, setTypeOfMeeting] = useState('');
 
     useEffect(() => {
         if (state !== stateP) {
@@ -40,12 +43,6 @@ const HowlsPageFilterForm = (props) => {
             setRatingFilterP(ratingFilter);
         }
     }, [ratingFilter, ratingFilterP, setRatingFilterP]);
-
-    useEffect(() => {
-        if (typeOfMeeting !== typeOfMeetingP) {
-            setTypeOfMeetingP(typeOfMeeting);
-        }
-    }, [typeOfMeeting, typeOfMeetingP, setTypeOfMeetingP]);
 
     return (
         <form 
@@ -132,42 +129,30 @@ const HowlsPageFilterForm = (props) => {
                         <label htmlFor="sort-howls-rating-any">Show all howls regardless of rating</label>
                     </div>
                 </fieldset>
-                <fieldset className='HowlsPageFilterForm__sub-fieldset'>
-                    <legend>Type of meeting:</legend>
-                    <div>
-                        <input 
-                            type='radio'
-                            id='sort-howls-type-any'
-                            name='sort-howls-type'
-                            value=''
-                            checked={typeOfMeeting === ''}
-                            onChange={(e) => setTypeOfMeeting(e.target.value)}
-                        />
-                        <label htmlFor='sort-howls-type-any'>Show all types</label>
-                    </div>
-                    <div>
-                        <input 
-                            type='radio'
-                            id='sort-howls-type-recurring'
-                            name='sort-howls-type'
-                            value='recurring'
-                            checked={typeOfMeeting === 'recurring'}
-                            onChange={(e) => setTypeOfMeeting(e.target.value)}
-                        />
-                        <label htmlFor='sort-howls-type-recurring'>Recurring meetings only</label>
-                    </div>
-                    <div>
-                        <input 
-                            type='radio'
-                            id='sort-howls-type-once'
-                            name='sort-howls-type'
-                            value='once'
-                            checked={typeOfMeeting === 'once'}
-                            onChange={(e) => setTypeOfMeeting(e.target.value)}
-                        />
-                        <label htmlFor='sort-howls-type-once'>One time meetings only</label>
-                    </div>
-                </fieldset>
+                {showAdvanced 
+                    ?
+                        <>
+                            <button
+                                onClick={() => setShowAdvanced(false)}
+                            >
+                                Hide advanced search options
+                            </button>
+                            <HowlsPageAdvancedSearch 
+                                data={{
+                                    typeOfMeetingP,
+                                    setTypeOfMeetingP,
+                                    daysOfWeekP,
+                                    setDaysOfWeekP,
+                                }}
+                            />
+                        </>
+                    :
+                        <button 
+                            onClick={() => setShowAdvanced(true)}
+                        >
+                            Show advanced search options
+                        </button> 
+                }
             </fieldset>
             <button 
                 type='submit'

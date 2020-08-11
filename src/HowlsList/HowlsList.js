@@ -19,6 +19,7 @@ const HowlsList = (props) => {
     const [zipcodeP, setZipcodeP] = useState('');
     const [ratingFilterP, setRatingFilterP] = useState('');
     const [typeOfMeetingP, setTypeOfMeetingP] = useState('');
+    const [daysOfWeekP, setDaysOfWeekP] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -82,6 +83,8 @@ const HowlsList = (props) => {
                     setRatingFilterP,
                     typeOfMeetingP,
                     setTypeOfMeetingP,
+                    daysOfWeekP,
+                    setDaysOfWeekP,
                     handleSubmit,
                 }}
             />
