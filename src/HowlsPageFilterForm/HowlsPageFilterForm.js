@@ -17,6 +17,8 @@ const HowlsPageFilterForm = (props) => {
         setTypeOfMeetingP,
         daysOfWeekP,
         setDaysOfWeekP,
+        dateP,
+        setDateP,
         handleSubmit,
     } = props.data;
 
@@ -143,6 +145,8 @@ const HowlsPageFilterForm = (props) => {
                                     setTypeOfMeetingP,
                                     daysOfWeekP,
                                     setDaysOfWeekP,
+                                    dateP,
+                                    setDateP,
                                 }}
                             />
                         </>

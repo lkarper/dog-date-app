@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import moment from 'moment';
 import UserContext from '../contexts/UserContext';
 import { Link } from 'react-router-dom';
 import HowlListItem from '../HowlListItem/HowlListItem';
@@ -20,6 +21,7 @@ const HowlsList = (props) => {
     const [ratingFilterP, setRatingFilterP] = useState('');
     const [typeOfMeetingP, setTypeOfMeetingP] = useState('');
     const [daysOfWeekP, setDaysOfWeekP] = useState([]);
+    const [dateP, setDateP]= useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -48,12 +50,42 @@ const HowlsList = (props) => {
                     if (howl.dog_ids.includes(passing_id)) {
                         includeHowl = true;
                     }
-                })
+                });
                 return includeHowl;
             });
         } 
         if (typeOfMeetingP) {
             filteredHowls = filteredHowls.filter(howl => howl.meeting_type === typeOfMeetingP);
+        }
+        if (daysOfWeekP.length !== 0) {
+            filteredHowls = filteredHowls.filter(howl => {
+                if (howl.meeting_type === 'recurring') {
+                    let includeHowl = false;
+                    howl.recurring_windows.forEach(window => {
+                        if (daysOfWeekP.includes(window.dayOfWeek)) {
+                            includeHowl = true;
+                        }
+                    });
+                    return includeHowl;
+                } else {
+                    return daysOfWeekP.includes(moment(howl.one_time_windows.date).format("dddd"));
+                }
+            });
+        }
+        if (dateP) {
+            filteredHowls = filteredHowls.filter(howl => {
+                if (howl.meeting_type === 'once') {
+                    return howl.one_time_windows.date === dateP;
+                } else {
+                    let includeHowl = false;
+                    howl.recurring_windows.forEach(window => {
+                        if (moment(dateP).format("dddd") === window.dayOfWeek) {
+                            includeHowl = true;
+                        }
+                    });
+                    return includeHowl;
+                }
+            });
         }
         setHowls(filteredHowls);
     }
@@ -85,6 +117,8 @@ const HowlsList = (props) => {
                     setTypeOfMeetingP,
                     daysOfWeekP,
                     setDaysOfWeekP,
+                    dateP,
+                    setDateP,
                     handleSubmit,
                 }}
             />

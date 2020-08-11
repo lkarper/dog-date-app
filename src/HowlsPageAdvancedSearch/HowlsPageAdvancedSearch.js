@@ -7,10 +7,13 @@ const HowlsPageAdvancedSearch = (props) => {
         setTypeOfMeetingP,
         daysOfWeekP,
         setDaysOfWeekP,
+        dateP,
+        setDateP,
     } = props.data;
 
     const [typeOfMeeting, setTypeOfMeeting] = useState(typeOfMeetingP);
     const [daysOfWeek, setDaysOfWeek] = useState(daysOfWeekP);
+    const [date, setDate] = useState(dateP);
 
     useEffect(() => {
         if (typeOfMeeting !== typeOfMeetingP) {
@@ -22,6 +25,12 @@ const HowlsPageAdvancedSearch = (props) => {
         setDaysOfWeekP(daysOfWeek);
     }, [daysOfWeek, setDaysOfWeekP]);
 
+    useEffect(() => {
+        if (date !== dateP) {
+            setDateP(date);
+        }
+    }, [date, dateP, setDateP]);
+
     const checkDayOfWeek = (day, add) => {
         if (add) {
             const updatedDays = [...daysOfWeek, day];
@@ -31,6 +40,9 @@ const HowlsPageAdvancedSearch = (props) => {
             setDaysOfWeek(updatedDays);
         }
     }
+
+    const today = new Date();
+    const minDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
 
     return (
         <>
@@ -71,7 +83,7 @@ const HowlsPageAdvancedSearch = (props) => {
                 </div>
             </fieldset>
             <fieldset className='HowlsPageFilterForm__sub-fieldset'>
-                <legend>Day of the week</legend>
+                <legend>Only show howls on the following days of the week (optional)</legend>
                 {[
                     'Monday', 
                     'Tuesday', 
@@ -93,6 +105,19 @@ const HowlsPageAdvancedSearch = (props) => {
                         <label htmlFor={day}>{day}</label>
                     </div>
                 ))}
+            </fieldset>
+            <fieldset className='HowlsPageFilterForm__sub-fieldset'>
+                <legend>Only show howls on this date (optional)</legend>
+                <label htmlFor="once-date">Date:</label>
+                <input 
+                    type="date" 
+                    id="once-date" 
+                    name="once-date" 
+                    placeholder="yyyy-mm-dd" 
+                    min={minDate}
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                />
             </fieldset>
         </>
     );
