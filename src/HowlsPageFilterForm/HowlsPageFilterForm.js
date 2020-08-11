@@ -12,6 +12,8 @@ const HowlsPageFilterForm = (props) => {
         setZipcodeP,
         ratingFilterP,
         setRatingFilterP,
+        typeOfMeetingP,
+        setTypeOfMeetingP,
         handleSubmit,
     } = props.data;
 
@@ -19,6 +21,7 @@ const HowlsPageFilterForm = (props) => {
     const [zipcode, setZipcode] = useState('');
     const [zipcodeError, setZipcodeError] = useState('');
     const [ratingFilter, setRatingFilter] = useState('');
+    const [typeOfMeeting, setTypeOfMeeting] = useState('');
 
     useEffect(() => {
         if (state !== stateP) {
@@ -37,6 +40,12 @@ const HowlsPageFilterForm = (props) => {
             setRatingFilterP(ratingFilter);
         }
     }, [ratingFilter, ratingFilterP, setRatingFilterP]);
+
+    useEffect(() => {
+        if (typeOfMeeting !== typeOfMeetingP) {
+            setTypeOfMeetingP(typeOfMeeting);
+        }
+    }, [typeOfMeeting, typeOfMeetingP, setTypeOfMeetingP]);
 
     return (
         <form 
@@ -121,6 +130,42 @@ const HowlsPageFilterForm = (props) => {
                             onChange={(e) => setRatingFilter(e.target.value)}  
                         />
                         <label htmlFor="sort-howls-rating-any">Show all howls regardless of rating</label>
+                    </div>
+                </fieldset>
+                <fieldset className='HowlsPageFilterForm__sub-fieldset'>
+                    <legend>Type of meeting:</legend>
+                    <div>
+                        <input 
+                            type='radio'
+                            id='sort-howls-type-any'
+                            name='sort-howls-type'
+                            value=''
+                            checked={typeOfMeeting === ''}
+                            onChange={(e) => setTypeOfMeeting(e.target.value)}
+                        />
+                        <label htmlFor='sort-howls-type-any'>Show all types</label>
+                    </div>
+                    <div>
+                        <input 
+                            type='radio'
+                            id='sort-howls-type-recurring'
+                            name='sort-howls-type'
+                            value='recurring'
+                            checked={typeOfMeeting === 'recurring'}
+                            onChange={(e) => setTypeOfMeeting(e.target.value)}
+                        />
+                        <label htmlFor='sort-howls-type-recurring'>Recurring meetings only</label>
+                    </div>
+                    <div>
+                        <input 
+                            type='radio'
+                            id='sort-howls-type-once'
+                            name='sort-howls-type'
+                            value='once'
+                            checked={typeOfMeeting === 'once'}
+                            onChange={(e) => setTypeOfMeeting(e.target.value)}
+                        />
+                        <label htmlFor='sort-howls-type-once'>One time meetings only</label>
                     </div>
                 </fieldset>
             </fieldset>

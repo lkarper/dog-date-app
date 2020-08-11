@@ -18,6 +18,7 @@ const HowlsList = (props) => {
     const [stateP, setStateP] = useState('');
     const [zipcodeP, setZipcodeP] = useState('');
     const [ratingFilterP, setRatingFilterP] = useState('');
+    const [typeOfMeetingP, setTypeOfMeetingP] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -50,6 +51,9 @@ const HowlsList = (props) => {
                 return includeHowl;
             });
         } 
+        if (typeOfMeetingP) {
+            filteredHowls = filteredHowls.filter(howl => howl.meeting_type === typeOfMeetingP);
+        }
         setHowls(filteredHowls);
     }
 
@@ -76,6 +80,8 @@ const HowlsList = (props) => {
                     setZipcodeP,
                     ratingFilterP,
                     setRatingFilterP,
+                    typeOfMeetingP,
+                    setTypeOfMeetingP,
                     handleSubmit,
                 }}
             />
