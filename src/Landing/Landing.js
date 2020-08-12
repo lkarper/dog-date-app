@@ -51,12 +51,9 @@ const Landing = (props) => {
                     <header>
                         <h3>Not sure where to start?</h3>
                     </header>
-                    <p>Check out the demo <Link to='/home'>Homepage</Link> and see what Dog Dog is all about!</p>
+                    <p>Check out the demo <Link to='/home'>Homepage</Link> or <Link to='/howls'>View Howls in your area!</Link> to see what Dog Dog is all about!</p>
                 </section>
             </section>
-            <Link to='/register'>Get started by registering an account!</Link>
-            <p>or</p>
-            <Link to='/howls'>View Howls in your area!</Link>
         </>
     );
 }
