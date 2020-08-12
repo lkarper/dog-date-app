@@ -29,10 +29,8 @@ const HowlsPageAdvancedSearch = (props) => {
 
     useEffect(() => {
         const keysToRemove = [];
-        console.log(recurringMeetingWindows)
         if (recurringMeetingWindows.length !== 0) {
             recurringMeetingWindows.forEach(window => {
-                console.log(window)
                 if (!daysOfWeek.includes(window[Object.keys(window)[0]].dayOfWeek)) {
                     if (!window[Object.keys(window)[0]].startTime || !window[Object.keys(window)[0]].endTime) {
                         keysToRemove.push(Object.keys(window)[0]);
@@ -260,7 +258,12 @@ const HowlsPageAdvancedSearch = (props) => {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                 />
-                <button onClick={() => setDate('')}>Reset Date</button>
+                <button 
+                    type='button' 
+                    onClick={() => setDate('')}
+                >
+                    Reset Date
+                </button>
                 {date && 
                     <fieldset className='HowlsPageFilterForm__sub-fieldset'>
                         <legend>Only show howls that overlap with the following time frames on this date (optional)</legend>
