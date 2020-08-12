@@ -43,9 +43,9 @@ const RecurringMeetingForm = (props) => {
                 {type !== 'search'
                     ?
                         <div className='RecurringMeetingForm__input-container'>
-                            <label htmlFor={`window-day-${index + 1}`}>Day of the week:</label>
+                            <label htmlFor={`window-day-${index}`}>Day of the week:</label>
                             <select 
-                                id={`window-day-${index + 1}`}
+                                id={`window-day-${index}`}
                                 value={dayOfWeek}
                                 onChange={(e) => setDayOfWeek(e.target.value)}
                                 aria-describedby={`day-validator-${index + 1}`}
@@ -64,28 +64,28 @@ const RecurringMeetingForm = (props) => {
                     :   ''
                 }
                 <div className='RecurringMeetingForm__input-container'>
-                    <label htmlFor={`window-start-time-${index + 1}`} >I'm available from:</label>
+                    <label htmlFor={`window-start-time-${index}`} >I'm available from:</label>
                     <input 
                         type="time" 
-                        id={`window-start-time-${index + 1}`} 
-                        name={`window-start-time-${index + 1}`} 
+                        id={`window-start-time-${index}`} 
+                        name={`window-start-time-${index}`} 
                         placeholder="10:30" 
                         value={startTime}
-                        aria-describedby={`start-time-validator-${index + 1}`}
+                        aria-describedby={`start-time-validator-${index}`}
                         onChange={(e) => setStartTime(e.target.value)}
                         required
                     />
                 </div>
                 <div className='RecurringMeetingForm__input-container'>
-                    <label htmlFor={`window-end-time-${index + 1}`}>I'm available until:</label>
+                    <label htmlFor={`window-end-time-${index}`}>I'm available until:</label>
                     <input 
                         type="time" 
-                        id={`window-end-time-${index + 1}`} 
-                        name={`window-end-time-${index + 1}`}
+                        id={`window-end-time-${index}`} 
+                        name={`window-end-time-${index}`}
                         placeholder="16:00"
                         min={startTime}
                         value={endTime}
-                        aria-describedby={`end-time-validator-${index + 1}`}
+                        aria-describedby={`end-time-validator-${index}`}
                         onChange={(e) => setEndTime(e.target.value)} 
                         required
                     />

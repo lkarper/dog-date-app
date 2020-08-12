@@ -142,7 +142,7 @@ const ValidateTime = (props) => {
                     {recurringMeetingWindows.map((window, i) =>
                         <li key={i}>
                             <p
-                                id={`day-validator-${i + 1}`}
+                                id={`day-validator-${i}`}
                             >
                                 {
                                     window.dayOfWeek 
@@ -151,7 +151,7 @@ const ValidateTime = (props) => {
                                 }
                             </p>
                             <p 
-                                id={`start-time-validator-${i + 1}`}
+                                id={`start-time-validator-${i}`}
                             >
                                 {
                                     window.startTime 
@@ -160,7 +160,7 @@ const ValidateTime = (props) => {
                                 }
                             </p>
                             <p 
-                                id={`end-time-validator-${i + 1}`}
+                                id={`end-time-validator-${i}`}
                             >
                                 {
                                     window.endTime 
