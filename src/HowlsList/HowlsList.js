@@ -78,19 +78,21 @@ const HowlsList = (props) => {
             filteredHowls = filteredHowls.filter(howl => {
                 if (howl.meeting_type === 'once') {
                     let includeHowl = false;
-                    if (daysOfWeekP.includes(moment(howl.one_time_windows.date).format("dddd"))) {
-                        const day = moment(howl.one_time_windows.date).format("dddd");
+                    const day = moment(howl.one_time_windows.date).format("dddd");
+                    if (daysOfWeekP.includes(day)) {
                         if (!recurringMeetingWindowsP.find(win => win[Object.keys(win)[0]].dayOfWeek === day)) {
                             includeHowl = true;
                         }
                         howl.one_time_windows.timeWindows.forEach(window => {
                             recurringMeetingWindowsP.forEach(win => {
                                 const windowP = win[Object.keys(win)[0]];
-                                if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
-                                    (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
-                                    (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
-                                        includeHowl = true;
+                                if (windowP.dayOfWeek === day) {
+                                    if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
+                                        (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
+                                        (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
+                                            includeHowl = true;
                                     }
+                                }
                             });    
                         });
                     }
@@ -99,25 +101,26 @@ const HowlsList = (props) => {
                     let includeHowl = false;
                     howl.recurring_windows.forEach(window => {
                         if (daysOfWeekP.includes(window.dayOfWeek)) {
-                            let notFound = true;
-                            daysOfWeekP.forEach(day => {
-                                recurringMeetingWindowsP.forEach(win => {
-                                    if (win[Object.keys(win)[0]].dayOfWeek === day) {
-                                        notFound = false;
-                                    }
-                                });
-                            });
-                            if (notFound) {
-                                return true;
-                            }
+                            let found = false;
                             recurringMeetingWindowsP.forEach(win => {
-                                const windowP = win[Object.keys(win)[0]];
-                                if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
-                                    (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
-                                    (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
-                                        includeHowl = true;
+                                if (win[Object.keys(win)[0]].dayOfWeek === window.dayOfWeek) {
+                                    found = true;
+                                }
+                            });
+                            if (found) {
+                                recurringMeetingWindowsP.forEach(win => {
+                                    const windowP = win[Object.keys(win)[0]];
+                                    if (windowP.dayOfWeek === window.dayOfWeek) {
+                                        if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
+                                            (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
+                                            (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
+                                                includeHowl = true;
+                                        }
                                     }
-                            });    
+                                });    
+                            } else {
+                                includeHowl = true;
+                            }
                         }
                     });
                     return includeHowl;
