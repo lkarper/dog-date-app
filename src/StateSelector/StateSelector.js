@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const StateSelector = (props) => {
 
-    const { propState = '' } = props;
+    const { propState } = props;
 
     const [state, setState] = useState(propState);
 

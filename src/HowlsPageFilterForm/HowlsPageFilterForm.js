@@ -65,6 +65,7 @@ const HowlsPageFilterForm = (props) => {
                     <StateSelector 
                         setState={setState}
                         notRequired={true}
+                        propState={state}
                     />
                 <div>
                     <label htmlFor='zipcode'>ZIP code:</label>
