@@ -38,22 +38,27 @@ const RegistrationForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const promise1 = new Promise (resolve => {
+        const promise1 = new Promise ((resolve, reject) => {
             if (STORE.users.find(user => user.email === email)) {
+                reject();
                 setEmailAlreadyRegistered(email);
             } else {
+                resolve();
                 setEmailAlreadyRegistered(false);
             }
         });
-        const promise2 = new Promise (resolve => {
+        const promise2 = new Promise ((resolve, reject) => {
             if (STORE.users.find(user => user.username === username)) {
+                reject();
                 setUsernameExists(username);
             } else {
+                resolve();
                 setUsernameExists(false);
             }
         });
         Promise.all([promise1, promise2])
             .then(values => {
+                console.log(values);
                 if (!emailAlreadyRegistered && !usernameExists) {
                     const newUser = {
                         id: uuidv4(),
@@ -63,8 +68,12 @@ const RegistrationForm = (props) => {
                         password
                     }
                     STORE.users.push(newUser);
+                    console.log(newUser)
                     props.history.push('/login');
                 }
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
 
@@ -76,7 +85,7 @@ const RegistrationForm = (props) => {
             </header>
             <form 
                 className='signup-form'
-                onSubmit={(e) => handleSubmit(e)}
+                onSubmit={handleSubmit}
             >
                 <div>
                     <label htmlFor="email">Email:</label>
