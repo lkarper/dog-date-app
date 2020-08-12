@@ -108,7 +108,7 @@ const ReviewPage = (props) => {
                         : ''
                     }
                     <header>
-                        <h2>About Seymour</h2>
+                        <h2>About {dog_profile.name}</h2>
                     </header>
                         <ul>
                             <li>Friendliness towards other dogs: {friendliness_dogs}</li>
