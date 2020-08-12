@@ -141,6 +141,7 @@ const HowlsPageFilterForm = (props) => {
                     ?
                         <>
                             <button
+                                type='button'
                                 onClick={() => setShowAdvanced(false)}
                             >
                                 Hide advanced search options
@@ -164,6 +165,7 @@ const HowlsPageFilterForm = (props) => {
                         </>
                     :
                         <button 
+                            type='button'
                             onClick={() => setShowAdvanced(true)}
                         >
                             Show advanced search options
