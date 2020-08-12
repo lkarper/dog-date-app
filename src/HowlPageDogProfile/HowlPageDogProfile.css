@@ -2,6 +2,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 90%;
     margin: 0;
 }
@@ -16,6 +17,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.HowlPageDogProfile__reviews-ul {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.HowlPageDogProfile__reviews-container {
+    width: 100%;
 }
 
 @media screen and (min-width: 750px) {

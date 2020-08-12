@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
+import './ReviewsOfMyDogs.css'; 
 
 const ReviewsOfMyDogs = (props) => {
 
@@ -18,13 +19,13 @@ const ReviewsOfMyDogs = (props) => {
         });
 
     return (
-        <section>
+        <section className='ReviewsOfMyDogs__section section'>
             <header>
                 <h3>Reviews of my dogs</h3>
             </header>
             {reviewsOfMyDogs.length
                 ?
-                    <ul>
+                    <ul className='ReviewsOfMyDogs__ul'>
                         {reviewsOfMyDogs.map(review => <DogReviewListItem key={review.id} review={review} />)}
                     </ul>
                 :

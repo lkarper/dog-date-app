@@ -1,5 +1,5 @@
 .UploadDogProfilePhoto__img-preview {
-    max-width: 500px;
+    max-width: 300px;
     height: auto;
 }
 
@@ -23,6 +23,12 @@
 
 .UploadDogProfilePhoto__loading {
     font-size: 30px;
+}
+
+.UploadDogProfilePhoto__img-preview-container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
 }
 
 @media screen and (min-width: 750px) {

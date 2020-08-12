@@ -56,11 +56,11 @@ const HowlPageDogProfile = (props) => {
                 }
                 {reviews.length 
                     ? 
-                        <div>
+                        <div className='HowlPageDogProfile__reviews-container'>
                             <DogAverageRating 
                                 reviews={reviews}
                             />
-                            <ul>
+                            <ul className='HowlPageDogProfile__reviews-ul'>
                                 {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
                             </ul>
                         </div>

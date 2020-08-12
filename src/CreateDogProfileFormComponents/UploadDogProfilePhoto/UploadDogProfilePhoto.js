@@ -98,7 +98,7 @@ const UploadDogProfilePhoto = (props) => {
     }
 
     return (
-        <section className={`UploadDogProfilePhoto__outer-section${suffix}`}>
+        <section className={`UploadDogProfilePhoto__outer-section${suffix} section`}>
             <header>
                 <h2>Upload a photo for your dog's profile</h2>
             </header>
