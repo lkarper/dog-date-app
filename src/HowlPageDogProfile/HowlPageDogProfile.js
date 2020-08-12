@@ -24,11 +24,20 @@ const HowlPageDogProfile = (props) => {
                         {dog_profile.name}
                     </Link>
                 </h3>
-                <img 
-                    className='HowlPageDogProfile__img'
-                    src={dog_profile.profile_img_url}
-                    alt={`Avatar for the dog named ${dog_profile.name}.`} 
-                />
+                {dog_profile.profile_img_url 
+                        ?
+                            <img
+                                className='HowlPageDogProfile__img' 
+                                src={dog_profile.profile_img_url} 
+                                alt={`Avatar of the dog named ${dog_profile.name}.`} 
+                            />
+                        :
+                            <img
+                                className='HowlPageDogProfile__img' 
+                                src='/images/photo_not_available.png'
+                                alt={`Avatar of the dog named ${dog_profile.name} not available.`} 
+                            />
+                }
             </header>
             <section>
                 <header>

@@ -27,11 +27,20 @@ const DogProfilePage = (props) => {
             <>
                 <header className='DogProfilePage__header'>
                     <h1>{dog_profile.name}</h1>
-                    <img 
-                        className='DogProfilePage__profile-img'
-                        src={dog_profile.profile_img_url}
-                        alt={`Avatar for the dog named ${dog_profile.name}.`} 
-                    />
+                    {dog_profile.profile_img_url 
+                            ?
+                                <img
+                                    className='DogProfilePage__profile-img' 
+                                    src={dog_profile.profile_img_url} 
+                                    alt={`Avatar of the dog named ${dog_profile.name}.`} 
+                                />
+                            :
+                                <img
+                                    className='DogProfilePage__profile-img' 
+                                    src='/images/photo_not_available.png'
+                                    alt={`Avatar of the dog named ${dog_profile.name} not available.`} 
+                                />
+                    }
                     <DogProfilePageHeaderButtons 
                         dog_profile={dog_profile}
                     />

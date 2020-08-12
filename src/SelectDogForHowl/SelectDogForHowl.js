@@ -40,11 +40,20 @@ const SelectDogForHowl = (props) => {
                     className='SelectDogForHowl__label-container'
                 >
                     {dog.name}
-                <img 
-                    className='SelectDogForHowl__img'
-                    src={dog.profile_img_url}
-                    alt={`Avatar for the dog named ${dog.name}`}
-                />
+                    {dog.profile_img_url 
+                            ?
+                                <img
+                                    className='SelectDogForHowl__img' 
+                                    src={dog.profile_img_url} 
+                                    alt={`Avatar of the dog named ${dog.name}.`} 
+                                />
+                            :
+                                <img
+                                    className='SelectDogForHowl__img' 
+                                    src='/images/photo_not_available.png'
+                                    alt={`Avatar of the dog named ${dog.name} not available.`} 
+                                />
+                    }
                 </div>
             </label>
         </div>
