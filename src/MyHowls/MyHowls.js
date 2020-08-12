@@ -17,13 +17,21 @@ const MyHowls = (props) => {
             </header>
             {myHowls.length 
                 ?
-                    <ul className='MyHowls__list'>
-                        {myHowls.map(howl => <HowlListItem key={howl.id} howl={howl} />)} 
-                    </ul>
+                    <>
+                        <Link to='/create-howl'>Click here to create a howl!</Link>
+                        <ul className='MyHowls__list'>
+                            {myHowls.map(howl => <HowlListItem key={howl.id} howl={howl} />)} 
+                        </ul>
+                    </>
                 : 
                     <>
                         <p>You haven't howled yet.</p>
-                        <Link to='/create-howl'>Click here to create a howl!</Link>
+                        {context.dogs.length 
+                            ?
+                                <Link to='/create-howl'>Click here to create a howl!</Link>
+                            :
+                                <p>Create a dog profile to start howling!</p>
+                        }
                     </>
             }
         </section>
