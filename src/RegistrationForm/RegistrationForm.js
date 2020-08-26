@@ -38,6 +38,8 @@ const RegistrationForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setEmailAlreadyRegistered(false);
+        setUsernameExists(false);
         AuthApiService.postUser({
             username,
             email,
