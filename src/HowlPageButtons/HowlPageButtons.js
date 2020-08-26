@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
+import HowlsService from '../services/howls-service';
 
 const HowlPageButtons = (props) => {
 
@@ -8,12 +8,18 @@ const HowlPageButtons = (props) => {
 
     const context = useContext(UserContext);
 
-    const howlSaved = context.userSavedHowls.find(ush => ush.user_id === user_id && ush.howl_id === howl_id);
+    const howlSaved = context.userSavedHowls.find(ush => ush.howl.id === howl_id);
 
     const removeHowlCheck = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to remove this howl from your list of saved howls?`);
         if (confirmation) {
-            context.removeSavedHowl(howl_id);
+            HowlsService.removeHowlFromUserSaved(howl_id)
+                .then(res => {
+                    context.removeSavedHowl(howl_id);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 
@@ -21,11 +27,16 @@ const HowlPageButtons = (props) => {
         const confirmation = window.confirm(`Would you like to add this howl to your saved howls list?`);
         if (confirmation) {
             const newSavedHowl = {
-                id: uuidv4(),
                 user_id,
                 howl_id
             };
-            context.addSavedHowl(newSavedHowl);
+            HowlsService.addUserSavedHowl(newSavedHowl)
+                .then(howl => {
+                    context.addSavedHowl(howl);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 
