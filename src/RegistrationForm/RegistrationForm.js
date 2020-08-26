@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import AuthApiService from '../services/auth-api-service';
 import ValidateEmail from '../validation-components/registration-validation/ValidateEmail';
 import ValidatePhoneNumber from '../validation-components/registration-validation/ValidatePhoneNumber';
 import ValidateUsername from '../validation-components/registration-validation/ValidateUsername';
 import ValidatePassword from '../validation-components/registration-validation/ValidatePassword';
 import ValidateReenteredPassword from '../validation-components/registration-validation/ValidateReenteredPassword';
-import STORE from '../STORE';
 import './RegistrationForm.css';
 
 const RegistrationForm = (props) => {
@@ -35,46 +34,39 @@ const RegistrationForm = (props) => {
     const [reenteredPasswordError, setReenteredPasswordError] = useState(null);
     const [emailAlreadyRegistered, setEmailAlreadyRegistered] = useState(false);
     const [usernameExists, setUsernameExists] = useState(false);
+    const [apiError, setApiError] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const promise1 = new Promise ((resolve, reject) => {
-            if (STORE.users.find(user => user.email === email)) {
-                reject();
-                setEmailAlreadyRegistered(email);
-            } else {
-                resolve();
+        AuthApiService.postUser({
+            username,
+            email,
+            phone,
+            password,
+        })
+            .then(user => {
+                setEmail('');
+                setEmailValidationError(false);
+                setPhone('');
+                setPhoneValidationError(false);
+                setUsername('');
+                setUsernameValidationError(false);
+                setPassword('');
+                setPasswordErrorMessage([]);
+                setReenteredPassword('');
                 setEmailAlreadyRegistered(false);
-            }
-        });
-        const promise2 = new Promise ((resolve, reject) => {
-            if (STORE.users.find(user => user.username === username)) {
-                reject();
-                setUsernameExists(username);
-            } else {
-                resolve();
                 setUsernameExists(false);
-            }
-        });
-        Promise.all([promise1, promise2])
-            .then(values => {
-                console.log(values);
-                if (!emailAlreadyRegistered && !usernameExists) {
-                    const newUser = {
-                        id: uuidv4(),
-                        email,
-                        username,
-                        phone,
-                        password
-                    }
-                    STORE.users.push(newUser);
-                    console.log(newUser)
-                    props.history.push('/login');
-                }
+                props.history.push('/login');
             })
-            .catch(error => {
-                console.log(error);
-            });
+                .catch(res => {
+                    if (res.error === `Account already registered with that email`) {
+                        setEmailAlreadyRegistered(email);
+                    }
+                    if (res.error === `Username already taken`) {
+                        setUsernameExists(username)
+                    }
+                    setApiError(res.error);
+                });
     }
 
     return (
@@ -195,6 +187,14 @@ const RegistrationForm = (props) => {
                     Submit
                 </button>
             </form>
+            <div role="alert">
+                    {apiError && 
+                        <>
+                            <h2>Error</h2>
+                            <p>New user could not be created: {apiError}</p>
+                        </>
+                    }
+            </div>
         </section>
     );
 }
