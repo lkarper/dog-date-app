@@ -1,14 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import moment from 'moment';
-import UserContext from '../contexts/UserContext';
 import { Link } from 'react-router-dom';
 import './DogReviewListItem.css';
 
 const DogReviewListItem = (props) => {
-
-    const context = useContext(UserContext);
-
     const { review } = props;
+
     const { 
         id,
         reviewer,
@@ -19,9 +16,8 @@ const DogReviewListItem = (props) => {
         obedience,
         profile_accuracy,
         location_suitability,
+        dog_profile,
     } = review;
-
-    const dog = context.allDogs.find(dog => dog.id === review.dog_id);
 
     const averageRating = (
         friendliness_dogs +
@@ -34,7 +30,7 @@ const DogReviewListItem = (props) => {
 
     return (
         <li className='DogReviewListItem__li'>
-            <h3><Link to={`/reviews/${id}`}>Review of {dog.name}</Link></h3>
+            <h3><Link to={`/reviews/${id}`}>Review of {dog_profile.name}</Link></h3>
             <p>Reviewed by {reviewer} on {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
             <p>Overall rating: {averageRating.toFixed(2)} stars</p>
         </li>
