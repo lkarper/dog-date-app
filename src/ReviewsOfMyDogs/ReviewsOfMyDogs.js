@@ -1,36 +1,43 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import UserContext from '../contexts/UserContext';
 import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
 import './ReviewsOfMyDogs.css'; 
+import ReviewsService from '../services/reviews-service';
 
 const ReviewsOfMyDogs = (props) => {
 
     const context = useContext(UserContext);
 
-    const reviewsOfMyDogs = context.reviews
-        .filter(review => {
-            let found = false;
-            context.dogs.forEach(dog => {
-                if (dog.id === review.dog_id) {
-                    found = true;
-                }
-            });
-            return found;
-        });
+    const [reviews, setReviews] = useState();
+    const [apiError, setApiError] = useState(false);
+
+    useEffect(() => {
+        ReviewsService.getReviewsByOwnerId()
+            .then(reviews => {
+                setApiError(false);
+                setReviews(reviews);
+            })
+            .catch(error => {
+                console.log(error);
+                setApiError(true);
+            })
+    }, [props, setApiError, setReviews]);
 
     return (
         <section className='ReviewsOfMyDogs__section section'>
             <header>
                 <h3>Reviews of my dogs</h3>
             </header>
-            {reviewsOfMyDogs.length
+            {reviews && reviews.length
                 ?
                     <ul className='ReviewsOfMyDogs__ul'>
-                        {reviewsOfMyDogs.map(review => <DogReviewListItem key={review.id} review={review} />)}
+                        {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
                     </ul>
                 :
                     <p>No reviews of my dogs yet.</p>
             }
+            {(!reviews && !apiError) && <p>Loading...</p>}
+            {apiError && <p>Could not fetch reviews at this time.</p>}
         </section>
     );
 }
