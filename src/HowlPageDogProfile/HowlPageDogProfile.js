@@ -1,25 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import DogProfileCharacteristics from '../DogProfileCharacteristics/DogProfileCharacteristics';
 import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
 import DogAverageRating from '../DogAverageRating/DogAverageRating';
 import './HowlPageDogProfile.css';
+import ReviewsService from '../services/reviews-service';
 
 const HowlPageDogProfile = (props) => {
 
     const context = useContext(UserContext);
     
-    const { dog_profile } = props;
+    const { dog_profile, dog_id, owner } = props;
 
-    const reviews = context.reviews.filter(review => review.dog_id === dog_profile.id);
+    const [reviews, setReviews] = useState();
+
+    useEffect(() => {
+        ReviewsService.getReviewsByDogId(dog_id)
+            .then(reviews => {
+                setReviews(reviews);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, [dog_id, setReviews]);
 
     return (
         <li className='HowlPageDogProfile__li'>
             <header className='HowlPageDogProfile__header'>
                 <h3>
                     <Link
-                        to={`/dog-profile/${dog_profile.id}`}    
+                        to={`/dog-profile/${dog_id}`}    
                     >
                         {dog_profile.name}
                     </Link>
@@ -59,11 +70,11 @@ const HowlPageDogProfile = (props) => {
                 <header>
                     <h4>Reviews of {dog_profile.name}</h4>
                 </header>
-                {context.user.id === dog_profile.owner_id 
+                {context.user.id === owner.id 
                     ? '' 
-                    : <Link to={`/leave-review/${dog_profile.id}`}>Leave your own review of {dog_profile.name}</Link>
+                    : <Link to={`/leave-review/${dog_id}`}>Leave your own review of {dog_profile.name}</Link>
                 }
-                {reviews.length 
+                {reviews && reviews.length 
                     ? 
                         <div className='HowlPageDogProfile__reviews-container'>
                             <DogAverageRating 
