@@ -4,14 +4,29 @@ import config from '../config';
 let _timeoutId;
 
 const TokenService = {
-    saveAuthToken(token) {
-        window.sessionStorage.setItem(config.TOKEN_KEY, token);
+    saveAuthToken(res) {
+        const {
+            id,
+            username,
+            email,
+            phone,
+            authToken
+        } = res;
+        window.sessionStorage.setItem(config.TOKEN_KEY, authToken);
+        window.sessionStorage.setItem('username', username);
+        window.sessionStorage.setItem('id', id);
+        window.sessionStorage.setItem('email', email);
+        window.sessionStorage.setItem('phone', phone);
     },
     getAuthToken() {
         return window.sessionStorage.getItem(config.TOKEN_KEY);
     },
     clearAuthToken() {
         window.sessionStorage.removeItem(config.TOKEN_KEY);
+        window.sessionStorage.removeItem('id');
+        window.sessionStorage.removeItem('username');
+        window.sessionStorage.removeItem('email');
+        window.sessionStorage.removeItem('phone');
     },
     hasAuthToken() {
         return !!TokenService.getAuthToken();
