@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import UserContext from '../contexts/UserContext';
+import TokenService from '../services/token-service';
+import IdleService from '../services/idle-service';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 
@@ -7,11 +9,17 @@ const Header = (props) => {
 
     const context = useContext(UserContext);
 
+    const { forceUpdate } = props;
+
     const handleLogout = () => {
+        TokenService.clearAuthToken();
+        TokenService.clearCallbackBeforeExpiry();
+        IdleService.unRegisterIdleResets();
         context.setUser({});
+        forceUpdate();
     }
 
-    const location = Object.keys(props).includes('location') ? props.location.pathname : '/homepage';
+    const location = Object.keys(props).includes('location') ? props.location.pathname : '/home';
 
     const logoutLink = (
         <Link
@@ -52,7 +60,7 @@ const Header = (props) => {
                 Dog Date
             </Link>
             <nav>
-                {Object.keys(context.user).length 
+                {TokenService.hasAuthToken()
                     ? 
                         <NavLink 
                             className='Header__navlink' 
@@ -69,7 +77,7 @@ const Header = (props) => {
                 >
                     Howls
                 </NavLink>
-                {Object.keys(context.user).length ? logoutLink : loginLink }
+                {TokenService.hasAuthToken() ? logoutLink : loginLink }
             </nav>
         </header>
     );
