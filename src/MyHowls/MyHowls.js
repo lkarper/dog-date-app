@@ -7,20 +7,18 @@ import './MyHowls.css';
 const MyHowls = (props) => {
     
     const context = useContext(UserContext);
-    const myHowls = context.howls
-        .filter(howl => howl.user_id === context.user.id);
 
     return (
         <section className='MyHowls__section section'>
             <header>
                 <h3>My howls</h3>
             </header>
-            {myHowls.length 
+            {context.userSavedHowls.length 
                 ?
                     <>
                         <Link to='/create-howl'>Click here to create a howl!</Link>
                         <ul className='MyHowls__list'>
-                            {myHowls.map(howl => <HowlListItem key={howl.id} howl={howl} />)} 
+                            {context.userSavedHowls.map(howl => <HowlListItem key={howl.id} howl={howl.howl} />)} 
                         </ul>
                     </>
                 : 
