@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import HowlPageButtons from '../HowlPageButtons/HowlPageButtons';
+import HowlsService from '../services/howls-service';
 
 const HowlPageUserButtons = (props) => {
 
@@ -12,8 +13,13 @@ const HowlPageUserButtons = (props) => {
     const checkDeleteHowl = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to delete this howl?`);
         if (confirmation) {
-            context.removeHowl(howl.id);
-            props.history.push('/home');
+            HowlsService.deleteHowl(howl.id)
+                .then(() => {
+                    props.history.push('/home');
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 
