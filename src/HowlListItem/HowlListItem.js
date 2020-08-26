@@ -15,16 +15,16 @@ const HowlListItem = (props) => {
                     <h4>One-time playdate</h4>
                     <p
                         className='HowlListItem__date'
-                    >{moment(howl.one_time_windows.date).format("dddd, MMMM Do, YYYY")}</p>
+                    >{moment(howl.date).format("dddd, MMMM Do, YYYY")}</p>
                     <p>Available during the following times:</p>
                     <ul>
-                        {howl.one_time_windows.timeWindows
-                            .sort((a,b) => parseInt(a.startTime.split(':')[0]) - parseInt(b.startTime.split(':')[0]))
+                        {howl.time_windows
+                            .sort((a, b) => parseInt(a.start_time.split(':')[0]) - parseInt(b.start_time.split(':')[0]))
                             .map((window, i) => (
                                 <li key={i}>
                                     <TimeWindow 
-                                        startTime={window.startTime}
-                                        endTime={window.endTime}
+                                        startTime={window.start_time}
+                                        endTime={window.end_time}
                                     />
                                 </li>
                             ))}
@@ -36,12 +36,12 @@ const HowlListItem = (props) => {
                 <div>
                     <h4>Recurring playdate</h4>
                     <ul>
-                        {howl.recurring_windows.map((window, i) => (
+                        {howl.time_windows.map((window, i) => (
                             <li key={i}>
-                                <p>{window.dayOfWeek}</p>
+                                <p>{window.day_of_week}</p>
                                 <TimeWindow
-                                    startTime={window.startTime}
-                                    endTime={window.endTime}
+                                    startTime={window.start_time}
+                                    endTime={window.end_time}
                                 />
                             </li>
                         ))}
