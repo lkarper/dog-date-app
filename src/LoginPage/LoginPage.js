@@ -1,35 +1,60 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-import STORE from '../STORE';
+import AuthApiService from '../services/auth-api-service';
+import DogProfilesService from '../services/dog-profiles-service';
+import HowlsService from '../services/howls-service';
 
 const LoginForm = (props) => {
 
     const context = useContext(UserContext);
 
+    const { forceUpdate } = props;
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(null);
 
+    const onLoginSuccess = () => {
+        const { location, history } = props;
+        const destination = (location.state || {}).from || '/home';
+
+        Promise.all([
+                DogProfilesService.fetchUserDogs(), 
+                DogProfilesService.fetchPackMembers(),
+                HowlsService.fetchUserSavedHowls(),
+            ])
+            .then(res => Promise.all(res.map(res => res.json())))
+            .then(values => {
+                const userDogs = values[0];
+                const packMembers = values[1];
+                const userSavedHowls = values[2];
+                context.setDogs(userDogs);
+                context.setUserPackMembers(packMembers);
+                context.setUserSavedHowls(userSavedHowls);
+                forceUpdate();
+                history.push(destination);
+            })
+            .catch(error => {
+                context.setError(error.message);
+            });
+    }
+
     const handleLogin = (event) => {
         event.preventDefault();
-        const user = STORE.users.find(user => user.username === username);
-        if (user) {
-            if (user.password === password) {
-                setLoginError(null);
-                context.setUser({
-                    id: user.id,
-                    email: user.email,
-                    phone: user.phone,
-                    username: user.username, 
-                });
-                props.history.push('/home');
-            } else {
-                setLoginError('Incorrect username or password.')
-            }
-        } else {
-            setLoginError('Incorrect username or password.')
-        }        
+        setLoginError(null);
+        AuthApiService.postLogin({
+            username: username,
+            password
+        })
+            .then(res => {
+                setUsername('');
+                setPassword('');
+                onLoginSuccess();
+            })
+            .catch(res => {
+                setLoginError(res.error);
+            });
     }
 
     return (
