@@ -44,6 +44,10 @@ const App = (props) => {
       react won't know the token has been removed from local storage,
       so we need to tell React to rerender
       */
+
+      context.setDogs([]);
+      context.setUserPackMembers([]);
+      context.setUserSavedHowls([]);
       forceUpdate();
   }
 
@@ -110,31 +114,31 @@ const App = (props) => {
               exact path='/howls'
               component={HowlsList}
             />
-            <Route 
+            <PrivateOnlyRoute 
               path='/howls/:howl_id'
               component={HowlPageView}
             />
-            <Route 
+            <PrivateOnlyRoute 
               path='/home'
               component={Homepage}
             />
-            <Route 
+            <PrivateOnlyRoute 
               path='/create-howl'
               component={CreateHowlPage}
             />
-            <Route
+            <PrivateOnlyRoute
               path='/dog-profile/:id'
               component={DogProfilePage} 
             />
-            <Route 
+            <PrivateOnlyRoute 
               path='/reviews/:id'
               component={ReviewPage}
             />
-            <Route 
+            <PrivateOnlyRoute 
               path='/leave-review/:dog_id'
               component={CreateDogReviewPage}
             />
-            <Route 
+            <PrivateOnlyRoute 
               path='/create-dog-profile'
               component={CreateDogProfile}
             />
