@@ -37,12 +37,7 @@ export default UserContext;
 export const UserProvider = (props) => {
 
     const [dogs, setDogs] = useState([]);
-    const [user, setUser] = useState({
-        "id": '61a8a24a-3f30-4f4b-ba1e-68474f25a4d1',
-        "email": "sample@fake-email.com",
-        "phone": "123-456-7890",
-        "username": "pjfry2000",
-    });
+    const [user, setUser] = useState({});
     const [allDogs, setAllDogs] = useState(STORE.dog_profiles);
     const [howls, setHowls] = useState(STORE.howls);
     const [reviews, setReviews] = useState(STORE.reviews);
@@ -130,7 +125,7 @@ export const UserProvider = (props) => {
     }
 
     const removeSavedHowl = (idToRemove) => {
-        const updatedHowls = userSavedHowls.filter(howl => howl.howl_id !== idToRemove);
+        const updatedHowls = userSavedHowls.filter(howl => howl.howl.id !== idToRemove);
         setUserSavedHowls(updatedHowls);
     }
 
