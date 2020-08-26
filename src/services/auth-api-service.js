@@ -23,7 +23,7 @@ const AuthApiService = {
                   2. queue auto logout when the user goes idle
                   3. queue a call to the refresh endpoint based on the JWT's exp value
                 */
-                TokenService.saveAuthToken(res.authToken);
+                TokenService.saveAuthToken(res);
                 IdleService.regiserIdleTimerResets();
                 TokenService.queueCallbackBeforeExpiry(() => {
                     AuthApiService.postRefreshToken();
