@@ -6,6 +6,8 @@ import UserContext from './contexts/UserContext';
 import IdleService from './services/idle-service';
 import TokenService from './services/token-service';
 import AuthApiService from './services/auth-api-service';
+import DogProfilesService from './services/dog-profiles-service';
+import HowlsService from './services/howls-service';
 import Header from './Header/Header';
 import Landing from './Landing/Landing';
 import RegistrationForm from './RegistrationForm/RegistrationForm';
@@ -45,11 +47,45 @@ const App = (props) => {
       so we need to tell React to rerender
       */
 
+      context.setUser({});
       context.setDogs([]);
       context.setUserPackMembers([]);
       context.setUserSavedHowls([]);
       forceUpdate();
   }
+
+  const { setUser } = context;
+
+  useEffect(() => {
+    if (TokenService.hasAuthToken()) {
+      setUser({
+        id: window.sessionStorage.getItem('id'),
+        username: window.sessionStorage.getItem('username'),
+        email: window.sessionStorage.getItem('email'),
+        phone: window.sessionStorage.getItem('phone'),
+      });
+
+      Promise.all([
+          DogProfilesService.fetchUserDogs(), 
+          DogProfilesService.fetchPackMembers(),
+          HowlsService.fetchUserSavedHowls(),
+      ])
+      .then(res => Promise.all(res.map(res => res.json())))
+      .then(values => {
+          const userDogs = values[0];
+          const packMembers = values[1];
+          const userSavedHowls = values[2];
+          context.setDogs(userDogs);
+          context.setUserPackMembers(packMembers);
+          context.setUserSavedHowls(userSavedHowls);
+          forceUpdate();
+      })
+      .catch(error => {
+          context.setError(error.message);
+      });
+
+    }
+  }, [props, setUser]);
 
   useEffect(() => {
       /*
