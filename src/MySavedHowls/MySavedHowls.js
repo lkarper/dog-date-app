@@ -7,21 +7,19 @@ const MySavedHowls = (props) => {
 
     const context = useContext(UserContext);
 
-    const mySavedHowls = context.userSavedHowls
-        .map(savedHowl => (
-            context.howls
-            .find(howl => howl.id === savedHowl.howl_id)
-        ));
-
     return (
         <section className='MySavedHowls__section section'>
             <header>
                 <h2>My saved howls</h2>
             </header>
-            {mySavedHowls.length
+            {context.userSavedHowls.length
                 ? 
                     <ul className='MySavedHowls__list'>
-                        {mySavedHowls.map(howl => <HowlListItem key={howl.id} howl={howl} />)}
+                        {context.userSavedHowls
+                            .map(howl => 
+                                <HowlListItem key={howl.id} howl={howl.howl} />
+                            )
+                        }
                     </ul>   
                 :
                     <p>No howls saved yet.</p>
