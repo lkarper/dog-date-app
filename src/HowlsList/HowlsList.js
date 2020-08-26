@@ -6,6 +6,7 @@ import HowlListItem from '../HowlListItem/HowlListItem';
 import { calculateAverageWithArrayOfReviews } from '../DogAverageRating/DogAverageRating';
 import HowlsPageFilterForm from '../HowlsPageFilterForm/HowlsPageFilterForm';
 import './HowlsList.css';
+import HowlsService from '../services/howls-service';
 
 const HowlsList = (props) => {
 
@@ -15,7 +16,8 @@ const HowlsList = (props) => {
 
     const context = useContext(UserContext);
 
-    const [howls, setHowls] = useState(context.howls);
+    const [howls, setHowls] = useState([]);
+    const [searched, setSearched] = useState(false);
     const [stateP, setStateP] = useState('');
     const [zipcodeP, setZipcodeP] = useState('');
     const [ratingFilterP, setRatingFilterP] = useState('');
@@ -24,158 +26,53 @@ const HowlsList = (props) => {
     const [recurringMeetingWindowsP, setRecurringMeetingWindowsP] = useState([]);
     const [dateP, setDateP]= useState('');
     const [timeWindowsP, setTimeWindowsP] = useState([]);
+    const [apiError, setApiError] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        let filteredHowls = [...context.howls];
+
+        const queryParams = [];
         if (stateP) {
-            filteredHowls = filteredHowls.filter(howl => howl.location.state === stateP);
+            queryParams.push(`state=${stateP}`);
         }
         if (zipcodeP) {
-            filteredHowls = filteredHowls.filter(howl => howl.location.zipcode === zipcodeP);
+            queryParams.push(`zipcode=${zipcodeP}`);
         }
         if (ratingFilterP) {
-            const arrayOfPassingDogIds = filteredHowls
-                .map(howl => howl.dog_ids)
-                .flat()
-                .map(dog_id => 
-                    context.reviews
-                        .filter(review => review.dog_id === dog_id)
-                )
-                .filter(arrayOfReviews => 
-                    calculateAverageWithArrayOfReviews(arrayOfReviews) >= parseInt(ratingFilterP)
-                )
-                .map(arrayOfReviews => arrayOfReviews[0].dog_id);
-            filteredHowls = filteredHowls.filter(howl => {
-                let includeHowl = false;
-                arrayOfPassingDogIds.forEach(passing_id => {
-                    if (howl.dog_ids.includes(passing_id)) {
-                        includeHowl = true;
-                    }
-                });
-                return includeHowl;
-            });
+            queryParams.push(`rating_filter=${ratingFilterP}`);
         } 
         if (typeOfMeetingP) {
-            filteredHowls = filteredHowls.filter(howl => howl.meeting_type === typeOfMeetingP);
+            queryParams.push(`type_of_meeting=${typeOfMeetingP}`)
         }
         if (daysOfWeekP.length !== 0) {
-            filteredHowls = filteredHowls.filter(howl => {
-                if (howl.meeting_type === 'recurring') {
-                    let includeHowl = false;
-                    howl.recurring_windows.forEach(window => {
-                        if (daysOfWeekP.includes(window.dayOfWeek)) {
-                            includeHowl = true;
-                        }
-                    });
-                    return includeHowl;
-                } else {
-                    return daysOfWeekP.includes(moment(howl.one_time_windows.date).format("dddd"));
-                }
-            });
+            queryParams.push(`days_of_week=${daysOfWeekP.join('|')}`);
         }
         if (daysOfWeekP.length !== 0 && recurringMeetingWindowsP.length !== 0) {
-            filteredHowls = filteredHowls.filter(howl => {
-                if (howl.meeting_type === 'once') {
-                    let includeHowl = false;
-                    const day = moment(howl.one_time_windows.date).format("dddd");
-                    if (daysOfWeekP.includes(day)) {
-                        if (!recurringMeetingWindowsP.find(win => win[Object.keys(win)[0]].dayOfWeek === day)) {
-                            includeHowl = true;
-                        }
-                        howl.one_time_windows.timeWindows.forEach(window => {
-                            recurringMeetingWindowsP.forEach(win => {
-                                const windowP = win[Object.keys(win)[0]];
-                                if (windowP.dayOfWeek === day) {
-                                    if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
-                                        (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
-                                        (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
-                                            includeHowl = true;
-                                    }
-                                }
-                            });    
-                        });
-                    }
-                    return includeHowl;
-                } else {
-                    let includeHowl = false;
-                    howl.recurring_windows.forEach(window => {
-                        if (daysOfWeekP.includes(window.dayOfWeek)) {
-                            let found = false;
-                            recurringMeetingWindowsP.forEach(win => {
-                                if (win[Object.keys(win)[0]].dayOfWeek === window.dayOfWeek) {
-                                    found = true;
-                                }
-                            });
-                            if (found) {
-                                recurringMeetingWindowsP.forEach(win => {
-                                    const windowP = win[Object.keys(win)[0]];
-                                    if (windowP.dayOfWeek === window.dayOfWeek) {
-                                        if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
-                                            (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
-                                            (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
-                                                includeHowl = true;
-                                        }
-                                    }
-                                });    
-                            } else {
-                                includeHowl = true;
-                            }
-                        }
-                    });
-                    return includeHowl;
-                }
-            });
+            const recurringMeetingString = recurringMeetingWindowsP
+                .map(win => `${Object.keys(win)[0]},${win[Object.keys(win)[0]].dayOfWeek},${win[Object.keys(win)[0]].startTime},${win[Object.keys(win)[0]].endTime}`)
+                .join('|');
+            queryParams.push(`recurring_meeting_windows=${recurringMeetingString}`)
         }
         if (dateP) {
-            filteredHowls = filteredHowls.filter(howl => {
-                if (howl.meeting_type === 'once') {
-                    return howl.one_time_windows.date === dateP;
-                } else {
-                    let includeHowl = false;
-                    howl.recurring_windows.forEach(window => {
-                        if (moment(dateP).format("dddd") === window.dayOfWeek) {
-                            includeHowl = true;
-                        }
-                    });
-                    return includeHowl;
-                }
-            });
+            queryParams.push(`date=${dateP}`);
         }
         if (dateP && timeWindowsP.length !== 0) {
-            filteredHowls = filteredHowls.filter(howl => {
-                if (howl.meeting_type === 'once') {
-                    let includeHowl = false;
-                    if (howl.one_time_windows.date === dateP) {
-                        howl.one_time_windows.timeWindows.forEach(window => {
-                            timeWindowsP.forEach(windowP => {
-                                if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
-                                    (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
-                                    (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
-                                        includeHowl = true;
-                                    }
-                            });    
-                        });
-                    }
-                    return includeHowl;
-                } else {
-                    let includeHowl = false;
-                    howl.recurring_windows.forEach(window => {
-                        if (moment(dateP).format("dddd") === window.dayOfWeek) {
-                            timeWindowsP.forEach(windowP => {
-                                if ((window.endTime >= windowP.startTime && window.startTime <= windowP.startTime) || 
-                                    (window.startTime <= windowP.endTime && window.endTime >= windowP.endTime) ||
-                                    (window.startTime >= windowP.startTime && window.endTime <= windowP.endTime)) {
-                                        includeHowl = true;
-                                    }
-                            });    
-                        }
-                    });
-                    return includeHowl;
-                }
-            });
+            const timeWindowsString = timeWindowsP
+                .map(win => `${win.startTime},${win.endTime}`)
+                .join('|');
+            queryParams.push(`time_windows=${timeWindowsString}`);
         }
-        setHowls(filteredHowls);
+        const queryString = queryParams.join('&');
+        HowlsService.searchHowls(queryString)
+            .then(howls => {
+                setApiError(false);
+                setSearched(true);
+                setHowls(howls);
+            })
+            .catch(error => {
+                console.log(error);
+                setApiError(true);
+            });
     }
 
     return (
@@ -215,12 +112,20 @@ const HowlsList = (props) => {
                 }}
             />
             <section className='HowlsList__section section'>
-                <header>
-                    <h2>Dogs howling for a playmate</h2>
-                </header>
+                {searched && 
+                    <header>
+                        <h2>Dogs howling for a playmate</h2>
+                    </header>
+                }
                 <div role='alert'>
-                    <p>Now showing {howls.length} {howls.length === 1 ? 'howl' : 'howls'}</p>
-                    {howls.length === 0 
+                    {(searched && apiError) &&
+                            <>
+                                <h2>Error</h2>
+                                <p>Looks like something went wrong.  Check your connection and try again.</p>
+                            </>
+                    }
+                    {(searched && !apiError) && <p>Now showing {howls.length} {howls.length === 1 ? 'howl' : 'howls'}</p>}
+                    {searched && howls.length === 0 
                         ?
                             <p>No howls found that match those search criteria.  Adust your parameters and try again.</p>
                         :
