@@ -16,6 +16,9 @@ const Header = (props) => {
         TokenService.clearCallbackBeforeExpiry();
         IdleService.unRegisterIdleResets();
         context.setUser({});
+        context.setDogs([]);
+        context.setUserPackMembers([]);
+        context.setUserSavedHowls([]);
         forceUpdate();
     }
 
