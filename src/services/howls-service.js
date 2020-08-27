@@ -69,6 +69,13 @@ const HowlsService = {
                 }
             });
     },
+    fetchHowlByDogId(dogId) {
+        return fetch(`${config.API_ENDPOINT}/howls/by-dog/${dogId}`, {
+            headers: {
+                'authorization': `Bearer ${TokenService.getAuthToken()}`
+            },
+        });
+    },
 };
 
 export default HowlsService;
