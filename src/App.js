@@ -59,7 +59,7 @@ const App = (props) => {
   useEffect(() => {
     if (TokenService.hasAuthToken()) {
       setUser({
-        id: window.sessionStorage.getItem('id'),
+        id: parseInt(window.sessionStorage.getItem('id')),
         username: window.sessionStorage.getItem('username'),
         email: window.sessionStorage.getItem('email'),
         phone: window.sessionStorage.getItem('phone'),
