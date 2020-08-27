@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
 import './AddCommentForm.css';
+import ReviewsService from '../services/reviews-service';
 
 const AddCommentForm = (props) => {
 
@@ -12,6 +12,8 @@ const AddCommentForm = (props) => {
         oldComment = '',
         suffix = '',
         id = '',
+        comments,
+        setComments,
     } = props;
 
     const [commentText, setCommentText] = useState(oldComment);
@@ -19,19 +21,32 @@ const AddCommentForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const newComment = {
-            id: id || uuidv4(),
-            review_id: reviewId,
-            commenter: context.user.username,
             date_time: new Date().toJSON(),
             comment: commentText,
             edited: !!suffix
         };
 
         if (suffix) {
-            context.updateComment(newComment);
-            props.setShowEdit(false);
+            ReviewsService.updateComment(reviewId, id, newComment)
+                .then(() => {
+                    const updatedComments = comments.filter(c => c.id !== id);
+                    updatedComments.push({
+                        ...newComment,
+                        id,
+                        commenter: context.user.username,
+                    });
+                    setComments(updatedComments);
+                    props.setShowEdit(false);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         } else {
-            context.addComment(newComment);
+            ReviewsService.addComment(reviewId, newComment)
+                .then(comment => {
+                    setComments([...comments, comment]);
+                })
+                .catch(error => console.log(error));
         }
         setCommentText('');
     }
