@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import moment from 'moment';
 import UserContext from '../contexts/UserContext';
 import StaticMap from '../StaticMap/StaticMap';
-import STORE from '../STORE';
 import HowlPageDogProfile from '../HowlPageDogProfile/HowlPageDogProfile';
 import TimeWindow from '../TimeWindow/TimeWindow';
 import './HowlPageView.css';
@@ -21,6 +20,7 @@ const HowlPageView  = (props) => {
     const [showEdit, setShowEdit] = useState(false);
     const [howl, setHowl] = useState();
     const [howlNotFound, setHowlNotFound] = useState(false);
+    const [update, setUpdate] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -33,7 +33,7 @@ const HowlPageView  = (props) => {
                     setHowlNotFound(true);
                 }
             })
-    }, [props, howl_id, setHowl, setHowlNotFound]);
+    }, [props, howl_id, setHowl, setHowlNotFound, update]);
 
     let howlDateTime;
     
@@ -94,7 +94,14 @@ const HowlPageView  = (props) => {
                     <h1>{howl.howl_title}</h1>
                     <HowlPageUserButtons howl={howl} setShowEdit={setShowEdit} />
                 </header>
-                {showEdit && <CreateHowl howl={howl} suffix='-edit' setShowEdit={setShowEdit} />}
+                {showEdit && 
+                    <CreateHowl 
+                        howl={howl} 
+                        suffix='-edit' 
+                        setShowEdit={setShowEdit} 
+                        forceUpdate={setUpdate}
+                    />
+                }
                 <section className='HowlPageView__section section'>
                     <header>
                         <h2>About this howl:</h2>

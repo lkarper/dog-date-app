@@ -76,6 +76,36 @@ const HowlsService = {
             },
         });
     },
+    createNewHowl(newHowl) {
+        return fetch(`${config.API_ENDPOINT}/howls`, {
+            method: 'POST',
+            body: JSON.stringify(newHowl),
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            );
+    },
+    updateHowl(howlId, updatedHowl) {
+        return fetch(`${config.API_ENDPOINT}/howls/${howlId}`, {
+            method: 'PATCH',
+            body: JSON.stringify(updatedHowl),
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+        })
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(e => Promise.reject(e));
+            }
+        });
+    },
 };
 
 export default HowlsService;

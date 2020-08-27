@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { withRouter } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import MapForm from '../MapForm/MapForm';
@@ -12,13 +11,14 @@ import ValidatePersonalMessage from '../validation-components/create-howl-valida
 import LocationForm from '../LocationForm/LocationForm';
 import ValidateHowlTitle from '../validation-components/create-howl-validation/ValidateHowlTitle';
 import './CreateHowl.css';
+import HowlsService from '../services/howls-service';
 
 const CreateHowl = (props) => {
 
     const {
         suffix = '',
         howl = {
-            dog_ids: [],
+            dogs: [],
             howl_title: '',
             id: '',
             location: {
@@ -30,31 +30,16 @@ const CreateHowl = (props) => {
                 zipcode: '',
             },
             meeting_type: '',
-            one_time_windows:         
-            {
-                date: '',
-                timeWindows: [
-                    {
-                        startTime: '',
-                        endTime: '',
-                    },
-                ],
-            },
+            date: '',
+            time_windows: [],
             personal_message: '',
-            recurring_windows: [
-                {
-                    dayOfWeek: '',
-                    startTime: '',
-                    endTime: '',
-                },
-            ],
             user_id: '',
         },
     } = props;
 
     const context = useContext(UserContext);
 
-    const [dogsForHowl, setDogsForHowl] = useState(howl.dog_ids);
+    const [dogsForHowl, setDogsForHowl] = useState(howl.dogs.map(d => d.dog_id));
     const [dogsForHowlError, setDogsForHowlError] = useState(null);
     const [location, setLocation] = useState({
         address: howl.location.address,
@@ -68,8 +53,44 @@ const CreateHowl = (props) => {
     });
     const [locationError, setLocationError] = useState([]);
     const [meetingType, setMeetingType] = useState(howl.meeting_type || 'recurring');
-    const [recurringMeetingWindows, setRecurringMeetingWindows] = useState(howl.recurring_windows);
-    const [oneTimeMeetingWindows, setOneTimeMeetingWindows] = useState(howl.one_time_windows);
+    const [recurringMeetingWindows, setRecurringMeetingWindows] = useState(howl.meeting_type === 'recurring' 
+        ?
+            howl.time_windows.map(win => {
+                return {
+                    dayOfWeek: win.day_of_week,
+                    startTime: win.start_time,
+                    endTime: win.end_time
+                }
+            })
+        :   
+            [
+                {
+                    dayOfWeek: '',
+                    startTime: '',
+                    endTime: '',
+                },
+            ]);
+    const [oneTimeMeetingWindows, setOneTimeMeetingWindows] = useState(howl.meeting_type === 'once'
+        ?
+            {
+                date: howl.date,
+                timeWindows: howl.time_windows.map(win => {
+                    return {
+                        startTime: win.start_time,
+                        endTime: win.end_time
+                    };
+                }),
+            }
+        : 
+            {
+                date: '',
+                timeWindows: [
+                    {
+                        startTime: '',
+                        endTime: '',
+                    },
+                ],
+            });
     const [timeError, setTimeError] = useState(false);
     const [howlTitle, setHowlTitle] = useState(howl.howl_title);
     const [howlTitleError, setHowlTitleError] = useState('');
@@ -120,26 +141,49 @@ const CreateHowl = (props) => {
         event.preventDefault();
 
         const newHowl = {
-            id: howl.id || uuidv4(),
-            user_id: context.user.id,
             howl_title: howlTitle,
             dog_ids: dogsForHowl,
-            location: {
-                ...location,
-                lat: coordinates.lat,
-                lon: coordinates.lon, 
-            },
+            address: location.address,
+            city: location.city,
+            state: location.state,
+            zipcode: location.zipcode,
+            lat: coordinates.lat,
+            lon: coordinates.lon, 
             meeting_type: meetingType,
-            one_time_windows: meetingType === 'once' ? oneTimeMeetingWindows : {},
-            recurring_windows: meetingType === 'recurring' ? recurringMeetingWindows : [],
+            date: meetingType === 'once' ? oneTimeMeetingWindows.date : '',
+            time_windows: meetingType === 'once' 
+                ?
+                    oneTimeMeetingWindows.timeWindows
+                        .map(win => {
+                            return {
+                                day_of_week: '',
+                                start_time: win.startTime,
+                                end_time: win.endTime
+                            };
+                        })
+                :
+                    recurringMeetingWindows.map(win => {
+                        return {
+                            day_of_week: win.dayOfWeek,
+                            start_time: win.startTime,
+                            end_time: win.endTime
+                        };
+                    }),
             personal_message: personalMessage,
         };
         if (suffix) {
-            context.updateHowl(newHowl);
-            props.setShowEdit(false);
+            HowlsService.updateHowl(howl.id, newHowl)
+                .then(() => {
+                    props.forceUpdate(new Date().toJSON());
+                    props.setShowEdit(false);
+                })
+                .catch(error => console.log(error)); 
         } else {
-            context.addHowl(newHowl);
-            props.history.push('/home');
+            HowlsService.createNewHowl(newHowl)
+                .then(howl => {
+                    props.history.push(`/howls/${howl.id}`);
+                })
+                .catch(error => console.log(error));
         }
     }
 
