@@ -87,27 +87,23 @@ export const UserProvider = (props) => {
     }
 
     const addPackMember = (newPackMember) => {
-        const updatedPackMembers = [...packMembers, newPackMember ];
+        const updatedPackMembers = [...packMembers, newPackMember];
         setUserPackMembers(updatedPackMembers);
     }
 
     const removePackMember = (id_to_remove) => {
-        const updatedPackMembers = packMembers.filter(pm => pm.pack_member_id !== id_to_remove);
+        const updatedPackMembers = packMembers.filter(pm => pm.id !== id_to_remove);
         setUserPackMembers(updatedPackMembers);
     }
 
     const addDogProfile = (newDogProfile) => {
         const updateDogs = [...dogs, newDogProfile];
         setDogs(updateDogs);
-        const updateAllDogs = [...allDogs, newDogProfile];
-        setAllDogs(updateAllDogs);
     }
 
     const removeDogProfile = (profileId) => {
         const updatedDogs = dogs.filter(dog => dog.id !== profileId);
         setDogs(updatedDogs);
-        const updatedAllDogs = allDogs.filter(dog => dog.id !== profileId);
-        setAllDogs(updatedAllDogs);
     }
 
     const updateDogProfile = (newDogProfile) => {
