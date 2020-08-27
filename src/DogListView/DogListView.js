@@ -23,15 +23,15 @@ const DogListView = (props) => {
 
     return (
         <li className='DogListView__li'>
-            <div className='DogListView__dog-container'>
-                {image}
-                <Link
-                    className='DogListView__profile-link'
-                    to={`/dog-profile/${id}`}
-                >
+            <Link
+                className='DogListView__profile-link'
+                to={`/dog-profile/${id}`}
+            >
+                <div className='DogListView__dog-container'>
+                    {image}
                     View {name}'s profile
-                </Link>
-            </div>
+                </div>
+            </Link>
         </li>
     );
 }

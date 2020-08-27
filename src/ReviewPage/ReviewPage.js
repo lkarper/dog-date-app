@@ -10,34 +10,52 @@ import ReviewComments from '../ReviewComments/ReviewComments';
 import AddCommentForm from '../AddCommentForm/AddCommentForm';
 import DogReviewForm from '../DogReviewForm/DogReviewForm';
 import './ReviewPage.css';
+import ReviewsService from '../services/reviews-service';
 
 const ReviewPage = (props) => {
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [props]);
+    const { id } = props.match.params;
 
     const context = useContext(UserContext);
 
+    const [review, setReview] = useState();
+    const [reviews, setReviews] = useState();
+    const [comments, setComments] = useState([]);
+    const [apiError, setApiError] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
+    const [forceUpdate, setForceUpdate] = useState();
 
-    const { id } = props.match.params;
-    const review = context.reviews.find(review => review.id === id);
-    
-    let dog_profile;
-    let reviews;
-    let userButtons = <></>;
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        ReviewsService.getReviewByReviewId(id)
+            .then(review => {
+                setApiError(false);
+                setReview(review);
+            })
+            .catch(error => {
+                setApiError(true);
+                console.log(error);
+            });
+    }, [id, setReview, setApiError, forceUpdate]);
 
-    const checkRemoveReview = () => {
-        const confirmation = window.confirm(`Are you sure that you'd like to delete this review?`);
-        if (confirmation) {
-            context.removeReview(review.id);
-            props.history.push('/home');
+    useEffect(() => {
+        if (review) {
+            setComments(review.comments)
+            ReviewsService.getReviewsByDogId(review.dog_profile.id)
+                .then(reviews => {
+                    setApiError(false);
+                    setReviews(reviews);
+                })
+                .catch(error => {
+                    setApiError(true);
+                    console.log(error);
+                });
         }
-    }
+    }, [review, setReviews, setApiError]);
+    
 
     if (review) {
-
+        
         const { 
             reviewer,
             date_created,
@@ -48,11 +66,28 @@ const ReviewPage = (props) => {
             profile_accuracy,
             location_suitability,
             location,
-            when,
+            date,
+            start_time,
+            end_time,
             personal_message,
-            dog_id
+            dog_profile,
         } = review;
-    
+
+        let userButtons = <></>;
+
+        const checkRemoveReview = () => {
+            const confirmation = window.confirm(`Are you sure that you'd like to delete this review?`);
+            if (confirmation) {
+                ReviewsService.deleteReview(id)
+                    .then(() => {
+                        props.history.push(`/dog-profiles/${dog_profile.id}`);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        }
+
         const averageRating = (
             friendliness_dogs +
             friendliness_people +
@@ -62,9 +97,7 @@ const ReviewPage = (props) => {
             location_suitability 
         ) / 6;
 
-        dog_profile = context.allDogs.find(dog => dog.id === dog_id);
-        reviews = context.reviews.filter(review => review.dog_id === dog_profile.id);
-        if (Object.keys(context.user)) {
+        if (Object.keys(context.user).length) {
             if (context.user.username === review.reviewer) {
                 userButtons = (
                     <div className='ReviewPage__user-buttons-container'>
@@ -102,7 +135,8 @@ const ReviewPage = (props) => {
                                     dog_id={dog_profile.id} 
                                     suffix='-edit' 
                                     review={review} 
-                                    setShowEdit={setShowEdit} 
+                                    setShowEdit={setShowEdit}
+                                    forceUpdate={setForceUpdate} 
                                 />
                             </section> 
                         : ''
@@ -136,15 +170,15 @@ const ReviewPage = (props) => {
                         : <p>Sorry, no map available.</p>
                     }
                     <h3>Date and time:</h3> 
-                    <p>{moment(when.date).format("dddd, MMMM Do, YYYY")}</p>
-                    {<TimeWindow startTime={when.startTime} endTime={when.endTime} />}
+                    <p>{moment(date).format("dddd, MMMM Do, YYYY")}</p>
+                    {<TimeWindow startTime={start_time} endTime={end_time} />}
                 </section>
                 <section className='ReviewPage__section section'>
                     <header>
                         <h2>Comments</h2>
                     </header>
-                    <ReviewComments reviewId={id} />
-                    {Object.keys(context.user).length && <AddCommentForm reviewId={id} />}
+                    <ReviewComments comments={comments} setComments={setComments} />
+                    {Object.keys(context.user).length && <AddCommentForm reviewId={id} comments={comments} setComments={setComments} />}
                 </section>
                 <section className='ReviewPage__section section'>
                     <header>
@@ -154,8 +188,8 @@ const ReviewPage = (props) => {
                         ? '' 
                         : <Link to={`/leave-review/${dog_profile.id}`}>Leave your own review of {dog_profile.name}</Link>
                     }
-                    {reviews.length 
-                        ? 
+                    {(reviews && reviews.length > 1) 
+                        && 
                             <div>
                                 <DogAverageRating 
                                     reviews={reviews}
@@ -164,24 +198,27 @@ const ReviewPage = (props) => {
                                     {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
                                 </ul>
                             </div>
-                        :
-                            <p>No reviews of {dog_profile.name} yet.</p>
-                }
+                    }
+                    {(reviews && reviews.length === 1) && <p>This is the only review of {dog_profile.name}.</p>}
+                    {(reviews && reviews.length === 0) && <p>No reviews of {dog_profile.name} yet.</p>}
+                    {!reviews && <p>Loading...</p>}
                 </section>
             </>
         );
     }
     
+    if (apiError) {
+        return (
+            <section className='section'>
+                <header>
+                    <h1>Woof...</h1>
+                </header>
+                <p>Looks like something went wrong.  Check the url and try again.</p>
+            </section>
+        );
+    }
 
-    return (
-        <section className='section'>
-            <header>
-                <h1>Woof...</h1>
-            </header>
-            <p>Review not found.  Check the url and try again.</p>
-        </section>
-    );
-
+    return <p>Loading...</p>;
 }
 
 export default ReviewPage;

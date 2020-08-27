@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { withRouter } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
@@ -7,6 +6,7 @@ import MapForm from '../MapForm/MapForm';
 import LocationForm from '../LocationForm/LocationForm';
 import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
 import './DogReviewForm.css';
+import ReviewsService from '../services/reviews-service';
 
 const DogReviewForm = (props) => {
 
@@ -35,11 +35,9 @@ const DogReviewForm = (props) => {
                 lat: 0,
                 lon: 0,
             },
-            when: {
-                date: '',
-                startTime: '',
-                endTime: '',
-            },
+            date: '',
+            startItime: '',
+            end_time: '',        
             personal_message: '',
         },
     } = props;
@@ -63,9 +61,9 @@ const DogReviewForm = (props) => {
     const [locationError, setLocationError] = useState([]);
     const [personalMessage, setPersonalMessage] = useState(review.personal_message);
     const [personalMessageError, setPersonalMessageError] = useState('');
-    const [date, setDate] = useState(review.when.date)
-    const [startTime, setStartTime] = useState(review.when.startTime)
-    const [endTime, setEndTime] = useState(review.when.endTime);
+    const [date, setDate] = useState(review.date)
+    const [startTime, setStartTime] = useState(review.start_time)
+    const [endTime, setEndTime] = useState(review.end_time);
 
     const today = new Date();
     const maxDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
@@ -73,7 +71,6 @@ const DogReviewForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const newReview = {
-            id: review.id || uuidv4(),
             date_created: new Date().toJSON(),
             dog_id,
             reviewer: context.user.username,
@@ -83,23 +80,33 @@ const DogReviewForm = (props) => {
             obedience: parseInt(obedience),
             profile_accuracy: parseInt(profileAccuracy),
             location_suitability: parseInt(locationSuitability),
-            location: {
-                ...location,
-                ...coordinates,
-            },
-            when: {
-                date,
-                startTime,
-                endTime,
-            },
+            address: location.address,
+            city: location.city,
+            state: location.state,
+            zipcode: location.zipcode,
+            lat: location.lat,
+            lon: location.lon,
+            date,
+            start_time: startTime,
+            end_time: endTime,
             personal_message: personalMessage,
         };
         if (suffix) {
-            context.updateReview(newReview);
-            props.setShowEdit(false);
+            ReviewsService.updateReview(review.id, newReview)
+                .then(() => {
+                    props.setShowEdit(false);
+                    props.forceUpdate(new Date().toJSON());
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+
         } else {
-            context.addReview(newReview);
-            props.history.push(`/dog-profile/${dog_id}`);
+            ReviewsService.createNewReview(newReview)
+                .then(review => {
+                    props.history.push(`/reviews/${review.id}`);
+                })
+                .catch(error => console.log(error));
         }
 
     }
