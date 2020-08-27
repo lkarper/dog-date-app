@@ -6,52 +6,44 @@ import './UploadDogProfilePhoto.css';
 
 const UploadDogProfilePhoto = (props) => {
     
-    const { imgUrlP, setImgUrlP, uploadDogProfile, suffix } = props;
+    const { 
+        imgUrlP, 
+        setImgUrlP, 
+        imgDataP,
+        setImgDataP,
+        uploadDogProfile, 
+        suffix 
+    } = props;
 
     const [imgFile, setImgFile] = useState();
     const [imgUrl, setImgUrl] = useState(imgUrlP);
-    const [showLoading, setShowLoading] = useState(false);
-    const [uploadError, setUploadError] = useState('');
-    const [uploadSuccess, setUploadSuccess] = useState(false);
 
     useEffect(() => {
         if (imgUrl !== imgUrlP) {
             setImgUrlP(imgUrl);
-        } else if (imgUrlP === null || (uploadSuccess && imgUrl === imgUrlP)) {
+        } else if (imgUrlP === null) {
             uploadDogProfile();
         }
-    }, [imgUrl, imgUrlP, setImgUrlP, uploadDogProfile, uploadSuccess]);
+    }, [imgUrl, imgUrlP, setImgUrlP, uploadDogProfile]);
+
+    // method to encode image file to base 64 before sending to database
+    // function encodeImageFileAsURL() {
+    //     const reader = new FileReader();
+    //     return reader.readAsDataURL(imgFile);
+    // }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setShowLoading(true);
 
-        const formData = new FormData();
-        formData.append("file", imgFile);
+        console.log('upload clicked')
 
-        fetch(`https://api.cloudinary.com/v1_1/${config.cloud_name}/image/upload?upload_preset=${config.preset}`, {
-            method: 'POST',
-            body: formData,
-        })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw new Error (res.statusText);
-            })
-            .then(resJson => {
-                console.log(resJson);
-                setUploadError('');
-                setShowLoading(false);
-                setImgUrl(resJson.secure_url);
-                setUploadSuccess(true);
-            })
-            .catch(error => {
-                console.log("error", error);
-                setUploadError(error)
-                setShowLoading(false);
-                setUploadSuccess(false);
-            });
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+            setImgDataP(e.target.result)
+        } 
+        
+        reader.readAsDataURL(imgFile);
     }
 
     const noPhoto = () => {
@@ -77,22 +69,12 @@ const UploadDogProfilePhoto = (props) => {
             <> 
                 <p>Image preview</p>
                 <div className='UploadDogProfilePhoto__outer-container'>
-                    {showLoading && 
-                        <div className='UploadDogProfilePhoto__loading-container'>
-                            <FontAwesomeIcon 
-                                className='UploadDogProfilePhoto__loading' 
-                                icon={faSpinner} 
-                                spin 
-                            />
-                        </div>
-                    }
                     <img 
                         src={URL.createObjectURL(imgFile)} 
                         alt='Avatar preview.' 
                         className='UploadDogProfilePhoto__img-preview'
                     />
                 </div>
-                {uploadError ? <p>Upload failed.  Please try again.</p> : ''}
             </>
         );
     }
@@ -117,7 +99,7 @@ const UploadDogProfilePhoto = (props) => {
                 </div>
                 <button
                     type='submit'
-                    disabled={!imgFile || showLoading}
+                    disabled={!imgFile}
                 >
                     Upload
                 </button>

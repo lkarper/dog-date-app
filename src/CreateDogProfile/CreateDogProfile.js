@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
 import BasicInfo from '../CreateDogProfileFormComponents/BasicInfo/BasicInfo';
 import DogDescription from '../CreateDogProfileFormComponents/DogDescription/DogDescription';
 import UploadDogProfilePhoto from '../CreateDogProfileFormComponents/UploadDogProfilePhoto/UploadDogProfilePhoto';
 import './CreateDogProfile.css';
+import DogProfilesService from '../services/dog-profiles-service';
 
 const CreateDogProfile = (props) => {
 
@@ -76,6 +76,7 @@ const CreateDogProfile = (props) => {
     const [personalMessageP, setPersonalMessageP] = useState(owner_description);
     const [personalMessageErrorP, setPersonalMessageErrorP] = useState('');
     const [imgUrlP, setImgUrlP] = useState(profile_img_url);
+    const [imgDataP, setImgDataP] = useState();
 
     const handleInfoSubmit = (event) => {
         event.preventDefault();
@@ -84,10 +85,10 @@ const CreateDogProfile = (props) => {
 
     const uploadDogProfile = () => {
         const newDogProfile = {
-            id: id || uuidv4(),
             owner_id: context.user.id,
             name: nameP,
             profile_img_url: imgUrlP,
+            profile_img: imgDataP || null,
             age_years: ageYearsP,
             age_months: ageMonthsP,
             sex: sexP,
@@ -111,12 +112,35 @@ const CreateDogProfile = (props) => {
         };
 
         if (Object.keys(dog_profile).length === 0) {
-            context.addDogProfile(newDogProfile);
-            props.history.push(`/dog-profile/${newDogProfile.id}`);
+            DogProfilesService.createDogProfile(newDogProfile)
+                .then(profile => {
+                    context.addDogProfile(profile);
+                    props.history.push(`/dog-profile/${profile.id}`);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         } else {
-            context.updateDogProfile(newDogProfile);
-            props.setShowEdit(false);
+            DogProfilesService.updateDogProfile(dog_profile.id, newDogProfile)
+                .then(() => {
+                    props.setShowEdit(false);
+                    props.triggerNewApiCall(new Date().toJSON());
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
+    }
+
+    useEffect(() => {
+        if (imgDataP || imgDataP === null) {
+            uploadDogProfile();
+        }
+    }, [imgDataP]);
+
+    const useNoImg = () => {
+        setImgUrlP('');
+        setImgDataP(null);
     }
 
     if (infoForm) {
@@ -228,10 +252,10 @@ const CreateDogProfile = (props) => {
                     </header>
                     <section className={`CreateDogProfile__outer-section${suffix}`}>
                         <header>
-                            <h2>Would you like to upload a photo for your dog's profile?</h2>
+                            <h2>Would you like your dog's profile to feature a photo?</h2>
                         </header>
                         <button onClick={() => setImgUploadForm(true)}>Yes</button>
-                        <button onClick={uploadDogProfile}>No</button>
+                        <button onClick={useNoImg}>No</button>
                     </section>
                 </>
             )
@@ -242,6 +266,8 @@ const CreateDogProfile = (props) => {
                     <h1>Create a Profile</h1>
                 </header>
                 <UploadDogProfilePhoto 
+                    imgDataP={imgDataP}
+                    setImgDataP={setImgDataP}
                     imgUrlP={imgUrlP}
                     setImgUrlP={setImgUrlP}
                     uploadDogProfile={uploadDogProfile}

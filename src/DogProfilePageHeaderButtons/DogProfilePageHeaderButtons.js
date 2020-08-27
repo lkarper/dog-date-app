@@ -12,19 +12,22 @@ const DogProfilePageHeaderButtons = (props) => {
 
     const [showEdit, setShowEdit] = useState(false);
 
-    const isAPackMember = context.packMembers.find(pm => pm.profile._id === id);
+    const isAPackMember = context.packMembers.length 
+        ? context.packMembers.find(pm => pm.profile.id === id)
+        : false;
 
     const removePackMemberCheck = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to remove ${name} from your pack?`);
         if (confirmation) {
-            const entryId = context.packMembers.find(pm => pm.profile._id === id).id;
-            DogProfilesService.removePackMember(entryId)
-                .then(() => {
-                    context.removePackMember(entryId);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+            if (isAPackMember) {             
+                DogProfilesService.removePackMember(isAPackMember.id)
+                    .then(() => {
+                        context.removePackMember(isAPackMember.id);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });   
+            }
         }
     }
 
@@ -36,13 +39,12 @@ const DogProfilePageHeaderButtons = (props) => {
             };
             DogProfilesService.addPackMember(newPackMember)
                 .then(profile => {
+                    console.log(profile)
                     context.addPackMember(profile);
                 })
                 .catch(error => {
                     console.log(error);
                 });
-
-            context.addPackMember(newPackMember);
         }
     }
 
@@ -76,7 +78,8 @@ const DogProfilePageHeaderButtons = (props) => {
                 {showEdit 
                     ? 
                         <CreateDogProfile 
-                            setShowEdit={setShowEdit} 
+                            setShowEdit={setShowEdit}
+                            triggerNewApiCall={props.triggerNewApiCall} 
                             dog_profile={props.dog_profile} 
                             suffix='-edit' 
                         />

@@ -21,6 +21,7 @@ const DogProfilePage = (props) => {
     const [reviews, setReviews] = useState();
     const [howls, setHowls] = useState();
     const [apiError, setApiError] = useState(false);
+    const [forceUpdate, triggerNewApiCall] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -32,8 +33,8 @@ const DogProfilePage = (props) => {
             .catch(error => {
                 console.log(error);
                 setApiError(true);
-            })
-    }, [id, setApiError, setDog]);
+            });
+    }, [id, setApiError, setDog, forceUpdate]);
 
     useEffect(() => {
         if (dog) {
@@ -78,6 +79,7 @@ const DogProfilePage = (props) => {
                     }
                     <DogProfilePageHeaderButtons 
                         dog_profile={dog}
+                        triggerNewApiCall={triggerNewApiCall}
                     />
                 </header>
                 <section className='DogProfilePage__about-section'>

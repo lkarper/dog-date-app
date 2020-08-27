@@ -23,7 +23,7 @@ const DogProfileCharacteristics = (props) => {
 
     return (
         <ul>
-            <li>{energy}</li>
+            <li>{energy === 'Not very...' ? 'Not very energetic...' : energy}</li>
             <li>{temperment}</li>
             <li>{obedience}</li>
             {dislikes_puppies ? <li>Dislikes puppies</li> : ''}
