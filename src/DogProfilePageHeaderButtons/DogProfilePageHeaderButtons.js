@@ -1,23 +1,30 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../contexts/UserContext';
 import CreateDogProfile from '../CreateDogProfile/CreateDogProfile';
+import DogProfilesService from '../services/dog-profiles-service';
 
 const DogProfilePageHeaderButtons = (props) => {
 
     const context = useContext(UserContext);
     
-    const { owner_id, id, name } = props.dog_profile;
+    const { owner, id, name } = props.dog_profile;
 
     const [showEdit, setShowEdit] = useState(false);
 
-    const isAPackMember = context.packMembers.find(pm => pm.pack_member_id === id);
+    const isAPackMember = context.packMembers.find(pm => pm.profile._id === id);
 
     const removePackMemberCheck = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to remove ${name} from your pack?`);
         if (confirmation) {
-            context.removePackMember(id);
+            const entryId = context.packMembers.find(pm => pm.profile._id === id).id;
+            DogProfilesService.removePackMember(entryId)
+                .then(() => {
+                    context.removePackMember(entryId);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         }
     }
 
@@ -25,10 +32,16 @@ const DogProfilePageHeaderButtons = (props) => {
         const confirmation = window.confirm(`Are you sure that you'd like to add ${name} to your pack?`);
         if (confirmation) {
             const newPackMember = {
-                "id": uuidv4(),
-                "user_id": context.user.id,
-                "pack_member_id": id,
+                pack_member_id: id,
             };
+            DogProfilesService.addPackMember(newPackMember)
+                .then(profile => {
+                    context.addPackMember(profile);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
             context.addPackMember(newPackMember);
         }
     }
@@ -36,12 +49,18 @@ const DogProfilePageHeaderButtons = (props) => {
     const removeDogProfileCheck = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to delete ${name}'s profile?`);
         if (confirmation) {
-            context.removeDogProfile(id);
+            DogProfilesService.deleteDogProfile(id)
+                .then(() => {
+                    context.removeDogProfile(id);
+                    props.history.push('/home');
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
-        props.history.push('/home');
     }
 
-    if (owner_id === context.user.id) {
+    if (owner.id === context.user.id) {
         return (
             <div className='DogProfilePageHeaderButtons__container'>
                 <button
