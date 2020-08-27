@@ -14,6 +14,13 @@ const ReviewsService = {
                     : res.json()
             );
     },
+    fetchReviewsByDogId(dogId) {
+        return fetch(`${config.API_ENDPOINT}/reviews/by-dog/${dogId}`, {
+            headers: {
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
+            },
+        });
+    },
     getReviewsByOwnerId() {
         return fetch(`${config.API_ENDPOINT}/reviews/by-owner`, {
             headers: {
