@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import DogProfileCharacteristics from '../DogProfileCharacteristics/DogProfileCharacteristics';
@@ -7,78 +7,114 @@ import DogProfilePageHeaderButtons from '../DogProfilePageHeaderButtons/DogProfi
 import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
 import DogAverageRating from '../DogAverageRating/DogAverageRating';
 import './DogProfilePage.css';
+import DogProfilesService from '../services/dog-profiles-service';
+import ReviewsService from '../services/reviews-service';
+import HowlsService from '../services/howls-service';
 
 const DogProfilePage = (props) => {
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [props]);
 
     const context = useContext(UserContext);
 
     const { id } = props.match.params;
-    const dog_profile = context.allDogs.find(profile => profile.id === id);
 
-    if (dog_profile) {
-        const howlsBy = context.howls.filter(howl => howl.dog_ids.includes(id));
-        const reviews = context.reviews.filter(review => review.dog_id === id);
+    const [dog, setDog] = useState();
+    const [reviews, setReviews] = useState();
+    const [howls, setHowls] = useState();
+    const [apiError, setApiError] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        DogProfilesService.fetchDogProfileById(id)
+            .then(dog => {
+                setApiError(false);
+                setDog(dog);
+            })
+            .catch(error => {
+                console.log(error);
+                setApiError(true);
+            })
+    }, [id, setApiError, setDog]);
+
+    useEffect(() => {
+        if (dog) {
+            Promise.all([
+                ReviewsService.fetchReviewsByDogId(dog.id),
+                HowlsService.fetchHowlByDogId(dog.id)
+            ])
+                .then(res => Promise.all(res.map(res => res.json())))
+                .then(values => {
+                    setApiError(false);
+                    const dogReviews = values[0];
+                    const dogHowls = values[1];
+                    setReviews(dogReviews);
+                    setHowls(dogHowls);
+                })
+                .catch(error => {
+                    console.log(error);
+                    setApiError(true);
+                })
+        }
+    }, [dog]);
+
+    if (dog) {
 
         return (
             <>
                 <header className='DogProfilePage__header'>
-                    <h1>{dog_profile.name}</h1>
-                    {dog_profile.profile_img_url 
+                    <h1>{dog.name}</h1>
+                    {dog.profile_img_url 
                             ?
                                 <img
                                     className='DogProfilePage__profile-img' 
-                                    src={dog_profile.profile_img_url} 
-                                    alt={`Avatar of the dog named ${dog_profile.name}.`} 
+                                    src={dog.profile_img_url} 
+                                    alt={`Avatar of the dog named ${dog.name}.`} 
                                 />
                             :
                                 <img
                                     className='DogProfilePage__profile-img' 
                                     src='/images/photo_not_available.png'
-                                    alt={`Avatar of the dog named ${dog_profile.name} not available.`} 
+                                    alt={`Avatar of the dog named ${dog.name} not available.`} 
                                 />
                     }
                     <DogProfilePageHeaderButtons 
-                        dog_profile={dog_profile}
+                        dog_profile={dog}
                     />
                 </header>
                 <section className='DogProfilePage__about-section'>
                     <header className='DogProfilePage__header'>
-                        <h2>About {dog_profile.name}</h2>
+                        <h2>About {dog.name}</h2>
                     </header>
-                    <p>{dog_profile.owner_description}</p>
-                    <p>Age: {dog_profile.age_months ? `${dog_profile.age_years} years, ${dog_profile.age_months}, months` : `${dog_profile.age_years}`}</p>
-                    <p>Breed: {dog_profile.breed || `(not listed)`}</p>
-                    <p>Weight: {dog_profile.weight ? `${dog_profile.weight} lbs` : `(Not listed)`}</p>
-                    <p>Sex: {dog_profile.sex || `(not listed)`}</p>
+                    <p>{dog.owner_description}</p>
+                    <p>Age: {dog.age_months ? `${dog.age_years} years, ${dog.age_months}, months` : `${dog.age_years}`}</p>
+                    <p>Breed: {dog.breed || `(not listed)`}</p>
+                    <p>Weight: {dog.weight ? `${dog.weight} lbs` : `(Not listed)`}</p>
+                    <p>Sex: {dog.sex || `(not listed)`}</p>
                 </section>
                 <section>
                     <header className='DogProfilePage__header'>
                         <h2>Characteristics</h2>
                     </header>
-                <DogProfileCharacteristics dog_profile={dog_profile}/>
+                <DogProfileCharacteristics dog_profile={dog}/>
                 </section>
                 <section>
                     <header className='DogProfilePage__header'>
-                        <h2>Howls about {dog_profile.name}</h2>
+                        <h2>Howls about {dog.name}</h2>
                     </header>
                     <ul className='DogProfilePage__howls-list'>
-                        {howlsBy.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
+                        {howls && howls.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
+                        {!howls && <p>Loading...</p>}
                     </ul>
                 </section>
                 <section>
                     <header className='DogProfilePage__header'>
-                        <h2>Reviews of {dog_profile.name}</h2>
+                        <h2>Reviews of {dog.name}</h2>
                     </header>
-                    {context.user.id === dog_profile.owner_id 
+                    {context.user.id === dog.owner.id 
                         ? '' 
-                        : <Link to={`/leave-review/${dog_profile.id}`}>Leave your own review of {dog_profile.name}</Link>
+                        : <Link to={`/leave-review/${dog.id}`}>Leave your own review of {dog.name}</Link>
                     }
-                    {reviews.length 
-                        ? 
+                    {(reviews && reviews.length)
+                        &&
                             <div>
                                 <DogAverageRating 
                                     reviews={reviews}
@@ -87,22 +123,26 @@ const DogProfilePage = (props) => {
                                     {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
                                 </ul>
                             </div>
-                        :
-                            <p>No reviews of {dog_profile.name} yet.</p>
-                }
+                    }
+                    {(reviews && reviews.length === 0) && <p>No reviews of {dog.name} yet.</p>}
+                    {!reviews && <p>Loading...</p>}
                 </section>
             </>
         );
     }
 
-    return (
-        <section className='section'>
-            <header>
-                <h1>Woof...</h1>
-            </header>
-            <p>Dog profile not found.  Check the url and try agian.</p>
-        </section>
-    );
+    if (apiError) {
+        return (
+            <section className='section'>
+                <header>
+                    <h1>Woof...</h1>
+                </header>
+                <p>Dog profile not found.  Check the url and try agian.</p>
+            </section>
+        );
+    }
+
+    return <p>Loading...</p>;
 }
 
 export default DogProfilePage;
