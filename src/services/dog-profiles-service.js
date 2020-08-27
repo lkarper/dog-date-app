@@ -15,7 +15,60 @@ const DogProfilesService = {
                 'authorization': `Bearer ${TokenService.getAuthToken()}`,
             }
         });
-    }
+    },
+    fetchDogProfileById(id) {
+        return fetch(`${config.API_ENDPOINT}/dog-profiles/${id}`, {
+            headers: {
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
+            }
+        })
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()    
+            );
+    },
+    removePackMember(entryId) {
+        return fetch(`${config.API_ENDPOINT}/dog-profiles/pack-members/${entryId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(e => Promise.reject(e));
+                }
+            });
+    },
+    addPackMember(newPackMember) {
+        return fetch(`${config.API_ENDPOINT}/dog-profiles/pack-members`, {
+            method: 'POST',
+            body: JSON.stringify(newPackMember),
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+        })
+            .then(res => {
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            });
+    },
+    deleteDogProfile(dogId) {
+        return fetch(`${config.API_ENDPOINT}/dog-profiles/${dogId}`, {
+            method: 'DELETE',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(e => Promise.reject(e));
+                }
+            });
+    },
 }
 
 export default DogProfilesService;
