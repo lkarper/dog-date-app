@@ -146,7 +146,7 @@ const CreateDogProfile = (props) => {
         if (imgDataP || imgDataP === null) {
             uploadDogProfile();
         }
-    }, [imgDataP]);
+    }, [imgDataP, uploadDogProfile]);
 
     const useNoImg = () => {
         setImgUrlP('');
