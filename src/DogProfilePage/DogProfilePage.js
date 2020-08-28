@@ -103,7 +103,8 @@ const DogProfilePage = (props) => {
                         <h2>Howls about {dog.name}</h2>
                     </header>
                     <ul className='DogProfilePage__howls-list'>
-                        {howls && howls.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
+                        {(howls && howls.length > 0) && howls.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
+                        {(howls && howls.length === 0) && <p>No howls featuring {dog.name} yet. <Link to='/create-howl'>Create a howl now!</Link></p>}
                         {!howls && <p>Loading...</p>}
                     </ul>
                 </section>
@@ -115,7 +116,7 @@ const DogProfilePage = (props) => {
                         ? '' 
                         : <Link to={`/leave-review/${dog.id}`}>Leave your own review of {dog.name}</Link>
                     }
-                    {(reviews && reviews.length)
+                    {(reviews && reviews.length > 0)
                         &&
                             <div>
                                 <DogAverageRating 
