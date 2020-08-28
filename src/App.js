@@ -69,19 +69,22 @@ const App = (props) => {
           DogProfilesService.fetchUserDogs(), 
           DogProfilesService.fetchPackMembers(),
           HowlsService.fetchUserSavedHowls(),
+          HowlsService.fetchHowlsByUser(),
       ])
       .then(res => Promise.all(res.map(res => res.json())))
       .then(values => {
           const userDogs = values[0];
           const packMembers = values[1];
           const userSavedHowls = values[2];
+          const howls = values[3];
           context.setDogs(userDogs);
           context.setUserPackMembers(packMembers);
           context.setUserSavedHowls(userSavedHowls);
+          context.setHowls(howls);
           forceUpdate();
       })
       .catch(error => {
-          context.setError(error.message);
+        console.log(error);
       });
 
     }

@@ -7,12 +7,20 @@ const HowlsService = {
             headers: {
                 'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
-        })
+        });
+    },
+    fetchHowlsByUser() {
+        return fetch(`${config.API_ENDPOINT}/howls/by-user`, {
+            headers: {
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
+            }
+        });
     },
     addUserSavedHowl(newSavedHowl) {
         return fetch(`${config.API_ENDPOINT}/howls/user-saved`, {
             method: 'POST',
             headers: {
+                'content-type': 'application/json',
                 'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
             body: JSON.stringify(newSavedHowl),

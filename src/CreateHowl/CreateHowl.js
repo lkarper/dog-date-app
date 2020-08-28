@@ -173,7 +173,9 @@ const CreateHowl = (props) => {
         };
         if (suffix) {
             HowlsService.updateHowl(howl.id, newHowl)
-                .then(() => {
+                .then(() => HowlsService.getHowlById(howl.id))
+                .then(howl => {
+                    context.updateHowl(howl);
                     props.forceUpdate(new Date().toJSON());
                     props.setShowEdit(false);
                 })
@@ -181,6 +183,7 @@ const CreateHowl = (props) => {
         } else {
             HowlsService.createNewHowl(newHowl)
                 .then(howl => {
+                    context.addHowl(howl);
                     props.history.push(`/howls/${howl.id}`);
                 })
                 .catch(error => console.log(error));

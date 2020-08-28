@@ -66,6 +66,9 @@ const HowlsPageAdvancedSearch = (props) => {
     }, [typeOfMeeting, typeOfMeetingP, setTypeOfMeetingP]);
 
     useEffect(() => {
+        if (daysOfWeek && daysOfWeek.length !== 0) {
+            setDate('');
+        }
         setDaysOfWeekP(daysOfWeek);
     }, [daysOfWeek, setDaysOfWeekP]);
 
@@ -73,7 +76,10 @@ const HowlsPageAdvancedSearch = (props) => {
         if (date !== dateP) {
             setDateP(date);
         }
-    }, [date, dateP, setDateP]);
+        if (date) {
+            setDaysOfWeek([]);
+        }
+    }, [date, dateP, setDateP, setDaysOfWeek]);
 
     const checkDayOfWeek = (day, add) => {
         if (add) {

@@ -3,8 +3,12 @@ import React, { useState, createContext } from 'react';
 const UserContext = createContext({
     user: {},
     dogs: [],
+    howls: [],
     userSavedHowls: [],
     packMembers: [],
+    addHowl: () => {},
+    removeHowl: () => {},
+    updateHowl: () => {},
     addPackMember: () => {},
     removePackMember: () => {},
     setUser: () => {},
@@ -16,6 +20,7 @@ const UserContext = createContext({
     setDogs: () => {},
     setUserSavedHowls: () => {},
     setUserPackMembers: () => {},
+    setHowls: () => {},
 });
 
 export default UserContext;
@@ -24,8 +29,24 @@ export const UserProvider = (props) => {
 
     const [dogs, setDogs] = useState([]);
     const [user, setUser] = useState({});
+    const [howls, setHowls] = useState([]);
     const [userSavedHowls, setUserSavedHowls] = useState([]);
     const [packMembers, setUserPackMembers] = useState([]);
+
+    const addHowl = (newHowl) => {
+        const updatedHowls = [...howls, newHowl];
+        setHowls(updatedHowls);
+    }
+
+    const removeHowl = (howlId) => {
+        const updatedHowls = howls.filter(howl => howl.id !== howlId);
+        setHowls(updatedHowls);
+    }
+
+    const updateHowl = (newHowl) => {
+        const updatedHowls = [ ...howls.filter(howl => howl.id !== newHowl.id), newHowl];
+        setHowls(updatedHowls);
+    }
 
     const addPackMember = (newPackMember) => {
         const updatedPackMembers = [...packMembers, newPackMember];
@@ -66,9 +87,13 @@ export const UserProvider = (props) => {
     const value = {
         user,
         dogs,
+        howls,
         userSavedHowls,
         packMembers,
         setUser,
+        addHowl,
+        removeHowl,
+        updateHowl,
         addPackMember,
         removePackMember,
         addDogProfile,
@@ -79,6 +104,7 @@ export const UserProvider = (props) => {
         setDogs,
         setUserSavedHowls,
         setUserPackMembers,
+        setHowls,
     };
 
     return (

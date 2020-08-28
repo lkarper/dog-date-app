@@ -15,6 +15,7 @@ const HowlPageUserButtons = (props) => {
         if (confirmation) {
             HowlsService.deleteHowl(howl.id)
                 .then(() => {
+                    context.removeHowl(howl.id);
                     props.history.push('/home');
                 })
                 .catch(error => {

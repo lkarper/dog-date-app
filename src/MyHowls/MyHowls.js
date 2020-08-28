@@ -13,12 +13,12 @@ const MyHowls = (props) => {
             <header>
                 <h3>My howls</h3>
             </header>
-            {context.userSavedHowls.length 
+            {context.howls.length 
                 ?
                     <>
                         <Link to='/create-howl'>Click here to create a howl!</Link>
                         <ul className='MyHowls__list'>
-                            {context.userSavedHowls.map(howl => <HowlListItem key={howl.id} howl={howl.howl} />)} 
+                            {context.howls.map(howl => <HowlListItem key={howl.id} howl={howl} />)} 
                         </ul>
                     </>
                 : 
