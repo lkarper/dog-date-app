@@ -26,12 +26,6 @@ const UploadDogProfilePhoto = (props) => {
         }
     }, [imgUrl, imgUrlP, setImgUrlP, uploadDogProfile]);
 
-    // method to encode image file to base 64 before sending to database
-    // function encodeImageFileAsURL() {
-    //     const reader = new FileReader();
-    //     return reader.readAsDataURL(imgFile);
-    // }
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
