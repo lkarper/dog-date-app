@@ -7,6 +7,7 @@ import LocationForm from '../LocationForm/LocationForm';
 import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
 import './DogReviewForm.css';
 import ReviewsService from '../services/reviews-service';
+import ValidateTitle from '../validation-components/create-howl-validation/ValidateTitle';
 
 const DogReviewForm = (props) => {
 
@@ -20,6 +21,7 @@ const DogReviewForm = (props) => {
             id: '',
             date_created: '',
             dog_id: '',
+            review_title: '',
             reviewer: '',
             friendliness_dogs: '',
             friendliness_people: '',
@@ -36,7 +38,7 @@ const DogReviewForm = (props) => {
                 lon: 0,
             },
             date: '',
-            startItime: '',
+            start_time: '',
             end_time: '',        
             personal_message: '',
         },
@@ -59,6 +61,8 @@ const DogReviewForm = (props) => {
         zipcode: review.location.zipcode,
     });
     const [locationError, setLocationError] = useState([]);
+    const [reviewTitle, setReviewTitle] = useState(review.review_title);
+    const [reviewTitleError, setReviewTitleError] = useState('');
     const [personalMessage, setPersonalMessage] = useState(review.personal_message);
     const [personalMessageError, setPersonalMessageError] = useState('');
     const [date, setDate] = useState(review.date)
@@ -73,6 +77,7 @@ const DogReviewForm = (props) => {
         const newReview = {
             date_created: new Date().toJSON(),
             dog_id,
+            review_title: reviewTitle,
             reviewer: context.user.username,
             friendliness_dogs: parseInt(friendlinessDogs),
             friendliness_people: parseInt(friendlinessPeople),
@@ -84,8 +89,8 @@ const DogReviewForm = (props) => {
             city: location.city,
             state: location.state,
             zipcode: location.zipcode,
-            lat: location.lat,
-            lon: location.lon,
+            lat: coordinates.lat,
+            lon: coordinates.lon,
             date,
             start_time: startTime,
             end_time: endTime,
@@ -215,6 +220,31 @@ const DogReviewForm = (props) => {
                 />
             </fieldset>
             <fieldset>
+                <div className='DogReviewForm__title-container'>
+                    <label 
+                        className='DogReviewForm__title-label'
+                        htmlFor='review-title'>Review title: </label>
+                    <input 
+                        className='DogReviewForm__title-input'
+                        type='text'
+                        id='review-title'
+                        name='review-title'
+                        maxLength='100'
+                        aria-describedby='howl-title-validator'
+                        value={reviewTitle}
+                        onChange={(e) => setReviewTitle(e.target.value)}
+                        required
+                    />
+                </div>
+                <div role='alert'>
+                    <ValidateTitle
+                        title={reviewTitle}
+                        titleError={reviewTitleError}
+                        setTitleError={setReviewTitleError}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
                 <legend>Add a personal note here</legend>
                 <div className='DogReviewForm__message-container'>
                     <label htmlFor="review-note">Add a personal note to go with your review:</label>
@@ -239,7 +269,9 @@ const DogReviewForm = (props) => {
             </fieldset>
             <button 
                 type="submit"
-                disabled={personalMessageError || locationError.length}
+                disabled={reviewTitleError || 
+                    personalMessageError || 
+                    locationError.length}
             >Submit</button>
         </form>
     );

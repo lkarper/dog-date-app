@@ -8,6 +8,7 @@ const DogReviewListItem = (props) => {
 
     const { 
         id,
+        review_title,
         reviewer,
         date_created,
         friendliness_dogs,
@@ -30,7 +31,7 @@ const DogReviewListItem = (props) => {
 
     return (
         <li className='DogReviewListItem__li'>
-            <h3><Link to={`/reviews/${id}`}>Review of {dog_profile.name}</Link></h3>
+            <h3><Link to={`/reviews/${id}`}>{review_title}</Link></h3>
             <p>Reviewed by {reviewer} on {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
             <p>Overall rating: {averageRating.toFixed(2)} stars</p>
         </li>

@@ -31,3 +31,7 @@
     margin: 0;
     padding: 5px;
 }
+
+.DogReviewForm__title-container input {
+    width: 75%;
+}

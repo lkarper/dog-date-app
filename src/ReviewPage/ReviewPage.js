@@ -58,6 +58,7 @@ const ReviewPage = (props) => {
         
         const { 
             reviewer,
+            review_title,
             date_created,
             friendliness_dogs,
             friendliness_people,
@@ -80,7 +81,7 @@ const ReviewPage = (props) => {
             if (confirmation) {
                 ReviewsService.deleteReview(id)
                     .then(() => {
-                        props.history.push(`/dog-profiles/${dog_profile.id}`);
+                        props.history.push(`/dog-profile/${dog_profile.id}`);
                     })
                     .catch(error => {
                         console.log(error);
@@ -111,7 +112,7 @@ const ReviewPage = (props) => {
         return (
             <>
                 <header className='ReviewPage__header'>
-                    <h1>Review of {dog_profile.name}</h1>
+                    <h1>{review_title}</h1>
                     <p>Reviewed by: {reviewer}</p>
                     <p>On: {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
                     <p>Overall rating: {averageRating.toFixed(2)} stars</p>
