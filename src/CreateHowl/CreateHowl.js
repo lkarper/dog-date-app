@@ -9,7 +9,7 @@ import ValidateDogSelection from '../validation-components/create-howl-validatio
 import ValidateTime from '../validation-components/create-howl-validation/ValidateTime';
 import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
 import LocationForm from '../LocationForm/LocationForm';
-import ValidateHowlTitle from '../validation-components/create-howl-validation/ValidateHowlTitle';
+import ValidateTitle from '../validation-components/create-howl-validation/ValidateTitle';
 import './CreateHowl.css';
 import HowlsService from '../services/howls-service';
 
@@ -310,17 +310,17 @@ const CreateHowl = (props) => {
                             id='howl-title'
                             name='howl-title'
                             maxLength='100'
-                            aria-describedby='howl-title-validator'
+                            aria-describedby='title-validator'
                             value={howlTitle}
                             onChange={(e) => setHowlTitle(e.target.value)}
                             required
                         />
                     </div>
                     <div role='alert'>
-                        <ValidateHowlTitle 
-                            howlTitle={howlTitle}
-                            howlTitleError={howlTitleError}
-                            setHowlTitleError={setHowlTitleError}
+                        <ValidateTitle 
+                            title={howlTitle}
+                            titleError={howlTitleError}
+                            setTitleError={setHowlTitleError}
                         />
                     </div>
                     <div className='CreateHowl__description-container'>

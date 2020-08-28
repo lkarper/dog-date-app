@@ -143,18 +143,23 @@ const HowlPageView  = (props) => {
                     <header>
                         <h2>Dogs in this howl</h2>
                     </header>
-                    <ul className='HowlPageView__dog-list'>
-                        {howl.dogs
-                            .map(dog =>
-                                <HowlPageDogProfile 
-                                    key={dog.dog_id}
-                                    dog_id={dog.dog_id} 
-                                    dog_profile={dog.profile}
-                                    owner={dog.owner} 
-                                />
-                            )
-                        }
-                    </ul>
+                    {howl.dogs.length !== 0
+                        ? 
+                            <ul className='HowlPageView__dog-list'>
+                                {howl.dogs
+                                    .map(dog =>
+                                        <HowlPageDogProfile 
+                                            key={dog.dog_id}
+                                            dog_id={dog.dog_id} 
+                                            dog_profile={dog.profile}
+                                            owner={dog.owner} 
+                                        />
+                                    )
+                                }
+                            </ul>
+                        :
+                            <p>No dogs listed for this howl.</p>
+                    }
                 </section>
             </>
         );
