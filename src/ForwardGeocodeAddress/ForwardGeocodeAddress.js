@@ -11,6 +11,7 @@ const ForwardGeocodeAddress = (props) => {
     const [results, setResults] = useState([]);
     const [search, setSearch] = useState('');
     const [hidden, setHidden] = useState(true);
+    const [apiError, setApiError] = useState(false);
 
     useEffect(() => {
         setHidden(true);
@@ -22,6 +23,8 @@ const ForwardGeocodeAddress = (props) => {
 
             const query = encodeURIComponent(search);
             const key = config.mapbox_key;
+            setApiError(false);
+
             fetch(`https://us1.locationiq.com/v1/search.php?key=${key}&q=${query}&format=json`)
                 .then(res => {
                     if (res.ok) {
@@ -35,6 +38,7 @@ const ForwardGeocodeAddress = (props) => {
                 })
                 .catch(error => {
                     console.log(error);
+                    setApiError(true);
                 });
         }
 
@@ -80,8 +84,9 @@ const ForwardGeocodeAddress = (props) => {
                         />)}
                 </ol>
             </NativeClickListener>
+            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
         </div>
-    )
+    );
 }
 
 export default ForwardGeocodeAddress;

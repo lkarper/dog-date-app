@@ -4,8 +4,8 @@ import UserContext from '../contexts/UserContext';
 import DogProfileCharacteristics from '../DogProfileCharacteristics/DogProfileCharacteristics';
 import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
 import DogAverageRating from '../DogAverageRating/DogAverageRating';
-import './HowlPageDogProfile.css';
 import ReviewsService from '../services/reviews-service';
+import './HowlPageDogProfile.css';
 
 const HowlPageDogProfile = (props) => {
 
@@ -14,6 +14,7 @@ const HowlPageDogProfile = (props) => {
     const { dog_profile, dog_id, owner } = props;
 
     const [reviews, setReviews] = useState();
+    const [apiError, setApiError] = useState(false);
 
     useEffect(() => {
         ReviewsService.getReviewsByDogId(dog_id)
@@ -22,6 +23,7 @@ const HowlPageDogProfile = (props) => {
             })
             .catch(error => {
                 console.log(error);
+                setApiError(true);
             });
     }, [dog_id, setReviews]);
 
@@ -74,8 +76,8 @@ const HowlPageDogProfile = (props) => {
                     ? '' 
                     : <Link to={`/leave-review/${dog_id}`}>Leave your own review of {dog_profile.name}</Link>
                 }
-                {reviews && reviews.length 
-                    ? 
+                {(reviews && reviews.length > 0) 
+                    && 
                         <div className='HowlPageDogProfile__reviews-container'>
                             <DogAverageRating 
                                 reviews={reviews}
@@ -84,9 +86,12 @@ const HowlPageDogProfile = (props) => {
                                 {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
                             </ul>
                         </div>
-                    :
+                }
+                {(reviews && reviews.length=== 0)
+                    &&
                         <p>No reviews of {dog_profile.name} yet.</p>
-            }
+                }
+                {apiError && <p>Error: Could not load reviews. Check your connection and try again.</p>}
             </section>
         </li>
     );

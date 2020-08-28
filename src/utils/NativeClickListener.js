@@ -29,7 +29,7 @@ const NativeClickListener = (props) => {
         >
             {props.children}
         </div>
-    )
+    );
 }
 
 export default NativeClickListener;

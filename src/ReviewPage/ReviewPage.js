@@ -9,8 +9,8 @@ import TimeWindow from '../TimeWindow/TimeWindow';
 import ReviewComments from '../ReviewComments/ReviewComments';
 import AddCommentForm from '../AddCommentForm/AddCommentForm';
 import DogReviewForm from '../DogReviewForm/DogReviewForm';
-import './ReviewPage.css';
 import ReviewsService from '../services/reviews-service';
+import './ReviewPage.css';
 
 const ReviewPage = (props) => {
 
@@ -24,6 +24,7 @@ const ReviewPage = (props) => {
     const [apiError, setApiError] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [forceUpdate, setForceUpdate] = useState();
+    const [couldNotDelete, setCouldNotDelete] = useState();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -81,9 +82,11 @@ const ReviewPage = (props) => {
             if (confirmation) {
                 ReviewsService.deleteReview(id)
                     .then(() => {
+                        setCouldNotDelete(false);
                         props.history.push(`/dog-profile/${dog_profile.id}`);
                     })
                     .catch(error => {
+                        setCouldNotDelete(true);
                         console.log(error);
                     });
             }
@@ -104,6 +107,7 @@ const ReviewPage = (props) => {
                     <div className='ReviewPage__user-buttons-container'>
                         <button onClick={() => setShowEdit(true)}>Edit</button>
                         <button onClick={checkRemoveReview}>Delete</button>
+                        {couldNotDelete && <p>Error: Could not delete your review at this time.  Please check your connection and try again.</p>}
                     </div>
                 );
             }

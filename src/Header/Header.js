@@ -19,6 +19,7 @@ const Header = (props) => {
         context.setDogs([]);
         context.setUserPackMembers([]);
         context.setUserSavedHowls([]);
+        context.setHowls([]);
         forceUpdate();
     }
 

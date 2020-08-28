@@ -29,9 +29,8 @@ const HowlPageView  = (props) => {
                 setHowl(howl);
             })
             .catch(error => {
-                if (error.message === `Howl doesn't exist`) {
-                    setHowlNotFound(true);
-                }
+                console.log(error);
+                setHowlNotFound(true);
             })
     }, [props, howl_id, setHowl, setHowlNotFound, update]);
 
@@ -81,7 +80,7 @@ const HowlPageView  = (props) => {
                 <header>
                     <h1>Howl not found</h1>
                 </header>
-                <p>Looks likes something went wrong and the howl could not be found.</p>
+                <p>Looks likes something went wrong.</p>
                 <p>Check the address and try again.</p>
             </>
         );

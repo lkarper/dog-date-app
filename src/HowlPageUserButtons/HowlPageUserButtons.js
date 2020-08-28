@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import HowlPageButtons from '../HowlPageButtons/HowlPageButtons';
@@ -10,15 +10,19 @@ const HowlPageUserButtons = (props) => {
 
     const { howl, setShowEdit } = props;
 
+    const [apiError, setApiError] = useState(false);
+
     const checkDeleteHowl = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to delete this howl?`);
         if (confirmation) {
+            setApiError(false);
             HowlsService.deleteHowl(howl.id)
                 .then(() => {
                     context.removeHowl(howl.id);
                     props.history.push('/home');
                 })
                 .catch(error => {
+                    setApiError(true);
                     console.log(error);
                 });
         }
@@ -30,6 +34,7 @@ const HowlPageUserButtons = (props) => {
                 <div className='HowlPageUserButtons__container'>
                     <button onClick={() => setShowEdit(true)}>Edit</button>
                     <button onClick={checkDeleteHowl}>Delete</button>
+                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                 </div>
             );
         }

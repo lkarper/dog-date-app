@@ -13,7 +13,7 @@ const MyHowls = (props) => {
             <header>
                 <h3>My howls</h3>
             </header>
-            {context.howls.length 
+            {context.howls.length > 0
                 ?
                     <>
                         <Link to='/create-howl'>Click here to create a howl!</Link>
@@ -24,7 +24,7 @@ const MyHowls = (props) => {
                 : 
                     <>
                         <p>You haven't howled yet.</p>
-                        {context.dogs.length 
+                        {context.dogs.length > 0
                             ?
                                 <Link to='/create-howl'>Click here to create a howl!</Link>
                             :

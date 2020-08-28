@@ -11,6 +11,7 @@ const DogProfilePageHeaderButtons = (props) => {
     const { owner, id, name } = props.dog_profile;
 
     const [showEdit, setShowEdit] = useState(false);
+    const [apiError, setApiError] = useState(false);
 
     const isAPackMember = context.packMembers.length 
         ? context.packMembers.find(pm => pm.profile.id === id)
@@ -19,13 +20,15 @@ const DogProfilePageHeaderButtons = (props) => {
     const removePackMemberCheck = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to remove ${name} from your pack?`);
         if (confirmation) {
-            if (isAPackMember) {             
+            if (isAPackMember) {
+                setApiError(false);             
                 DogProfilesService.removePackMember(isAPackMember.id)
                     .then(() => {
                         context.removePackMember(isAPackMember.id);
                     })
                     .catch(error => {
                         console.log(error);
+                        setApiError(true);
                     });   
             }
         }
@@ -34,6 +37,7 @@ const DogProfilePageHeaderButtons = (props) => {
     const addPackMemberCheck = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to add ${name} to your pack?`);
         if (confirmation) {
+            setApiError(false);
             const newPackMember = {
                 pack_member_id: id,
             };
@@ -43,6 +47,7 @@ const DogProfilePageHeaderButtons = (props) => {
                     context.addPackMember(profile);
                 })
                 .catch(error => {
+                    setApiError(true);
                     console.log(error);
                 });
         }
@@ -51,12 +56,14 @@ const DogProfilePageHeaderButtons = (props) => {
     const removeDogProfileCheck = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to delete ${name}'s profile?`);
         if (confirmation) {
+            setApiError(false);
             DogProfilesService.deleteDogProfile(id)
                 .then(() => {
                     context.removeDogProfile(id);
                     props.history.push('/home');
                 })
                 .catch(error => {
+                    setApiError(true);
                     console.log(error);
                 });
         }
@@ -75,6 +82,7 @@ const DogProfilePageHeaderButtons = (props) => {
                 >
                     Delete profile
                 </button>
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                 {showEdit 
                     ? 
                         <CreateDogProfile 
@@ -98,6 +106,7 @@ const DogProfilePageHeaderButtons = (props) => {
                     >
                         Click here to remove {name} from your pack
                     </button>
+                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                 </div>
             );
         }
@@ -111,6 +120,7 @@ const DogProfilePageHeaderButtons = (props) => {
                 >
                     Click here to add {name} to your pack!
                 </button>
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
             </div>
         );
     }

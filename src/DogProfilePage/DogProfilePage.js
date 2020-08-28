@@ -6,10 +6,10 @@ import HowlListItem from '../HowlListItem/HowlListItem';
 import DogProfilePageHeaderButtons from '../DogProfilePageHeaderButtons/DogProfilePageHeaderButtons';
 import DogReviewListItem from '../DogReviewListItem/DogReviewListItem';
 import DogAverageRating from '../DogAverageRating/DogAverageRating';
-import './DogProfilePage.css';
 import DogProfilesService from '../services/dog-profiles-service';
 import ReviewsService from '../services/reviews-service';
 import HowlsService from '../services/howls-service';
+import './DogProfilePage.css';
 
 const DogProfilePage = (props) => {
 
@@ -21,7 +21,7 @@ const DogProfilePage = (props) => {
     const [reviews, setReviews] = useState();
     const [howls, setHowls] = useState();
     const [apiError, setApiError] = useState(false);
-    const [forceUpdate, triggerNewApiCall] = useState(null);
+    const [forceUpdate, triggerForceUpdate] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -79,7 +79,7 @@ const DogProfilePage = (props) => {
                     }
                     <DogProfilePageHeaderButtons 
                         dog_profile={dog}
-                        triggerNewApiCall={triggerNewApiCall}
+                        triggerNewApiCall={triggerForceUpdate}
                     />
                 </header>
                 <section className='DogProfilePage__about-section'>
@@ -96,7 +96,7 @@ const DogProfilePage = (props) => {
                     <header className='DogProfilePage__header'>
                         <h2>Characteristics</h2>
                     </header>
-                <DogProfileCharacteristics dog_profile={dog}/>
+                    <DogProfileCharacteristics dog_profile={dog}/>
                 </section>
                 <section>
                     <header className='DogProfilePage__header'>
@@ -140,7 +140,7 @@ const DogProfilePage = (props) => {
                 <header>
                     <h1>Woof...</h1>
                 </header>
-                <p>Dog profile not found.  Check the url and try agian.</p>
+                <p>Somthing went wrong while loading the dog profile.  Please check the url and your connection and try again.</p>
             </section>
         );
     }

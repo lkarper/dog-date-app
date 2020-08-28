@@ -10,8 +10,8 @@ import ValidateTime from '../validation-components/create-howl-validation/Valida
 import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
 import LocationForm from '../LocationForm/LocationForm';
 import ValidateTitle from '../validation-components/create-howl-validation/ValidateTitle';
-import './CreateHowl.css';
 import HowlsService from '../services/howls-service';
+import './CreateHowl.css';
 
 const CreateHowl = (props) => {
 
@@ -96,6 +96,7 @@ const CreateHowl = (props) => {
     const [howlTitleError, setHowlTitleError] = useState('');
     const [personalMessage, setPersonalMessage] = useState(howl.personal_message);
     const [personalMessageError, setPersonalMessageError] = useState(null);
+    const [apiError, setApiError] = useState(false);
 
     const updateDogsForHowl = (id, checkedBool) => {
         if (checkedBool) {
@@ -139,6 +140,7 @@ const CreateHowl = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setApiError(false);
 
         const newHowl = {
             howl_title: howlTitle,
@@ -179,14 +181,20 @@ const CreateHowl = (props) => {
                     props.forceUpdate(new Date().toJSON());
                     props.setShowEdit(false);
                 })
-                .catch(error => console.log(error)); 
+                .catch(error => {
+                    console.log(error);
+                    setApiError(true);
+                }); 
         } else {
             HowlsService.createNewHowl(newHowl)
                 .then(howl => {
                     context.addHowl(howl);
                     props.history.push(`/howls/${howl.id}`);
                 })
-                .catch(error => console.log(error));
+                .catch(error => {
+                    console.log(error)
+                    setApiError(true);
+                });
         }
     }
 
@@ -356,6 +364,7 @@ const CreateHowl = (props) => {
                     }
                 >Submit</button>
             </form>
+            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
         </section>
     );
 }

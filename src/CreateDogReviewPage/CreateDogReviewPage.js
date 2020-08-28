@@ -32,7 +32,7 @@ const CreateDogReviewPage = (props) => {
                 <header>
                     <h1>Dog not found</h1>
                 </header>
-                <p>We couldn't find the dog that you're attempting to review.</p>
+                <p>We couldn't find the dog that you're attempting to review. Check the address and your connection before trying again.</p>
                 {context.packMembers.length 
                 ?             
                     <div>

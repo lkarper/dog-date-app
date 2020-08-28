@@ -17,7 +17,6 @@ const DogReviewListItem = (props) => {
         obedience,
         profile_accuracy,
         location_suitability,
-        dog_profile,
     } = review;
 
     const averageRating = (
@@ -35,7 +34,7 @@ const DogReviewListItem = (props) => {
             <p>Reviewed by {reviewer} on {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
             <p>Overall rating: {averageRating.toFixed(2)} stars</p>
         </li>
-    )
+    );
 }
 
 export default DogReviewListItem;

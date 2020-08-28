@@ -6,7 +6,6 @@ const UploadDogProfilePhoto = (props) => {
     const { 
         imgUrlP, 
         setImgUrlP, 
-        imgDataP,
         setImgDataP,
         uploadDogProfile, 
         suffix 

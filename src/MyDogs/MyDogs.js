@@ -15,9 +15,14 @@ const MyDogs = (props) => {
                 <h2>My dogs</h2>
             </header>
             <Link to='/create-dog-profile'>Create a new dog profile!</Link>
-            <ul className='MyDogs__list'>
-                {dogs.map(dog => <DogListView key={dog.id} dog={dog} />)}
-            </ul>
+            {dogs && (dogs.length > 0
+                ?
+                    <ul className='MyDogs__list'>
+                        {dogs.map(dog => <DogListView key={dog.id} dog={dog} />)}
+                    </ul>
+                :
+                    <p>No dogs currently linked to your account.</p>)
+            }
         </section>
     );
 }

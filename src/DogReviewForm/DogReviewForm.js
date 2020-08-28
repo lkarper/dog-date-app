@@ -5,9 +5,9 @@ import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
 import MapForm from '../MapForm/MapForm';
 import LocationForm from '../LocationForm/LocationForm';
 import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
-import './DogReviewForm.css';
 import ReviewsService from '../services/reviews-service';
 import ValidateTitle from '../validation-components/create-howl-validation/ValidateTitle';
+import './DogReviewForm.css';
 
 const DogReviewForm = (props) => {
 
@@ -68,12 +68,14 @@ const DogReviewForm = (props) => {
     const [date, setDate] = useState(review.date)
     const [startTime, setStartTime] = useState(review.start_time)
     const [endTime, setEndTime] = useState(review.end_time);
+    const [apiError, setApiError] = useState(false);
 
     const today = new Date();
     const maxDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setApiError(false);
         const newReview = {
             date_created: new Date().toJSON(),
             dog_id,
@@ -104,6 +106,7 @@ const DogReviewForm = (props) => {
                 })
                 .catch(error => {
                     console.log(error);
+                    setApiError(true);
                 })
 
         } else {
@@ -111,9 +114,11 @@ const DogReviewForm = (props) => {
                 .then(review => {
                     props.history.push(`/reviews/${review.id}`);
                 })
-                .catch(error => console.log(error));
+                .catch(error => {
+                    console.log(error);
+                    setApiError(true);
+                });
         }
-
     }
 
     return (
@@ -272,7 +277,10 @@ const DogReviewForm = (props) => {
                 disabled={reviewTitleError || 
                     personalMessageError || 
                     locationError.length}
-            >Submit</button>
+            >
+                Submit
+            </button>
+            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
         </form>
     );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Map from '../Map/Map';
-import './MapForm.css';
 import CurrentLocation from '../CurrentLocation/CurrentLocation';
+import './MapForm.css';
 
 const MapForm = (props) => {
     const { coordinates, setCoordinates } = props;

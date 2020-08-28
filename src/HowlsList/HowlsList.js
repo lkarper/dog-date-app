@@ -1,20 +1,15 @@
-import React, { useContext, useState, useEffect } from 'react';
-import moment from 'moment';
-import UserContext from '../contexts/UserContext';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HowlListItem from '../HowlListItem/HowlListItem';
-import { calculateAverageWithArrayOfReviews } from '../DogAverageRating/DogAverageRating';
 import HowlsPageFilterForm from '../HowlsPageFilterForm/HowlsPageFilterForm';
-import './HowlsList.css';
 import HowlsService from '../services/howls-service';
+import './HowlsList.css';
 
 const HowlsList = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [props]);
-
-    const context = useContext(UserContext);
 
     const [howls, setHowls] = useState([]);
     const [searched, setSearched] = useState(false);
@@ -30,6 +25,7 @@ const HowlsList = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setApiError(false);
 
         const queryParams = [];
         if (stateP) {
@@ -65,12 +61,12 @@ const HowlsList = (props) => {
         const queryString = queryParams.join('&');
         HowlsService.searchHowls(queryString)
             .then(howls => {
-                setApiError(false);
                 setSearched(true);
                 setHowls(howls);
             })
             .catch(error => {
                 console.log(error);
+                setSearched(true);
                 setApiError(true);
             });
     }
@@ -125,14 +121,14 @@ const HowlsList = (props) => {
                             </>
                     }
                     {(searched && !apiError) && <p>Now showing {howls.length} {howls.length === 1 ? 'howl' : 'howls'}</p>}
-                    {searched && howls.length === 0 
+                    {searched && (howls.length === 0 
                         ?
                             <p>No howls found that match those search criteria.  Adust your parameters and try again.</p>
                         :
                             <ol className='HowlsList__list'>
                                 {howls.map(howl => <HowlListItem key={howl.id} howl={howl} />)}
                             </ol>
-                    }
+                    )}
                 </div>
             </section>
         </>

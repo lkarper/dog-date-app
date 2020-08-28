@@ -190,12 +190,12 @@ const RegistrationForm = (props) => {
                 </button>
             </form>
             <div role="alert">
-                    {apiError && 
-                        <>
-                            <h2>Error</h2>
-                            <p>New user could not be created: {apiError}</p>
-                        </>
-                    }
+                {apiError && 
+                    <>
+                        <h2>Error</h2>
+                        <p>New user could not be created: {apiError}</p>
+                    </>
+                }
             </div>
         </section>
     );

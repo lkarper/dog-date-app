@@ -13,7 +13,7 @@ const MyPack = (props) => {
             <header>
                 <h2>My Pack</h2>
             </header>
-            {packMembers.length 
+            {packMembers.length > 0
                 ?             
                     <ul className='MyPack__list'>
                         {packMembers.map(dog => <DogListView key={dog.id} dog={dog.profile} />)}
@@ -21,7 +21,6 @@ const MyPack = (props) => {
                 :
                     <p>No pack members yet.</p>
             }
-
         </section>
     );
 }

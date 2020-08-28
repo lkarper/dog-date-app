@@ -20,7 +20,6 @@ const CreateDogProfile = (props) => {
     const { dog_profile = {}, suffix = '' } = props;
 
     const { 
-        id = '',
         name = '',
         profile_img_url = '',
         age_years = 0,
