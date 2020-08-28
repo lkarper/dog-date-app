@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import UserContext from '../contexts/UserContext';
-import './AddCommentForm.css';
 import ReviewsService from '../services/reviews-service';
+import './AddCommentForm.css';
 
 const AddCommentForm = (props) => {
 
