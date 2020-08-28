@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../contexts/UserContext';
 import moment from 'moment';
-import './Comment.css';
 import AddCommentForm from '../AddCommentForm/AddCommentForm';
 import ReviewsService from '../services/reviews-service';
+import './Comment.css';
 
 const Comment = (props) => {
 
@@ -12,16 +12,21 @@ const Comment = (props) => {
     const { comment, comments, setComments } = props;
 
     const [showEdit, setShowEdit] = useState(false);
+    const [apiError, setApiError] = useState(false);
 
     const checkDelete = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to delete this comment?`);
         if (confirmation) {
+            setApiError(false);
             ReviewsService.deleteComment(comment.review_id, comment.id)
                 .then(() => {
                     const newComments = comments.filter(c => c.id !== comment.id);
                     setComments(newComments);
                 })
-                .catch(error => console.log(error));
+                .catch(error => {
+                    console.log(error);
+                    setApiError(true);
+                });
         }
     }
 
@@ -60,6 +65,7 @@ const Comment = (props) => {
                     ''
             }
             {showEdit && <button onClick={() => setShowEdit(false)}>Nevermind</button>}
+            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
         </li>
     );
 }

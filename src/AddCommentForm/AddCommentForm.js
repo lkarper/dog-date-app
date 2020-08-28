@@ -17,9 +17,11 @@ const AddCommentForm = (props) => {
     } = props;
 
     const [commentText, setCommentText] = useState(oldComment);
+    const [apiError, setApiError] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setApiError(false);
         const newComment = {
             date_time: new Date().toJSON(),
             comment: commentText,
@@ -35,20 +37,25 @@ const AddCommentForm = (props) => {
                         id,
                         commenter: context.user.username,
                     });
+                    setCommentText('');
                     setComments(updatedComments);
                     props.setShowEdit(false);
                 })
                 .catch(error => {
                     console.log(error);
+                    setApiError(true);
                 })
         } else {
             ReviewsService.addComment(reviewId, newComment)
                 .then(comment => {
                     setComments([...comments, comment]);
+                    setCommentText('');
                 })
-                .catch(error => console.log(error));
+                .catch(error => {
+                    console.log(error);
+                    setApiError(true);
+                });
         }
-        setCommentText('');
     }
 
     return (
@@ -72,6 +79,7 @@ const AddCommentForm = (props) => {
             >
                 Submit
             </button>
+            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
         </form>
     );
 }

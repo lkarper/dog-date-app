@@ -80,6 +80,7 @@ const CreateDogProfile = (props) => {
     const [imgUrlP, setImgUrlP] = useState(profile_img_url);
     const [imgDataP, setImgDataP] = useState();
     const [showLoading, setShowLoading] = useState(false);
+    const [apiError, setApiError] = useState(false);
 
     const handleInfoSubmit = (event) => {
         event.preventDefault();
@@ -87,6 +88,7 @@ const CreateDogProfile = (props) => {
     }
 
     const uploadDogProfile = () => {
+        setApiError(false);
         setShowLoading(true);
         const newDogProfile = {
             owner_id: context.user.id,
@@ -123,6 +125,7 @@ const CreateDogProfile = (props) => {
                 })
                 .catch(error => {
                     console.log(error);
+                    setApiError(true);
                     setShowLoading(false);
                 });
         } else {
@@ -134,6 +137,7 @@ const CreateDogProfile = (props) => {
                 })
                 .catch(error => {
                     setShowLoading(false);
+                    setApiError(true);
                     console.log(error);
                 });
         }
@@ -298,6 +302,7 @@ const CreateDogProfile = (props) => {
                         />
                     </div>
                 }
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
             </>
         );
     }
