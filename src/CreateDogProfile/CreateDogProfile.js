@@ -4,8 +4,10 @@ import UserContext from '../contexts/UserContext';
 import BasicInfo from '../CreateDogProfileFormComponents/BasicInfo/BasicInfo';
 import DogDescription from '../CreateDogProfileFormComponents/DogDescription/DogDescription';
 import UploadDogProfilePhoto from '../CreateDogProfileFormComponents/UploadDogProfilePhoto/UploadDogProfilePhoto';
-import './CreateDogProfile.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import DogProfilesService from '../services/dog-profiles-service';
+import './CreateDogProfile.css';
 
 const CreateDogProfile = (props) => {
 
@@ -77,6 +79,7 @@ const CreateDogProfile = (props) => {
     const [personalMessageErrorP, setPersonalMessageErrorP] = useState('');
     const [imgUrlP, setImgUrlP] = useState(profile_img_url);
     const [imgDataP, setImgDataP] = useState();
+    const [showLoading, setShowLoading] = useState(false);
 
     const handleInfoSubmit = (event) => {
         event.preventDefault();
@@ -84,6 +87,7 @@ const CreateDogProfile = (props) => {
     }
 
     const uploadDogProfile = () => {
+        setShowLoading(true);
         const newDogProfile = {
             owner_id: context.user.id,
             name: nameP,
@@ -119,14 +123,17 @@ const CreateDogProfile = (props) => {
                 })
                 .catch(error => {
                     console.log(error);
+                    setShowLoading(false);
                 });
         } else {
             DogProfilesService.updateDogProfile(dog_profile.id, newDogProfile)
                 .then(() => {
+                    setShowLoading(false);
                     props.setShowEdit(false);
                     props.triggerNewApiCall(new Date().toJSON());
                 })
                 .catch(error => {
+                    setShowLoading(false);
                     console.log(error);
                 });
         }
@@ -256,6 +263,15 @@ const CreateDogProfile = (props) => {
                         </header>
                         <button onClick={() => setImgUploadForm(true)}>Yes</button>
                         <button onClick={useNoImg}>No</button>
+                        {showLoading && 
+                            <div className='CreateDogProfilePhoto__loading-container'>
+                                <FontAwesomeIcon 
+                                    className='CreateDogProfilePhoto__loading' 
+                                    icon={faSpinner} 
+                                    spin 
+                                />
+                            </div>
+                        }
                     </section>
                 </>
             )
@@ -273,6 +289,15 @@ const CreateDogProfile = (props) => {
                     uploadDogProfile={uploadDogProfile}
                     suffix={suffix}
                 />
+                {showLoading && 
+                    <div className='CreateDogProfilePhoto__loading-container'>
+                        <FontAwesomeIcon 
+                            className='CreateDogProfilePhoto__loading' 
+                            icon={faSpinner} 
+                            spin 
+                        />
+                    </div>
+                }
             </>
         );
     }
