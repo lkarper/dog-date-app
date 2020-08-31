@@ -122,7 +122,7 @@ const HowlPageView  = (props) => {
                         <p>{howl.location.city}</p>
                         <p>{howl.location.state}{', '}{howl.location.zipcode}</p>
                     </div>
-                    {howl.location.lat && howl.location.lon 
+                    {(howl.location.lat && howl.location.lon ) && (howl.location.lat !== '0' && howl.location.lon !== '0') 
                         ? 
                             <StaticMap 
                                 lat={howl.location.lat}
