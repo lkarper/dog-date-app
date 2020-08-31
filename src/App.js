@@ -54,11 +54,9 @@ const App = (props) => {
       forceUpdate();
   }
 
-  const { setUser } = context;
-
   useEffect(() => {
-    if (TokenService.hasAuthToken()) {
-      setUser({
+    if (TokenService.hasAuthToken() && Object.keys(context.user).length === 0) {
+      context.setUser({
         id: parseInt(window.sessionStorage.getItem('id')),
         username: window.sessionStorage.getItem('username'),
         email: window.sessionStorage.getItem('email'),
@@ -86,9 +84,8 @@ const App = (props) => {
       .catch(error => {
         console.log(error);
       });
-
     }
-  }, [props, setUser]);
+  }, [props, context, forceUpdate]);
 
   useEffect(() => {
       /*
