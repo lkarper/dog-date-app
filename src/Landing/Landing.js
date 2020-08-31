@@ -18,7 +18,8 @@ const Landing = (props) => {
                     <h2>What is Dog Date?</h2>
                 </header>
                 <p>Dog Date is an app that helps you find playdates for your dog!</p>
-                <p>This is a demo version of Dog Date designed to get initial feedback from users.  This means that the site is not yet hooked up to a back-end server.  You will be able to sample all of Dog Date's features, but any resources that you create (new profiles, new accounts, new howls, etc.) will not be saved.  Upon page load, you will be automatically signed into a dummy account.  If you log out, simply refresh the page and you will be logged back in automatically.</p>
+                <p>This is a demo version of Dog Date designed to get initial feedback from users.</p>
+                <p>Get started by <Link to='/register'>registering</Link> for an account.</p>
                 <p>After you test the app, please fill out this <a className="Landing__feedback-link" href="https://forms.gle/ua1uXTDHWFqq49Hs5" target="_blank" rel="noopener noreferrer">form</a>!</p>
                 <p>Thank you! Thank you! Thank you!</p>
             </section>
@@ -46,12 +47,6 @@ const Landing = (props) => {
                         <h3>View the profiles of other users' dogs</h3>
                     </header>
                     <p>You can also view profiles of other users' dogs and even save those profiles by adding them to your pack!  A dog's profile page not only gives you a description and photo of a user's dog, but it likewise gives you a handy list of Howls about that dog and reviews of that dog by other users.  This allows you quickly to see when and where that dog is available to play and to decide if that dog is the right dog date for your pooch!</p>
-                </section>
-                <section>
-                    <header>
-                        <h3>Not sure where to start?</h3>
-                    </header>
-                    <p>Check out the demo <Link to='/home'>Homepage</Link> or <Link to='/howls'>View Howls in your area!</Link> to see what Dog Dog is all about!</p>
                 </section>
             </section>
         </>
