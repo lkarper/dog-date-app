@@ -8,6 +8,8 @@ const UploadDogProfilePhoto = (props) => {
         setImgUrlP, 
         setImgDataP,
         uploadDogProfile, 
+        apiError,
+        setApiError,
         suffix 
     } = props;
 
@@ -38,6 +40,9 @@ const UploadDogProfilePhoto = (props) => {
 
     const noPhoto = () => {
         setImgUrl(null);
+        if (apiError) {
+            setApiError(false);
+        }
     }
 
     let imagePreview = '';
@@ -101,6 +106,7 @@ const UploadDogProfilePhoto = (props) => {
             >
                 {imagePreview}
             </div>
+            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
         </section>
     );
 }

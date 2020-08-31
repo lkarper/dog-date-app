@@ -87,6 +87,7 @@ const CreateDogProfile = (props) => {
     }
 
     const uploadDogProfile = useCallback(() => {
+        console.log('uploading dog profile')
         setApiError(false);
         setShowLoading(true);
         const newDogProfile = {
@@ -130,13 +131,12 @@ const CreateDogProfile = (props) => {
         } else {
             DogProfilesService.updateDogProfile(dog_profile.id, newDogProfile)
                 .then(() => {
-                    setShowLoading(false);
                     props.setShowEdit(false);
                     props.triggerNewApiCall(new Date().toJSON());
                 })
                 .catch(error => {
-                    setShowLoading(false);
                     setApiError(true);
+                    setShowLoading(false);
                     console.log(error);
                 });
         }
@@ -172,14 +172,17 @@ const CreateDogProfile = (props) => {
     ]);
 
     useEffect(() => {
-        if (imgDataP || imgDataP === null) {
+        if ((imgDataP || imgDataP === null) && !showLoading && !apiError) {
             uploadDogProfile();
         }
-    }, [imgDataP, uploadDogProfile]);
+    }, [imgDataP, uploadDogProfile, showLoading, apiError]);
 
     const useNoImg = () => {
         setImgUrlP('');
         setImgDataP(null);
+        if (apiError) {
+            setApiError(false);
+        }
     }
 
     if (infoForm) {
@@ -304,6 +307,7 @@ const CreateDogProfile = (props) => {
                                 />
                             </div>
                         }
+                        {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                     </section>
                 </>
             )
@@ -319,6 +323,8 @@ const CreateDogProfile = (props) => {
                     imgUrlP={imgUrlP}
                     setImgUrlP={setImgUrlP}
                     uploadDogProfile={uploadDogProfile}
+                    apiError={apiError}
+                    setApiError={setApiError}
                     suffix={suffix}
                 />
                 {showLoading && 
