@@ -87,7 +87,6 @@ const CreateDogProfile = (props) => {
     }
 
     const uploadDogProfile = useCallback(() => {
-        console.log('uploading dog profile')
         setApiError(false);
         setShowLoading(true);
         const newDogProfile = {

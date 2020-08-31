@@ -27,8 +27,6 @@ const UploadDogProfilePhoto = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log('upload clicked')
-
         const reader = new FileReader();
         
         reader.onload = (e) => {

@@ -120,7 +120,6 @@ const HowlsPageAdvancedSearch = (props) => {
     }
 
     const removeRecurringMeetingWindow = (index) => {
-        console.log(index)
         const newRecurringMeetingWindows = [...recurringMeetingWindows];
         setRecurringMeetingWindows(newRecurringMeetingWindows.filter(window => Object.keys(window)[0] !== index));
     }

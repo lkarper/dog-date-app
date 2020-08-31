@@ -43,7 +43,6 @@ const DogProfilePageHeaderButtons = (props) => {
             };
             DogProfilesService.addPackMember(newPackMember)
                 .then(profile => {
-                    console.log(profile)
                     context.addPackMember(profile);
                 })
                 .catch(error => {
