@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { withRouter } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import BasicInfo from '../CreateDogProfileFormComponents/BasicInfo/BasicInfo';
@@ -86,7 +86,7 @@ const CreateDogProfile = (props) => {
         setInfoForm(false);
     }
 
-    const uploadDogProfile = () => {
+    const uploadDogProfile = useCallback(() => {
         setApiError(false);
         setShowLoading(true);
         const newDogProfile = {
@@ -140,7 +140,36 @@ const CreateDogProfile = (props) => {
                     console.log(error);
                 });
         }
-    }
+    }, [
+        setApiError,
+        setShowLoading,
+        context,
+        nameP,
+        imgUrlP,
+        imgDataP,
+        ageYearsP,
+        ageMonthsP,
+        sexP,
+        breedP,
+        weightP,
+        energyP,
+        tempermentP,
+        obedienceP,
+        dislikesPuppiesP,
+        dislikesMenP,
+        dislikesWomenP,
+        noChildrenP,
+        recentlyAdoptedP,
+        lovesPeopleP,
+        leashAggressionP,
+        elderlyDogP,
+        littleExperienceP,
+        muchExperienceP,
+        foodAggressionP,
+        personalMessageP,
+        dog_profile,
+        props,
+    ]);
 
     useEffect(() => {
         if (imgDataP || imgDataP === null) {
