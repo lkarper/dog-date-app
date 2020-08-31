@@ -91,7 +91,9 @@ const HowlPageDogProfile = (props) => {
                     &&
                         <p>No reviews of {dog_profile.name} yet.</p>
                 }
-                {apiError && <p>Error: Could not load reviews. Check your connection and try again.</p>}
+                <div role='alert'>
+                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                </div>
             </section>
         </li>
     );

@@ -34,7 +34,9 @@ const ReviewsOfMyDogs = (props) => {
                     <p>No reviews of my dogs yet.</p>)
             }
             {(!reviews && !apiError) && <p>Loading...</p>}
-            {apiError && <p>Could not fetch reviews at this time.</p>}
+            <div role='alert'>
+                {apiError && <p>Could not fetch reviews at this time.</p>}
+            </div>
         </section>
     );
 }

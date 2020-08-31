@@ -307,7 +307,9 @@ const CreateDogProfile = (props) => {
                                 />
                             </div>
                         }
-                        {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                        <div role='alert'>
+                            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                        </div>
                     </section>
                 </>
             )
@@ -336,7 +338,9 @@ const CreateDogProfile = (props) => {
                         />
                     </div>
                 }
-                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                <div role='alert'>
+                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                </div>
             </>
         );
     }

@@ -280,7 +280,9 @@ const DogReviewForm = (props) => {
             >
                 Submit
             </button>
-            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            <div role='alert'>
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            </div>
         </form>
     );
 }

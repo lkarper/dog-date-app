@@ -82,7 +82,9 @@ const DogProfilePageHeaderButtons = (props) => {
                 >
                     Delete profile
                 </button>
-                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                <div role='alert'>
+                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                </div>
                 {showEdit 
                     ? 
                         <CreateDogProfile 
@@ -106,7 +108,9 @@ const DogProfilePageHeaderButtons = (props) => {
                     >
                         Click here to remove {name} from your pack
                     </button>
-                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                    <div role='alert'>
+                        {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                    </div>
                 </div>
             );
         }
@@ -120,7 +124,9 @@ const DogProfilePageHeaderButtons = (props) => {
                 >
                     Click here to add {name} to your pack!
                 </button>
-                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                <div role='alert'>
+                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                </div>
             </div>
         );
     }

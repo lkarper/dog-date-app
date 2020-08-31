@@ -84,7 +84,9 @@ const ForwardGeocodeAddress = (props) => {
                         />)}
                 </ol>
             </NativeClickListener>
-            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            <div role='alert'>
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            </div>
         </div>
     );
 }

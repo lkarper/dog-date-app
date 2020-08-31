@@ -106,7 +106,9 @@ const UploadDogProfilePhoto = (props) => {
             >
                 {imagePreview}
             </div>
-            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            <div role='alert'>
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            </div>
         </section>
     );
 }

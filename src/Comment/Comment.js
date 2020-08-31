@@ -65,7 +65,9 @@ const Comment = (props) => {
                     ''
             }
             {showEdit && <button onClick={() => setShowEdit(false)}>Nevermind</button>}
-            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            <div role='alert'>
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            </div>
         </li>
     );
 }

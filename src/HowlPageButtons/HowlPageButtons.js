@@ -50,7 +50,9 @@ const HowlPageButtons = (props) => {
             <div>
                 <p>Howl saved!</p>
                 <button onClick={removeHowlCheck}>Remove howl from your saved howls.</button>
-                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                <div role='alert'>
+                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                </div>
             </div>
         );
     }
@@ -58,7 +60,9 @@ const HowlPageButtons = (props) => {
     return (
         <div>
             <button onClick={addHowlCheck}>Save howl!</button>
-            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            <div role='alert'>
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            </div>
         </div>
     );
 }

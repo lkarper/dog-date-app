@@ -364,7 +364,9 @@ const CreateHowl = (props) => {
                     }
                 >Submit</button>
             </form>
-            {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            <div role='alert'>
+                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+            </div>
         </section>
     );
 }
