@@ -79,10 +79,12 @@ const App = (props) => {
           context.setUserPackMembers(packMembers);
           context.setUserSavedHowls(userSavedHowls);
           context.setHowls(howls);
+          context.setError(false);
           forceUpdate();
       })
       .catch(error => {
         console.log(error);
+        context.setError(true);
       });
     }
   }, [props, context, forceUpdate]);
@@ -133,55 +135,65 @@ const App = (props) => {
       <Header forceUpdate={forceUpdate} />
       <main>
         <ErrorBoundary>
-          <Switch>
-            <Route
-              exact path='/'
-              component={Landing}
-            />
-            <PublicOnlyRoute
-                path="/register"
-                component={RegistrationForm}
-            />
-            <PublicOnlyRoute
-                path="/login"
-                render={rProps => <LoginPage {...rProps} forceUpdate={forceUpdate} />} 
-            />
-            <Route 
-              exact path='/howls'
-              component={HowlsList}
-            />
-            <PrivateOnlyRoute 
-              path='/howls/:howl_id'
-              component={HowlPageView}
-            />
-            <PrivateOnlyRoute 
-              path='/home'
-              component={Homepage}
-            />
-            <PrivateOnlyRoute 
-              path='/create-howl'
-              component={CreateHowlPage}
-            />
-            <PrivateOnlyRoute
-              path='/dog-profile/:id'
-              component={DogProfilePage} 
-            />
-            <PrivateOnlyRoute 
-              path='/reviews/:id'
-              component={ReviewPage}
-            />
-            <PrivateOnlyRoute 
-              path='/leave-review/:dog_id'
-              component={CreateDogReviewPage}
-            />
-            <PrivateOnlyRoute 
-              path='/create-dog-profile'
-              component={CreateDogProfile}
-            />
-            <Route 
-              component={PageNotFound}
-            />
-          </Switch>
+          {context.error 
+            ?
+              <section>
+                <header>
+                  <h1>Woof...</h1>
+                </header>
+                  <p>Looks like something went wrong. Check your connection and try again.</p>
+              </section> 
+            : 
+              <Switch>
+                <Route
+                  exact path='/'
+                  component={Landing}
+                />
+                <PublicOnlyRoute
+                    path="/register"
+                    component={RegistrationForm}
+                />
+                <PublicOnlyRoute
+                    path="/login"
+                    render={rProps => <LoginPage {...rProps} forceUpdate={forceUpdate} />} 
+                />
+                <Route 
+                  exact path='/howls'
+                  component={HowlsList}
+                />
+                <PrivateOnlyRoute 
+                  path='/howls/:howl_id'
+                  component={HowlPageView}
+                />
+                <PrivateOnlyRoute 
+                  path='/home'
+                  component={Homepage}
+                />
+                <PrivateOnlyRoute 
+                  path='/create-howl'
+                  component={CreateHowlPage}
+                />
+                <PrivateOnlyRoute
+                  path='/dog-profile/:id'
+                  component={DogProfilePage} 
+                />
+                <PrivateOnlyRoute 
+                  path='/reviews/:id'
+                  component={ReviewPage}
+                />
+                <PrivateOnlyRoute 
+                  path='/leave-review/:dog_id'
+                  component={CreateDogReviewPage}
+                />
+                <PrivateOnlyRoute 
+                  path='/create-dog-profile'
+                  component={CreateDogProfile}
+                />
+                <Route 
+                  component={PageNotFound}
+                />
+              </Switch>
+          }
         </ErrorBoundary>
       </main>
     </div>

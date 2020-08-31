@@ -35,11 +35,13 @@ const LoginForm = (props) => {
                 context.setUserPackMembers(packMembers);
                 context.setUserSavedHowls(userSavedHowls);
                 context.setHowls(howls);
+                context.setError(false);
                 forceUpdate();
                 history.push(destination);
             })
             .catch(error => {
-                context.setError(error.message);
+                console.log(error);
+                context.setError(true);
             });
     }
 
