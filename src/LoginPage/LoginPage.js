@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import UserContext from '../contexts/UserContext';
 import AuthApiService from '../services/auth-api-service';
 import DogProfilesService from '../services/dog-profiles-service';
 import HowlsService from '../services/howls-service';
+import './LoginPage.css';
 
 const LoginForm = (props) => {
 
@@ -14,6 +17,7 @@ const LoginForm = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(null);
+    const [showLoading, setShowLoading] = useState(false);
 
     const onLoginSuccess = () => {
         const { location, history } = props;
@@ -41,6 +45,7 @@ const LoginForm = (props) => {
             })
             .catch(error => {
                 console.log(error);
+                setShowLoading(false);
                 context.setError(true);
             });
     }
@@ -48,6 +53,7 @@ const LoginForm = (props) => {
     const handleLogin = (event) => {
         event.preventDefault();
         setLoginError(null);
+        setShowLoading(true);
         AuthApiService.postLogin({
             username: username,
             password
@@ -71,6 +77,7 @@ const LoginForm = (props) => {
             })
             .catch(res => {
                 setLoginError(res.error);
+                setShowLoading(false);
             });
     }
 
@@ -121,6 +128,15 @@ const LoginForm = (props) => {
                 </div>
             </form>
             <p>Don't have an account? <Link to='/register'>Register</Link></p>
+            {showLoading && 
+                <div className='LoginPage__loading-container'>
+                    <FontAwesomeIcon 
+                        className='LoginPage__loading' 
+                        icon={faSpinner} 
+                        spin 
+                    />
+                </div>
+            }
         </section>
     );
 }

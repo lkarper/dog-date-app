@@ -1,8 +1,4 @@
-.RegistrationForm__header h1 {
-    text-align: center;
-}
-
-.RegistrationForm__loading-container {
+.LoginPage__loading-container {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -17,6 +13,6 @@
     align-items: center;
 }
 
-.RegistrationForm__loading {
+.LoginPage__loading {
     font-size: 30px;
 }

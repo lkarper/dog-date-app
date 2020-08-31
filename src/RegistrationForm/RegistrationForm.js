@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import AuthApiService from '../services/auth-api-service';
 import ValidateEmail from '../validation-components/registration-validation/ValidateEmail';
 import ValidatePhoneNumber from '../validation-components/registration-validation/ValidatePhoneNumber';
@@ -35,9 +37,11 @@ const RegistrationForm = (props) => {
     const [emailAlreadyRegistered, setEmailAlreadyRegistered] = useState(false);
     const [usernameExists, setUsernameExists] = useState(false);
     const [apiError, setApiError] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setShowLoading(true);
         setEmailAlreadyRegistered(false);
         setUsernameExists(false);
         AuthApiService.postUser({
@@ -67,6 +71,7 @@ const RegistrationForm = (props) => {
                     if (res.error === `Username already taken`) {
                         setUsernameExists(username)
                     }
+                    setShowLoading(false);
                     setApiError(res.error);
                 });
     }
@@ -200,6 +205,15 @@ const RegistrationForm = (props) => {
                     </>
                 }
             </div>
+            {showLoading && 
+                <div className='RegistrationForm__loading-container'>
+                    <FontAwesomeIcon 
+                        className='RegistrationForm__loading' 
+                        icon={faSpinner} 
+                        spin 
+                    />
+                </div>
+            }
         </section>
     );
 }

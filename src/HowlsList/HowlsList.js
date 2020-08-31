@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HowlListItem from '../HowlListItem/HowlListItem';
 import HowlsPageFilterForm from '../HowlsPageFilterForm/HowlsPageFilterForm';
 import HowlsService from '../services/howls-service';
@@ -22,10 +24,12 @@ const HowlsList = (props) => {
     const [dateP, setDateP]= useState('');
     const [timeWindowsP, setTimeWindowsP] = useState([]);
     const [apiError, setApiError] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setApiError(false);
+        setShowLoading(true);
 
         const queryParams = [];
         if (stateP) {
@@ -61,11 +65,13 @@ const HowlsList = (props) => {
         const queryString = queryParams.join('&');
         HowlsService.searchHowls(queryString)
             .then(howls => {
+                setShowLoading(false);
                 setSearched(true);
                 setHowls(howls);
             })
             .catch(error => {
                 console.log(error);
+                setShowLoading(false);
                 setSearched(true);
                 setApiError(true);
             });
@@ -130,6 +136,15 @@ const HowlsList = (props) => {
                             </ol>
                     )}
                 </div>
+                {showLoading && 
+                    <div className='HowlsList__loading-container'>
+                        <FontAwesomeIcon 
+                            className='HowlsList__loading' 
+                            icon={faSpinner} 
+                            spin 
+                        />
+                    </div>
+                }
             </section>
         </>
     );
