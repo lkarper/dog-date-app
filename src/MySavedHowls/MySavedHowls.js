@@ -8,7 +8,10 @@ const MySavedHowls = (props) => {
     const context = useContext(UserContext);
 
     return (
-        <section className='MySavedHowls__section section'>
+        <section 
+            aria-live='polite'
+            className='MySavedHowls__section section'
+        >
             <header>
                 <h2>My saved howls</h2>
             </header>

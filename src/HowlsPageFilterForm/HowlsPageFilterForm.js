@@ -137,40 +137,42 @@ const HowlsPageFilterForm = (props) => {
                         <label htmlFor="sort-howls-rating-any">Show all howls regardless of rating</label>
                     </div>
                 </fieldset>
-                {showAdvanced 
-                    ?
-                        <>
-                            <button
+                <div aria-live='polite'>
+                    {showAdvanced 
+                        ?
+                            <>
+                                <button
+                                    type='button'
+                                    onClick={() => setShowAdvanced(false)}
+                                >
+                                    Hide advanced search options
+                                </button>
+                                <HowlsPageAdvancedSearch 
+                                    data={{
+                                        typeOfMeetingP,
+                                        setTypeOfMeetingP,
+                                        daysOfWeekP,
+                                        setDaysOfWeekP,
+                                        dateP,
+                                        setDateP,
+                                        timeWindowsP,
+                                        setTimeWindowsP,
+                                        timeErrorP,
+                                        recurringMeetingWindowsP,
+                                        setRecurringMeetingWindowsP,
+                                        setTimeErrorP,
+                                    }}
+                                />
+                            </>
+                        :
+                            <button 
                                 type='button'
-                                onClick={() => setShowAdvanced(false)}
+                                onClick={() => setShowAdvanced(true)}
                             >
-                                Hide advanced search options
-                            </button>
-                            <HowlsPageAdvancedSearch 
-                                data={{
-                                    typeOfMeetingP,
-                                    setTypeOfMeetingP,
-                                    daysOfWeekP,
-                                    setDaysOfWeekP,
-                                    dateP,
-                                    setDateP,
-                                    timeWindowsP,
-                                    setTimeWindowsP,
-                                    timeErrorP,
-                                    recurringMeetingWindowsP,
-                                    setRecurringMeetingWindowsP,
-                                    setTimeErrorP,
-                                }}
-                            />
-                        </>
-                    :
-                        <button 
-                            type='button'
-                            onClick={() => setShowAdvanced(true)}
-                        >
-                            Show advanced search options
-                        </button> 
-                }
+                                Show advanced search options
+                            </button> 
+                    }
+                </div>
             </fieldset>
             <button 
                 type='submit'
@@ -179,7 +181,7 @@ const HowlsPageFilterForm = (props) => {
                 Search howls
             </button>
         </form>
-    )
+    );
 }
 
 export default HowlsPageFilterForm;

@@ -187,7 +187,7 @@ const CreateDogProfile = (props) => {
 
     if (infoForm) {
         return (
-            <>
+            <div aria-live='polite'>
                 <header 
                     className={`CreateDogProfile__header${suffix}`}
                     aria-hidden={suffix ? true : false}
@@ -283,12 +283,12 @@ const CreateDogProfile = (props) => {
                         </button>
                     </form>
                 </section>
-            </>
+            </div>
         );
     } else {
         if (!imgUploadForm) {
             return (
-                <>
+                <div aria-live='polite'>
                     <header className={`CreateDogProfile__header${suffix}`}>
                         <h1>Create a Profile</h1>
                     </header>
@@ -311,11 +311,11 @@ const CreateDogProfile = (props) => {
                             {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                         </div>
                     </section>
-                </>
+                </div>
             )
         }
         return (
-            <>
+            <div aria-live='polite'>
                 <header className={`CreateDogProfile__header${suffix}`}>
                     <h1>Create a Profile</h1>
                 </header>
@@ -341,7 +341,7 @@ const CreateDogProfile = (props) => {
                 <div role='alert'>
                     {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                 </div>
-            </>
+            </div>
         );
     }
 }

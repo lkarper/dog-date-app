@@ -156,7 +156,7 @@ const HowlsPageAdvancedSearch = (props) => {
     const minDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
 
     return (
-        <>
+        <div aria-live='polite'>
             <fieldset className='HowlsPageFilterForm__sub-fieldset'>
                 <legend>Type of meeting</legend>
                 <div>
@@ -296,7 +296,7 @@ const HowlsPageAdvancedSearch = (props) => {
                     </fieldset>
                 }
             </fieldset>
-        </>
+        </div>
     );
 }
 

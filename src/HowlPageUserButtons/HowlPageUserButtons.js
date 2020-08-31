@@ -34,7 +34,9 @@ const HowlPageUserButtons = (props) => {
                 <div className='HowlPageUserButtons__container'>
                     <button onClick={() => setShowEdit(true)}>Edit</button>
                     <button onClick={checkDeleteHowl}>Delete</button>
-                    {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                    <div role='alert'>
+                        {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                    </div>
                 </div>
             );
         }

@@ -55,7 +55,8 @@ const ForwardGeocodeAddress = (props) => {
     }
 
     return (
-        <div 
+        <div
+            aria-live='polite' 
             className='ForwardGeocodeAddress__outer-container'
         >
             <input 

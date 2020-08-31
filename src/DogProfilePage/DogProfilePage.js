@@ -60,7 +60,9 @@ const DogProfilePage = (props) => {
     if (dog) {
 
         return (
-            <>
+            <section
+                aria-live='polite'
+            >
                 <header className='DogProfilePage__header'>
                     <h1>{dog.name}</h1>
                     {dog.profile_img_url 
@@ -130,13 +132,16 @@ const DogProfilePage = (props) => {
                     {(reviews && reviews.length === 0) && <p>No reviews of {dog.name} yet.</p>}
                     {!reviews && <p>Loading...</p>}
                 </section>
-            </>
+            </section>
         );
     }
 
     if (apiError) {
         return (
-            <section className='section'>
+            <section 
+                // className='section'
+                aria-live='polite'
+            >
                 <header>
                     <h1>Woof...</h1>
                 </header>
@@ -145,7 +150,13 @@ const DogProfilePage = (props) => {
         );
     }
 
-    return <p>Loading...</p>;
+    return (
+        <section
+            aria-live='polite'
+        >
+            <p>Loading...</p>
+        </section>
+    );
 }
 
 export default DogProfilePage;

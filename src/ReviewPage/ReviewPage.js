@@ -114,7 +114,7 @@ const ReviewPage = (props) => {
         }
 
         return (
-            <>
+            <section aria-live='polite'>
                 <header className='ReviewPage__header'>
                     <h1>{review_title}</h1>
                     <p>Reviewed by: {reviewer}</p>
@@ -208,13 +208,16 @@ const ReviewPage = (props) => {
                     {(reviews && reviews.length === 0) && <p>No reviews of {dog_profile.name} yet.</p>}
                     {!reviews && <p>Loading...</p>}
                 </section>
-            </>
+            </section>
         );
     }
     
     if (apiError) {
         return (
-            <section className='section'>
+            <section 
+                aria-live='polite'
+                className='section'
+            >
                 <header>
                     <h1>Woof...</h1>
                 </header>
@@ -223,7 +226,11 @@ const ReviewPage = (props) => {
         );
     }
 
-    return <p>Loading...</p>;
+    return (
+        <section aria-live='polite'>
+            <p>Loading...</p>
+        </section>
+    );
 }
 
 export default ReviewPage;

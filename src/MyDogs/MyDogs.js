@@ -10,7 +10,10 @@ const MyDogs = (props) => {
     const { dogs } = context;
 
     return (
-        <section className='MyDogs__section section'>
+        <section 
+            aria-live='polite' 
+            className='MyDogs__section section'
+        >
             <header>
                 <h2>My dogs</h2>
             </header>

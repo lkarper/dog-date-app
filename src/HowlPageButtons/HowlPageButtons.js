@@ -47,7 +47,7 @@ const HowlPageButtons = (props) => {
 
     if (howlSaved) {
         return (
-            <div>
+            <div aria-live='polite'>
                 <p>Howl saved!</p>
                 <button onClick={removeHowlCheck}>Remove howl from your saved howls.</button>
                 <div role='alert'>
@@ -58,7 +58,7 @@ const HowlPageButtons = (props) => {
     }
 
     return (
-        <div>
+        <div aria-live='polite'>
             <button onClick={addHowlCheck}>Save howl!</button>
             <div role='alert'>
                 {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}

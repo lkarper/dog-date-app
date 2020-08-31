@@ -63,7 +63,7 @@ const Header = (props) => {
             >
                 Dog Date
             </Link>
-            <nav>
+            <nav aria-live='polite'>
                 {TokenService.hasAuthToken()
                     ? 
                         <NavLink 

@@ -28,7 +28,10 @@ const CreateDogReviewPage = (props) => {
     if (dog === null) {
 
         return (
-            <section>
+            <section 
+                className='DogReviewPage__section section'
+                aria-live='polite'
+            >
                 <header>
                     <h1>Dog not found</h1>
                 </header>
@@ -56,7 +59,10 @@ const CreateDogReviewPage = (props) => {
 
     if (dog) {
         return (
-            <section className='DogReviewPage__section section'>
+            <section 
+                className='DogReviewPage__section section'
+                aria-live='polite'
+            >
                 <header>
                     <h1>Use this form to leave a review of {dog.name}</h1>
                 </header>
@@ -68,7 +74,14 @@ const CreateDogReviewPage = (props) => {
         );
     }
 
-    return <p>Loading...</p>;
+    return (
+        <section 
+            className='DogReviewPage__section section'
+            aria-live='polite'
+        >
+            <p>Loading...</p>
+        </section>
+    );
 }
 
 export default CreateDogReviewPage;

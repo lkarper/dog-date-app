@@ -61,13 +61,13 @@ const LoginForm = (props) => {
                 } = res;
                 setUsername('');
                 setPassword('');
-                onLoginSuccess();
                 context.setUser({
                     id,
                     username,
                     email,
                     phone
                 });
+                onLoginSuccess();
             })
             .catch(res => {
                 setLoginError(res.error);

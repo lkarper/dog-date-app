@@ -90,7 +90,7 @@ const UploadDogProfilePhoto = (props) => {
                         aria-describedby="file-type"
                         onChange={(e) => setImgFile(e.target.files[0])}
                     />
-                <p id="file-type">(.png or .jpg only)</p>
+                    <p id="file-type">(.png or .jpg only)</p>
                 </div>
                 <button
                     type='submit'
@@ -101,7 +101,7 @@ const UploadDogProfilePhoto = (props) => {
                 <button onClick={noPhoto}>Don't use a photo</button>
             </form>
             <div 
-                role='alert'
+                aria-live='polite'
                 className={`UploadDogProfilePhoto__img-preview-container${suffix}`}
             >
                 {imagePreview}

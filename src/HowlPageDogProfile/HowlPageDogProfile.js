@@ -68,7 +68,7 @@ const HowlPageDogProfile = (props) => {
                 </header>
                 <DogProfileCharacteristics dog_profile={dog_profile}/>
             </section>
-            <section>
+            <section aria-live='polite'>
                 <header>
                     <h4>Reviews of {dog_profile.name}</h4>
                 </header>

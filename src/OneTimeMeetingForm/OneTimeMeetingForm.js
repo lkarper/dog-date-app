@@ -82,7 +82,7 @@ const OneTimeMeetingForm = (props) => {
                 onChange={(e) => setDate(e.target.value)}
                 aria-describedby='date-validator'
             />
-            <ol>
+            <ol aria-live='polite'>
                 {timeWindows.map((window, i) => 
                     <OneTimeMeetingTimeWindow 
                         key={i}

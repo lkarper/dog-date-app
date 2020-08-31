@@ -71,7 +71,10 @@ const DogProfilePageHeaderButtons = (props) => {
 
     if (owner.id === context.user.id) {
         return (
-            <div className='DogProfilePageHeaderButtons__container'>
+            <div 
+                aria-live='polite' 
+                className='DogProfilePageHeaderButtons__container'
+            >
                 <button
                     onClick={() => setShowEdit(true)}
                 >
@@ -100,7 +103,10 @@ const DogProfilePageHeaderButtons = (props) => {
     } else {
         if (isAPackMember) {
             return (
-                <div className='DogProfilePageHeaderButtons__container'>
+                <div 
+                    aria-live='polite' 
+                    className='DogProfilePageHeaderButtons__container'
+                >
                     <p>{name} is a member of your pack!</p>
                     <button 
                         type="button"
@@ -116,7 +122,7 @@ const DogProfilePageHeaderButtons = (props) => {
         }
 
         return (
-            <div>
+            <div aria-live='polite'>
                 <p>{name} is not a member of your pack.</p>
                 <button
                     type='button'

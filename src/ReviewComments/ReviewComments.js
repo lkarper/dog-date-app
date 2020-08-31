@@ -11,7 +11,10 @@ const ReviewComments = (props) => {
     }
 
     return (
-        <ul className='ReviewComments__list'>
+        <ul 
+            aria-live='polite' 
+            className='ReviewComments__list'
+        >
             {comments
                 .sort((a, b) => a.date_time - b.date_time)
                 .map(comment => 

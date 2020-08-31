@@ -88,7 +88,7 @@ const HowlPageView  = (props) => {
 
     if (howl) {
         return (
-            <>
+            <section aria-live='polite'>
                 <header className='HowlPageView__header'>
                     <h1>{howl.howl_title}</h1>
                     <HowlPageUserButtons howl={howl} setShowEdit={setShowEdit} />
@@ -138,7 +138,10 @@ const HowlPageView  = (props) => {
                     <p>Phone: {user.phone || '(Not given.)'}</p>
                     <p>Email: {user.email}</p>
                 </section>
-                <section className='HowlPageView__section section'>
+                <section 
+                    className='HowlPageView__section section'
+                    aria-live='polite'    
+                >
                     <header>
                         <h2>Dogs in this howl</h2>
                     </header>
@@ -160,11 +163,15 @@ const HowlPageView  = (props) => {
                             <p>No dogs listed for this howl.</p>
                     }
                 </section>
-            </>
+            </section>
         );
     }
 
-    return <p>Loading...</p>;
+    return (
+        <section aria-live='polite'>
+            <p>Loading...</p>
+        </section>
+    );
 }
 
 export default HowlPageView;

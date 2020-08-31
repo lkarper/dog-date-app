@@ -9,7 +9,10 @@ const MyPack = (props) => {
     const { packMembers } = context;
 
     return (
-        <section className='MyPack__section section'>
+        <section 
+            aria-live='polite'
+            className='MyPack__section section'
+        >
             <header>
                 <h2>My Pack</h2>
             </header>
