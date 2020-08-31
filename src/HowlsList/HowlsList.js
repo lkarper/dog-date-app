@@ -108,7 +108,7 @@ const HowlsList = (props) => {
                 }}
             />
             <section className='HowlsList__section section'>
-                {searched && 
+                {(searched && !apiError) && 
                     <header>
                         <h2>Dogs howling for a playmate</h2>
                     </header>
