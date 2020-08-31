@@ -127,7 +127,8 @@ const RegistrationForm = (props) => {
                         placeholder="Username" 
                         id="username" 
                         name="username"
-                        value={username} 
+                        value={username}
+                        autoComplete='username' 
                         aria-describedby='username-validation'
                         onChange={(e) => setUsername(e.target.value)}
                     />
@@ -147,6 +148,7 @@ const RegistrationForm = (props) => {
                         id="password" 
                         name="password" 
                         value={password}
+                        autoComplete='new-password'
                         aria-describedby="password-error-message"
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -166,6 +168,7 @@ const RegistrationForm = (props) => {
                         id="reenter-password" 
                         name="reenter-password" 
                         value={reenteredPassword}
+                        autoComplete='new-password'
                         aria-describedby="reenter-password-validation"
                         onChange={(e) => setReenteredPassword(e.target.value)}
                         required

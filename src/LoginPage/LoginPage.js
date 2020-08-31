@@ -90,6 +90,7 @@ const LoginForm = (props) => {
                         type='text'
                         id='username'
                         value={username}
+                        autoComplete='username'
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
@@ -104,7 +105,9 @@ const LoginForm = (props) => {
                         type='password'
                         id='password'
                         value={password}
+                        autoComplete='current-password'
                         onChange={(e) => setPassword(e.target.value)}
+                        required
                     />
                 </div>
                 <button
