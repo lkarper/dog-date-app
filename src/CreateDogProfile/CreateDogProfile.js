@@ -119,8 +119,8 @@ const CreateDogProfile = (props) => {
         if (Object.keys(dog_profile).length === 0) {
             DogProfilesService.createDogProfile(newDogProfile)
                 .then(profile => {
-                    context.addDogProfile(profile);
                     props.history.push(`/dog-profile/${profile.id}`);
+                    context.addDogProfile(profile);
                 })
                 .catch(error => {
                     console.log(error);

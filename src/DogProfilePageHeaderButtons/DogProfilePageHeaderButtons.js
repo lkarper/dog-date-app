@@ -58,8 +58,8 @@ const DogProfilePageHeaderButtons = (props) => {
             setApiError(false);
             DogProfilesService.deleteDogProfile(id)
                 .then(() => {
-                    context.removeDogProfile(id);
                     props.history.push('/home');
+                    context.removeDogProfile(id);
                 })
                 .catch(error => {
                     setApiError(true);

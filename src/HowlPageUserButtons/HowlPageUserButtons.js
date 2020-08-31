@@ -18,8 +18,8 @@ const HowlPageUserButtons = (props) => {
             setApiError(false);
             HowlsService.deleteHowl(howl.id)
                 .then(() => {
-                    context.removeHowl(howl.id);
                     props.history.push('/home');
+                    context.removeHowl(howl.id);
                 })
                 .catch(error => {
                     setApiError(true);

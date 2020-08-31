@@ -82,7 +82,6 @@ const ReviewPage = (props) => {
             if (confirmation) {
                 ReviewsService.deleteReview(id)
                     .then(() => {
-                        setCouldNotDelete(false);
                         props.history.push(`/dog-profile/${dog_profile.id}`);
                     })
                     .catch(error => {
@@ -166,7 +165,7 @@ const ReviewPage = (props) => {
                     <h3>Location</h3>
                     <p>Location suitabilty for a playdate: {location_suitability}</p>
                     <p>Location: {location.address}, {location.city}, {location.state}{' '}{location.zipcode}</p>
-                    {location.lat && location.lon 
+                    {(location.lat && location.lon ) && (location.lat !== '0' && location.lon !== '0')
                         ?
                             <StaticMap 
                                 lat={location.lat}
