@@ -44,6 +44,39 @@ const UploadDogProfilePhoto = (props) => {
         }
     }, [imgFile]);
 
+    useEffect(() => {
+        if (upImg) {
+
+            const { width, height } = document.querySelector('.ReactCrop__image').getBoundingClientRect();
+
+            if (width > height) {
+                
+                const cropWidth = height * 4 / 3;
+                const xOffset = ((width - cropWidth) / 2) / width * 100;
+                
+                setCrop({ 
+                    x: xOffset,
+                    y: 0,
+                    unit: "%", 
+                    height: 100, 
+                    aspect: 4 / 3, 
+                });
+            } else {
+
+                const cropHeight = width * 3 / 4;
+                const yOffset = ((height - cropHeight) / 2) / height * 100;
+
+                setCrop({
+                    x: 0,
+                    y: yOffset, 
+                    unit: "%", 
+                    height: 100, 
+                    aspect: 4 / 3, 
+                });
+            }
+        }
+    }, [upImg])
+
     const noPhoto = () => {
         setImgUrl(null);
         if (apiError) {
