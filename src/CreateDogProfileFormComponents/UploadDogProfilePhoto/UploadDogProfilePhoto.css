@@ -1,6 +1,16 @@
+.ReactCrop__image {
+    max-width: 300px;
+    height: auto;
+}
+
 .UploadDogProfilePhoto__img-preview {
     max-width: 300px;
     height: auto;
+}
+
+.UploadDogProfilePhoto__current-img-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .UploadDogProfilePhoto__outer-container {
@@ -15,7 +25,7 @@
 }
 
 @media screen and (min-width: 750px) {
-    .UploadDogProfilePhoto__outer-section-edit.section {
+    .UploadDogProfilePhoto__outer-section.edit.section {
         position: fixed;
         top: 15vh;
         height: 75vh;

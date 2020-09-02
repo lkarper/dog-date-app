@@ -295,6 +295,7 @@ const CreateDogProfile = (props) => {
                         <header>
                             <h2>Would you like your dog's profile to feature a photo?</h2>
                         </header>
+                        {suffix && <button className={`CreateDogProfile__close-button${suffix}`}onClick={() => props.setShowEdit(false)}>&#10006;</button>}
                         <button onClick={() => setImgUploadForm(true)}>Yes</button>
                         <button onClick={useNoImg}>No</button>
                         {showLoading && 
@@ -326,6 +327,7 @@ const CreateDogProfile = (props) => {
                     uploadDogProfile={uploadDogProfile}
                     apiError={apiError}
                     setApiError={setApiError}
+                    setShowEdit={props.setShowEdit}
                     suffix={suffix}
                 />
                 {showLoading && 

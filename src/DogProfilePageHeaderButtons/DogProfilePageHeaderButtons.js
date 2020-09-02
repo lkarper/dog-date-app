@@ -93,7 +93,7 @@ const DogProfilePageHeaderButtons = (props) => {
                             setShowEdit={setShowEdit}
                             triggerNewApiCall={props.triggerNewApiCall} 
                             dog_profile={props.dog_profile} 
-                            suffix='-edit' 
+                            suffix=' edit ' 
                         />
                     : ''
                 }

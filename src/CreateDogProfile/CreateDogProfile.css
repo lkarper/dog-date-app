@@ -1,4 +1,4 @@
-.CreateDogProfile__header-edit {
+.CreateDogProfile__header.edit {
     display: none;
 }
 
@@ -7,7 +7,7 @@
     padding: 20px;
 }
 
-.CreateDogProfile__close-button-edit {
+.CreateDogProfile__close-button.edit {
     position: absolute;
     right: 0;
     top: 0;
@@ -34,7 +34,7 @@
 }
 
 @media screen and (min-width: 750px) {
-    .CreateDogProfile__outer-section-edit {
+    .CreateDogProfile__outer-section.edit {
         position: fixed;
         top: 15vh;
         height: 75vh;
