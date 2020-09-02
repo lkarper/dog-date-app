@@ -209,6 +209,8 @@ const UploadDogProfilePhoto = (props) => {
                 <p>Upload image preview</p>
                 <canvas
                     className={`UploadDogProfilePhoto__preview-canvas ${suffix}`}
+                    aria-label='Dog profile avatar preview.' 
+                    role='img'
                     ref={previewCanvasRef}
                     style={{
                         width: upImg ? 200 : 0,
