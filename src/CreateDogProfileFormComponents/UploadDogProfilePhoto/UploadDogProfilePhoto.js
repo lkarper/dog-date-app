@@ -75,7 +75,7 @@ const UploadDogProfilePhoto = (props) => {
                 });
             }
         }
-    }, [upImg])
+    }, [upImg, setCrop])
 
     const noPhoto = () => {
         setImgUrl(null);
