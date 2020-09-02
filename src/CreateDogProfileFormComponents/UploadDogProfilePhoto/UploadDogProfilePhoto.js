@@ -186,6 +186,7 @@ const UploadDogProfilePhoto = (props) => {
                 </div>
                 <ReactCrop 
                     src={upImg}
+                    imageAlt={upImg ? 'Canvas for cropping a 4:3 image.' : ''}
                     onImageLoaded={onLoad}
                     crop={crop}
                     onChange={(c) => setCrop(c)}
