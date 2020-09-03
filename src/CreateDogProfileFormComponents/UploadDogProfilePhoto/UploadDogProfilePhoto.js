@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import ReactCrop from "react-image-crop";
-import "react-image-crop/dist/ReactCrop.css";
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import './UploadDogProfilePhoto.css';
 
 const UploadDogProfilePhoto = (props) => {

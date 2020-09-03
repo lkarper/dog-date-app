@@ -24,7 +24,7 @@ const DogListView = (props) => {
     return (
         <li className='DogListView__li'>
             <Link
-                className='DogListView__profile-link'
+                className='DogListView__profile-link link'
                 to={`/dog-profile/${id}`}
             >
                 <div className='DogListView__dog-container'>

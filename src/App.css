@@ -3,19 +3,69 @@
 }
 
 main {
-  margin-top: 100px;
+  margin-top: 75px;
   padding: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 50px;;
 }
 
 .section {
-  width: 100%;
+  width: 80%;
   padding: 10px;
+  border: 1px solid white;
+  background-color: white;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 
+    1px 1px 2px 2px #EFEFEF, 
+    -1px -1px 2px 2px #EFEFEF;
+  line-height: 28px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.label-input-container {
+  margin: 5px 0;
+}
+
+input {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.button {
+  background-color: hsl(245, 100%, 50%);
+  border: 1px solid hsl(245, 100%, 50%);
+  color: hsl(55, 80%, 56%);
+  text-decoration: none;
+  border-radius: 10px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+.button:hover {
+  background-color: hsl(245, 100%, 25%);
+  border: 1px solid hsl(245, 100%, 25%);
+}
+
+.button:active {
+  background-color: hsl(245, 100%, 15%);
+  border: 1px solid hsl(245, 100%, 15%);
+}
+
+.link {
+  text-align: center;
+  color: hsl(245, 100%, 50%);
+}
+
+.link:active {
+  color: hsl(245, 100%, 25%);
 }

@@ -87,7 +87,9 @@ const LoginForm = (props) => {
                 <h1>Log in</h1>
             </header>
             <form onSubmit={(e) => handleLogin(e)}>
-                <div>
+                <div
+                    className='LoginPage__div label-input-container'
+                >
                     <label
                         htmlFor='username'
                     >
@@ -102,7 +104,9 @@ const LoginForm = (props) => {
                         required
                     />
                 </div>
-                <div>
+                <div
+                    className='LoginPage__div label-input-container'
+                >
                     <label
                         htmlFor='password'
                     >
@@ -118,6 +122,7 @@ const LoginForm = (props) => {
                     />
                 </div>
                 <button
+                    className='LoginPage__submit button'
                     type='submit'
                     disabled={!username || !password}
                 >
@@ -127,7 +132,7 @@ const LoginForm = (props) => {
                     {loginError ? <p>{loginError}</p> : ''}
                 </div>
             </form>
-            <p>Don't have an account? <Link to='/register'>Register</Link></p>
+            <p>Don't have an account? <Link className='link' to='/register'>Register</Link></p>
             {showLoading && 
                 <div className='LoginPage__loading-container'>
                     <FontAwesomeIcon 

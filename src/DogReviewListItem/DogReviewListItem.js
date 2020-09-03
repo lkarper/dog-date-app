@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import StarRating from '../StarRating/StarRating';
 import './DogReviewListItem.css';
 
 const DogReviewListItem = (props) => {
@@ -30,9 +31,19 @@ const DogReviewListItem = (props) => {
 
     return (
         <li className='DogReviewListItem__li'>
-            <h3><Link to={`/reviews/${id}`}>{review_title}</Link></h3>
+            <h3
+                className='DogReviewListItem__h3'
+            >
+                <Link
+                    className='link' 
+                    to={`/reviews/${id}`}
+                >
+                    {review_title}
+                </Link>
+            </h3>
             <p>Reviewed by {reviewer} on {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
-            <p>Overall rating: {averageRating.toFixed(2)} stars</p>
+            <p>Overall rating:</p> 
+            <StarRating rating={averageRating.toFixed(2)} />
         </li>
     );
 }

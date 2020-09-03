@@ -10,6 +10,7 @@ import ReviewComments from '../ReviewComments/ReviewComments';
 import AddCommentForm from '../AddCommentForm/AddCommentForm';
 import DogReviewForm from '../DogReviewForm/DogReviewForm';
 import ReviewsService from '../services/reviews-service';
+import StarRating from '../StarRating/StarRating';
 import './ReviewPage.css';
 
 const ReviewPage = (props) => {
@@ -118,7 +119,10 @@ const ReviewPage = (props) => {
                     <h1>{review_title}</h1>
                     <p>Reviewed by: {reviewer}</p>
                     <p>On: {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
-                    <p>Overall rating: {averageRating.toFixed(2)} stars</p>
+                    <p>Overall rating:</p>
+                    <StarRating 
+                        rating={averageRating.toFixed(2)}
+                    />
                     {userButtons}
                 </header>
                 <section className='ReviewPage__section section'>

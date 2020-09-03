@@ -19,7 +19,12 @@ const MyHowls = (props) => {
             {context.howls.length > 0
                 ?
                     <>
-                        <Link to='/create-howl'>Click here to create a howl!</Link>
+                        <Link
+                            className='link' 
+                            to='/create-howl'
+                        >
+                            Click here to create a howl!
+                        </Link>
                         <ul className='MyHowls__list'>
                             {context.howls.map(howl => <HowlListItem key={howl.id} howl={howl} />)} 
                         </ul>
@@ -29,7 +34,12 @@ const MyHowls = (props) => {
                         <p>You haven't howled yet.</p>
                         {context.dogs.length > 0
                             ?
-                                <Link to='/create-howl'>Click here to create a howl!</Link>
+                                <Link 
+                                    className='link'
+                                    to='/create-howl'
+                                >
+                                    Click here to create a howl!
+                                </Link>
                             :
                                 <p>Create a dog profile to start howling!</p>
                         }

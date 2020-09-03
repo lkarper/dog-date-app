@@ -53,6 +53,7 @@ const HowlListItem = (props) => {
         <li className='HowlListItem__li'>
             <h3 className='HowlListItem__h3'>
                 <Link
+                    className='link'
                     to={`/howls/${howl.id}`}
                 >
                     {howl.howl_title}

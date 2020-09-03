@@ -13,8 +13,21 @@ const UserContactInfo = (props) => {
             <header>
                 <h2>My contact info</h2>
             </header>
-            <p>{phone ? `Phone: ${phone}` : `Phone: (not provided)`}</p>
-            <p>Email: {email}</p>
+            <p
+                className='UserContactInfo__p'
+            >{phone ? `Phone: ${phone}` : `Phone: (not provided)`}</p>
+            <p
+                className='UserContactInfo__p'
+            >Email:{' '} 
+                <a
+                    className='link'
+                    target='_blank'
+                    rel="noopener noreferrer"
+                    href={`mailto:${email}`}
+                >
+                    {email}
+                </a>
+            </p>
         </section>
     );
 }

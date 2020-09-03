@@ -17,7 +17,12 @@ const MyDogs = (props) => {
             <header>
                 <h2>My dogs</h2>
             </header>
-            <Link to='/create-dog-profile'>Create a new dog profile!</Link>
+            <Link 
+                className='link'
+                to='/create-dog-profile'
+            >
+                Create a new dog profile!
+            </Link>
             {dogs && (dogs.length > 0
                 ?
                     <ul className='MyDogs__list'>

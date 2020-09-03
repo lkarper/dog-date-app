@@ -91,7 +91,7 @@ const DogProfilePageHeaderButtons = (props) => {
                     ? 
                         <CreateDogProfile 
                             setShowEdit={setShowEdit}
-                            triggerNewApiCall={props.triggerNewApiCall} 
+                            setDog={props.setDog} 
                             dog_profile={props.dog_profile} 
                             suffix=' edit ' 
                         />

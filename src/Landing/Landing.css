@@ -1,3 +1,7 @@
+.Landing__h1 {
+    text-align: center;
+}
+
 .Landing__section.section section {
     align-self: flex-start;
 }

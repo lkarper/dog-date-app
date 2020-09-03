@@ -1,3 +1,4 @@
-.UserContactInfo__section > p {
+.UserContactInfo__p {
     margin: 5px;
+    align-self: flex-start;
 }

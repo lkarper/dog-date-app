@@ -20,7 +20,10 @@ const MySavedHowls = (props) => {
                     <ul className='MySavedHowls__list'>
                         {context.userSavedHowls
                             .map(howl => 
-                                <HowlListItem key={howl.id} howl={howl.howl} />
+                                <HowlListItem 
+                                    key={howl.id} 
+                                    howl={howl.howl} 
+                                />
                             )
                         }
                     </ul>   

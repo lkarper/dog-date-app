@@ -129,9 +129,11 @@ const CreateDogProfile = (props) => {
                 });
         } else {
             DogProfilesService.updateDogProfile(dog_profile.id, newDogProfile)
-                .then(() => {
+                .then(() => DogProfilesService.fetchDogProfileById(dog_profile.id))    
+                .then(profile => {
+                    context.updateDogProfile(profile);
+                    props.setDog(profile);
                     props.setShowEdit(false);
-                    props.triggerNewApiCall(new Date().toJSON());
                 })
                 .catch(error => {
                     setApiError(true);

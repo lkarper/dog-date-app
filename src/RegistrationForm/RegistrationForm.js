@@ -186,6 +186,7 @@ const RegistrationForm = (props) => {
                     setReenteredPasswordError={setReenteredPasswordError}
                 /> 
                 <button 
+                    className='button'
                     type="submit"
                     disabled={
                         emailValidationError || 
