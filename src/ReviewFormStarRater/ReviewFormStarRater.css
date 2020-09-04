@@ -1,8 +1,7 @@
 .ReviewFormStarRater__rate-container {
     float: left;
     display: flex;
-    flex-direction: row-reverse;
-    /* transform: rotateZ(180deg); */
+    flex-direction: row;
 }
 
 .ReviewFormStarRater__rate-container:not(:checked) input {
@@ -24,14 +23,21 @@
     content: '★ ';
 }
 
-.ReviewFormStarRater__rate-container input:checked ~ label {
-    color: #ffc700;    
+.ReviewFormStarRater__rate-container input:checked + label {
+    color: #ffc700 !important;    
 }
 
 .ReviewFormStarRater__rate-container:not(:checked) label:hover,
-.ReviewFormStarRater__rate-container:not(:checked) label:hover ~ label {
-    color: #deb217;  
+.ReviewFormStarRater__rate-container:hover label,
+.ReviewFormStarRater__rate-container:hover input:checked + label {
+    color: #deb217 !important;  
 }
+
+.ReviewFormStarRater__rate-container label:hover ~ label,
+.ReviewFormStarRater__rate-container:hover label:hover ~ input:checked + label {
+    color: #ccc !important;
+}
+
 .ReviewFormStarRater__rate-container input:checked + label:hover,
 .ReviewFormStarRater__rate-container input:checked + label:hover ~ label,
 .ReviewFormStarRater__rate-container input:checked ~ label:hover,
@@ -50,4 +56,8 @@
 .ReviewFormStarRater__rate-container input:checked ~ label:focus ~ label,
 .ReviewFormStarRater__rate-container label:focus ~ input:checked ~ label {
     color: #c59b08;
+}
+
+.ReviewFormStarRater__rate-container input:focus + label {
+    border:  1px solid black;
 }
