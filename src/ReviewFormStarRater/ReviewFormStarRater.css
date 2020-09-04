@@ -1,4 +1,53 @@
 .ReviewFormStarRater__rate-container {
+    float: left;
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
+    /* transform: rotateZ(180deg); */
+}
+
+.ReviewFormStarRater__rate-container:not(:checked) input {
+    position:absolute;
+    left:-9999px;
+}
+
+.ReviewFormStarRater__rate-container:not(:checked) label {
+    float: left;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+
+.ReviewFormStarRater__rate-container:not(:checked) label:before {
+    content: '★ ';
+}
+
+.ReviewFormStarRater__rate-container input:checked ~ label {
+    color: #ffc700;    
+}
+
+.ReviewFormStarRater__rate-container:not(:checked) label:hover,
+.ReviewFormStarRater__rate-container:not(:checked) label:hover ~ label {
+    color: #deb217;  
+}
+.ReviewFormStarRater__rate-container input:checked + label:hover,
+.ReviewFormStarRater__rate-container input:checked + label:hover ~ label,
+.ReviewFormStarRater__rate-container input:checked ~ label:hover,
+.ReviewFormStarRater__rate-container input:checked ~ label:hover ~ label,
+.ReviewFormStarRater__rate-container label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+.ReviewFormStarRater__rate-container:not(:checked) label:focus,
+.ReviewFormStarRater__rate-container:not(:checked) label:focus ~ label {
+    color: #deb217;  
+}
+.ReviewFormStarRater__rate-container input:checked + label:focus,
+.ReviewFormStarRater__rate-container input:checked + label:focus ~ label,
+.ReviewFormStarRater__rate-container input:checked ~ label:focus,
+.ReviewFormStarRater__rate-container input:checked ~ label:focus ~ label,
+.ReviewFormStarRater__rate-container label:focus ~ input:checked ~ label {
+    color: #c59b08;
 }

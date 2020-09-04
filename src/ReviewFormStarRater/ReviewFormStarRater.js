@@ -17,8 +17,9 @@ const ReviewFormStarRater = (props) => {
         <fieldset className="sub-fieldset">
             <legend>{legendText}</legend>
             <div className="ReviewFormStarRater__rate-container">
-                <div>
-                    <input 
+                
+                    <input
+                        tabIndex='5' 
                         type="radio" 
                         id={`star5-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
@@ -28,9 +29,9 @@ const ReviewFormStarRater = (props) => {
                         required
                     />
                     <label htmlFor={`star5-${classSuffix}`}>5 stars</label>
-                </div>
-                <div>
+                
                     <input 
+                        tabIndex='4'
                         type="radio" 
                         id={`star4-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
@@ -40,9 +41,9 @@ const ReviewFormStarRater = (props) => {
                         required
                     />
                     <label htmlFor={`star4-${classSuffix}`}>4 stars</label>
-                </div>
-                <div>
+                
                     <input 
+                        tabIndex='3'
                         type="radio" 
                         id={`star3-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
@@ -52,9 +53,9 @@ const ReviewFormStarRater = (props) => {
                         required
                     />
                     <label htmlFor={`star3-${classSuffix}`}>3 stars</label>
-                </div>
-                <div>
+                
                     <input 
+                        tabIndex='2'
                         type="radio" 
                         id={`star2-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
@@ -64,9 +65,9 @@ const ReviewFormStarRater = (props) => {
                         required
                     />
                     <label htmlFor={`star2-${classSuffix}`}>2 stars</label>
-                </div>
-                <div>
+                
                     <input 
+                        tabIndex='1'
                         type="radio" 
                         id={`star1-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
@@ -75,8 +76,7 @@ const ReviewFormStarRater = (props) => {
                         onChange={(e) => setStarRating(e.target.value)}
                         required
                     />
-                    <label htmlFor={`star1-${classSuffix}`}>1 stars</label>  
-                </div>
+                    <label htmlFor={`star1-${classSuffix}`}>1 stars</label>                  
             </div>
         </fieldset>
     );
