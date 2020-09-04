@@ -20,26 +20,40 @@ const ReviewFormStarRater = (props) => {
                 <div>
                     <input 
                         type="radio" 
-                        id={`star5-${classSuffix}`} 
+                        id={`star1-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
-                        value="5" 
-                        checked={starRating === '5'}
+                        value="1" 
+                        checked={starRating === '1'}
                         onChange={(e) => setStarRating(e.target.value)}
                         required
                     />
-                    <label htmlFor={`star5-${classSuffix}`}>5 stars</label>
+                    <label 
+                        htmlFor={`star1-${classSuffix}`}
+                        style={{
+                            color: `${starRating && parseInt(starRating) >= 1 ? '#ffc700' : '#ccc'}`
+                        }}
+                    >
+                        1 stars
+                    </label>  
                 </div>
-                <div>
+            <div>
                     <input 
                         type="radio" 
-                        id={`star4-${classSuffix}`} 
+                        id={`star2-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
-                        value="4" 
-                        checked={starRating === '4'}
+                        value="2" 
+                        checked={starRating === '2'}
                         onChange={(e) => setStarRating(e.target.value)}
                         required
                     />
-                    <label htmlFor={`star4-${classSuffix}`}>4 stars</label>
+                    <label 
+                        htmlFor={`star2-${classSuffix}`}
+                        style={{
+                            color: `${starRating && parseInt(starRating) >= 2 ? '#ffc700' : '#ccc'}`
+                        }}
+                    >
+                        2 stars
+                    </label>
                 </div>
                 <div>
                     <input 
@@ -51,31 +65,52 @@ const ReviewFormStarRater = (props) => {
                         onChange={(e) => setStarRating(e.target.value)}
                         required
                     />
-                    <label htmlFor={`star3-${classSuffix}`}>3 stars</label>
+                    <label 
+                        htmlFor={`star3-${classSuffix}`}
+                        style={{
+                            color: `${starRating && parseInt(starRating) >= 3 ? '#ffc700' : '#ccc'}`
+                        }}
+                    >
+                        3 stars
+                    </label>
                 </div>
                 <div>
                     <input 
                         type="radio" 
-                        id={`star2-${classSuffix}`} 
+                        id={`star4-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
-                        value="2" 
-                        checked={starRating === '2'}
+                        value="4" 
+                        checked={starRating === '4'}
                         onChange={(e) => setStarRating(e.target.value)}
                         required
                     />
-                    <label htmlFor={`star2-${classSuffix}`}>2 stars</label>
+                    <label 
+                        htmlFor={`star4-${classSuffix}`}
+                        style={{
+                            color: `${starRating && parseInt(starRating) >= 4 ? '#ffc700' : '#ccc'}`
+                        }}
+                    >
+                        4 stars
+                    </label>
                 </div>
                 <div>
                     <input 
                         type="radio" 
-                        id={`star1-${classSuffix}`} 
+                        id={`star5-${classSuffix}`} 
                         name={`rate-${classSuffix}`} 
-                        value="1" 
-                        checked={starRating === '1'}
+                        value="5" 
+                        checked={starRating === '5'}
                         onChange={(e) => setStarRating(e.target.value)}
                         required
                     />
-                    <label htmlFor={`star1-${classSuffix}`}>1 stars</label>  
+                    <label 
+                        htmlFor={`star5-${classSuffix}`}
+                        style={{
+                            color: `${starRating && parseInt(starRating) === 5 ? '#ffc700' : '#ccc'}`
+                        }}
+                    >
+                        5 stars
+                    </label>
                 </div>
             </div>
         </fieldset>
