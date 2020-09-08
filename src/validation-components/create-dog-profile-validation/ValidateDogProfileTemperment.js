@@ -13,10 +13,24 @@ const ValidateDogProfileTemperment = (props) => {
     }, [temperment, setTempermentError]);
 
     if (temperment) {
-        return <p id='temperment-validator'>Temperment set to: '{temperment}.'</p>;
+        return (
+            <p 
+                className='ValidateDogProfileTemperment__validator valid'
+                id='temperment-validator'
+            >
+                Temperment set to: '{temperment}.'
+            </p>
+        );
     }
 
-    return <p id='temperment-validator'>{tempermentError}</p>;
+    return (
+        <p 
+            className='ValidateDogProfileTemperment__validator error'
+            id='temperment-validator'
+        >
+            {tempermentError}
+        </p>
+    );
 }
 
 export default ValidateDogProfileTemperment;

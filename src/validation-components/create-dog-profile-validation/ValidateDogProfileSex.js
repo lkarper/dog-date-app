@@ -13,10 +13,24 @@ const ValidateDogProfileSex = (props) => {
     }, [sex, setSexError]);
 
     if (sex) {
-        return <p id='sex-validator'>Sex set to: '{sex}.'</p>;
+        return (
+            <p 
+                className='ValidateDogProfileSex__validator valid'
+                id='sex-validator'
+            >
+                Sex set to: '{sex}.'
+            </p>
+        );
     }
 
-    return <p id='sex-validator'>{sexError}</p>;
+    return (
+        <p 
+            className='ValidateDogProfileSex__validator error'
+            id='sex-validator'
+        >
+            {sexError}
+        </p>
+    );
 }
 
 export default ValidateDogProfileSex;

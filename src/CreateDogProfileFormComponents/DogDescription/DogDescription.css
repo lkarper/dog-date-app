@@ -2,3 +2,7 @@
     display: flex;
     flex-direction: column;
 }
+
+.DogDescription__alert-div {
+    height: 100px;
+}

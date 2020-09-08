@@ -13,18 +13,47 @@ const ValidateDogProfileAge = (props) => {
     }, [ageYears, ageMonths, setAgeError]);
 
     if (ageError) {
-        return <p id='age-validator'>{ageError}</p>;
+        return (
+            <p
+                className='ValidateDogProfileAge__validator error' 
+                id='age-validator'
+            >
+                {ageError}
+            </p>
+        );
     }
 
     if (ageYears && ageMonths) {
-        return <p id='age-validator'>Age set to: {ageYears}{' '}{ageYears === 1 ? `year` : `years`}, {ageMonths}{' '}{ageMonths === 1 ? `month ` : `months `}old.</p>;
+        return (
+            <p 
+                className='ValidateDogProfileAge__validator valid'
+                id='age-validator'
+            >
+                Age set to: {ageYears}{' '}{ageYears === 1 ? `year` : `years`},{' '} 
+                {ageMonths}{' '}{ageMonths === 1 ? `month ` : `months `}old.
+            </p>
+        );
     }
 
     if (ageYears) {
-        return <p id='age-validator'>Age set to: {ageYears}{' '}{ageYears === 1 ? `year ` : `years `}old.</p>;
+        return (
+            <p 
+                className='ValidateDogProfileAge__validator valid'
+                id='age-validator'
+            >
+                Age set to: {ageYears}{' '}{ageYears === 1 ? `year ` : `years `}old.
+            </p>
+        );
     }
 
-    return <p id='age-validator'>Age set to: {ageMonths}{' '}{ageMonths === 1 ? `month ` : `months `}old.</p>;
+    return (
+        <p 
+            className='ValidateDogProfileAge__validator valid'
+            id='age-validator'
+        >
+            Age set to: {ageMonths}{' '}{ageMonths === 1 ? `month ` : `months `}old.
+        </p>
+    );
 
 }
 

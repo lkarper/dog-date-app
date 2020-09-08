@@ -3,7 +3,7 @@
     flex-direction: row;
 }
 
-.ReviewFormStarRater__rate-container:not(:checked) input {
+.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__input {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
     height: 1px;
@@ -14,7 +14,7 @@
     position: absolute;
 }
 
-.ReviewFormStarRater__rate-container:not(:checked) label {
+.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label {
     width: 1em;
     overflow: hidden;
     white-space: nowrap;
@@ -23,49 +23,49 @@
     color: #ccc;
 }
 
-.ReviewFormStarRater__rate-container:not(:checked) label:before {
+.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label:before {
     content: '★ ';
 }
 
-.ReviewFormStarRater__rate-container input:checked + label {
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label {
     color: #ffc700 !important;    
 }
 
-.ReviewFormStarRater__rate-container:not(:checked) label:hover,
-.ReviewFormStarRater__rate-container:hover label,
-.ReviewFormStarRater__rate-container:hover input:checked + label {
+.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label:hover,
+.ReviewFormStarRater__rate-container:hover .ReviewFormStarRater__label,
+.ReviewFormStarRater__rate-container:hover .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label {
     color: #deb217 !important;  
 }
 
-.ReviewFormStarRater__rate-container label:hover ~ label,
-.ReviewFormStarRater__rate-container:hover label:hover ~ input:checked + label {
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__label,
+.ReviewFormStarRater__rate-container:hover .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label {
     color: #ccc !important;
 }
 
-.ReviewFormStarRater__rate-container input:checked + label:hover,
-.ReviewFormStarRater__rate-container input:checked + label:hover ~ label,
-.ReviewFormStarRater__rate-container input:checked ~ label:hover,
-.ReviewFormStarRater__rate-container input:checked ~ label:hover ~ label,
-.ReviewFormStarRater__rate-container label:hover ~ input:checked ~ label {
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label:hover,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__label,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label:hover,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__label,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label {
     color: #c59b08;
 }
 
-.ReviewFormStarRater__rate-container:not(:checked) label:focus,
-.ReviewFormStarRater__rate-container:not(:checked) label:focus ~ label {
+.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label:focus,
+.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label:focus ~ .ReviewFormStarRater__label {
     color: #deb217;  
 }
-.ReviewFormStarRater__rate-container input:checked + label:focus,
-.ReviewFormStarRater__rate-container input:checked + label:focus ~ label,
-.ReviewFormStarRater__rate-container input:checked ~ label:focus,
-.ReviewFormStarRater__rate-container input:checked ~ label:focus ~ label,
-.ReviewFormStarRater__rate-container label:focus ~ input:checked ~ label {
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label:focus,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label:focus ~ .ReviewFormStarRater__label,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label:focus,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label:focus ~ .ReviewFormStarRater__label,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label:focus ~ .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label {
     color: #c59b08;
 }
 
-.ReviewFormStarRater__rate-container label {
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label {
     border: 1px solid white;
 }
 
-.ReviewFormStarRater__rate-container input:focus + label {
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:focus + .ReviewFormStarRater__label {
     border:  1px solid black;
 }

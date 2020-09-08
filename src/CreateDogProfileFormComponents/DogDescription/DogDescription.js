@@ -183,12 +183,15 @@ const DogDescription = (props) => {
     }, [personalMessageError, personalMessageErrorP, setPersonalMessageErrorP]);
 
     return (
-        <fieldset>
-            <legend>Describe your dog:</legend>
+        <fieldset 
+            className='DogDescription__outer-fieldset outer-fieldset'
+        >
+            <legend>Describe your Dog</legend>
             <fieldset className="sub-fieldset">
                 <legend>How energetic is your dog?</legend>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="low-energy" 
                         name="energy-level" 
@@ -202,6 +205,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="medium-energy" 
                         name="energy-level" 
@@ -215,6 +219,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="high-energy" 
                         name="energy-level" 
@@ -228,18 +233,22 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="extreme-energy" 
                         name="energy-level" 
-                        value='So...much...energy...it never runs out.'
+                        value='So... much... energy... it never runs out.'
                         aria-describedby='energy-validator'
-                        checked={energy === 'So...much...energy...it never runs out.'}
+                        checked={energy === 'So... much... energy... it never runs out.'}
                         onChange={(e) => setEnergy(e.target.value)} 
                         required
                     />
-                    <label htmlFor="extreme-energy">So...much...energy...it never runs out.</label>
+                    <label htmlFor="extreme-energy">So... much... energy... it never runs out.</label>
                 </div>
-                <div role='alert'>
+                <div
+                    className='DogDescription__alert-div' 
+                    role='alert'
+                >
                     <ValidateDogProfileEnergy 
                         energy={energy}
                         energyError={energyError}
@@ -247,10 +256,12 @@ const DogDescription = (props) => {
                     />
                 </div>
             </fieldset>
+            <hr />
             <fieldset className="sub-fieldset">
                 <legend>How would you describe your dog's temperment?</legend>
                 <div>
-                    <input 
+                    <input
+                        className='DogDescription__input radio' 
                         type="radio" 
                         id="temperment-nervous" 
                         name="temperment" 
@@ -264,6 +275,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="temperment-shy" 
                         name="temperment" 
@@ -277,6 +289,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="temperment-indifferent" 
                         name="temperment" 
@@ -290,6 +303,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="temperment-outgoing" 
                         name="temperment" 
@@ -303,6 +317,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="temperment-aggressive" 
                         name="temperment" 
@@ -314,7 +329,10 @@ const DogDescription = (props) => {
                     />
                     <label htmlFor="temperment-aggressive">On the aggressive side and always trying to be the alpha</label>
                 </div>
-                <div role='alert'>
+                <div
+                    className='DogDescription__alert-div' 
+                    role='alert'
+                >
                     <ValidateDogProfileTemperment 
                         temperment={temperment}
                         tempermentError={tempermentError}
@@ -322,10 +340,12 @@ const DogDescription = (props) => {
                     />
                 </div>
             </fieldset>
+            <hr />
             <fieldset className="sub-fieldset">
                 <legend>How well trained and obedient is your dog?</legend>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="no-training" 
                         name="training-level" 
@@ -339,6 +359,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="some-training" 
                         name="training-level" 
@@ -352,6 +373,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="well-trained" 
                         name="training-level" 
@@ -365,6 +387,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input radio'
                         type="radio" 
                         id="very-well-trained" 
                         name="training-level" 
@@ -376,7 +399,10 @@ const DogDescription = (props) => {
                     />
                     <label htmlFor="very-well-trained">Very-well trained and always obedient</label>
                 </div>
-                <div role='alert'>
+                <div
+                    className='DogDescription__alert-div'
+                    role='alert'
+                >
                     <ValidateDogProfileObedience 
                         obedience={obedience}
                         obedienceError={obedienceError}
@@ -384,10 +410,12 @@ const DogDescription = (props) => {
                     />
                 </div>
             </fieldset>
+            <hr />
             <fieldset className="sub-fieldset">
                 <legend>What else should others know about your dog?</legend>
                 <div>
-                    <input 
+                    <input
+                        className='DogDescription__input checkbox' 
                         type="checkbox" 
                         id="other-dislikes-puppies" 
                         name="other-dislikes-puppies" 
@@ -399,6 +427,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-dislikes-men" 
                         name="other-dislikes-men" 
@@ -410,6 +439,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-dislikes-women" 
                         name="other-dislikes-women" 
@@ -421,6 +451,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-no-children" 
                         name="other-no-children" 
@@ -431,7 +462,8 @@ const DogDescription = (props) => {
                     <label htmlFor="other-no-children">Not good with children</label>
                 </div>
                 <div>
-                    <input 
+                    <input
+                        className='DogDescription__input checkbox' 
                         type="checkbox" 
                         id="other-recently-adopted" 
                         name="other-recently-adopted" 
@@ -443,6 +475,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-loves-people" 
                         name="other-loves-people" 
@@ -454,6 +487,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-leash-aggression" 
                         name="other-leash-aggression" 
@@ -465,6 +499,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-elderly" 
                         name="other-elderly" 
@@ -476,6 +511,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-little-experience" 
                         name="other-little-experience" 
@@ -487,6 +523,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-much-experience" 
                         name="other-much-experience" 
@@ -498,6 +535,7 @@ const DogDescription = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='DogDescription__input checkbox'
                         type="checkbox" 
                         id="other-food-aggression" 
                         name="other-food-aggression" 
@@ -508,6 +546,7 @@ const DogDescription = (props) => {
                     <label htmlFor="other-food-aggression">Aggressive around and protective of food</label>
                 </div>
             </fieldset>
+            <hr />
             <div className='DogDescription__message-container'>
                 <label htmlFor="own-description">Describe your dog in your own words:</label>
                 <textarea 
@@ -521,7 +560,10 @@ const DogDescription = (props) => {
                     onChange={(e) => setPersonalMessage(e.target.value)}
                 ></textarea>
             </div>
-            <div role='alert'>
+            <div 
+                className='DogDescription__alert-div'
+                role='alert'
+            >
                 <ValidatePersonalMessage 
                     personalMessage={personalMessage}
                     personalMessageError={personalMessageError}

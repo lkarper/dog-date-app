@@ -13,10 +13,24 @@ const ValidateDogProfileName = (props) => {
     }, [name, setNameError]);
 
     if (nameError) {
-        return <p id='name-validator'>{nameError}</p>;
+        return (
+            <p 
+                className='ValidateDogProfile__validator error'
+                id='name-validator'
+            >
+                {nameError}
+            </p>
+        );
     }
 
-    return <p id='name-validator'>Name accepted. (Max 72 characters.)</p>;
+    return (
+        <p 
+            className='ValidateDogProfile__validator valid'
+            id='name-validator'
+        >
+            Name accepted. (Max 72 characters.)
+        </p>
+    );
     
 }
 

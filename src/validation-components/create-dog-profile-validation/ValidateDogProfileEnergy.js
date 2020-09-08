@@ -13,10 +13,24 @@ const ValidateDogProfileEnergy = (props) => {
     }, [energy, setEnergyError]);
 
     if (energy) {
-        return <p id='energy-validator'>Energy set to: '{energy}'</p>;
+        return (
+            <p 
+                className='ValidateDogProfileEnergy__validator valid'
+                id='energy-validator'
+            >
+                Energy set to: '{energy}'
+            </p>
+        );
     }
 
-    return <p id='energy-validator'>{energyError}</p>;
+    return (
+        <p 
+            className='ValidateDogProfileEnergy__validator error'            
+            id='energy-validator'
+        >
+            {energyError}
+        </p>
+    );
 }
 
 export default ValidateDogProfileEnergy;

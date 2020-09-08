@@ -1,3 +1,7 @@
+.CreateDogProfile__header {
+    text-align: center;
+}
+
 .CreateDogProfile__header.edit {
     display: none;
 }
@@ -5,6 +9,12 @@
 .CreateDogProfile__outer-section {
     width: 100%;
     padding: 20px;
+}
+
+.CreateDogProfile__profile-creation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .CreateDogProfile__close-button.edit {

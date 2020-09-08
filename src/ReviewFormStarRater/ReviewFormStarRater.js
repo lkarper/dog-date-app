@@ -18,6 +18,7 @@ const ReviewFormStarRater = (props) => {
             <legend>{legendText}</legend>
             <div className="ReviewFormStarRater__rate-container">                
                 <input 
+                    className='ReviewFormStarRater__input'
                     type="radio" 
                     id={`star1-${classSuffix}`} 
                     name={`rate-${classSuffix}`} 
@@ -27,6 +28,7 @@ const ReviewFormStarRater = (props) => {
                     required
                 />
                 <label
+                    className='ReviewFormStarRater__label'
                     htmlFor={`star1-${classSuffix}`}
                     style={{
                         color: `${starRating && parseInt(starRating) >= 1 ? '#ffc700' : '#ccc'}`
@@ -35,6 +37,7 @@ const ReviewFormStarRater = (props) => {
                     1 star
                 </label>              
                 <input 
+                    className='ReviewFormStarRater__input'
                     type="radio" 
                     id={`star2-${classSuffix}`} 
                     name={`rate-${classSuffix}`} 
@@ -44,6 +47,7 @@ const ReviewFormStarRater = (props) => {
                     required
                 />
                 <label 
+                    className='ReviewFormStarRater__label'
                     htmlFor={`star2-${classSuffix}`}
                     style={{
                         color: `${starRating && parseInt(starRating) >= 2 ? '#ffc700' : '#ccc'}`
@@ -52,6 +56,7 @@ const ReviewFormStarRater = (props) => {
                     2 stars
                 </label>
                 <input 
+                    className='ReviewFormStarRater__input'
                     type="radio" 
                     id={`star3-${classSuffix}`} 
                     name={`rate-${classSuffix}`} 
@@ -61,6 +66,7 @@ const ReviewFormStarRater = (props) => {
                     required
                 />
                 <label 
+                    className='ReviewFormStarRater__label'
                     htmlFor={`star3-${classSuffix}`}
                     style={{
                         color: `${starRating && parseInt(starRating) >= 3 ? '#ffc700' : '#ccc'}`
@@ -68,8 +74,8 @@ const ReviewFormStarRater = (props) => {
                 >
                     3 stars
                 </label>
-            
                 <input 
+                    className='ReviewFormStarRater__input'
                     type="radio" 
                     id={`star4-${classSuffix}`} 
                     name={`rate-${classSuffix}`} 
@@ -79,6 +85,7 @@ const ReviewFormStarRater = (props) => {
                     required
                 />
                 <label 
+                    className='ReviewFormStarRater__label'
                     htmlFor={`star4-${classSuffix}`}
                     style={{
                         color: `${starRating && parseInt(starRating) >= 4 ? '#ffc700' : '#ccc'}`
@@ -86,8 +93,8 @@ const ReviewFormStarRater = (props) => {
                 >
                     4 stars
                 </label>
-            
                 <input 
+                    className='ReviewFormStarRater__input'
                     type="radio" 
                     id={`star5-${classSuffix}`} 
                     name={`rate-${classSuffix}`} 
@@ -97,6 +104,7 @@ const ReviewFormStarRater = (props) => {
                     required
                 />
                 <label 
+                    className='ReviewFormStarRater__label'
                     htmlFor={`star5-${classSuffix}`}
                     style={{
                         color: `${starRating && parseInt(starRating) === 5 ? '#ffc700' : '#ccc'}`

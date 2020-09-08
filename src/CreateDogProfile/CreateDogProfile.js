@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import UserContext from '../contexts/UserContext';
 import BasicInfo from '../CreateDogProfileFormComponents/BasicInfo/BasicInfo';
 import DogDescription from '../CreateDogProfileFormComponents/DogDescription/DogDescription';
 import UploadDogProfilePhoto from '../CreateDogProfileFormComponents/UploadDogProfilePhoto/UploadDogProfilePhoto';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import DogProfilesService from '../services/dog-profiles-service';
 import './CreateDogProfile.css';
 
@@ -202,7 +202,7 @@ const CreateDogProfile = (props) => {
                     {suffix && <button className={`CreateDogProfile__close-button${suffix}`}onClick={() => props.setShowEdit(false)}>&#10006;</button>}
                     <form 
                         onSubmit={handleInfoSubmit}
-                        className='profile-creation-form'
+                        className='CreateDogProfile__profile-creation-form'
                     >
                         <BasicInfo 
                             data={{
@@ -269,6 +269,7 @@ const CreateDogProfile = (props) => {
                             }}
                         />
                         <button 
+                            className='CreateDogProfile__submit button'
                             type="submit"
                             disabled={
                                 nameErrorP ||

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ValidateDogProfileName from '../../validation-components/create-dog-profile-validation/ValidateDogProfileName';
 import ValidateDogProfileAge from '../../validation-components/create-dog-profile-validation/ValidateDogProfileAge';
 import ValidateDogProfileSex from '../../validation-components/create-dog-profile-validation/ValidateDogProfileSex';
+import './BasicInfo.css';
 
 const BasicInfo = (props) => {
 
@@ -115,14 +116,15 @@ const BasicInfo = (props) => {
     }
 
     return (
-        <fieldset>
-            <legend>Basic info:</legend>
+        <fieldset className='BasicInfo__outer-container outer-fieldset'>
+            <legend>Basic Info</legend>
             <div>
                 <label 
+                    className='BasicInfo__label bold-label'
                     htmlFor="dog-name"
-                    >
-                        Dog's name:
-                    </label>
+                >
+                    Dog's name
+                </label>
                 <input 
                     type="text" 
                     placeholder="Seymour" 
@@ -135,15 +137,19 @@ const BasicInfo = (props) => {
                     required
                 />
             </div>
-            <div role='alert'>
+            <div 
+                className='BasicInfo__alert-div'
+                role='alert'
+            >
                 <ValidateDogProfileName 
                     name={name}
                     nameError={nameError}
                     setNameError={setNameError}
                 />
             </div>
+            <hr />
             <fieldset className="sub-fieldset">
-                <legend>Age:</legend>
+                <legend>Age</legend>
                 <div>
                     <label 
                         htmlFor="years"
@@ -158,7 +164,7 @@ const BasicInfo = (props) => {
                         max="30" 
                         value={ageYears}
                         aria-describedby='age-validator'
-                        onChange={(e) => checkAgeYears(parseInt(e.target.value))}
+                        onChange={(e) => checkAgeYears(e.target.value)}
                     />
                 </div>
                 <div>
@@ -175,10 +181,13 @@ const BasicInfo = (props) => {
                         max="11" 
                         value={ageMonths}
                         aria-describedby='age-validator'
-                        onChange={(e) => checkAgeMonths(parseInt(e.target.value))}
+                        onChange={(e) => checkAgeMonths(e.target.value)}
                     />
                 </div>
-                <div role='alert'>
+                <div
+                    className='BasicInfo__alert-div' 
+                    role='alert'
+                >
                     <ValidateDogProfileAge 
                         ageMonths={ageMonths}
                         ageYears={ageYears}
@@ -187,10 +196,12 @@ const BasicInfo = (props) => {
                     />
                 </div>
             </fieldset>
+            <hr />
             <fieldset className="sub-fieldset">
-                <legend>Sex:</legend>
+                <legend>Sex</legend>
                 <div>
-                    <input 
+                    <input
+                        className='BasicInfo__input radio' 
                         type="radio" 
                         id="male-unneutered" 
                         name="sex" 
@@ -204,6 +215,7 @@ const BasicInfo = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='BasicInfo__input radio'
                         type="radio" 
                         id="female-unspayed" 
                         name="sex" 
@@ -217,6 +229,7 @@ const BasicInfo = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='BasicInfo__input radio'
                         type="radio" 
                         id="male-neutered" 
                         name="sex" 
@@ -230,6 +243,7 @@ const BasicInfo = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='BasicInfo__input radio'
                         type="radio" 
                         id="female-spayed" 
                         name="sex" 
@@ -241,7 +255,10 @@ const BasicInfo = (props) => {
                     />
                     <label htmlFor="female-spayed">Female, spayed</label>
                 </div>
-                <div role='alert'>
+                <div
+                    className='BasicInfo__alert-div' 
+                    role='alert'
+                >
                     <ValidateDogProfileSex 
                         sex={sex}
                         sexError={sexError}
@@ -249,8 +266,14 @@ const BasicInfo = (props) => {
                     />
                 </div>
             </fieldset>
+            <hr />
             <div>
-                <label htmlFor="breed">Breed:</label>
+                <label
+                    className='BasicInfo__label bold-label' 
+                    htmlFor="breed"
+                >
+                    Breed:
+                </label>
                 <input 
                     type="text" 
                     id="breed" 
@@ -262,8 +285,14 @@ const BasicInfo = (props) => {
                 />
                 <p id='breed-optional'>(Optional; max 72 characters.)</p>
             </div>
+            <hr />
             <div>
-                <label htmlFor="weight">Weight (in lbs):</label>
+                <label
+                    className='BasicInfo__label bold-label' 
+                    htmlFor="weight"
+                >
+                    Weight (in lbs):
+                </label>
                 <input 
                     type="number" 
                     id="weight" 

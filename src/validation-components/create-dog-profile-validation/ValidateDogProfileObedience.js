@@ -13,10 +13,24 @@ const ValidateDogProfileObedience = (props) => {
     }, [obedience, setObedienceError]);
 
     if (obedience) {
-        return <p id='obedience-validator'>Obedience-level set to: '{obedience}.'</p>;
+        return (
+            <p 
+                className='ValidateDogProfileObedience__validator valid'
+                id='obedience-validator'
+            >
+                    Obedience-level set to: '{obedience}.'
+            </p>
+        );
     }
 
-    return <p id='obedience-validator'>{obedienceError}</p>;
+    return (
+        <p 
+            className='ValidateDogProfileObedience__validator error'
+            id='obedience-validator'
+        >
+            {obedienceError}
+        </p>
+    );
 }
 
 export default ValidateDogProfileObedience;
