@@ -27,13 +27,12 @@ const ReviewFormStarRater = (props) => {
                     required
                 />
                 <label
-                    className={starRating && parseInt(starRating) >= 1 && `auto-selected`} 
                     htmlFor={`star1-${classSuffix}`}
                     style={{
                         color: `${starRating && parseInt(starRating) >= 1 ? '#ffc700' : '#ccc'}`
                     }}
                 >
-                    1 stars
+                    1 star
                 </label>              
                 <input 
                     type="radio" 
