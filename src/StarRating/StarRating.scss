@@ -1,5 +1,4 @@
 :root {
-    --star-size: 40px;
     --star-color: #000;
     --star-background: hsl(55, 80%, 56%);
 }
@@ -8,7 +7,7 @@
     --percent: calc(var(--rating) / 5 * 100%);
 
     display: inline-block;
-    font-size: var(--star-size);
+    font-size: 28px;
     font-family: Times;
     line-height: 1;
 
@@ -25,5 +24,12 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .StarRating__stars {
+        font-size: 40px;
+        margin-left: 10px;
     }
 }

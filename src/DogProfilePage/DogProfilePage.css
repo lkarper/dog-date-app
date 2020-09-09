@@ -1,7 +1,20 @@
-.DogProfilePage__header {
+.DogProfilePage__outer-section {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.DogProfilePage__main-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding: 10px;
+    border: 1px solid white;
+    background-color: white;
+    margin: 10px;
+    box-shadow: 0px 0px 2px 1px #B2AEB2;
+    line-height: 28px;
 }
 
 .DogProfilePage__profile-img {
@@ -10,16 +23,22 @@
     margin: 10px 0;
 }
 
-.DogProfilePage__about-section p {
-    margin: 10px;
-}
-
 .DogProfilePage__howls-list {
     padding: 0;
+    margin-top: 0;
+}
+
+.DogProfilePage__howls-list li:first-child {
+    margin-top: 0;
 }
 
 .DogProfilePage__reviews-list {
     padding: 0;
+    margin-top: 0;
+}
+
+.DogProfilePage__reviews-list li:first-child {
+    margin-top: 0;
 }
 
 @media screen and (min-width: 750px) {

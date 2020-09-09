@@ -30,7 +30,9 @@ const DogReviewListItem = (props) => {
     ) / 6;
 
     return (
-        <li className='DogReviewListItem__li'>
+        <li 
+            className='DogReviewListItem__li'
+        >
             <h3
                 className='DogReviewListItem__h3'
             >
@@ -42,8 +44,12 @@ const DogReviewListItem = (props) => {
                 </Link>
             </h3>
             <p>Reviewed by {reviewer} on {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
-            <p>Overall rating:</p> 
-            <StarRating rating={averageRating.toFixed(2)} />
+            <div 
+                className='DogReviewListItem__star-outer-container'
+            >
+                <p>Overall rating:</p> 
+                <StarRating rating={averageRating.toFixed(2)} />
+            </div>
         </li>
     );
 }

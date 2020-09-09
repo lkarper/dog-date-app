@@ -59,10 +59,12 @@ const DogProfilePage = (props) => {
     if (dog) {
         return (
             <section
-                className='DogProfilePage__outer-section section'
+                className='DogProfilePage__outer-section'
                 aria-live='polite'
             >
-                <header className='DogProfilePage__header'>
+                <header 
+                    className='DogProfilePage__main-header'
+                >
                     <h1>{dog.name}</h1>
                     {dog.profile_img_url 
                             ?
@@ -83,8 +85,12 @@ const DogProfilePage = (props) => {
                         setDog={setDog}
                     />
                 </header>
-                <section className='DogProfilePage__about-section'>
-                    <header className='DogProfilePage__header'>
+                <section 
+                    className='DogProfilePage__section section'
+                >
+                    <header 
+                        className='DogProfilePage__header'
+                    >
                         <h2>About {dog.name}</h2>
                     </header>
                     <p>{dog.owner_description}</p>
@@ -93,23 +99,35 @@ const DogProfilePage = (props) => {
                     <p>Weight: {dog.weight ? `${dog.weight} lbs` : `(Not listed)`}</p>
                     <p>Sex: {dog.sex || `(not listed)`}</p>
                 </section>
-                <section>
-                    <header className='DogProfilePage__header'>
+                <section
+                    className='DogProfilePage__section section'
+                >
+                    <header 
+                        className='DogProfilePage__header'
+                    >
                         <h2>Characteristics</h2>
                     </header>
                     <DogProfileCharacteristics dog_profile={dog}/>
                 </section>
-                <section>
-                    <header className='DogProfilePage__header'>
+                <section
+                    className='DogProfilePage__section section'
+                >
+                    <header 
+                        className='DogProfilePage__header'
+                    >
                         <h2>Howls about {dog.name}</h2>
                     </header>
-                    <ul className='DogProfilePage__howls-list'>
+                    <ul 
+                        className='DogProfilePage__howls-list'
+                    >
                         {(howls && howls.length > 0) && howls.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
                         {(howls && howls.length === 0) && <p>No howls featuring {dog.name} yet. <Link to='/create-howl'>Create a howl now!</Link></p>}
                         {!howls && <p>Loading...</p>}
                     </ul>
                 </section>
-                <section>
+                <section
+                    className='DogProfilePage__section section'
+                >
                     <header className='DogProfilePage__header'>
                         <h2>Reviews of {dog.name}</h2>
                     </header>
@@ -138,7 +156,7 @@ const DogProfilePage = (props) => {
     if (apiError) {
         return (
             <section 
-                // className='section'
+                className='DogProfilePage__section section'
                 aria-live='polite'
             >
                 <header>

@@ -8,3 +8,16 @@
 .DogReviewListItem__h3 {
     text-align: center;
 }
+
+.DogReviewListItem__star-outer-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 750px) {
+    .DogReviewListItem__star-outer-container {
+        justify-content: start;
+    }
+}
