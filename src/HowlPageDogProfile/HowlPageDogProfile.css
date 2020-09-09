@@ -26,6 +26,10 @@
     align-items: center;
 }
 
+.HowlPageDogProfile__reviews-ul li:first-child {
+    margin-top: 0;
+}
+
 .HowlPageDogProfile__reviews-container {
     width: 100%;
 }

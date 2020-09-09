@@ -1,3 +1,14 @@
+.HowlPageView__outer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.HowlPageView__header.top h1 {
+    font-size: 30px;
+    line-height: 36px;
+}
+
 .HowlPageView__header {
     text-align: center;
 }
@@ -8,6 +19,7 @@
 
 .HowlPageView__address {
     margin-bottom: 10px;
+    align-self: flex-start;
 }
 
 .HowlPageView__address p {
@@ -20,4 +32,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.HowlPageView__contact-info-ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
 }

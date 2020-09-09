@@ -76,67 +76,103 @@ const HowlPageView  = (props) => {
 
     if (howlNotFound) {
         return (
-            <>
+            <section
+                className='HowlPageView__section section'
+            >
                 <header>
                     <h1>Howl not found</h1>
                 </header>
                 <p>Looks likes something went wrong.</p>
                 <p>Check the address and try again.</p>
-            </>
+            </section>
         );
     }
 
     if (howl) {
         return (
-            <section aria-live='polite'>
-                <header className='HowlPageView__header'>
-                    <h1>{howl.howl_title}</h1>
-                    <HowlPageUserButtons howl={howl} setShowEdit={setShowEdit} />
-                </header>
-                {showEdit && 
-                    <CreateHowl 
-                        howl={howl} 
-                        suffix='-edit' 
-                        setShowEdit={setShowEdit} 
-                        forceUpdate={setUpdate}
-                    />
-                }
-                <section className='HowlPageView__section section'>
-                    <header>
-                        <h2>About this howl:</h2>
+            <section 
+                className='HowlPageView__outer-section'
+                aria-live='polite'
+            >
+                <section
+                    className='HowlPageView__section section'
+                >
+                    <header className='HowlPageView__header top'>
+                        <h1>{howl.howl_title}</h1>
+                        <HowlPageUserButtons 
+                            howl={howl} 
+                            setShowEdit={setShowEdit} 
+                        />
                     </header>
-                    <p>{howl.personal_message}</p>
-                </section>
-                <section className='HowlPageView__section section'>
-                    <header>
-                        <h2>Availability</h2>
-                    </header>
-                    {howlDateTime}
-                </section>
-                <section className='HowlPageView__section section'>
-                    <header>
-                        <h2>Location</h2>
-                    </header>
-                    <div className='HowlPageView__address'>
-                        <p>{howl.location.address}</p>
-                        <p>{howl.location.city}</p>
-                        <p>{howl.location.state}{', '}{howl.location.zipcode}</p>
-                    </div>
-                    {(howl.location.lat && howl.location.lon ) && (howl.location.lat !== '0' && howl.location.lon !== '0') 
-                        ? 
-                            <StaticMap 
-                                lat={howl.location.lat}
-                                lon={howl.location.lon}
-                            />
-                        : <p>Map not available for this location.</p>
+                    {showEdit && 
+                        <CreateHowl 
+                            howl={howl} 
+                            suffix='-edit' 
+                            setShowEdit={setShowEdit} 
+                            forceUpdate={setUpdate}
+                        />
                     }
+                    <section className='HowlPageView__section'>
+                        <header>
+                            <h2>About this Howl</h2>
+                        </header>
+                        <p>{howl.personal_message}</p>
+                    </section>
+                    <section className='HowlPageView__section'>
+                        <header>
+                            <h2>Availability</h2>
+                        </header>
+                        {howlDateTime}
+                    </section>
                 </section>
-                <section className='HowlPageView__section section'>
-                    <header>
-                        <h2>Contact info for {user.username}</h2>
+                    <section className='HowlPageView__section section'>
+                        <header>
+                            <h2>Location</h2>
+                        </header>
+                        <div className='HowlPageView__address'>
+                            <p>{howl.location.address}</p>
+                            <p>{howl.location.city}</p>
+                            <p>{howl.location.state}{', '}{howl.location.zipcode}</p>
+                        </div>
+                        {(howl.location.lat && howl.location.lon ) && (howl.location.lat !== '0' && howl.location.lon !== '0') 
+                            ? 
+                                <StaticMap 
+                                    lat={howl.location.lat}
+                                    lon={howl.location.lon}
+                                />
+                            : <p>Map not available for this location.</p>
+                        }
+                    </section>
+                <section 
+                    className='HowlPageView__section section'
+                >
+                    <header
+                        className='HowlPageView__header'
+                    >
+                        <h2>About the Howler</h2>
                     </header>
-                    <p>Phone: {user.phone || '(Not given.)'}</p>
-                    <p>Email: {user.email}</p>
+                    <ul
+                        className='HowlPageView__contact-info-ul'
+                    >
+                        <li>
+                            <p>Username: {user.username}</p>
+                        </li>
+                        <li>
+                            <p>Phone: {user.phone || '(Not given.)'}</p>
+                        </li>
+                        <li>
+                            <p>Email:{' '} 
+                                <a
+                                    className='link'
+                                    target='_blank'
+                                    rel="noopener noreferrer"
+                                    href={`mailto:${user.email}`}
+                                >
+                                    {user.email}
+                                </a>
+                            </p>
+                        </li>
+                    </ul>
                 </section>
                 <section 
                     className='HowlPageView__section section'

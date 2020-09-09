@@ -49,7 +49,13 @@ const HowlPageButtons = (props) => {
         return (
             <div aria-live='polite'>
                 <p>Howl saved!</p>
-                <button onClick={removeHowlCheck}>Remove howl from your saved howls.</button>
+                <button
+                    className='HowlPageButtons__button button'
+                    type='button' 
+                    onClick={removeHowlCheck}
+                >
+                    Remove howl from your saved howls.
+                </button>
                 <div role='alert'>
                     {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                 </div>
@@ -59,7 +65,13 @@ const HowlPageButtons = (props) => {
 
     return (
         <div aria-live='polite'>
-            <button onClick={addHowlCheck}>Save howl!</button>
+            <button
+                className='HowlPageButtons__button button'
+                type='button' 
+                onClick={addHowlCheck}
+            >
+                Save howl!
+            </button>
             <div role='alert'>
                 {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
             </div>

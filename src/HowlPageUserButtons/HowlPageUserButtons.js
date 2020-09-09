@@ -32,8 +32,20 @@ const HowlPageUserButtons = (props) => {
         if (context.user.id === howl.user_id) {
             return (
                 <div className='HowlPageUserButtons__container'>
-                    <button onClick={() => setShowEdit(true)}>Edit</button>
-                    <button onClick={checkDeleteHowl}>Delete</button>
+                    <button
+                        className='HowlPageUserButtons__button button'
+                        type='button' 
+                        onClick={() => setShowEdit(true)}
+                    >
+                        Edit
+                    </button>
+                    <button 
+                        className='HowlPageUserButtons__button button'
+                        type='button'
+                        onClick={checkDeleteHowl}
+                    >
+                        Delete
+                    </button>
                     <div role='alert'>
                         {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                     </div>

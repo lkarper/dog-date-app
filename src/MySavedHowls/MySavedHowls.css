@@ -1,3 +1,8 @@
 .MySavedHowls__list {
     padding: 0;
+    margin-top: 0;
+}
+
+.MySavedHowls__list li:first-child {
+    margin-top: 0;
 }

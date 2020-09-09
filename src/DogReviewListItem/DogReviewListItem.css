@@ -11,13 +11,12 @@
 
 .DogReviewListItem__star-outer-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 @media screen and (min-width: 750px) {
     .DogReviewListItem__star-outer-container {
-        justify-content: start;
+        flex-direction: row;
+        align-items: center;
     }
 }

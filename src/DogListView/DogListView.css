@@ -1,6 +1,7 @@
 .DogListView__profile-pic {
     width: 75%;
     height: auto;
+    margin-bottom: 5px;;
 }
 
 .DogListView__li {
