@@ -199,13 +199,15 @@ const CreateDogProfile = (props) => {
                     <h1>Create a Profile</h1>
                 </header>
                 <section className={`CreateDogProfile__outer-section${suffix}`}>
-                    <header>
-                        <h2>{suffix ? `Edit your dog's profile` : 'Start barking about your dog!'}</h2>
+                    <header
+                        className={`CreateDogProfile__form-header${suffix}`}
+                        aria-hidden={suffix ? true : false}
+                    >
+                        <h2>Start barking about your dog!</h2>
                     </header>
-                    {suffix && <button className={`CreateDogProfile__close-button${suffix}`}onClick={() => props.setShowEdit(false)}>&#10006;</button>}
                     <form 
                         onSubmit={handleInfoSubmit}
-                        className='CreateDogProfile__profile-creation-form'
+                        className={`CreateDogProfile__profile-creation-form${suffix}`}
                     >
                         <BasicInfo 
                             data={{
@@ -286,6 +288,14 @@ const CreateDogProfile = (props) => {
                         >
                             Submit
                         </button>
+                        {suffix && 
+                            <button
+                                type='button' 
+                                className={`CreateDogProfile__close-button${suffix} button`}
+                                onClick={() => props.setShowEdit(false)}
+                            >
+                                Cancel edit
+                            </button>}
                     </form>
                 </section>
             </div>
@@ -300,23 +310,24 @@ const CreateDogProfile = (props) => {
                     <header className={`CreateDogProfile__header${suffix}`}>
                         <h1>Create a Profile</h1>
                     </header>
-                    <section className={`CreateDogProfile__outer-section${suffix}`}>
+                    <section className={`CreateDogProfile__outer-section${suffix} photo-container`}>
                         <header>
                             <h2>Would you like your dog's profile to feature a photo?</h2>
                         </header>
-                        {suffix && <button className={`CreateDogProfile__close-button${suffix}`}onClick={() => props.setShowEdit(false)}>&#10006;</button>}
-                        <button
-                            className='CreateDogProfile__button button' 
-                            onClick={() => setImgUploadForm(true)}
-                        >
-                            Yes
-                        </button>
-                        <button 
-                            className='CreateDogProfile__button button'
-                            onClick={useNoImg}
-                        >
-                            No
-                        </button>
+                        <div>
+                            <button
+                                className='CreateDogProfile__button button' 
+                                onClick={() => setImgUploadForm(true)}
+                            >
+                                Yes
+                            </button>
+                            <button 
+                                className='CreateDogProfile__button button'
+                                onClick={useNoImg}
+                            >
+                                No
+                            </button>
+                        </div>
                         {showLoading && 
                             <div className='CreateDogProfilePhoto__loading-container'>
                                 <FontAwesomeIcon 

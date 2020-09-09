@@ -9,6 +9,7 @@ import DogAverageRating from '../DogAverageRating/DogAverageRating';
 import DogProfilesService from '../services/dog-profiles-service';
 import ReviewsService from '../services/reviews-service';
 import HowlsService from '../services/howls-service';
+import CreateDogProfile from '../CreateDogProfile/CreateDogProfile';
 import './DogProfilePage.css';
 
 const DogProfilePage = (props) => {
@@ -20,6 +21,7 @@ const DogProfilePage = (props) => {
     const [dog, setDog] = useState();
     const [reviews, setReviews] = useState();
     const [howls, setHowls] = useState();
+    const [showEdit, setShowEdit] = useState(false);
     const [apiError, setApiError] = useState(false);
 
     useEffect(() => {
@@ -82,73 +84,93 @@ const DogProfilePage = (props) => {
                     }
                     <DogProfilePageHeaderButtons 
                         dog_profile={dog}
-                        setDog={setDog}
+                        showEdit={showEdit}
+                        setShowEdit={setShowEdit}
                     />
                 </header>
-                <section 
-                    className='DogProfilePage__section section'
+                <div
+                    className='DogProfilePage__edit-div'
+                    aria-live='polite'
                 >
-                    <header 
-                        className='DogProfilePage__header'
-                    >
-                        <h2>About {dog.name}</h2>
-                    </header>
-                    <p>{dog.owner_description}</p>
-                    <p>Age: {dog.age_months ? `${dog.age_years} years, ${dog.age_months}, months` : `${dog.age_years}`}</p>
-                    <p>Breed: {dog.breed || `(not listed)`}</p>
-                    <p>Weight: {dog.weight ? `${dog.weight} lbs` : `(Not listed)`}</p>
-                    <p>Sex: {dog.sex || `(not listed)`}</p>
-                </section>
-                <section
-                    className='DogProfilePage__section section'
-                >
-                    <header 
-                        className='DogProfilePage__header'
-                    >
-                        <h2>Characteristics</h2>
-                    </header>
-                    <DogProfileCharacteristics dog_profile={dog}/>
-                </section>
-                <section
-                    className='DogProfilePage__section section'
-                >
-                    <header 
-                        className='DogProfilePage__header'
-                    >
-                        <h2>Howls about {dog.name}</h2>
-                    </header>
-                    <ul 
-                        className='DogProfilePage__howls-list'
-                    >
-                        {(howls && howls.length > 0) && howls.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
-                        {(howls && howls.length === 0) && <p>No howls featuring {dog.name} yet. <Link to='/create-howl'>Create a howl now!</Link></p>}
-                        {!howls && <p>Loading...</p>}
-                    </ul>
-                </section>
-                <section
-                    className='DogProfilePage__section section'
-                >
-                    <header className='DogProfilePage__header'>
-                        <h2>Reviews of {dog.name}</h2>
-                    </header>
-                    {context.user.id === dog.owner.id 
-                        ? '' 
-                        : <Link to={`/leave-review/${dog.id}`}>Leave your own review of {dog.name}</Link>
+                    {showEdit 
+                        ? 
+                            <CreateDogProfile 
+                                setShowEdit={setShowEdit}
+                                setDog={setDog} 
+                                dog_profile={dog} 
+                                suffix=' edit ' 
+                            />
+                        : ''
                     }
-                    {(reviews && reviews.length > 0)
-                        &&
-                            <div>
-                                <DogAverageRating 
-                                    reviews={reviews}
-                                />
-                                <ul className='DogProfilePage__reviews-list'>
-                                    {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
-                                </ul>
-                            </div>
-                    }
-                    {(reviews && reviews.length === 0) && <p>No reviews of {dog.name} yet.</p>}
-                    {!reviews && <p>Loading...</p>}
-                </section>
+                </div>
+                {!showEdit &&
+                    <>
+                        <section 
+                            className='DogProfilePage__section section'
+                        >
+                            <header 
+                                className='DogProfilePage__header'
+                            >
+                                <h2>About {dog.name}</h2>
+                            </header>
+                            <p>{dog.owner_description}</p>
+                            <p>Age: {dog.age_months ? `${dog.age_years} years, ${dog.age_months}, months` : `${dog.age_years}`}</p>
+                            <p>Breed: {dog.breed || `(not listed)`}</p>
+                            <p>Weight: {dog.weight ? `${dog.weight} lbs` : `(Not listed)`}</p>
+                            <p>Sex: {dog.sex || `(not listed)`}</p>
+                        </section>
+                        <section
+                            className='DogProfilePage__section section'
+                        >
+                            <header 
+                                className='DogProfilePage__header'
+                            >
+                                <h2>Characteristics</h2>
+                            </header>
+                            <DogProfileCharacteristics dog_profile={dog}/>
+                        </section>
+                        <section
+                            className='DogProfilePage__section section'
+                        >
+                            <header 
+                                className='DogProfilePage__header'
+                            >
+                                <h2>Howls about {dog.name}</h2>
+                            </header>
+                            <ul 
+                                className='DogProfilePage__howls-list'
+                            >
+                                {(howls && howls.length > 0) && howls.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
+                                {(howls && howls.length === 0) && <p>No howls featuring {dog.name} yet. <Link to='/create-howl'>Create a howl now!</Link></p>}
+                                {!howls && <p>Loading...</p>}
+                            </ul>
+                        </section>
+                        <section
+                            className='DogProfilePage__section section'
+                        >
+                            <header className='DogProfilePage__header'>
+                                <h2>Reviews of {dog.name}</h2>
+                            </header>
+                            {context.user.id === dog.owner.id 
+                                ? '' 
+                                : <Link to={`/leave-review/${dog.id}`}>Leave your own review of {dog.name}</Link>
+                            }
+                            {(reviews && reviews.length > 0)
+                                &&
+                                    <div>
+                                        <DogAverageRating 
+                                            reviews={reviews}
+                                        />
+                                        <ul className='DogProfilePage__reviews-list'>
+                                            {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
+                                        </ul>
+                                    </div>
+                            }
+                            {(reviews && reviews.length === 0) && <p>No reviews of {dog.name} yet.</p>}
+                            {!reviews && <p>Loading...</p>}
+                        </section>
+                    </>
+                }
             </section>
         );
     }

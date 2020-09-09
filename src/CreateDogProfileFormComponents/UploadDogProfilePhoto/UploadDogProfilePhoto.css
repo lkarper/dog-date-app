@@ -66,10 +66,24 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .UploadDogProfilePhoto__outer-section > form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#file-type {
+    text-align: center;
+}
+
+.UploadDogProfilePhoto__button-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media screen and (min-width: 750px) {

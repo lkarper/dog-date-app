@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .DogProfilePage__main-header {
@@ -39,6 +40,10 @@
 
 .DogProfilePage__reviews-list li:first-child {
     margin-top: 0;
+}
+
+.DogProfilePage__edit-div {
+    width: 100%;
 }
 
 @media screen and (min-width: 750px) {

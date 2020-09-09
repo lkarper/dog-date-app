@@ -170,7 +170,6 @@ const UploadDogProfilePhoto = (props) => {
             <header>
                 <h2>Upload a photo for your dog's profile</h2>
             </header>
-            {suffix && <button className={`CreateDogProfile__close-button ${suffix} button`} onClick={() => props.setShowEdit(false)}>&#10006;</button>}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label 
@@ -198,7 +197,9 @@ const UploadDogProfilePhoto = (props) => {
                     onChange={(c) => setCrop(c)}
                     onComplete={(c) => setCompletedCrop(c)}            
                 />
-                <div>
+                <div
+                    className='UploadDogProfilePhoto__button-div'
+                >
                     <button
                         className='UploadDogProfilePhoto__button button'
                         type='submit'
@@ -218,7 +219,7 @@ const UploadDogProfilePhoto = (props) => {
                 aria-live='polite'
                 className={`UploadDogProfilePhoto__img-preview-container ${suffix}`}
             >
-                <p>Upload image preview</p>
+                <p>Upload image preview:</p>
                 <canvas
                     className={`UploadDogProfilePhoto__preview-canvas ${suffix}`}
                     aria-label='Dog profile avatar preview.' 

@@ -1,16 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-import CreateDogProfile from '../CreateDogProfile/CreateDogProfile';
 import DogProfilesService from '../services/dog-profiles-service';
 
 const DogProfilePageHeaderButtons = (props) => {
 
     const context = useContext(UserContext);
+  
+    const {
+        showEdit,
+        setShowEdit,
+        dog_profile,
+    } = props;
     
-    const { owner, id, name } = props.dog_profile;
+    const { owner, id, name } = dog_profile;
 
-    const [showEdit, setShowEdit] = useState(false);
     const [apiError, setApiError] = useState(false);
 
     const isAPackMember = context.packMembers.length 
@@ -77,9 +81,9 @@ const DogProfilePageHeaderButtons = (props) => {
                 <button
                     className='DogProfilePageHeaderButtons__button button'
                     type='button'
-                    onClick={() => setShowEdit(true)}
+                    onClick={() => setShowEdit(!showEdit)}
                 >
-                    Edit profile
+                    {showEdit ? 'Cancel edit' : 'Edit profile'}
                 </button>
                 <button
                     className='DogProfilePageHeaderButtons__button button'
@@ -91,16 +95,6 @@ const DogProfilePageHeaderButtons = (props) => {
                 <div role='alert'>
                     {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                 </div>
-                {showEdit 
-                    ? 
-                        <CreateDogProfile 
-                            setShowEdit={setShowEdit}
-                            setDog={props.setDog} 
-                            dog_profile={props.dog_profile} 
-                            suffix=' edit ' 
-                        />
-                    : ''
-                }
             </div>
         );
     } else {
