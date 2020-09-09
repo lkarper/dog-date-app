@@ -45,6 +45,21 @@ const AuthApiService = {
                     : res.json()
             );
     },
+    updateUser(newUserInfo) {
+        return fetch(`${config.API_ENDPOINT}/users`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+            body: JSON.stringify(newUserInfo)
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(e => Promise.reject(e));
+                }
+            });
+    },
     postRefreshToken() {
         return fetch(`${config.API_ENDPOINT}/auth/refresh`, {
             method: 'POST',

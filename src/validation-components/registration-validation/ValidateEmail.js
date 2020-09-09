@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
 
 const ValidateEmail = (props) => {
-    const { emailValidationError, emailAlreadyRegistered } = props;
+    const { 
+        emailValidationError, 
+        emailAlreadyRegistered,
+        suffix = '', 
+    } = props;
 
     useEffect(() => {
         const { email, setEmailValidationError } = props;
@@ -14,7 +18,13 @@ const ValidateEmail = (props) => {
         }
     }, [props]);
 
-    const accountExistsText = (<>A registered account is already linked to the email address '{emailAlreadyRegistered}'.  If that account belongs to you, <Link to='/login'>click here</Link> to login.</>);
+    const accountExistsText = (
+        <>
+            A registered account is already linked to the email address '{emailAlreadyRegistered}'.  
+            {!suffix && 
+                `If that account belongs to you, ${<Link to='/login'>click here</Link>} to login.`}
+        </>
+    );
 
     if (emailValidationError) {
         return (

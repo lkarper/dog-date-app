@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from '../contexts/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import AuthApiService from '../services/auth-api-service';
@@ -10,14 +11,23 @@ import ValidateReenteredPassword from '../validation-components/registration-val
 import './RegistrationForm.css';
 
 const RegistrationForm = (props) => {
+
+    const context = useContext(UserContext);
+
+    const {
+        suffix = '',
+        currentEmail = '',
+        currentPhone = '',
+        setShowEdit,
+    } = props;
     
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [props]);
 
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(currentEmail);
     const [emailValidationError, setEmailValidationError] = useState(null);
-    const [phone, setPhone] = useState('');
+    const [phone, setPhone] = useState(currentPhone);
     const [phoneValidationError, setPhoneValidationError] = useState(null);
     const [username, setUsername] = useState('');
     const [usernameValidationError, setUsernameValidationError] = useState(null);
@@ -44,44 +54,86 @@ const RegistrationForm = (props) => {
         setShowLoading(true);
         setEmailAlreadyRegistered(false);
         setUsernameExists(false);
-        AuthApiService.postUser({
-            username,
-            email,
-            phone,
-            password,
-        })
-            .then(user => {
-                setEmail('');
-                setEmailValidationError(false);
-                setPhone('');
-                setPhoneValidationError(false);
-                setUsername('');
-                setUsernameValidationError(false);
-                setPassword('');
-                setPasswordErrorMessage([]);
-                setReenteredPassword('');
-                setEmailAlreadyRegistered(false);
-                setUsernameExists(false);
-                props.history.push('/login');
+
+        if (suffix) {
+            // Don't forget to update server to check if email in use!!
+            AuthApiService.updateUser({
+                email,
+                phone
             })
+                .then(res => {
+                    window.sessionStorage.setItem('email', email);
+                    window.sessionStorage.setItem('phone', phone);
+                    const {
+                        id,
+                        username
+                    } = context.user;
+                    context.setUser({
+                        id,
+                        username,
+                        email,
+                        phone
+                    });
+                    setEmailValidationError(false);
+                    setPhoneValidationError(false);
+                    setEmailAlreadyRegistered(false);
+                    setApiError(false);
+                    setShowEdit(false);
+                })
                 .catch(res => {
                     if (res.error === `Account already registered with that email`) {
                         setEmailAlreadyRegistered(email);
                     }
-                    if (res.error === `Username already taken`) {
-                        setUsernameExists(username)
-                    }
                     setShowLoading(false);
                     setApiError(res.error);
                 });
+        } else {
+            AuthApiService.postUser({
+                username,
+                email,
+                phone,
+                password,
+            })
+                .then(user => {
+                    setEmail('');
+                    setEmailValidationError(false);
+                    setPhone('');
+                    setPhoneValidationError(false);
+                    setUsername('');
+                    setUsernameValidationError(false);
+                    setPassword('');
+                    setPasswordErrorMessage([]);
+                    setReenteredPassword('');
+                    setEmailAlreadyRegistered(false);
+                    setUsernameExists(false);
+                    props.history.push('/login');
+                })
+                    .catch(res => {
+                        if (res.error === `Account already registered with that email`) {
+                            setEmailAlreadyRegistered(email);
+                        }
+                        if (res.error === `Username already taken`) {
+                            setUsernameExists(username)
+                        }
+                        setShowLoading(false);
+                        setApiError(res.error);
+                    });
+        }
     }
 
     return (
         <section className='RegistrationForm__section section'>
-            <header className='RegistrationForm__header'>
-                <h1>Even man's best friend needs a pack.</h1>
-                <p>Create an account to get started!</p>
-            </header>
+            {!suffix && 
+                <header className='RegistrationForm__header'>
+                    <h1>Even man's best friend needs a pack.</h1>
+                    <p>Create an account to get started!</p>
+                </header>
+            }
+            {suffix &&
+                <header>
+                    <h3>Edit contact info</h3>
+                </header>
+            }
             <form 
                 className='signup-form'
                 onSubmit={handleSubmit}
@@ -101,6 +153,7 @@ const RegistrationForm = (props) => {
                 </div>
                 <div role='alert'>
                     <ValidateEmail 
+                        suffix={suffix}
                         email={email}
                         emailValidationError={emailValidationError}
                         emailAlreadyRegistered={emailAlreadyRegistered}
@@ -125,66 +178,70 @@ const RegistrationForm = (props) => {
                         setPhoneValidationError={setPhoneValidationError}
                     /> 
                 </div>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <input 
-                        type="text" 
-                        placeholder="Username" 
-                        id="username" 
-                        name="username"
-                        value={username}
-                        autoComplete='username' 
-                        aria-describedby='username-validation'
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </div>
-                <div role='alert'>
-                    <ValidateUsername 
-                        username={username}
-                        usernameValidationError={usernameValidationError}
-                        usernameExists={usernameExists}
-                        setUsernameValidationError={setUsernameValidationError}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        value={password}
-                        autoComplete='new-password'
-                        aria-describedby="password-error-message"
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
+                {!suffix &&
+                    <> 
+                        <div>
+                            <label htmlFor="username">Username:</label>
+                            <input 
+                                type="text" 
+                                placeholder="Username" 
+                                id="username" 
+                                name="username"
+                                value={username}
+                                autoComplete='username' 
+                                aria-describedby='username-validation'
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
+                        <div role='alert'>
+                            <ValidateUsername 
+                                username={username}
+                                usernameValidationError={usernameValidationError}
+                                usernameExists={usernameExists}
+                                setUsernameValidationError={setUsernameValidationError}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password:</label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                value={password}
+                                autoComplete='new-password'
+                                aria-describedby="password-error-message"
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                />
+                        </div>
+                        <ValidatePassword 
+                            password={password} 
+                            passwordErrorMessage={passwordErrorMessage}
+                            passwordError={passwordError}
+                            setPasswordErrorMessage={setPasswordErrorMessage}
+                            setPasswordError={setPasswordError}
                         />
-                </div>
-                <ValidatePassword 
-                    password={password} 
-                    passwordErrorMessage={passwordErrorMessage}
-                    passwordError={passwordError}
-                    setPasswordErrorMessage={setPasswordErrorMessage}
-                    setPasswordError={setPasswordError}
-                />
-                <div>
-                    <label htmlFor="reenter-password">Re-enter password:</label>
-                    <input 
-                        type="password" 
-                        id="reenter-password" 
-                        name="reenter-password" 
-                        value={reenteredPassword}
-                        autoComplete='new-password'
-                        aria-describedby="reenter-password-validation"
-                        onChange={(e) => setReenteredPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <ValidateReenteredPassword 
-                    password={password}
-                    reenteredPassword={reenteredPassword}
-                    reenteredPasswordError={reenteredPasswordError}
-                    setReenteredPasswordError={setReenteredPasswordError}
-                /> 
+                        <div>
+                            <label htmlFor="reenter-password">Re-enter password:</label>
+                            <input 
+                                type="password" 
+                                id="reenter-password" 
+                                name="reenter-password" 
+                                value={reenteredPassword}
+                                autoComplete='new-password'
+                                aria-describedby="reenter-password-validation"
+                                onChange={(e) => setReenteredPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <ValidateReenteredPassword 
+                            password={password}
+                            reenteredPassword={reenteredPassword}
+                            reenteredPasswordError={reenteredPasswordError}
+                            setReenteredPasswordError={setReenteredPasswordError}
+                        /> 
+                    </>
+                }
                 <button 
                     className='button'
                     type="submit"
@@ -199,10 +256,16 @@ const RegistrationForm = (props) => {
                 </button>
             </form>
             <div role="alert">
-                {apiError && 
+                {(apiError && !suffix) && 
                     <>
                         <h2>Error</h2>
                         <p>New user could not be created: {apiError}</p>
+                    </>
+                }
+                {(apiError && suffix) && 
+                    <>
+                        <h2>Error</h2>
+                        <p>Could not update user info; check your input and connection and try again.</p>
                     </>
                 }
             </div>
