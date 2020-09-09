@@ -160,7 +160,7 @@ label {
 
 .radio:checked + label::before {
   background-color: hsl(55, 80%, 56%);
-  border: 2px solid hsl(245, 100%, 50%);
+  border: 3px solid hsl(245, 100%, 50%);
 }
 
 
@@ -171,7 +171,7 @@ label {
 
 .radio:focus:checked + label::before,
 .radio:hover:checked + label::before {
-  border-color: hsl(245, 100%, 25%);        
+  border: 3px solid hsl(245, 100%, 25%);        
   background-color: hsl(55, 80%, 25%);
 }
 

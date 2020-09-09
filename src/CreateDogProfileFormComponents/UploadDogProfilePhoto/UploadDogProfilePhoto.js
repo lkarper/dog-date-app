@@ -170,11 +170,17 @@ const UploadDogProfilePhoto = (props) => {
             <header>
                 <h2>Upload a photo for your dog's profile</h2>
             </header>
-            {suffix && <button className={`CreateDogProfile__close-button ${suffix}`} onClick={() => props.setShowEdit(false)}>&#10006;</button>}
+            {suffix && <button className={`CreateDogProfile__close-button ${suffix} button`} onClick={() => props.setShowEdit(false)}>&#10006;</button>}
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="profile-pic">Profile picture:</label>
+                    <label 
+                        className='UploadDogProfilePhoto__photo-label'
+                        htmlFor="profile-pic"
+                    >
+                        Select an image file
+                    </label>
                     <input
+                        className='UploadDogProfilePhoto__file-input'
                         type="file"
                         id="profile-pic"
                         name="profile-pic"
@@ -194,12 +200,18 @@ const UploadDogProfilePhoto = (props) => {
                 />
                 <div>
                     <button
+                        className='UploadDogProfilePhoto__button button'
                         type='submit'
                         disabled={!imgFile}
                     >
                         Upload new photo
                     </button>
-                    <button onClick={noPhoto}>Don't use a photo</button>
+                    <button
+                        className='UploadDogProfilePhoto__button button' 
+                        onClick={noPhoto}
+                    >
+                        Don't use a photo
+                    </button>
                 </div>
             </form>
             <div 
@@ -225,7 +237,12 @@ const UploadDogProfilePhoto = (props) => {
                             alt='Avatar currently saved to profile.' 
                             className='UploadDogProfilePhoto__img-preview'
                         />
-                        <button onClick={uploadDogProfile}>Keep current profile picture</button>
+                        <button 
+                            className='UploadDogProfilePhoto__button button'
+                            onClick={uploadDogProfile}
+                        >
+                            Keep current profile picture
+                        </button>
                     </div>
                 }
             </div>

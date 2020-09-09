@@ -188,7 +188,10 @@ const CreateDogProfile = (props) => {
 
     if (infoForm) {
         return (
-            <div aria-live='polite'>
+            <div
+                className='CreateDogProfile__outer-div' 
+                aria-live='polite'
+            >
                 <header 
                     className={`CreateDogProfile__header${suffix}`}
                     aria-hidden={suffix ? true : false}
@@ -290,7 +293,10 @@ const CreateDogProfile = (props) => {
     } else {
         if (!imgUploadForm) {
             return (
-                <div aria-live='polite'>
+                <div
+                    className='CreateDogProfile__outer-div' 
+                    aria-live='polite'
+                >
                     <header className={`CreateDogProfile__header${suffix}`}>
                         <h1>Create a Profile</h1>
                     </header>
@@ -299,8 +305,18 @@ const CreateDogProfile = (props) => {
                             <h2>Would you like your dog's profile to feature a photo?</h2>
                         </header>
                         {suffix && <button className={`CreateDogProfile__close-button${suffix}`}onClick={() => props.setShowEdit(false)}>&#10006;</button>}
-                        <button onClick={() => setImgUploadForm(true)}>Yes</button>
-                        <button onClick={useNoImg}>No</button>
+                        <button
+                            className='CreateDogProfile__button button' 
+                            onClick={() => setImgUploadForm(true)}
+                        >
+                            Yes
+                        </button>
+                        <button 
+                            className='CreateDogProfile__button button'
+                            onClick={useNoImg}
+                        >
+                            No
+                        </button>
                         {showLoading && 
                             <div className='CreateDogProfilePhoto__loading-container'>
                                 <FontAwesomeIcon 
@@ -318,7 +334,10 @@ const CreateDogProfile = (props) => {
             )
         }
         return (
-            <div aria-live='polite'>
+            <div
+                className='CreateDogProfile__outer-div' 
+                aria-live='polite'
+            >
                 <header className={`CreateDogProfile__header${suffix}`}>
                     <h1>Create a Profile</h1>
                 </header>
