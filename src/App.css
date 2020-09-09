@@ -13,7 +13,7 @@ main {
 }
 
 .section {
-  width: 80%;
+  width: 90%;
   padding: 10px;
   border: 1px solid white;
   background-color: white;
@@ -233,4 +233,10 @@ label {
 .error {
   color: red;
   font-weight: bold;
+}
+
+@media screen and (min-width: 750px) {
+  .section {
+    width: 80%;
+  }
 }

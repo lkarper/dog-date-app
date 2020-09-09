@@ -15,7 +15,7 @@ const MyDogs = (props) => {
             className='MyDogs__section section'
         >
             <header>
-                <h2>My dogs</h2>
+                <h2>My Dogs</h2>
             </header>
             <Link 
                 className='link'
@@ -26,7 +26,12 @@ const MyDogs = (props) => {
             {dogs && (dogs.length > 0
                 ?
                     <ul className='MyDogs__list'>
-                        {dogs.map(dog => <DogListView key={dog.id} dog={dog} />)}
+                        {dogs.map(dog => 
+                            <DogListView 
+                                key={dog.id} 
+                                dog={dog} 
+                            />
+                        )}
                     </ul>
                 :
                     <p>No dogs currently linked to your account.</p>)

@@ -128,10 +128,22 @@ const LoginForm = (props) => {
                 >
                     Submit
                 </button>
-                <div role='alert'>
-                    {loginError ? <p>{loginError}</p> : ''}
-                </div>
             </form>
+            <div
+                className='LoginPage__alert-div' 
+                role='alert'
+            >
+                {loginError 
+                    ? 
+                        <p 
+                            className='LoginPage__p error'
+                        >
+                            {loginError}
+                        </p> 
+                    : 
+                        ''
+                }
+            </div>
             <p>Don't have an account? <Link className='link' to='/register'>Register</Link></p>
             {showLoading && 
                 <div className='LoginPage__loading-container'>

@@ -75,11 +75,15 @@ const DogProfilePageHeaderButtons = (props) => {
                 className='DogProfilePageHeaderButtons__container'
             >
                 <button
+                    className='DogProfilePageHeaderButtons__button button'
+                    type='button'
                     onClick={() => setShowEdit(true)}
                 >
                     Edit profile
                 </button>
                 <button
+                    className='DogProfilePageHeaderButtons__button button'
+                    type='button'
                     onClick={removeDogProfileCheck}
                 >
                     Delete profile
@@ -107,8 +111,9 @@ const DogProfilePageHeaderButtons = (props) => {
                     className='DogProfilePageHeaderButtons__container'
                 >
                     <p>{name} is a member of your pack!</p>
-                    <button 
-                        type="button"
+                    <button
+                        className='DogProfilePageHeaderButtons__button button' 
+                        type='button'
                         onClick={removePackMemberCheck}
                     >
                         Click here to remove {name} from your pack
@@ -124,6 +129,7 @@ const DogProfilePageHeaderButtons = (props) => {
             <div aria-live='polite'>
                 <p>{name} is not a member of your pack.</p>
                 <button
+                    className='DogProfilePageHeaderButtons__button button'
                     type='button'
                     onClick={addPackMemberCheck}
                 >

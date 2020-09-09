@@ -57,9 +57,9 @@ const DogProfilePage = (props) => {
     }, [dog]);
 
     if (dog) {
-
         return (
             <section
+                className='DogProfilePage__outer-section section'
                 aria-live='polite'
             >
                 <header className='DogProfilePage__header'>
