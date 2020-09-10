@@ -25,6 +25,10 @@ main {
   line-height: 28px;
 }
 
+h1 {
+  font-size: 2em;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', sans-serif;
 }
@@ -91,6 +95,7 @@ label {
 }
 
 .outer-fieldset {
+  width: 90%;
   padding: 10px;
   border: 1px solid white;
   background-color: white;

@@ -113,39 +113,49 @@ const HowlsList = (props) => {
                     handleSubmit,
                 }}
             />
-            <section className='HowlsList__section section'>
-                <div role='alert'>
-                    {(searched && !apiError) && 
-                        <header>
-                            <h2>Dogs howling for a playmate</h2>
-                        </header>
-                    }
-                    {(searched && apiError) &&
-                            <>
-                                <h2>Error</h2>
-                                <p>Looks like something went wrong.  Check your connection and try again.</p>
-                            </>
-                    }
-                    {(searched && !apiError) && <p>Now showing {howls.length} {howls.length === 1 ? 'howl' : 'howls'}</p>}
-                    {searched && (howls.length === 0 
-                        ?
-                            <p>No howls found that match those search criteria.  Adust your parameters and try again.</p>
-                        :
-                            <ol className='HowlsList__list'>
-                                {howls.map(howl => <HowlListItem key={howl.id} howl={howl} />)}
-                            </ol>
-                    )}
-                </div>
-                {showLoading && 
-                    <div className='HowlsList__loading-container'>
-                        <FontAwesomeIcon 
-                            className='HowlsList__loading' 
-                            icon={faSpinner} 
-                            spin 
-                        />
-                    </div>
+            <div
+                className='HowlsList__results-div' 
+                role='alert'
+            >
+                {searched && 
+                    <section className='HowlsList__section section'>
+                        {!apiError && 
+                            <header>
+                                <h2>Dogs howling for a playmate</h2>
+                            </header>
+                        }
+                        {apiError &&
+                                <>
+                                    <h2>Error</h2>
+                                    <p>Looks like something went wrong.  Check your connection and try again.</p>
+                                </>
+                        }
+                        {!apiError && <p>Now showing {howls.length} {howls.length === 1 ? 'howl' : 'howls'}</p>}
+                        {howls.length === 0 
+                            ?
+                                <p>No howls found that match those search criteria. Adjust your parameters and try again.</p>
+                            :
+                                <ol className='HowlsList__list'>
+                                    {howls.map(howl => 
+                                        <HowlListItem 
+                                            key={howl.id} 
+                                            howl={howl} 
+                                        />
+                                    )}
+                                </ol>
+                        }
+                    </section>
                 }
-            </section>
+            </div>
+            {showLoading && 
+                <div className='HowlsList__loading-container'>
+                    <FontAwesomeIcon 
+                        className='HowlsList__loading' 
+                        icon={faSpinner} 
+                        spin 
+                    />
+                </div>
+            }
         </>
     );
 }

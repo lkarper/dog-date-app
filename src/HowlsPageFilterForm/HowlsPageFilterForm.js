@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import StateSelector from '../StateSelector/StateSelector';
 import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
 import HowlsPageAdvancedSearch from '../HowlsPageAdvancedSearch/HowlsPageAdvancedSearch';
-import './HowlsPageFilterForm.css';
 import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
+import './HowlsPageFilterForm.css';
 
 const HowlsPageFilterForm = (props) => {
 
@@ -68,37 +68,36 @@ const HowlsPageFilterForm = (props) => {
                         notRequired={true}
                         propState={state}
                     />
-                <div>
-                    <label htmlFor='zipcode'>ZIP code:</label>
-                    <input 
-                        type='text'
-                        id='zipcode'
-                        name='zipcode'
-                        value={zipcode}
-                        aria-describedby='zipcode-validator'
-                        onChange={(e) => setZipcode(e.target.value)}
-                    />
-                </div>
-                <div 
-                    className='HowlsPageFilterForm__zipcode-alert'
-                    role='alert'
-                >
-                    <ValidateZipCode 
-                        zipcode={zipcode}
-                        zipcodeError={zipcodeError}
-                        setZipcodeError={setZipcodeError}
-                        notRequired={true}
-                    />
-                </div>
+                    <div>
+                        <label htmlFor='zipcode'>ZIP code:</label>
+                        <input 
+                            type='text'
+                            id='zipcode'
+                            name='zipcode'
+                            value={zipcode}
+                            aria-describedby='zipcode-validator'
+                            onChange={(e) => setZipcode(e.target.value)}
+                        />
+                    </div>
+                    <div 
+                        className='HowlsPageFilterForm__zipcode-alert'
+                        role='alert'
+                    >
+                        <ValidateZipCode 
+                            zipcode={zipcode}
+                            zipcodeError={zipcodeError}
+                            setZipcodeError={setZipcodeError}
+                            notRequired={true}
+                        />
+                    </div>
                 </fieldset>
-                <fieldset className='HowlsPageFilterForm__fieldset sub-fieldset'>
-                    <ReviewFormStarRater
-                        classSuffix='sort'
-                        currentState={ratingFilter}
-                        setter={setRatingFilter}
-                        legendText='Average rating of dog(s) equal to or greater than'
-                    />
-                </fieldset>
+                <ReviewFormStarRater
+                    classSuffix='sort'
+                    currentState={ratingFilter}
+                    setter={setRatingFilter}
+                    required={false}
+                    legendText='Average rating of dog(s) equal to or greater than'
+                />
                 <div aria-live='polite'>
                     {showAdvanced 
                         ?

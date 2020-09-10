@@ -156,10 +156,11 @@ const HowlsPageAdvancedSearch = (props) => {
 
     return (
         <div aria-live='polite'>
-            <fieldset className='HowlsPageFilterForm__sub-fieldset'>
+            <fieldset className='HowlsPageFilterForm__fieldset sub-fieldset'>
                 <legend>Type of meeting</legend>
                 <div>
                     <input 
+                        className='HowlsPageAdvancedSearch__radio radio'
                         type='radio'
                         id='sort-howls-type-any'
                         name='sort-howls-type'
@@ -171,6 +172,7 @@ const HowlsPageAdvancedSearch = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='HowlsPageAdvancedSearch__radio radio'
                         type='radio'
                         id='sort-howls-type-recurring'
                         name='sort-howls-type'
@@ -182,6 +184,7 @@ const HowlsPageAdvancedSearch = (props) => {
                 </div>
                 <div>
                     <input 
+                        className='HowlsPageAdvancedSearch__radio radio'
                         type='radio'
                         id='sort-howls-type-once'
                         name='sort-howls-type'
@@ -192,7 +195,7 @@ const HowlsPageAdvancedSearch = (props) => {
                     <label htmlFor='sort-howls-type-once'>One time meetings only</label>
                 </div>
             </fieldset>
-            <fieldset className='HowlsPageFilterForm__sub-fieldset'>
+            <fieldset className='HowlsPageFilterForm__fieldset sub-fieldset'>
                 <legend>Only show howls on the following days of the week (optional)</legend>
                 {[
                     'Monday', 
@@ -205,6 +208,7 @@ const HowlsPageAdvancedSearch = (props) => {
                 ].map(day => (
                     <div key={day}>
                         <input 
+                            className='HowlsPageAdvancedSearch__checkbox checkbox'
                             type='checkbox'
                             id={day}
                             name={day}
@@ -242,8 +246,9 @@ const HowlsPageAdvancedSearch = (props) => {
                         }
                         {daysOfWeek.includes(day) &&
                             <button 
+                                className='HowlsPageAdvancedSearch__button button'
                                 onClick={() => addRecurringMeetingWindow(day)} 
-                                type="button"
+                                type='button'
                             >
                                 Click to add a time window
                             </button>
@@ -251,26 +256,27 @@ const HowlsPageAdvancedSearch = (props) => {
                     </div>
                 ))}
             </fieldset>
-            <fieldset className='HowlsPageFilterForm__fieldset'>
+            <fieldset className='HowlsPageFilterForm__fieldset sub-fieldset'>
                 <legend>Only show howls on this date (optional)</legend>
-                <label htmlFor="once-date">Date:</label>
+                <label htmlFor='once-date'>Date:</label>
                 <input 
-                    type="date" 
-                    id="once-date" 
-                    name="once-date" 
-                    placeholder="yyyy-mm-dd" 
+                    type='date' 
+                    id='once-date' 
+                    name='once-date' 
+                    placeholder='yyyy-mm-dd' 
                     min={minDate}
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                 />
                 <button 
+                    className='HowlsPageAdvancedSearch__button button'
                     type='button' 
                     onClick={() => setDate('')}
                 >
                     Reset Date
                 </button>
                 {date && 
-                    <fieldset className='HowlsPageFilterForm__sub-fieldset'>
+                    <fieldset className='HowlsPageFilterForm__fieldset sub-fieldset'>
                         <legend>Only show howls that overlap with the following time frames on this date (optional)</legend>
                         <ol>
                             {timeWindows.map((window, i) => (
@@ -284,7 +290,13 @@ const HowlsPageAdvancedSearch = (props) => {
                                 />) 
                             )}
                         </ol>
-                        <button type="button" onClick={addTimeWindow}>Add a time window</button>
+                        <button
+                            className='HowlsPageAdvancedSearch__button button' 
+                            type='button' 
+                            onClick={addTimeWindow}
+                        >
+                            Add a time window
+                        </button>
                         <div role='alert'>
                             <ValidateTime 
                                 meetingType='search'

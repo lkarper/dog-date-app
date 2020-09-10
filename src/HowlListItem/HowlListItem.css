@@ -3,6 +3,11 @@
     padding: 10px;
     margin: 20px auto;
     width: 100%;
+    border-top: 1px solid black;
+}
+
+.HowlListItem__li:first-of-type {
+    border-top: none;
 }
 
 .HowlListItem__h3 {
