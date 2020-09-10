@@ -65,8 +65,8 @@ const AddCommentForm = (props) => {
         >
             <textarea
                 className='AddCommentForm__textarea'
-                aria-label='Leave your own comment here.'
-                placeholder='(Leave your own comment here.)'
+                aria-label='Leave a new comment here.'
+                placeholder='(Leave a new comment here.)'
                 maxLength='2000'
                 rows='8'
                 value={commentText}

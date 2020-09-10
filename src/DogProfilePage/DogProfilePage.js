@@ -25,6 +25,12 @@ const DogProfilePage = (props) => {
     const [apiError, setApiError] = useState(false);
 
     useEffect(() => {
+        if (!showEdit) {
+            window.scrollTo(0, 0);
+        }
+    }, [showEdit]);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
         DogProfilesService.fetchDogProfileById(id)
             .then(dog => {

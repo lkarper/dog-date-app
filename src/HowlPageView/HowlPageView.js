@@ -23,6 +23,12 @@ const HowlPageView  = (props) => {
     const [update, setUpdate] = useState(null);
 
     useEffect(() => {
+        if (!showEdit) {
+            window.scrollTo(0, 0);
+        }
+    }, [showEdit]);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
         HowlsService.getHowlById(howl_id)
             .then(howl => {
@@ -51,7 +57,8 @@ const HowlPageView  = (props) => {
                                         endTime={window.end_time}
                                     />
                                 </li>
-                            ))}
+                            ))
+                        }
                     </ul>
                 </div>
             );
