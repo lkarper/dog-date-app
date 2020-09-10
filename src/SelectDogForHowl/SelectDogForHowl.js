@@ -22,7 +22,7 @@ const SelectDogForHowl = (props) => {
             className='SelectDogForHowl__outer-container'
         >
             <input 
-                className='SelectDogForHowl__checkbox'
+                className='SelectDogForHowl__checkbox checkbox'
                 type="checkbox" 
                 id={dog.id} 
                 name={dog.id} 

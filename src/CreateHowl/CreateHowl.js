@@ -221,7 +221,14 @@ const CreateHowl = (props) => {
                 <fieldset>
                     <legend>Select your dog(s) to howl about</legend>
                     <div className='CreateHowl__dog-select-container'>
-                        {context.dogs.map(dog => <SelectDogForHowl key={dog.id} dog={dog} dogsForHowl={dogsForHowl} updateDogsForHowl={updateDogsForHowl} /> )}
+                        {context.dogs.map(dog => 
+                            <SelectDogForHowl 
+                                key={dog.id} 
+                                dog={dog} 
+                                dogsForHowl={dogsForHowl} 
+                                updateDogsForHowl={updateDogsForHowl} 
+                            /> 
+                        )}
                     </div>
                     <div role='alert'>
                         <ValidateDogSelection 
