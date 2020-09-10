@@ -3,7 +3,13 @@ import './ReviewFormStarRater.css';
 
 const ReviewFormStarRater = (props) => {
 
-    const { classSuffix, currentState, setter, legendText } = props;
+    const { 
+        classSuffix, 
+        currentState, 
+        setter, 
+        required,
+        legendText 
+    } = props;
 
     const [starRating, setStarRating] = useState(currentState.toString());
 
@@ -25,7 +31,7 @@ const ReviewFormStarRater = (props) => {
                     value="1" 
                     checked={starRating === '1'}
                     onChange={(e) => setStarRating(e.target.value)}
-                    required
+                    required={required}
                 />
                 <label
                     className='ReviewFormStarRater__label'
@@ -44,7 +50,7 @@ const ReviewFormStarRater = (props) => {
                     value="2" 
                     checked={starRating === '2'}
                     onChange={(e) => setStarRating(e.target.value)}
-                    required
+                    required={required}
                 />
                 <label 
                     className='ReviewFormStarRater__label'
@@ -63,7 +69,7 @@ const ReviewFormStarRater = (props) => {
                     value="3" 
                     checked={starRating === '3'}
                     onChange={(e) => setStarRating(e.target.value)}
-                    required
+                    required={required}
                 />
                 <label 
                     className='ReviewFormStarRater__label'
@@ -82,7 +88,7 @@ const ReviewFormStarRater = (props) => {
                     value="4" 
                     checked={starRating === '4'}
                     onChange={(e) => setStarRating(e.target.value)}
-                    required
+                    required={required}
                 />
                 <label 
                     className='ReviewFormStarRater__label'
@@ -101,7 +107,7 @@ const ReviewFormStarRater = (props) => {
                     value="5" 
                     checked={starRating === '5'}
                     onChange={(e) => setStarRating(e.target.value)}
-                    required
+                    required={required}
                 />
                 <label 
                     className='ReviewFormStarRater__label'

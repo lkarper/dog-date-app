@@ -134,30 +134,35 @@ const DogReviewForm = (props) => {
                     classSuffix='fd'
                     currentState={friendlinessDogs}
                     setter={setFriendlinessDogs}
+                    required={true}
                     legendText='Friendliness towards other dogs'
                 />
                 <ReviewFormStarRater 
                     classSuffix='fp'
                     currentState={friendlinessPeople}
                     setter={setFriendlinessPeople}
+                    required={true}
                     legendText='Friendliness towards people'
                 />
                 <ReviewFormStarRater 
                     classSuffix='ip'
                     currentState={playingInterest}
                     setter={setPlayingInterest}
+                    required={true}
                     legendText='Interest in playing'
                 />
                 <ReviewFormStarRater 
                     classSuffix='o'
                     currentState={obedience}
                     setter={setObedience}
+                    required={true}
                     legendText='Obedience'
                 />
                 <ReviewFormStarRater 
                     classSuffix='acc'
                     currentState={profileAccuracy}
                     setter={setProfileAccuracy}
+                    required={true}
                     legendText='Accuracy of profile'
                 />
             </fieldset>
