@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,8 @@ const HowlsList = (props) => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [props]);
+
+    const resRef = useRef(null);
 
     const [howls, setHowls] = useState([]);
     const [searched, setSearched] = useState(false);
@@ -68,12 +70,14 @@ const HowlsList = (props) => {
                 setShowLoading(false);
                 setSearched(true);
                 setHowls(howls);
+                window.scrollTo(0, resRef.current.offsetTop - 75);
             })
             .catch(error => {
                 console.log(error);
                 setShowLoading(false);
                 setSearched(true);
                 setApiError(true);
+                window.scrollTo(0, resRef.current.offsetTop - 75);
             });
     }
 
@@ -114,6 +118,7 @@ const HowlsList = (props) => {
                 }}
             />
             <div
+                ref={resRef}
                 className='HowlsList__results-div' 
                 role='alert'
             >
