@@ -160,7 +160,6 @@ const DogReviewForm = (props) => {
                     setter={setProfileAccuracy}
                     legendText='Accuracy of profile'
                 />
-                
             </fieldset>
             <fieldset
                 className='DogReviewForm__fieldset outer-fieldset'
@@ -281,6 +280,7 @@ const DogReviewForm = (props) => {
                         />
                     </div>
                     <div 
+                        className='DogReviewForm__alert-div validate-title'
                         role='alert'
                     >
                         <ValidateTitle
@@ -314,6 +314,7 @@ const DogReviewForm = (props) => {
                         ></textarea>
                     </div>
                     <div 
+                        className='DogReviewForm__alert-div personal-message'
                         role='alert'
                     >
                         <ValidatePersonalMessage 
@@ -327,9 +328,11 @@ const DogReviewForm = (props) => {
             <button 
                 className='DogReviewForm__submit button'
                 type='submit'
-                disabled={reviewTitleError || 
+                disabled={
+                    reviewTitleError || 
                     personalMessageError || 
-                    locationError.length}
+                    locationError.length
+                }
             >
                 Submit
             </button>

@@ -1,3 +1,11 @@
 .LocationForm__fieldset {
     width: 100%;
 }
+
+.LocationForm__alert-div.large{
+    min-height: 100px;
+}
+
+.LocationForm__alert-div.small {
+    min-height: 75px;
+}

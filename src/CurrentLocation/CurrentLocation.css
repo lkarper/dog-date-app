@@ -1,0 +1,11 @@
+.CurrentLocation__alert-div {
+    min-height: 85px;
+}
+
+.CurrentLocation__alert-div span {
+    display: inline-block;
+}
+
+.CurrentLocation__alert-div span:first-child {
+    font-weight: bold;
+}

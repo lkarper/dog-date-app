@@ -7,7 +7,7 @@ const ValidateCity = (props) => {
     useEffect(() => {
         
         if (city.trim().length === 0) {
-            setCityError(`You must enter a city.`);
+            setCityError(`You must enter a city. (Max 100 chars.)`);
         } else {
             setCityError('');
         }
@@ -15,10 +15,24 @@ const ValidateCity = (props) => {
     }, [city, setCityError]);
 
     if (cityError) {
-        return <p id='city-validator'>{cityError}</p>;
+        return (
+            <p 
+                className='ValidateCity__validator error'
+                id='city-validator'
+            >
+                {cityError}
+            </p>
+        );
     }
 
-    return <p id='city-validator'>City set to {city}</p>;
+    return (
+        <p
+            className='ValidateCity__validator valid'   
+            id='city-validator'
+        >
+            City set to '{city}'. (Max 100 chars.).
+        </p>
+    );
 }
 
 export default ValidateCity;

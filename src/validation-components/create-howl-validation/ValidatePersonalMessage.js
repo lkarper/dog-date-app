@@ -13,10 +13,24 @@ const ValidatePersonalMessage = (props) => {
     }, [personalMessage, setPersonalMessageError]);
 
     if (personalMessageError) {
-        return <p id='personal-message-validator'>{personalMessageError} (Limited to 2000 characters.)</p>
+        return (
+            <p 
+                className='ValidatePersonalMessage__validator error'
+                id='personal-message-validator'
+            >
+                {personalMessageError} (Limited to 2000 characters.)
+            </p>
+        );
     }
 
-    return <p id='personal-message-validator'>Personal message optional. (Limited to 2000 characters.)</p>
+    return (
+        <p 
+            className='ValidatePersonalMessage__validator'
+            id='personal-message-validator'
+        >
+            Personal message optional. (Limited to 2000 characters.)
+        </p>
+    );
 }
 
 

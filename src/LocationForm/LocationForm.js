@@ -66,13 +66,15 @@ const LocationForm = (props) => {
                     type='text' 
                     id='address' 
                     name='address'
+                    maxLength='100'
                     value={address}
                     aria-describedby='address-validator'
                     onChange={(e) => setAddress(e.target.value)} 
                     required
                 />
             </div>
-            <div 
+            <div
+                className='LocationForm__alert-div large' 
                 role='alert'
             >
                 <ValidateAddress 
@@ -91,6 +93,7 @@ const LocationForm = (props) => {
                     type='text'
                     id='city'
                     name='city'
+                    maxLength='100'
                     value={city}
                     aria-describedby='city-validator'
                     onChange={(e) => setCity(e.target.value)}
@@ -98,6 +101,7 @@ const LocationForm = (props) => {
                 />
             </div>
             <div 
+                className='LocationForm__alert-div large' 
                 role='alert'
             >
                 <ValidateCity 
@@ -111,6 +115,7 @@ const LocationForm = (props) => {
                 setState={setState}
             />
             <div 
+                className='LocationForm__alert-div' 
                 role='alert'
             >
                 <ValidateState 
@@ -129,6 +134,7 @@ const LocationForm = (props) => {
                     type='text'
                     id='zipcode'
                     name='zipcode'
+                    maxLength='5'
                     value={zipcode}
                     aria-describedby='zipcode-validator'
                     onChange={(e) => setZipcode(e.target.value)}
@@ -136,6 +142,7 @@ const LocationForm = (props) => {
                 />
             </div>
             <div 
+                className='LocationForm__alert-div small' 
                 role='alert'
             >
                 <ValidateZipCode 

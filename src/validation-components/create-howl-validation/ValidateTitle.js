@@ -12,10 +12,24 @@ const ValidateTitle = (props) => {
     }, [title, setTitleError]);
 
     if (titleError) {
-        return <p id='title-validator'>{titleError}</p>
+        return (
+            <p 
+                className='ValidateTitle__validator error'
+                id='title-validator'
+            >
+                {titleError}
+            </p>
+        );
     }
 
-    return <p id='title-validator'>Title meets requirements. (Max 100 chars.)</p>
+    return ( 
+        <p 
+            className='ValidateTitle__validator valid'
+            id='title-validator'
+        >
+            Title meets requirements. (Max 100 chars.)
+        </p>
+    );
 }
 
 export default ValidateTitle;

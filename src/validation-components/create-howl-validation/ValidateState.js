@@ -13,10 +13,24 @@ const ValidateState = (props) => {
     }, [state, setStateError]);
 
     if (stateError) {
-        return <p id='state-validator'>{stateError}</p>;
+        return (
+            <p 
+                className='ValidateState__validator error'
+                id='state-validator'
+            >
+                {stateError}
+            </p>
+        );
     }
 
-    return <p id='state-validator'>State set to {state}.</p>;
+    return (
+        <p 
+            className='ValidateState__validator valid'
+            id='state-validator'
+        >
+            State set to '{state}'.
+        </p>
+    );
 }
 
 export default ValidateState;

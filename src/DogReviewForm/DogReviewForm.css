@@ -24,11 +24,6 @@
     width: 100%;
 }
 
-/* .DogReviewForm__review-form > fieldset, .DogReviewForm__review-form-edit > fieldset {
-    width: 100%;
-    margin: 0;
-    padding: 5px;
-} */
 
 .DogReviewForm__review-form .sub-fieldset, .DogReviewForm__review-form-edit .sub-fieldset {
     width: 100%;
@@ -38,4 +33,8 @@
 
 .DogReviewForm__title-container input {
     width: 75%;
+}
+
+.DogReviewForm__alert-div.personal-message {
+    min-height: 115px;
 }

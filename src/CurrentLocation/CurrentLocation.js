@@ -1,16 +1,26 @@
 import React from 'react';
+import './CurrentLocation.css';
 
 const CurrentLocation = (props) => {
     
     const { coordinates } = props;
 
     return (
-        <div role='alert'>
+        <div 
+            className='CurrentLocation__alert-div'
+            role='alert'
+        >
             <p id='current-set-coordinates'>
                 {
-                    Object.keys(coordinates).length 
-                    ? `Coordinates set to: ${coordinates.lat}, ${coordinates.lon}.` 
-                    : 'No coordinates set (coordinates are optional).'
+                    coordinates.lat !== 0 || coordinates.lon !== 0
+                        ? 
+                            <>
+                                <span>Coordinates set to:{' '}</span> 
+                                <span>Lat: {coordinates.lat}</span>
+                                <span>Lon: {coordinates.lon}</span>
+                            </>
+                        : 
+                            'No coordinates set (coordinates are optional).'
                 }
             </p>
         </div>
