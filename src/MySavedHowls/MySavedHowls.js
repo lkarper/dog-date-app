@@ -13,7 +13,7 @@ const MySavedHowls = (props) => {
             className='MySavedHowls__section section'
         >
             <header>
-                <h2>My saved howls</h2>
+                <h2>My Saved Howls</h2>
             </header>
             {context.userSavedHowls.length
                 ? 

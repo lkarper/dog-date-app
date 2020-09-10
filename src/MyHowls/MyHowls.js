@@ -14,7 +14,7 @@ const MyHowls = (props) => {
             className='MyHowls__section section'
         >
             <header>
-                <h3>My howls</h3>
+                <h2>My Howls</h2>
             </header>
             {context.howls.length > 0
                 ?

@@ -23,7 +23,7 @@ const ReviewsOfMyDogs = (props) => {
     return (
         <section className='ReviewsOfMyDogs__section section'>
             <header>
-                <h3>Reviews of my dogs</h3>
+                <h2>Reviews of my Dogs</h2>
             </header>
             {reviews && (reviews.length > 0
                 ?
