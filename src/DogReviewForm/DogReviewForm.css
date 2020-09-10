@@ -20,11 +20,6 @@
     margin: 5px;
 }
 
-.DogReviewForm__review-form-edit {
-    width: 100%;
-}
-
-
 .DogReviewForm__review-form .sub-fieldset, 
 .DogReviewForm__review-form-edit .sub-fieldset {
     width: 100%;

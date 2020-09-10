@@ -123,7 +123,7 @@ const DogReviewForm = (props) => {
 
     return (
         <form 
-            className={`DogReviewForm__review-form${suffix}`}
+            className={`DogReviewForm__review-form ${suffix}`}
             onSubmit={handleSubmit}
         >
             <fieldset
@@ -336,6 +336,15 @@ const DogReviewForm = (props) => {
             >
                 Submit
             </button>
+            {suffix &&
+                <button
+                    className='DogReviewForm__button button'
+                    type='button'
+                    onClick={() => props.setShowEdit(false)}
+                >
+                    Cancel edit
+                </button>
+            }
             <div 
                 role='alert'
             >
