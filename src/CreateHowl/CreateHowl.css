@@ -1,3 +1,14 @@
+.CreateHowl__section.outer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CreateHowl__header-top {
+    margin: 0 10px;
+}
+
 .CreateHowl__dog-select-container {
     display: flex;
     flex-direction: row;
@@ -23,6 +34,9 @@
 
 .CreateHowl__howl-form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .CreateHowl__title-container {
@@ -42,6 +56,14 @@
     top: 0;
     right: 0;
     margin: 5px;
+}
+
+.CreateHowl__alert-div.dogs {
+    min-height: 75px;
+}
+
+.CreateHowl__alert-div.personal-message {
+    min-height: 115px;
 }
 
 @media screen and (min-width: 750px) {

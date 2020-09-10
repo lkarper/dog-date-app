@@ -51,7 +51,8 @@ const ValidateTime = (props) => {
                 <ol>
                     {timeWindows.map((window, i) =>
                         <li key={i}>
-                            <p 
+                            <p
+                                className={`ValidateTime__validator ${window.startTime ? 'valid' : 'error'}`} 
                                 id={`start-time-validator-${i + 1}`}
                             >
                                 {
@@ -61,6 +62,7 @@ const ValidateTime = (props) => {
                                 }
                             </p>
                             <p 
+                                className={`ValidateTime__validator ${window.endTime ? 'valid' : 'error'}`} 
                                 id={`end-time-validator-${i + 1}`}
                             >
                                 {
@@ -81,6 +83,7 @@ const ValidateTime = (props) => {
                     {recurringMeetingWindows.map((window, i) =>
                         <li key={[Object.keys(window)[0]]}>
                             <p 
+                                className={`ValidateTime__validator ${window[Object.keys(window)[0]].startTime ? 'valid' : 'error'}`} 
                                 id={`start-time-validator-${[Object.keys(window)[0]]}`}
                             >
                                 {
@@ -90,6 +93,7 @@ const ValidateTime = (props) => {
                                 }
                             </p>
                             <p 
+                                className={`ValidateTime__validator ${window[Object.keys(window)[0]].endTime ? 'valid' : 'error'}`}
                                 id={`end-time-validator-${[Object.keys(window)[0]]}`}
                             >
                                 {
@@ -107,12 +111,19 @@ const ValidateTime = (props) => {
         return (
             <div>
                 <p
+                    className={`ValidateTime__validator ${oneTimeMeetingWindows.date ? 'valid' : 'error'}`}
                     id={`date-validator`}
-                >{oneTimeMeetingWindows.date ? 'Date set' : 'You must select a date'}</p>
+                >
+                    {oneTimeMeetingWindows.date 
+                        ? 'Date set' 
+                        : 'You must select a date'
+                    }
+                </p>
                 <ol>
                     {oneTimeMeetingWindows.timeWindows.map((window, i) =>
                         <li key={i}>
                             <p 
+                                className={`ValidateTime__validator ${window.startTime ? 'valid' : 'error'}`}
                                 id={`start-time-validator-${i + 1}`}
                             >
                                 {
@@ -122,6 +133,7 @@ const ValidateTime = (props) => {
                                 }
                             </p>
                             <p 
+                                className={`ValidateTime__validator ${window.endTime ? 'valid' : 'error'}`}
                                 id={`end-time-validator-${i + 1}`}
                             >
                                 {
@@ -142,6 +154,7 @@ const ValidateTime = (props) => {
                     {recurringMeetingWindows.map((window, i) =>
                         <li key={i}>
                             <p
+                                className={`ValidateTime__validator ${window.dayOfWeek ? 'valid' : 'error'}`}
                                 id={`day-validator-${i}`}
                             >
                                 {
@@ -151,6 +164,7 @@ const ValidateTime = (props) => {
                                 }
                             </p>
                             <p 
+                                className={`ValidateTime__validator ${window.startTime ? 'valid' : 'error'}`}
                                 id={`start-time-validator-${i}`}
                             >
                                 {
@@ -160,6 +174,7 @@ const ValidateTime = (props) => {
                                 }
                             </p>
                             <p 
+                                className={`ValidateTime__validator ${window.endTime ? 'valid' : 'error'}`}
                                 id={`end-time-validator-${i}`}
                             >
                                 {

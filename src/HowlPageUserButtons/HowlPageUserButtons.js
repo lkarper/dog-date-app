@@ -8,7 +8,11 @@ const HowlPageUserButtons = (props) => {
 
     const context = useContext(UserContext);
 
-    const { howl, setShowEdit } = props;
+    const { 
+        howl, 
+        showEdit,
+        setShowEdit 
+    } = props;
 
     const [apiError, setApiError] = useState(false);
 
@@ -35,9 +39,9 @@ const HowlPageUserButtons = (props) => {
                     <button
                         className='HowlPageUserButtons__button button'
                         type='button' 
-                        onClick={() => setShowEdit(true)}
+                        onClick={() => setShowEdit(!showEdit)}
                     >
-                        Edit
+                        {showEdit ? 'Cancel edit' : 'Edit'}
                     </button>
                     <button 
                         className='HowlPageUserButtons__button button'

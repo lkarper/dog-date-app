@@ -20,13 +20,11 @@ const RecurringMeetingForm = (props) => {
     const [endTime, setEndTime] = useState(currentData.endTime);
 
     useEffect(() => {
-
         if (currentData.dayOfWeek !== dayOfWeek || 
             currentData.startTime !== startTime || 
             currentData.endTime !== endTime) {
             updateRecurringMeetingWindows(index, dayOfWeek, startTime, endTime);
         }
-
     }, [
         dayOfWeek, 
         startTime, 
@@ -90,10 +88,26 @@ const RecurringMeetingForm = (props) => {
                         required
                     />
                 </div>
-                {type === 'search' && <button type='button' onClick={() => removeRecurringMeetingWindow(index)}>Remove this window</button>}
+                {type === 'search' && 
+                    <button
+                        className='RecurringMeetingForm__button button' 
+                        type='button' 
+                        onClick={() => removeRecurringMeetingWindow(index)}
+                    >
+                        Remove this window
+                    </button>
+                }
                 {index !== 0 && type !== 'search'
-                    ? <button type='button' onClick={() => removeRecurringMeetingWindow(index)}>Remove this window</button>
-                    : ''
+                    ? 
+                        <button 
+                            className='RecurringMeetingForm__button button' 
+                            type='button' 
+                            onClick={() => removeRecurringMeetingWindow(index)}
+                        >
+                            Remove this window
+                        </button>
+                    : 
+                        ''
                 }
             </fieldset>
         </li>

@@ -69,14 +69,14 @@ const OneTimeMeetingForm = (props) => {
     const minDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
 
     return (
-        <fieldset className="sub-fieldset">
+        <fieldset className='sub-fieldset'>
             <legend>Looking for a one-time meeting on a specific date:</legend>
-            <label htmlFor="once-date">Date:</label>
+            <label htmlFor='once-date'>Date:</label>
             <input 
-                type="date" 
-                id="once-date" 
-                name="once-date" 
-                placeholder="yyyy-mm-dd" 
+                type='date' 
+                id='once-date' 
+                name='once-date' 
+                placeholder='yyyy-mm-dd' 
                 min={minDate}
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -93,7 +93,13 @@ const OneTimeMeetingForm = (props) => {
                     />) 
                 }
             </ol>
-           <button type="button" onClick={addTimeWindow}>Add another time window on this date</button>
+            <button
+                className='OneTimeMeetingForm__button button'
+                type='button' 
+                onClick={addTimeWindow}
+            >
+                Add another time window on this date
+            </button>
         </fieldset>
     );
 }

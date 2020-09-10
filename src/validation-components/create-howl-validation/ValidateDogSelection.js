@@ -15,14 +15,26 @@ const ValidateDogSelection = (props) => {
     }, [dogsForHowl, setDogsForHowlError])
 
     if (dogsForHowlError) {
-        return <p id='dogs-validation'>{dogsForHowlError}</p>;
+        return (
+            <p 
+                className='ValidateDogSelection__validator error'
+                id='dogs-validation'
+            >
+                {dogsForHowlError}
+            </p>
+        );
     } else {
         const selectionText = dogsForHowl.map(dogId => 
             context.dogs.find(dog => dog.id === dogId).name
         );
-        return <p id='dogs-validation'>
-            You have selected: {selectionText.join(', ')}
-        </p>;
+        return (
+            <p 
+                className='ValidateDogSelection__validator valid'
+                id='dogs-validation'
+            >
+                You have selected: {selectionText.join(', ')}
+            </p>
+        );
     }
     
 }

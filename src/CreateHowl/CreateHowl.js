@@ -199,26 +199,26 @@ const CreateHowl = (props) => {
     }
 
     return (
-        <section className={`CreateHowl__section${suffix} section`}>
-            <header>
-                <h2>Enter details below to create a howl</h2>
+        <section 
+            className={`CreateHowl__section ${suffix} outer-section`}
+        >
+            <header
+                className='CreateHowl__header-top'
+            >
+                <h2>
+                    {suffix
+                        ? 'Enter details below to update your howl'
+                        : 'Enter details below to create a howl'
+                    }
+                </h2>
             </header>
-            {suffix 
-                ? 
-                    <button 
-                        className={`CreateHowl__close-button${suffix}`}
-                        onClick={() => props.setShowEdit(false)}
-                    >
-                        &#10006;
-                    </button> 
-                : 
-                    ''
-            }
             <form 
                 className='CreateHowl__howl-form'
                 onSubmit={handleSubmit}
             >
-                <fieldset>
+                <fieldset
+                    className='CreateHowl__fieldset outer-fieldset'
+                >
                     <legend>Select your dog(s) to howl about</legend>
                     <div className='CreateHowl__dog-select-container'>
                         {context.dogs.map(dog => 
@@ -230,7 +230,10 @@ const CreateHowl = (props) => {
                             /> 
                         )}
                     </div>
-                    <div role='alert'>
+                    <div
+                        className='CreateHowl__alert-div dogs' 
+                        role='alert'
+                    >
                         <ValidateDogSelection 
                             dogsForHowl={dogsForHowl}
                             dogsForHowlError={dogsForHowlError}
@@ -238,7 +241,9 @@ const CreateHowl = (props) => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
+                <fieldset
+                    className='CreateHowl__fieldset outer-fieldset'    
+                >
                     <legend>Where are you interested in meeting?</legend>
                     <div className='CreateHowl__map-outer-container'>
                         <LocationForm
@@ -252,9 +257,13 @@ const CreateHowl = (props) => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
+                <fieldset
+                    className='CreateHowl__fieldset outer-fieldset'
+                >
                     <legend>When are you interested in meeting?</legend>
-                    <fieldset>
+                    <fieldset
+                        className='CreateHowl__fieldset sub-fieldset'
+                    >
                         <legend>What type of howl would you like to create?</legend>
                         <div>
                             <input 
@@ -302,7 +311,13 @@ const CreateHowl = (props) => {
                                         />)
                                     }
                                 </ol>
-                                <button onClick={addRecurringMeetingWindow} type="button">Click to add another window</button>
+                                <button
+                                    className='CreateHowl__button button'
+                                    type='button' 
+                                    onClick={addRecurringMeetingWindow} 
+                                >
+                                    Click to add another window
+                                </button>
                             </div>
                     }
                     <div role='alert'>
@@ -314,54 +329,69 @@ const CreateHowl = (props) => {
                         />
                     </div>
                 </fieldset>
-                <div className='CreateHowl__description-outer-container'>
-                    <div className='CreateHowl__title-container'>
-                        <label 
-                            className='CreateHowl__title-label'
-                            htmlFor='howl-title'>Howl title: </label>
-                        <input 
-                            className='CreateHowl__title-input'
-                            type='text'
-                            id='howl-title'
-                            name='howl-title'
-                            maxLength='100'
-                            aria-describedby='title-validator'
-                            value={howlTitle}
-                            onChange={(e) => setHowlTitle(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div role='alert'>
-                        <ValidateTitle 
-                            title={howlTitle}
-                            titleError={howlTitleError}
-                            setTitleError={setHowlTitleError}
-                        />
-                    </div>
-                    <div className='CreateHowl__description-container'>
-                        <label htmlFor="howl-description">Add a personal message to go with your howl:</label>
-                        <textarea 
-                            className='CreateHowl__description'
-                            id="howl-description" 
-                            name="howl-description" 
-                            maxLength="2000"
-                            rows='10' 
-                            placeholder="(Write your personal message here)" 
-                            aria-describedby="personal-message-validator"
-                            value={personalMessage}
-                            onChange={(e) => setPersonalMessage(e.target.value)}
-                        ></textarea>
-                    </div>
-                </div>
-                <div role='alert'>
-                    <ValidatePersonalMessage 
-                        personalMessage={personalMessage}
-                        personalMessageError={personalMessageError}
-                        setPersonalMessageError={setPersonalMessageError}
-                    />
-                </div>
+                <fieldset
+                    className='CreateHowl__fieldset outer-fieldset'
+                >
+                    <legend>Title and Message</legend>
+                    <fieldset
+                        className='CreateHowl__fieldset sub-fieldset'
+                    >
+                        <div className='CreateHowl__title-container'>
+                            <label 
+                                className='CreateHowl__title-label'
+                                htmlFor='howl-title'>Howl title: </label>
+                            <input 
+                                className='CreateHowl__title-input'
+                                type='text'
+                                id='howl-title'
+                                name='howl-title'
+                                maxLength='100'
+                                aria-describedby='title-validator'
+                                value={howlTitle}
+                                onChange={(e) => setHowlTitle(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div role='alert'>
+                            <ValidateTitle 
+                                title={howlTitle}
+                                titleError={howlTitleError}
+                                setTitleError={setHowlTitleError}
+                            />
+                        </div>
+                    </fieldset>
+                    <fieldset
+                        className='CreateHowl__fieldset sub-fieldset'
+                    >
+                        <div className='CreateHowl__description-container'>
+                            <label htmlFor='howl-description'>Add a personal message to go with your howl:</label>
+                            <textarea 
+                                className='CreateHowl__description'
+                                id='howl-description' 
+                                name='howl-description' 
+                                maxLength='2000'
+                                rows='10' 
+                                placeholder='(Write your personal message here)' 
+                                aria-describedby='personal-message-validator'
+                                value={personalMessage}
+                                onChange={(e) => setPersonalMessage(e.target.value)}
+                            ></textarea>
+                        </div>
+                        <div
+                            className='CreateHowl__alert-div personal-message' 
+                            role='alert'
+                        >
+                            <ValidatePersonalMessage 
+                                personalMessage={personalMessage}
+                                personalMessageError={personalMessageError}
+                                setPersonalMessageError={setPersonalMessageError}
+                            />
+                        </div>
+                    </fieldset>
+                </fieldset>
                 <button 
-                    type="submit"
+                    className='CreateHowl__submit button'
+                    type='submit'
                     disabled={
                         dogsForHowlError ||
                         locationError.length ||
@@ -369,10 +399,26 @@ const CreateHowl = (props) => {
                         howlTitleError ||
                         personalMessageError
                     }
-                >Submit</button>
+                >
+                    Submit
+                </button>
+                {suffix &&
+                    <button 
+                        className={`CreateHowl__close-button ${suffix} button`}
+                        onClick={() => props.setShowEdit(false)}
+                    >
+                        Cancel edit
+                    </button> 
+                }
             </form>
             <div role='alert'>
-                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
+                {apiError && 
+                    <p 
+                        className='CreateHowlApi__error error'
+                    >
+                        Error: Looks like something went wrong. Please check your connection and try again.
+                    </p>
+                }
             </div>
         </section>
     );

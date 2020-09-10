@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
 import CreateHowl from '../CreateHowl/CreateHowl';
+import './CreateHowlPage.css';
 
 const CreateHowlPage = (props) => {
 
@@ -13,7 +14,9 @@ const CreateHowlPage = (props) => {
 
     return (
         <>
-            <header>
+            <header
+                className='CreateHowlPage__header-top'
+            >
                 <h1>Howl now!</h1>
                 <p>Look for friends for your dog!</p>
             </header>

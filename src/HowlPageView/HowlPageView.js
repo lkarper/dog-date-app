@@ -102,106 +102,111 @@ const HowlPageView  = (props) => {
                 >
                     <header className='HowlPageView__header'>
                         <h2>{howl.howl_title}</h2>
+                        <p>{howl.personal_message}</p>
                         <HowlPageUserButtons 
                             howl={howl} 
+                            showEdit={showEdit}
                             setShowEdit={setShowEdit} 
                         />
                     </header>
+                </section>
+                <div
+                    className='HowlPageView__edit-div'
+                    aria-live='polite'
+                >
                     {showEdit && 
                         <CreateHowl 
                             howl={howl} 
-                            suffix='-edit' 
+                            suffix='edit' 
                             setShowEdit={setShowEdit} 
                             forceUpdate={setUpdate}
                         />
                     }
-                </section>
-                <section className='HowlPageView__section section'>
-                    <header>
-                        <h2>About this Howl</h2>
-                    </header>
-                    <p>{howl.personal_message}</p>
-                </section>
-                <section className='HowlPageView__section section'>
-                    <header>
-                        <h2>Availability</h2>
-                    </header>
-                    {howlDateTime}
-                </section>
-                <section className='HowlPageView__section section'>
-                    <header>
-                        <h2>Location</h2>
-                    </header>
-                    <div className='HowlPageView__address'>
-                        <p>{howl.location.address}</p>
-                        <p>{howl.location.city}</p>
-                        <p>{howl.location.state}{', '}{howl.location.zipcode}</p>
-                    </div>
-                    {(howl.location.lat && howl.location.lon ) && (howl.location.lat !== '0' && howl.location.lon !== '0') 
-                        ? 
-                            <StaticMap 
-                                lat={howl.location.lat}
-                                lon={howl.location.lon}
-                            />
-                        : <p>Map not available for this location.</p>
-                    }
-                </section>
-                <section 
-                    className='HowlPageView__section section'
-                >
-                    <header
-                        className='HowlPageView__header'
-                    >
-                        <h2>About the Howler</h2>
-                    </header>
-                    <ul
-                        className='HowlPageView__contact-info-ul'
-                    >
-                        <li>
-                            <p>Username: {user.username}</p>
-                        </li>
-                        <li>
-                            <p>Phone: {user.phone || '(Not given.)'}</p>
-                        </li>
-                        <li>
-                            <p>Email:{' '} 
-                                <a
-                                    className='link'
-                                    target='_blank'
-                                    rel="noopener noreferrer"
-                                    href={`mailto:${user.email}`}
-                                >
-                                    {user.email}
-                                </a>
-                            </p>
-                        </li>
-                    </ul>
-                </section>
-                <section 
-                    className='HowlPageView__section section'
-                    aria-live='polite'    
-                >
-                    <header>
-                        <h2>Dogs in this howl</h2>
-                    </header>
-                    {howl.dogs.length !== 0
-                        ? 
-                            <ul className='HowlPageView__dog-list'>
-                                {howl.dogs
-                                    .map(dog =>
-                                        <HowlPageDogProfile 
-                                            key={dog.dog_id}
-                                            dog_id={dog.dog_id} 
-                                            dog_profile={dog.profile}
-                                            owner={dog.owner} 
-                                        />
-                                    )
-                                }
+                </div>
+                {!showEdit && 
+                    <>
+                        <section className='HowlPageView__section section'>
+                            <header>
+                                <h2>Availability</h2>
+                            </header>
+                            {howlDateTime}
+                        </section>
+                        <section className='HowlPageView__section section'>
+                            <header>
+                                <h2>Location</h2>
+                            </header>
+                            <div className='HowlPageView__address'>
+                                <p>{howl.location.address}</p>
+                                <p>{howl.location.city}</p>
+                                <p>{howl.location.state}{', '}{howl.location.zipcode}</p>
+                            </div>
+                            {(howl.location.lat && howl.location.lon ) && (howl.location.lat !== '0' && howl.location.lon !== '0') 
+                                ? 
+                                    <StaticMap 
+                                        lat={howl.location.lat}
+                                        lon={howl.location.lon}
+                                    />
+                                : <p>Map not available for this location.</p>
+                            }
+                        </section>
+                        <section 
+                            className='HowlPageView__section section'
+                        >
+                            <header
+                                className='HowlPageView__header'
+                            >
+                                <h2>About the Howler</h2>
+                            </header>
+                            <ul
+                                className='HowlPageView__contact-info-ul'
+                            >
+                                <li>
+                                    <p>Username: {user.username}</p>
+                                </li>
+                                <li>
+                                    <p>Phone: {user.phone || '(Not given.)'}</p>
+                                </li>
+                                <li>
+                                    <p>Email:{' '} 
+                                        <a
+                                            className='link'
+                                            target='_blank'
+                                            rel="noopener noreferrer"
+                                            href={`mailto:${user.email}`}
+                                        >
+                                            {user.email}
+                                        </a>
+                                    </p>
+                                </li>
                             </ul>
-                        :
-                            <p>No dogs listed for this howl.</p>
-                    }
-                </section>
+                        </section>
+                        <section 
+                            className='HowlPageView__section section'
+                            aria-live='polite'    
+                        >
+                            <header>
+                                <h2>Dogs in this howl</h2>
+                            </header>
+                            {howl.dogs.length !== 0
+                                ? 
+                                    <ul className='HowlPageView__dog-list'>
+                                        {howl.dogs
+                                            .map(dog =>
+                                                <HowlPageDogProfile 
+                                                    key={dog.dog_id}
+                                                    dog_id={dog.dog_id} 
+                                                    dog_profile={dog.profile}
+                                                    owner={dog.owner} 
+                                                />
+                                            )
+                                        }
+                                    </ul>
+                                :
+                                    <p>No dogs listed for this howl.</p>
+                            }
+                        </section>
+                    </>
+                }
             </section>
         );
     }
