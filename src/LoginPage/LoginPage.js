@@ -82,52 +82,62 @@ const LoginForm = (props) => {
     }
 
     return (
-        <section className='section'>
+        <section 
+            className='LoginPage__section outer-section'
+        >
             <header>
-                <h1>Log in</h1>
+                <h1>Already have an account?</h1>
             </header>
-            <form onSubmit={(e) => handleLogin(e)}>
-                <div
-                    className='LoginPage__div label-input-container'
+            <form
+                className='LoginPage__form' 
+                onSubmit={(e) => handleLogin(e)}
+            >
+                <fieldset
+                    className='LoginPage__fieldset outer-fieldset'
                 >
-                    <label
-                        htmlFor='username'
+                    <legend>Log in</legend>
+                    <div
+                        className='LoginPage__div label-input-container'
                     >
-                        Username:
-                    </label>
-                    <input 
-                        type='text'
-                        id='username'
-                        value={username}
-                        autoComplete='username'
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div
-                    className='LoginPage__div label-input-container'
-                >
-                    <label
-                        htmlFor='password'
+                        <label
+                            htmlFor='username'
+                        >
+                            Username:
+                        </label>
+                        <input 
+                            type='text'
+                            id='username'
+                            value={username}
+                            autoComplete='username'
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div
+                        className='LoginPage__div label-input-container'
                     >
-                        Password:
-                    </label>
-                    <input 
-                        type='password'
-                        id='password'
-                        value={password}
-                        autoComplete='current-password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button
-                    className='LoginPage__submit button'
-                    type='submit'
-                    disabled={!username || !password}
-                >
-                    Submit
-                </button>
+                        <label
+                            htmlFor='password'
+                        >
+                            Password:
+                        </label>
+                        <input 
+                            type='password'
+                            id='password'
+                            value={password}
+                            autoComplete='current-password'
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button
+                        className='LoginPage__submit button'
+                        type='submit'
+                        disabled={!username || !password}
+                    >
+                        Submit
+                    </button>
+                </fieldset>
             </form>
             <div
                 className='LoginPage__alert-div' 
@@ -144,7 +154,11 @@ const LoginForm = (props) => {
                         ''
                 }
             </div>
-            <p>Don't have an account? <Link className='link' to='/register'>Register</Link></p>
+            <p
+                className='LoginPage__no-account'
+            >
+                Don't have an account? <Link className='link' to='/register'>Register</Link>
+            </p>
             {showLoading && 
                 <div className='LoginPage__loading-container'>
                     <FontAwesomeIcon 

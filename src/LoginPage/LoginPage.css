@@ -1,3 +1,14 @@
+.LoginPage__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoginPage__section header {
+    text-align: center;
+}
+
 .LoginPage__div.label-input-container {
     display: flex;
     flex-direction: column;
@@ -7,6 +18,10 @@
 .LoginPage__alert-div {
     height: 25px;
     margin-bottom: 10px;  
+}
+
+.LoginPage__no-account {
+    margin: 10px;
 }
 
 .LoginPage__loading-container {
