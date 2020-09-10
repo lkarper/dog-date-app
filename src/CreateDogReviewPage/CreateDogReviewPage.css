@@ -1,0 +1,10 @@
+.CreateDogReviewPage__section.outer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CreateDogReviewPage__section.outer-section h1 {
+    text-align: center;
+}

@@ -74,6 +74,7 @@ const AddCommentForm = (props) => {
             >
             </textarea> 
             <button
+                className='AddCommentForm__submit button'
                 type='submit'
                 disabled={commentText.trim().length === 0}
             >

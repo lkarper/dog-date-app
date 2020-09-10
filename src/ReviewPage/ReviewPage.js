@@ -104,9 +104,21 @@ const ReviewPage = (props) => {
         if (Object.keys(context.user).length) {
             if (context.user.username === review.reviewer) {
                 userButtons = (
-                    <div className='ReviewPage__user-buttons-container'>
-                        <button onClick={() => setShowEdit(true)}>Edit</button>
-                        <button onClick={checkRemoveReview}>Delete</button>
+                    <div 
+                        className='ReviewPage__user-buttons-container'
+                    >
+                        <button
+                            className='ReviewPage__button button' 
+                            onClick={() => setShowEdit(true)}
+                        >
+                            Edit
+                        </button>
+                        <button
+                            className='ReviewPage__button button' 
+                            onClick={checkRemoveReview}
+                        >
+                            Delete
+                        </button>
                         {couldNotDelete && <p>Error: Could not delete your review at this time.  Please check your connection and try again.</p>}
                     </div>
                 );
@@ -114,15 +126,24 @@ const ReviewPage = (props) => {
         }
 
         return (
-            <section aria-live='polite'>
-                <header className='ReviewPage__header'>
+            <section 
+                className='ReviewPage__outer-section'
+                aria-live='polite'
+            >
+                <header 
+                    className='ReviewPage__main-header'
+                >
                     <h1>{review_title}</h1>
                     <p>Reviewed by: {reviewer}</p>
                     <p>On: {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
-                    <p>Overall rating:</p>
-                    <StarRating 
-                        rating={averageRating.toFixed(2)}
-                    />
+                    <div
+                        className='ReviewPage__star-div'
+                    >
+                        <p>Overall rating:</p>
+                        <StarRating 
+                            rating={averageRating.toFixed(2)}
+                        />
+                    </div>
                     {userButtons}
                 </header>
                 <section className='ReviewPage__section section'>
@@ -185,7 +206,10 @@ const ReviewPage = (props) => {
                     <header>
                         <h2>Comments</h2>
                     </header>
-                    <ReviewComments comments={comments} setComments={setComments} />
+                    <ReviewComments 
+                        comments={comments} 
+                        setComments={setComments} 
+                    />
                     {Object.keys(context.user).length && <AddCommentForm reviewId={id} comments={comments} setComments={setComments} />}
                 </section>
                 <section className='ReviewPage__section section'>

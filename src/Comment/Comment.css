@@ -1,6 +1,6 @@
 .Comment__li {
     list-style: none;
-    border: 1px solid black;
-    width: 80%;
+    border-bottom: 1px solid black;
+    width: 90%;
     padding: 5px;
 }

@@ -64,10 +64,17 @@ const DogProfilePage = (props) => {
                 className='DogProfilePage__outer-section'
                 aria-live='polite'
             >
-                <header 
-                    className='DogProfilePage__main-header'
+                <header>
+                    <h1>Dog Profile</h1>
+                </header>
+                <section
+                    className='DogProfilePage__section section'
                 >
-                    <h1>{dog.name}</h1>
+                    <header 
+                        className='DogProfilePage__header'
+                    >
+                        <h2>{dog.name}</h2>
+                    </header>
                     {dog.profile_img_url 
                             ?
                                 <img
@@ -87,7 +94,7 @@ const DogProfilePage = (props) => {
                         showEdit={showEdit}
                         setShowEdit={setShowEdit}
                     />
-                </header>
+                </section>                
                 <div
                     className='DogProfilePage__edit-div'
                     aria-live='polite'

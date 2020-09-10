@@ -98,7 +98,7 @@ const Map = (props) => {
                 <div id='coordinates' className='Map__coordinates'>Latitude: {markerCoordinates.lat}, Longitude: {markerCoordinates.lon}</div>
             </div>
             <button 
-                className='Map__set-marker-button'
+                className='Map__set-marker-button button'
                 type='button' 
                 onClick={setMarkerToMyLocation}
             >

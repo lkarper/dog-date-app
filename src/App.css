@@ -235,6 +235,19 @@ label {
   font-weight: bold;
 }
 
+blockquote::before {
+  content: open-quote;
+}
+
+blockquote::after {
+  content: close-quote;
+}
+
+blockquote {
+  quotes: "“" "”" "‘" "’";
+  margin: 10px 20px;
+}
+
 @media screen and (min-width: 750px) {
   .section {
     width: 80%;

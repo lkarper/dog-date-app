@@ -126,8 +126,10 @@ const DogReviewForm = (props) => {
             className={`DogReviewForm__review-form${suffix}`}
             onSubmit={handleSubmit}
         >
-            <fieldset>
-                <legend>How would you rate {dogName} on the following:</legend>
+            <fieldset
+                className='DogReviewForm__fieldset outer-fieldset'
+            >
+                <legend>How would you rate {dogName} on the following</legend>
                 <ReviewFormStarRater 
                     classSuffix='fd'
                     currentState={friendlinessDogs}
@@ -160,42 +162,64 @@ const DogReviewForm = (props) => {
                 />
                 
             </fieldset>
-            <fieldset>
+            <fieldset
+                className='DogReviewForm__fieldset outer-fieldset'
+            >
                 <legend>Meeting and Location</legend>
-                <fieldset className="sub-fieldset">
+                <fieldset 
+                    className='DogReviewForm__fieldset sub-fieldset'
+                >
                     <legend>When did your dogs play?</legend>
-                    <div className='DogReviewForm__input-container'>
-                        <label htmlFor="date">Date: </label>
+                    <div 
+                        className='DogReviewForm__input-container'
+                    >
+                        <label 
+                            htmlFor='date'
+                        >
+                            Date:{' '} 
+                        </label>
                         <input 
-                            type="date" 
-                            id="date" 
-                            name="date" 
-                            placeholder="yyyy-mm-dd" 
+                            type='date' 
+                            id='date' 
+                            name='date' 
+                            placeholder='yyyy-mm-dd' 
                             value={date}
                             max={maxDate}
                             onChange={(e) => setDate(e.target.value)}
                             required    
                         />
                     </div>
-                    <div className='DogReviewForm__input-container'>
-                        <label htmlFor="start-time">Start time: </label>
+                    <div 
+                        className='DogReviewForm__input-container'
+                    >
+                        <label 
+                            htmlFor='start-time'
+                        >
+                            Start time:{' '} 
+                        </label>
                         <input 
-                            type="time" 
-                            id="start-time" 
-                            name="start-time" 
-                            placeholder="10:30" 
+                            type='time' 
+                            id='start-time' 
+                            name='start-time' 
+                            placeholder='10:30' 
                             value={startTime}
                             onChange={(e) => setStartTime(e.target.value)}
                             required
                         />
                     </div>
-                    <div className='DogReviewForm__input-container'>
-                        <label htmlFor="end-time">End time: </label>
+                    <div 
+                        className='DogReviewForm__input-container'
+                    >
+                        <label 
+                            htmlFor='end-time'
+                        >
+                            End time:{' '} 
+                        </label>
                         <input 
-                            type="time" 
-                            id="end-time" 
-                            name="end-time" 
-                            placeholder="16:00" 
+                            type='time' 
+                            id='end-time' 
+                            name='end-time' 
+                            placeholder='16:00' 
                             min={startTime}
                             value={endTime}
                             onChange={(e) => setEndTime(e.target.value)}
@@ -203,9 +227,13 @@ const DogReviewForm = (props) => {
                         />
                     </div>
                 </fieldset>
-                <fieldset className="sub-fieldset">
+                <fieldset 
+                    className='DogReviewForm__fieldset sub-fieldset'
+                >
                     <legend>Where did your dog play with {dogName}?</legend>
-                    <div className='DogReviewForm__map-outer-container'>
+                    <div 
+                        className='DogReviewForm__map-outer-container'
+                    >
                         <LocationForm
                             location={location}
                             setLocationError={setLocationError} 
@@ -224,63 +252,90 @@ const DogReviewForm = (props) => {
                     legendText={`How would you rate this location's suitability for a dog date?`}
                 />
             </fieldset>
-            <fieldset>
-                <div className='DogReviewForm__title-container'>
-                    <label 
-                        className='DogReviewForm__title-label'
-                        htmlFor='review-title'>Review title: </label>
-                    <input 
-                        className='DogReviewForm__title-input'
-                        type='text'
-                        id='review-title'
-                        name='review-title'
-                        maxLength='100'
-                        aria-describedby='howl-title-validator'
-                        value={reviewTitle}
-                        onChange={(e) => setReviewTitle(e.target.value)}
-                        required
-                    />
-                </div>
-                <div role='alert'>
-                    <ValidateTitle
-                        title={reviewTitle}
-                        titleError={reviewTitleError}
-                        setTitleError={setReviewTitleError}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <legend>Add a personal note here</legend>
-                <div className='DogReviewForm__message-container'>
-                    <label htmlFor="review-note">Add a personal note to go with your review:</label>
-                    <textarea 
-                        id="review-note" 
-                        name="review-note" 
-                        maxLength="2000" 
-                        rows='10'
-                        placeholder="(Write your personal note here.)" 
-                        aria-describedby="personal-message-validator"
-                        value={personalMessage}
-                        onChange={(e) => setPersonalMessage(e.target.value)}
-                    ></textarea>
-                </div>
-                <div role='alert'>
-                    <ValidatePersonalMessage 
-                        personalMessage={personalMessage}
-                        personalMessageError={personalMessageError}
-                        setPersonalMessageError={setPersonalMessageError}
-                    />
-                </div>
+            <fieldset 
+                className='DogReviewForm__fieldset outer-fieldset'
+            >
+                <legend>Title and Message</legend>
+                <fieldset 
+                    className='DogReviewForm__fieldset sub-fieldset'
+                >
+                    <div 
+                        className='DogReviewForm__title-container'
+                    >
+                        <label 
+                            className='DogReviewForm__title-label'
+                            htmlFor='review-title'
+                        >
+                            Review title:{' '} 
+                        </label>
+                        <input 
+                            className='DogReviewForm__title-input'
+                            type='text'
+                            id='review-title'
+                            name='review-title'
+                            maxLength='100'
+                            aria-describedby='howl-title-validator'
+                            value={reviewTitle}
+                            onChange={(e) => setReviewTitle(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div 
+                        role='alert'
+                    >
+                        <ValidateTitle
+                            title={reviewTitle}
+                            titleError={reviewTitleError}
+                            setTitleError={setReviewTitleError}
+                        />
+                    </div>
+                </fieldset>
+                <fieldset 
+                    className='DogReviewForm__fieldset sub-fieldset'
+                >
+                    <legend>Add a personal note here</legend>
+                    <div 
+                        className='DogReviewForm__message-container'
+                    >
+                        <label 
+                            htmlFor='review-note'
+                        >
+                            Add a personal note to go with your review:
+                        </label>
+                        <textarea 
+                            id='review-note' 
+                            name='review-note' 
+                            maxLength='2000' 
+                            rows='10'
+                            placeholder='(Write your personal note here.)' 
+                            aria-describedby='personal-message-validator'
+                            value={personalMessage}
+                            onChange={(e) => setPersonalMessage(e.target.value)}
+                        ></textarea>
+                    </div>
+                    <div 
+                        role='alert'
+                    >
+                        <ValidatePersonalMessage 
+                            personalMessage={personalMessage}
+                            personalMessageError={personalMessageError}
+                            setPersonalMessageError={setPersonalMessageError}
+                        />
+                    </div>
+                </fieldset>
             </fieldset>
             <button 
-                type="submit"
+                className='DogReviewForm__submit button'
+                type='submit'
                 disabled={reviewTitleError || 
                     personalMessageError || 
                     locationError.length}
             >
                 Submit
             </button>
-            <div role='alert'>
+            <div 
+                role='alert'
+            >
                 {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
             </div>
         </form>

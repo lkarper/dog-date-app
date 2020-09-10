@@ -33,7 +33,7 @@ const Comment = (props) => {
     return (
         <li className='Comment__li'>
             <div aria-live='polite'>
-                <p>Comment by {comment.commenter}</p>
+                <p><b>Comment by:</b> {comment.commenter}</p>
                 <p>{moment(comment.date_time).format("MMMM Do YYYY, h:mm a")}</p>
                 <p>{comment.edited && 'Edited'}</p>
                 {!showEdit && <blockquote>{comment.comment}</blockquote>}
@@ -52,11 +52,15 @@ const Comment = (props) => {
                     ?
                         <div>
                             <button
+                                className='Comment__button button'
+                                type='button'
                                 onClick={() => setShowEdit(true)}
                             >
                                 Edit comment
                             </button>
                             <button
+                                className='Comment__button button'
+                                type='button'
                                 onClick={checkDelete}
                             >
                                 Delete comment
@@ -65,7 +69,15 @@ const Comment = (props) => {
                     :
                         ''
                 }
-                {showEdit && <button onClick={() => setShowEdit(false)}>Nevermind</button>}
+                {showEdit && 
+                    <button
+                        className='Comment__button button'
+                        type='button' 
+                        onClick={() => setShowEdit(false)}
+                    >
+                        Nevermind
+                    </button>
+                }
             </div>
             <div role='alert'>
                 {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}

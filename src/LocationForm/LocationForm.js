@@ -52,21 +52,29 @@ const LocationForm = (props) => {
     }, [address, city, state, zipcode, setLocation]);
 
     return (
-        <fieldset className='LocationForm__fieldset'>
+        <fieldset 
+            className='LocationForm__fieldset sub-fieldset'
+        >
             <legend>Enter the location for your meeting place here</legend>
             <div>
-                <label htmlFor='address'>Location or street address:</label>
+                <label 
+                    htmlFor='address'
+                >
+                    Location or street address:{' '}
+                </label>
                 <input 
-                    type="text" 
-                    id="address" 
-                    name="address"
+                    type='text' 
+                    id='address' 
+                    name='address'
                     value={address}
                     aria-describedby='address-validator'
                     onChange={(e) => setAddress(e.target.value)} 
                     required
                 />
             </div>
-            <div role='alert'>
+            <div 
+                role='alert'
+            >
                 <ValidateAddress 
                     address={address}
                     addressError={addressError}
@@ -74,7 +82,11 @@ const LocationForm = (props) => {
                 />
             </div>
             <div>
-                <label htmlFor='city'>City:</label>
+                <label 
+                    htmlFor='city'
+                >
+                    City:{' '}
+                </label>
                 <input 
                     type='text'
                     id='city'
@@ -85,7 +97,9 @@ const LocationForm = (props) => {
                     required
                 />
             </div>
-            <div role='alert'>
+            <div 
+                role='alert'
+            >
                 <ValidateCity 
                     city={city}
                     cityError={cityError}
@@ -96,7 +110,9 @@ const LocationForm = (props) => {
                 propState={state}
                 setState={setState}
             />
-            <div role='alert'>
+            <div 
+                role='alert'
+            >
                 <ValidateState 
                     state={state}
                     stateError={stateError}
@@ -104,7 +120,11 @@ const LocationForm = (props) => {
                 />
             </div>
             <div>
-                <label htmlFor='zipcode'>ZIP code:</label>
+                <label 
+                    htmlFor='zipcode'
+                >
+                    ZIP code:{' '}
+                </label>
                 <input 
                     type='text'
                     id='zipcode'
@@ -115,7 +135,9 @@ const LocationForm = (props) => {
                     required
                 />
             </div>
-            <div role='alert'>
+            <div 
+                role='alert'
+            >
                 <ValidateZipCode 
                     zipcode={zipcode}
                     zipcodeError={zipcodeError}

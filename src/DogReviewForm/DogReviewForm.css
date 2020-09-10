@@ -1,6 +1,7 @@
 .DogReviewForm__map-outer-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .DogReviewForm__message-container {
@@ -10,6 +11,9 @@
 
 .DogReviewForm__review-form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .DogReviewForm__input-container {
@@ -20,11 +24,11 @@
     width: 100%;
 }
 
-.DogReviewForm__review-form > fieldset, .DogReviewForm__review-form-edit > fieldset {
+/* .DogReviewForm__review-form > fieldset, .DogReviewForm__review-form-edit > fieldset {
     width: 100%;
     margin: 0;
     padding: 5px;
-}
+} */
 
 .DogReviewForm__review-form .sub-fieldset, .DogReviewForm__review-form-edit .sub-fieldset {
     width: 100%;

@@ -4,6 +4,7 @@ import UserContext from '../contexts/UserContext';
 import DogReviewForm from '../DogReviewForm/DogReviewForm';
 import DogListView from '../DogListView/DogListView';
 import DogProfilesService from '../services/dog-profiles-service';
+import './CreateDogReviewPage.css';
 
 const CreateDogReviewPage = (props) => {
 
@@ -29,7 +30,7 @@ const CreateDogReviewPage = (props) => {
 
         return (
             <section 
-                className='DogReviewPage__section section'
+                className='CreateDogReviewPage__section section'
                 aria-live='polite'
             >
                 <header>
@@ -60,7 +61,7 @@ const CreateDogReviewPage = (props) => {
     if (dog) {
         return (
             <section 
-                className='DogReviewPage__section section'
+                className='CreateDogReviewPage__section outer-section'
                 aria-live='polite'
             >
                 <header>
@@ -76,7 +77,7 @@ const CreateDogReviewPage = (props) => {
 
     return (
         <section 
-            className='DogReviewPage__section section'
+            className='CreateDogReviewPage__section'
             aria-live='polite'
         >
             <p>Loading...</p>

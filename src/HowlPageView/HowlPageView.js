@@ -94,11 +94,14 @@ const HowlPageView  = (props) => {
                 className='HowlPageView__outer-section'
                 aria-live='polite'
             >
+                <header>
+                    <h1>Look Who's Howling</h1>
+                </header>
                 <section
                     className='HowlPageView__section section'
                 >
-                    <header className='HowlPageView__header top'>
-                        <h1>{howl.howl_title}</h1>
+                    <header className='HowlPageView__header'>
+                        <h2>{howl.howl_title}</h2>
                         <HowlPageUserButtons 
                             howl={howl} 
                             setShowEdit={setShowEdit} 
@@ -112,37 +115,37 @@ const HowlPageView  = (props) => {
                             forceUpdate={setUpdate}
                         />
                     }
-                    <section className='HowlPageView__section'>
-                        <header>
-                            <h2>About this Howl</h2>
-                        </header>
-                        <p>{howl.personal_message}</p>
-                    </section>
-                    <section className='HowlPageView__section'>
-                        <header>
-                            <h2>Availability</h2>
-                        </header>
-                        {howlDateTime}
-                    </section>
                 </section>
-                    <section className='HowlPageView__section section'>
-                        <header>
-                            <h2>Location</h2>
-                        </header>
-                        <div className='HowlPageView__address'>
-                            <p>{howl.location.address}</p>
-                            <p>{howl.location.city}</p>
-                            <p>{howl.location.state}{', '}{howl.location.zipcode}</p>
-                        </div>
-                        {(howl.location.lat && howl.location.lon ) && (howl.location.lat !== '0' && howl.location.lon !== '0') 
-                            ? 
-                                <StaticMap 
-                                    lat={howl.location.lat}
-                                    lon={howl.location.lon}
-                                />
-                            : <p>Map not available for this location.</p>
-                        }
-                    </section>
+                <section className='HowlPageView__section section'>
+                    <header>
+                        <h2>About this Howl</h2>
+                    </header>
+                    <p>{howl.personal_message}</p>
+                </section>
+                <section className='HowlPageView__section section'>
+                    <header>
+                        <h2>Availability</h2>
+                    </header>
+                    {howlDateTime}
+                </section>
+                <section className='HowlPageView__section section'>
+                    <header>
+                        <h2>Location</h2>
+                    </header>
+                    <div className='HowlPageView__address'>
+                        <p>{howl.location.address}</p>
+                        <p>{howl.location.city}</p>
+                        <p>{howl.location.state}{', '}{howl.location.zipcode}</p>
+                    </div>
+                    {(howl.location.lat && howl.location.lon ) && (howl.location.lat !== '0' && howl.location.lon !== '0') 
+                        ? 
+                            <StaticMap 
+                                lat={howl.location.lat}
+                                lon={howl.location.lon}
+                            />
+                        : <p>Map not available for this location.</p>
+                    }
+                </section>
                 <section 
                     className='HowlPageView__section section'
                 >
