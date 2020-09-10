@@ -14,11 +14,28 @@ const ValidateUsername = (props) => {
         
     }, [props]);
 
-    const accountExistsText = (<>The username {usernameExists} is already linked to a registered account.  If that account belongs to you, {<Link to='/login'>click here</Link>} to log in.</>);
+    const accountExistsText = (
+        <>
+            <span
+                style={{ color: 'red' }}
+            >
+                The username {usernameExists} is already linked to a registered account.
+            </span>
+            <br />
+            <span
+                style={{ color: 'black' }}
+            >
+                    If that account belongs to you, <span style={{ color: 'hsl(245, 100%, 50%)' }}>{<Link to='/login'>click here</Link>}</span> to login.            </span>
+        </>
+    );
 
     if (usernameValidationError) {
         return (
-            <p id='username-validation'>Username required and must be 3-72 characters in length.
+            <p
+                className='ValidateUserName__validator error' 
+                id='username-validation'
+            >
+                Username required and must be 3-72 characters in length.
                 <br />
                 {usernameExists && accountExistsText}
             </p>
@@ -26,7 +43,11 @@ const ValidateUsername = (props) => {
     }
 
     return (
-        <p id='username-validation'>Username properly formatted.
+        <p 
+            className='ValidateUserName__validator valid'
+            id='username-validation'
+        >
+            Username properly formatted.
             <br />
             {usernameExists && accountExistsText}
         </p>

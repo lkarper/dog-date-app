@@ -12,11 +12,26 @@ const ValidateReenteredPassword = (props) => {
         }
     }, [props]);
 
-    if (!reenteredPasswordError) {
-        return <p id="reenter-password-validation">Passwords match.</p>;
-    } else {
-        return <p id="reenter-password-validation">{reenteredPasswordError}</p>; 
+    if (reenteredPasswordError) {
+        return (
+            <p 
+                className='ValidateReenteredPassword__validator error'
+                id="reenter-password-validation"
+            >
+                {reenteredPasswordError}
+            </p> 
+        );
     }
+
+    return (
+        <p 
+            className='ValidateReenteredPassword__validator valid'
+            id="reenter-password-validation"
+        >
+            Passwords match.
+        </p>
+    );
+    
 }
 
 export default ValidateReenteredPassword;

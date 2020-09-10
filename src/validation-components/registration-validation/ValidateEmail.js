@@ -20,15 +20,29 @@ const ValidateEmail = (props) => {
 
     const accountExistsText = (
         <>
-            A registered account is already linked to the email address '{emailAlreadyRegistered}'.  
+            <span
+                style={{ color: 'red'}}
+            >
+                A registered account is already linked to the email address '{emailAlreadyRegistered}'.
+            </span>
+            <br />
             {!suffix && 
-                `If that account belongs to you, ${<Link to='/login'>click here</Link>} to login.`}
+                <span
+                    style={{ color: 'black' }}
+                >
+                    If that account belongs to you, <span style={{ color: 'hsl(245, 100%, 50%)' }}>{<Link to='/login'>click here</Link>}</span> to login.
+                </span>
+            }
         </>
     );
 
     if (emailValidationError) {
         return (
-            <p id='email-validation'>A valid email address is required.
+            <p 
+                className='ValidateEmail__validator error'
+                id='email-validation'
+            >
+                A valid email address is required.
                 <br />
                 {emailAlreadyRegistered && accountExistsText}    
             </p>
@@ -36,7 +50,11 @@ const ValidateEmail = (props) => {
     }
 
     return (
-        <p id='email-validation'>Email properly formatted.
+        <p 
+            className='ValidateEmail__validator valid'
+            id='email-validation'
+        >
+            Email properly formatted.
             <br />
             {emailAlreadyRegistered && accountExistsText}    
         </p>

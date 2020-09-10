@@ -56,7 +56,6 @@ const RegistrationForm = (props) => {
         setUsernameExists(false);
 
         if (suffix) {
-            // Don't forget to update server to check if email in use!!
             AuthApiService.updateUser({
                 email,
                 phone
@@ -122,11 +121,10 @@ const RegistrationForm = (props) => {
     }
 
     return (
-        <section className='RegistrationForm__section section'>
+        <section className='RegistrationForm__section outer-section'>
             {!suffix && 
                 <header className='RegistrationForm__header'>
-                    <h1>Even man's best friend needs a pack.</h1>
-                    <p>Create an account to get started!</p>
+                    <h1>Even man's best friend needs a pack...</h1>
                 </header>
             }
             {suffix &&
@@ -135,113 +133,119 @@ const RegistrationForm = (props) => {
                 </header>
             }
             <form 
-                className='signup-form'
+                className='RegistrationForm__form'
                 onSubmit={handleSubmit}
             >
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        type="email" 
-                        placeholder="example@example.com" 
-                        id="email" 
-                        name="email"
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        aria-describedby='email-validation'
-                    />
-                </div>
-                <div role='alert'>
-                    <ValidateEmail 
-                        suffix={suffix}
-                        email={email}
-                        emailValidationError={emailValidationError}
-                        emailAlreadyRegistered={emailAlreadyRegistered}
-                        setEmailValidationError={setEmailValidationError}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="phone">Phone number:</label>
-                    <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone"
-                        value={phone} 
-                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
-                        aria-describedby="phone-validation" 
-                        onChange={(e) => setPhone(e.target.value)}
-                    />
-                </div>
-                <div role='alert'>
-                    <ValidatePhoneNumber 
-                        phone={phone}
-                        setPhoneValidationError={setPhoneValidationError}
-                    /> 
-                </div>
-                {!suffix &&
-                    <> 
-                        <div>
-                            <label htmlFor="username">Username:</label>
-                            <input 
-                                type="text" 
-                                placeholder="Username" 
-                                id="username" 
-                                name="username"
-                                value={username}
-                                autoComplete='username' 
-                                aria-describedby='username-validation'
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
-                        </div>
-                        <div role='alert'>
-                            <ValidateUsername 
-                                username={username}
-                                usernameValidationError={usernameValidationError}
-                                usernameExists={usernameExists}
-                                setUsernameValidationError={setUsernameValidationError}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="password">Password:</label>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                name="password" 
-                                value={password}
-                                autoComplete='new-password'
-                                aria-describedby="password-error-message"
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                />
-                        </div>
-                        <ValidatePassword 
-                            password={password} 
-                            passwordErrorMessage={passwordErrorMessage}
-                            passwordError={passwordError}
-                            setPasswordErrorMessage={setPasswordErrorMessage}
-                            setPasswordError={setPasswordError}
+                <fieldset
+                    className='RegistrationForm__fieldset outer-fieldset'
+                >
+                    <legend>Create an account to get started!</legend>
+                    <div>
+                        <label htmlFor="email">Email:</label>
+                        <input 
+                            type="email" 
+                            placeholder="example@example.com" 
+                            id="email" 
+                            name="email"
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            aria-describedby='email-validation'
                         />
-                        <div>
-                            <label htmlFor="reenter-password">Re-enter password:</label>
-                            <input 
-                                type="password" 
-                                id="reenter-password" 
-                                name="reenter-password" 
-                                value={reenteredPassword}
-                                autoComplete='new-password'
-                                aria-describedby="reenter-password-validation"
-                                onChange={(e) => setReenteredPassword(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <ValidateReenteredPassword 
-                            password={password}
-                            reenteredPassword={reenteredPassword}
-                            reenteredPasswordError={reenteredPasswordError}
-                            setReenteredPasswordError={setReenteredPasswordError}
+                    </div>
+                    <div role='alert'>
+                        <ValidateEmail 
+                            suffix={suffix}
+                            email={email}
+                            emailValidationError={emailValidationError}
+                            emailAlreadyRegistered={emailAlreadyRegistered}
+                            setEmailValidationError={setEmailValidationError}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="phone">Phone number:</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone"
+                            value={phone} 
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                            aria-describedby="phone-validation" 
+                            onChange={(e) => setPhone(e.target.value)}
+                        />
+                    </div>
+                    <div role='alert'>
+                        <ValidatePhoneNumber 
+                            phone={phone}
+                            phoneValidationError={phoneValidationError}
+                            setPhoneValidationError={setPhoneValidationError}
                         /> 
-                    </>
-                }
+                    </div>
+                    {!suffix &&
+                        <> 
+                            <div>
+                                <label htmlFor="username">Username:</label>
+                                <input 
+                                    type="text" 
+                                    placeholder="Username" 
+                                    id="username" 
+                                    name="username"
+                                    value={username}
+                                    autoComplete='username' 
+                                    aria-describedby='username-validation'
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                            </div>
+                            <div role='alert'>
+                                <ValidateUsername 
+                                    username={username}
+                                    usernameValidationError={usernameValidationError}
+                                    usernameExists={usernameExists}
+                                    setUsernameValidationError={setUsernameValidationError}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="password">Password:</label>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    value={password}
+                                    autoComplete='new-password'
+                                    aria-describedby="password-error-message"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    />
+                            </div>
+                            <ValidatePassword 
+                                password={password} 
+                                passwordErrorMessage={passwordErrorMessage}
+                                passwordError={passwordError}
+                                setPasswordErrorMessage={setPasswordErrorMessage}
+                                setPasswordError={setPasswordError}
+                            />
+                            <div>
+                                <label htmlFor="reenter-password">Re-enter password:</label>
+                                <input 
+                                    type="password" 
+                                    id="reenter-password" 
+                                    name="reenter-password" 
+                                    value={reenteredPassword}
+                                    autoComplete='new-password'
+                                    aria-describedby="reenter-password-validation"
+                                    onChange={(e) => setReenteredPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <ValidateReenteredPassword 
+                                password={password}
+                                reenteredPassword={reenteredPassword}
+                                reenteredPasswordError={reenteredPasswordError}
+                                setReenteredPasswordError={setReenteredPasswordError}
+                            /> 
+                        </>
+                    }
+                </fieldset>
                 <button 
                     className='button'
                     type="submit"
@@ -257,10 +261,12 @@ const RegistrationForm = (props) => {
             </form>
             <div role="alert">
                 {(apiError && !suffix) && 
-                    <>
+                    <section
+                        className='RegistrationForm__section section'
+                    >
                         <h2>Error</h2>
                         <p>New user could not be created: {apiError}</p>
-                    </>
+                    </section>
                 }
                 {(apiError && suffix) && 
                     <>

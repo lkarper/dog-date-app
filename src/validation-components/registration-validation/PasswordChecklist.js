@@ -12,8 +12,8 @@ const PasswordChecklist = (props) => {
         specialChar,
     } = passwordError;
 
-    const checkMark = <span style={{ color: 'green'}}>&#10004;</span>;
-    const xMark = <span style={{ color: 'red'}}>&#10006;</span>;
+    const checkMark = <span style={{ color: 'hsl(245, 100%, 50%)' }}>&#10004;</span>;
+    const xMark = <span style={{ color: 'red' }}>&#10006;</span>;
 
     return (
         <div>
