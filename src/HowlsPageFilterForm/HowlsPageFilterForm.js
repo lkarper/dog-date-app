@@ -3,6 +3,7 @@ import StateSelector from '../StateSelector/StateSelector';
 import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
 import HowlsPageAdvancedSearch from '../HowlsPageAdvancedSearch/HowlsPageAdvancedSearch';
 import './HowlsPageFilterForm.css';
+import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
 
 const HowlsPageFilterForm = (props) => {
 
@@ -57,10 +58,10 @@ const HowlsPageFilterForm = (props) => {
             onSubmit={handleSubmit}
         >
             <fieldset
-                className='HowlsPageFilterForm__fieldset'
+                className='HowlsPageFilterForm__fieldset outer-fieldset'
             >
                 <legend>Filter howls by:</legend>
-                <fieldset className="HowlsPageFilterForm__sub-fieldset">
+                <fieldset className='HowlsPageFilterForm__fieldset sub-fieldset'>
                     <legend>Location</legend>
                     <StateSelector 
                         setState={setState}
@@ -90,58 +91,20 @@ const HowlsPageFilterForm = (props) => {
                     />
                 </div>
                 </fieldset>
-                <fieldset className='HowlsPageFilterForm__sub-fieldset'>
-                    <legend>Average rating of dog(s)</legend>
-                    <div>
-                        <input 
-                            type="radio" 
-                            id="sort-howls-rating-4" 
-                            name="sort-howls-rating" 
-                            value="4"
-                            checked={ratingFilter === '4'}
-                            onChange={(e) => setRatingFilter(e.target.value)} 
-                        />
-                        <label htmlFor="sort-howls-rating-4">4+</label>
-                    </div>
-                    <div>
-                        <input 
-                            type="radio" 
-                            id="sort-howls-rating-3" 
-                            name="sort-howls-rating" 
-                            value="3"
-                            checked={ratingFilter === '3'}
-                            onChange={(e) => setRatingFilter(e.target.value)}  
-                        />
-                        <label htmlFor="sort-howls-rating-3">3+</label>
-                    </div>
-                    <div>
-                        <input 
-                            type="radio" 
-                            id="sort-howls-rating-2" 
-                            name="sort-howls-rating" 
-                            value="2" 
-                            checked={ratingFilter === '2'}
-                            onChange={(e) => setRatingFilter(e.target.value)} 
-                        />
-                        <label htmlFor="sort-howls-rating-2">2+</label>
-                    </div>
-                    <div>
-                        <input 
-                            type="radio" 
-                            id="sort-howls-rating-any" 
-                            name="sort-howls-rating" 
-                            value="" 
-                            checked={ratingFilter === ''}
-                            onChange={(e) => setRatingFilter(e.target.value)}  
-                        />
-                        <label htmlFor="sort-howls-rating-any">Show all howls regardless of rating</label>
-                    </div>
+                <fieldset className='HowlsPageFilterForm__fieldset sub-fieldset'>
+                    <ReviewFormStarRater
+                        classSuffix='sort'
+                        currentState={ratingFilter}
+                        setter={setRatingFilter}
+                        legendText='Average rating of dog(s) equal to or greater than'
+                    />
                 </fieldset>
                 <div aria-live='polite'>
                     {showAdvanced 
                         ?
                             <>
                                 <button
+                                    className='HowlsPageFilterForm__button button'
                                     type='button'
                                     onClick={() => setShowAdvanced(false)}
                                 >
@@ -166,6 +129,7 @@ const HowlsPageFilterForm = (props) => {
                             </>
                         :
                             <button 
+                                className='HowlsPageFilterForm__button button'
                                 type='button'
                                 onClick={() => setShowAdvanced(true)}
                             >
@@ -175,6 +139,7 @@ const HowlsPageFilterForm = (props) => {
                 </div>
             </fieldset>
             <button 
+                className='HowlsPageFilterForm__button button'
                 type='submit'
                 disabled={zipcodeError || timeErrorP}
             >
