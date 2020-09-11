@@ -14,7 +14,13 @@ const ForwardGeocodeResult = (props) => {
     return (
         <li>
             <p>{result.display_name}</p>
-            <button type='button' onClick={handleClick}>Select</button>
+            <button 
+                className='ForwardGeocodeResult__button button'
+                type='button' 
+                onClick={handleClick}
+            >
+                Select
+            </button>
         </li>
     );
 }
