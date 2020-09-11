@@ -22,9 +22,10 @@ const Landing = (props) => {
                     <h2>What is Dog Date?</h2>
                 </header>
                 <p>Dog Date is an app that helps you find playdates for your dog!</p>
-                <p>This is a demo version of Dog Date designed to get initial feedback from users.</p>
+                <p>This is a demo version of the full Dog Date app designed to get feedback from users.</p>
+                <p>The app is now hooked up to a server, so you can create an account, upload photos, howl about your dog, and more!</p>
                 <p>Get started by <Link className='link' to='/register'>registering</Link> for an account.</p>
-                <p>After you test the app, please fill out this <a className="Landing__feedback-link link" href="https://forms.gle/ua1uXTDHWFqq49Hs5" target="_blank" rel="noopener noreferrer">form</a>!</p>
+                <p>After you test the app, please fill out this <a className='Landing__feedback-link link' href='https://forms.gle/MNAWJUbRpTfPc76k8' target='_blank' rel='noopener noreferrer'>form</a>!</p>
                 <p>Thank you! Thank you! Thank you!</p>
             </section>
             <section className='Landing__section section'>
