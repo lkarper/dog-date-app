@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -13,8 +13,6 @@ import './RegistrationForm.css';
 const RegistrationForm = (props) => {
 
     const context = useContext(UserContext);
-
-    const errorEl = useRef(null);
 
     const {
         suffix = '',
@@ -118,7 +116,7 @@ const RegistrationForm = (props) => {
                         }
                         setShowLoading(false);
                         setApiError(res.error);
-                        window.scrollTo(0, errorEl.current.offsetTop);
+                        window.scrollTo(0, document.querySelector('.RegistrationForm__alert-div').offsetTop - document.querySelector('.Header__header').offsetHeight);
                     });
         }
     }
@@ -263,7 +261,7 @@ const RegistrationForm = (props) => {
                 </button>
             </form>
             <div
-                ref={errorEl} 
+                className='RegistrationForm__alert-div'
                 role="alert"
             >
                 {(apiError && !suffix) && 
