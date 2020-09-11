@@ -1,3 +1,9 @@
 .BasicInfo__alert-div {
     height: 75px;
 }
+
+@media screen and (min-width: 750px) {
+    .BasicInfo__alert-div {
+        height: 25px;
+    }
+}

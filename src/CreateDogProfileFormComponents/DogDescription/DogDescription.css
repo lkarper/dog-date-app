@@ -6,3 +6,9 @@
 .DogDescription__alert-div {
     height: 100px;
 }
+
+@media screen and (min-width: 750px) {
+    .DogDescription__alert-div {
+        height: 50px;
+    }
+}

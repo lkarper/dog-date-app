@@ -6,3 +6,9 @@
 .MySavedHowls__list li:first-child {
     margin-top: 0;
 }
+
+@media screen and (min-width: 750px) {
+    .MySavedHowls__list {
+        width: 80%;
+    }
+}

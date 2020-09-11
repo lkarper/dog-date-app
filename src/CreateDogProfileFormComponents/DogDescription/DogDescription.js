@@ -548,7 +548,7 @@ const DogDescription = (props) => {
             </fieldset>
             <hr />
             <div className='DogDescription__message-container'>
-                <label htmlFor="own-description">Describe your dog in your own words:</label>
+                <label htmlFor="own-description"><b>Describe your dog in your own words</b></label>
                 <textarea 
                     id="own-description" 
                     name="own-description" 

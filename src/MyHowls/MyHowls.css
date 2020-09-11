@@ -2,3 +2,9 @@
     padding: 0; 
     margin-top: 0;
 }
+
+@media screen and (min-width: 750px) {
+    .MyHowls__list {
+        width: 80%;
+    }
+}

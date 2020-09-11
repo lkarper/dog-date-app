@@ -123,7 +123,7 @@ const BasicInfo = (props) => {
                     className='BasicInfo__label bold-label'
                     htmlFor="dog-name"
                 >
-                    Dog's name
+                    Dog's name:
                 </label>
                 <input 
                     type="text" 
