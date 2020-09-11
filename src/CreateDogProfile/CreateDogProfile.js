@@ -329,9 +329,9 @@ const CreateDogProfile = (props) => {
                             </button>
                         </div>
                         {showLoading && 
-                            <div className='CreateDogProfilePhoto__loading-container'>
+                            <div className='CreateDogProfile__loading-container'>
                                 <FontAwesomeIcon 
-                                    className='CreateDogProfilePhoto__loading' 
+                                    className='CreateDogProfile__loading' 
                                     icon={faSpinner} 
                                     spin 
                                 />
@@ -364,9 +364,9 @@ const CreateDogProfile = (props) => {
                     suffix={suffix}
                 />
                 {showLoading && 
-                    <div className='CreateDogProfilePhoto__loading-container'>
+                    <div className='CreateDogProfile__loading-container'>
                         <FontAwesomeIcon 
-                            className='CreateDogProfilePhoto__loading' 
+                            className='CreateDogProfile__loading' 
                             icon={faSpinner} 
                             spin 
                         />

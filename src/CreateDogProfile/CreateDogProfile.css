@@ -61,7 +61,7 @@
     display: none;
 }
 
-.CreateDogProfilePhoto__loading-container {
+.CreateDogProfile__loading-container {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -76,7 +76,7 @@
     align-items: center;
 }
 
-.CreateDogProfilePhoto__loading {
+.CreateDogProfile__loading {
     font-size: 30px;
 }
 
