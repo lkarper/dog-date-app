@@ -27,3 +27,12 @@
 .RegistrationForm__loading {
     font-size: 30px;
 }
+
+.RegistrationForm__fieldset.outer-fieldset.edit {
+    border: none;
+    box-shadow: none;
+}
+
+.RegistrationForm__header-edit {
+    text-align: center;
+}

@@ -129,7 +129,9 @@ const RegistrationForm = (props) => {
                 </header>
             }
             {suffix &&
-                <header>
+                <header
+                    className='RegistrationForm__header-edit'
+                >
                     <h3>Edit contact info</h3>
                 </header>
             }
@@ -138,9 +140,9 @@ const RegistrationForm = (props) => {
                 onSubmit={handleSubmit}
             >
                 <fieldset
-                    className='RegistrationForm__fieldset outer-fieldset'
+                    className={`RegistrationForm__fieldset outer-fieldset ${suffix}`}
                 >
-                    <legend>Create an account to get started!</legend>
+                    {!suffix && <legend>Create an account to get started!</legend>}
                     <div>
                         <label htmlFor="email">Email:</label>
                         <input 
