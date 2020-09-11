@@ -125,6 +125,7 @@ const CreateDogProfile = (props) => {
                 .catch(error => {
                     console.log(error);
                     setApiError(true);
+                    setImgDataP(null);
                     setShowLoading(false);
                 });
         } else {
@@ -137,6 +138,7 @@ const CreateDogProfile = (props) => {
                 })
                 .catch(error => {
                     setApiError(true);
+                    setImgDataP(null);
                     setShowLoading(false);
                     console.log(error);
                 });
@@ -311,23 +313,29 @@ const CreateDogProfile = (props) => {
                         <h1>Create a Profile</h1>
                     </header>
                     <section className={`CreateDogProfile__outer-section${suffix} photo-container`}>
-                        <header>
-                            <h2>Would you like your dog's profile to feature a photo?</h2>
-                        </header>
-                        <div>
-                            <button
-                                className='CreateDogProfile__button button' 
-                                onClick={() => setImgUploadForm(true)}
+                        <section
+                            className={`CreateDogProfile__section ${suffix ? suffix : 'section'}`}
+                        >
+                            <header>
+                                <h2>Would you like your dog's profile to feature a photo?</h2>
+                            </header>
+                            <div
+                                className='CreateDogProfile__button-div'
                             >
-                                Yes
-                            </button>
-                            <button 
-                                className='CreateDogProfile__button button'
-                                onClick={useNoImg}
-                            >
-                                No
-                            </button>
-                        </div>
+                                <button
+                                    className='CreateDogProfile__button button' 
+                                    onClick={() => setImgUploadForm(true)}
+                                >
+                                    Yes
+                                </button>
+                                <button 
+                                    className='CreateDogProfile__button button'
+                                    onClick={useNoImg}
+                                >
+                                    No
+                                </button>
+                            </div>
+                        </section>
                         {showLoading && 
                             <div className='CreateDogProfile__loading-container'>
                                 <FontAwesomeIcon 

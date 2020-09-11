@@ -107,7 +107,7 @@ const UploadDogProfilePhoto = (props) => {
         return tmpCanvas;
     }
 
-    function generateDownload(previewCanvas, crop) {
+    const generateUpload = (previewCanvas, crop) => {
         if (!crop || !previewCanvas) {
             return;
         }
@@ -162,7 +162,8 @@ const UploadDogProfilePhoto = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        generateDownload(previewCanvasRef.current, completedCrop)
+        setApiError(false);
+        generateUpload(previewCanvasRef.current, completedCrop)
     }
 
     return (
@@ -246,9 +247,6 @@ const UploadDogProfilePhoto = (props) => {
                         </button>
                     </div>
                 }
-            </div>
-            <div role='alert'>
-                {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
             </div>
         </section>
     );
