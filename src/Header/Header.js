@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import UserContext from '../contexts/UserContext';
 import TokenService from '../services/token-service';
 import IdleService from '../services/idle-service';
-import { Link, NavLink } from 'react-router-dom';
+import NativeClickListener from '../utils/NativeClickListener';
 import './Header.css';
 
 const Header = (props) => {
@@ -87,46 +88,49 @@ const Header = (props) => {
                     onClick={() => setShowMenu(!showMenu)}
                 >
                     <FontAwesomeIcon 
-                        className='CreateDogProfilePhoto__loading' 
                         icon={faBars}  
                     />
                 </button>
             </div>
-            <nav 
-                className={`Header__nav${showMenu ? ' active' : ''}`}
-                aria-live='polite'
+            <NativeClickListener
+                onClick={() => setShowMenu(false)}
             >
-                <ul
-                    className={`Header__ul`}
-                >
-                    {TokenService.hasAuthToken()
-                        ? 
-                            <li>
-                                <NavLink 
-                                    className='Header__navlink' 
-                                    activeClassName='selected'
-                                    to='/home'
-                                    onClick={() => setShowMenu(false)}
-                                >
-                                    Homepage
-                                </NavLink>
-                            </li>
-                        : 
-                            ''
-                    }
-                    <li>
-                        <NavLink 
-                            className='Header__navlink' 
-                            activeClassName='selected' 
-                            to='/howls'
-                            onClick={() => setShowMenu(false)}
-                        >
-                            Howls
-                        </NavLink>
-                    </li>
-                    {TokenService.hasAuthToken() ? logoutLink : loginLink }
-                </ul> 
-            </nav>
+                <nav 
+                    className={`Header__nav${showMenu ? ' active' : ''}`}
+                    aria-live='polite'
+                >  
+                    <ul
+                        className={`Header__ul`}
+                    >
+                        {TokenService.hasAuthToken()
+                            ? 
+                                <li>
+                                    <NavLink 
+                                        className='Header__navlink' 
+                                        activeClassName='selected'
+                                        to='/home'
+                                        onClick={() => setShowMenu(false)}
+                                    >
+                                        Homepage
+                                    </NavLink>
+                                </li>
+                            : 
+                                ''
+                        }
+                        <li>
+                            <NavLink 
+                                className='Header__navlink' 
+                                activeClassName='selected' 
+                                to='/howls'
+                                onClick={() => setShowMenu(false)}
+                            >
+                                Howls
+                            </NavLink>
+                        </li>
+                        {TokenService.hasAuthToken() ? logoutLink : loginLink }
+                    </ul> 
+                </nav>
+            </NativeClickListener>
         </header>
     );
 }
