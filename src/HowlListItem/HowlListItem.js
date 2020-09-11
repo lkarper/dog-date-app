@@ -59,13 +59,38 @@ const HowlListItem = (props) => {
                     {howl.howl_title}
                 </Link>
             </h3>
+            <div
+                className='HowlListItem__photo-div'
+            >
+                {howl.dogs
+                    .map(dog => {
+                        if (dog.profile.profile_img_url) {
+                            return (
+                                <img
+                                    key={dog.dog_id}
+                                    className='HowlListItem__img' 
+                                    src={dog.profile.profile_img_url} 
+                                    alt={`Avatar of the dog named ${dog.profile.name}.`} 
+                                />
+                            );
+                        }
+                        return (
+                            <img
+                                key={dog.dog_id}
+                                className='HowlListItem__img' 
+                                src='/images/photo_not_available.png'
+                                alt={`Avatar of the dog named ${dog.profile.name} not available.`} 
+                            />
+                        );
+                    })
+                }
+            </div>
             {howlDateTime}
             <h4>Location</h4>
             <ul>
                 <li className='HowlListItem__location-li'>{howl.location.address}</li>
                 <li className='HowlListItem__location-li'>{howl.location.city}, {howl.location.state}{' '}{howl.location.zipcode}</li>
             </ul>
-            {/* {Add number of dogs interested here} */}
         </li>
     );
 }

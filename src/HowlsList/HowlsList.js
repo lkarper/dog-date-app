@@ -135,7 +135,7 @@ const HowlsList = (props) => {
                                     <p>Looks like something went wrong.  Check your connection and try again.</p>
                                 </>
                         }
-                        {!apiError && <p>Now showing {howls.length} {howls.length === 1 ? 'howl' : 'howls'}</p>}
+                        {!apiError && <p>Now showing <b>{howls.length}</b> {howls.length === 1 ? 'howl' : 'howls'}</p>}
                         {howls.length === 0 
                             ?
                                 <p>No howls found that match those search criteria. Adjust your parameters and try again.</p>

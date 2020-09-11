@@ -21,3 +21,16 @@
 .HowlListItem__date {
     font-weight: bold;
 }
+
+.HowlListItem__photo-div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.HowlListItem__img {
+    width: 45%;
+    margin: 5px;
+}

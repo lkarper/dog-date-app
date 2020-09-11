@@ -118,7 +118,7 @@ const RegistrationForm = (props) => {
                         }
                         setShowLoading(false);
                         setApiError(res.error);
-                        window.scrollTo(0, errorEl.current.offsetTop)
+                        window.scrollTo(0, errorEl.current.offsetTop);
                     });
         }
     }

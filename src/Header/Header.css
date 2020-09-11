@@ -101,6 +101,10 @@
         justify-content: space-between;
     }
 
+    .Header__ul li {
+        margin: 0 10px;
+    }
+
     .Header__hamburger {
         display: none;
     }
@@ -133,6 +137,5 @@
     .Header__navlink:active, .Header__link:active {
         background-color: hsl(245, 100%, 15%);
         border: 1px solid hsl(245, 100%, 15%);
-    }
-    
+    }    
 }
