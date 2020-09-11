@@ -93,6 +93,11 @@
 
 @media screen and (min-width: 750px) {
 
+    .Header__dog-date {
+        margin-left: 25px;
+        padding: 0;
+    }
+
     .Header__ul {
         height: auto;
         flex-direction: row;
