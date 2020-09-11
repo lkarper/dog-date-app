@@ -175,7 +175,13 @@ const DogProfilePage = (props) => {
                                             reviews={reviews}
                                         />
                                         <ul className='DogProfilePage__reviews-list'>
-                                            {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
+                                            {reviews.map(review => 
+                                                <DogReviewListItem 
+                                                    key={review.id} 
+                                                    review={review} 
+                                                    noImage={true}
+                                                />
+                                            )}
                                         </ul>
                                     </div>
                             }

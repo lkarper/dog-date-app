@@ -42,14 +42,16 @@ const DogReviewListItem = (props) => {
                 >
                     {review_title}
                 </Link>
-                {review.dog_profile.profile_img_url
-                    ?
+                {(!props.noImage && review.dog_profile.profile_img_url)
+                    &&
                         <img
                             className='DogReviewListItem__img' 
                             src={review.dog_profile.profile_img_url} 
                             alt={`Avatar of the dog named ${review.dog_profile.name}.`} 
                         />
-                    :
+                }
+                {(!props.noImage && !review.dog_profile.profile_img_url)
+                    &&
                         <img
                             className='DogReviewListItem__img' 
                             src='/images/photo_not_available.png'
