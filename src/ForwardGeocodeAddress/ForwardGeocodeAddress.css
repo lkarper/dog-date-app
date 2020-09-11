@@ -1,7 +1,6 @@
 .ForwardGeocodeAddress__outer-container {
     display: flex;
     flex-direction: column;
-    /* padding: 10px; */
     position: absolute;
     z-index: 10;
     width: 100%;
@@ -12,9 +11,7 @@
     height: 300px;
     width: 100%;
     overflow-y: scroll;
-    /* position: absolute; */
     top: 40px;
-    /* z-index: 10; */
     background-color: white;
     border: 1px solid black;
 }

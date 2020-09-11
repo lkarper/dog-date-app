@@ -9,3 +9,13 @@
 .LocationForm__alert-div.small {
     min-height: 75px;
 }
+
+@media screen and (min-width: 750px) {
+    .LocationForm__alert-div.large {
+        min-height: 60px;
+    }
+
+    .LocationForm__alert-div.small {
+        min-height: 35px;
+    }
+}

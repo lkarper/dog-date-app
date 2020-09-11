@@ -33,19 +33,11 @@
     margin-right: 5px;
 }
 
-.ReviewPage__edit-container {
-    width: 100%;
-    position: relative;
-}
-
-.ReviewPage__edit-cancel-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 5px;
-}
-
 .ReviewPage__img {
     width: 45%;
     margin: 10px;
+}
+
+.ReviewPage__edit-div {
+    width: 100%;
 }

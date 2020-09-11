@@ -46,3 +46,18 @@
 .Map__marker-draggable-p {
     margin: 5px;
 }
+
+@media screen and (min-width: 750px) {
+    .Map__map-container {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .Map__map-outer-container {
+        width: 400px;
+    }
+
+    .Map__search-container {
+        align-items: flex-start;
+    }
+}

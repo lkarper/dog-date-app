@@ -15,8 +15,10 @@ const CurrentLocation = (props) => {
                     coordinates.lat !== 0 || coordinates.lon !== 0
                         ? 
                             <>
-                                <span>Coordinates set to:{' '}</span> 
+                                <span>Coordinates set to:{' '}</span>
+                                <br /> 
                                 <span>Lat: {coordinates.lat}</span>
+                                <br />
                                 <span>Lon: {coordinates.lon}</span>
                             </>
                         : 
