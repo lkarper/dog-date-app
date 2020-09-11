@@ -148,6 +148,20 @@ const ReviewPage = (props) => {
                         className='ReviewPage__main-header'
                     >
                         <h2>{review_title}</h2>
+                        {review.dog_profile.profile_img_url
+                            ?
+                                <img
+                                    className='ReviewPage__img' 
+                                    src={review.dog_profile.profile_img_url} 
+                                    alt={`Avatar of the dog named ${review.dog_profile.name}.`} 
+                                />
+                            :
+                                <img
+                                    className='ReviewPage__img' 
+                                    src='/images/photo_not_available.png'
+                                    alt={`Avatar of the dog named ${review.dog_profile.name} not available.`} 
+                                />
+                        }
                         <p>Reviewed by: {reviewer}</p>
                         <p>On: {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
                         <div

@@ -42,6 +42,20 @@ const DogReviewListItem = (props) => {
                 >
                     {review_title}
                 </Link>
+                {review.dog_profile.profile_img_url
+                    ?
+                        <img
+                            className='DogReviewListItem__img' 
+                            src={review.dog_profile.profile_img_url} 
+                            alt={`Avatar of the dog named ${review.dog_profile.name}.`} 
+                        />
+                    :
+                        <img
+                            className='DogReviewListItem__img' 
+                            src='/images/photo_not_available.png'
+                            alt={`Avatar of the dog named ${review.dog_profile.name} not available.`} 
+                        />
+                }
             </h3>
             <p>Reviewed by {reviewer} on {moment(date_created).format("MMMM Do YYYY, h:mm a")}</p>
             <div 

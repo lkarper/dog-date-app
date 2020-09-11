@@ -44,3 +44,8 @@
     right: 0;
     margin: 5px;
 }
+
+.ReviewPage__img {
+    width: 45%;
+    margin: 10px;
+}

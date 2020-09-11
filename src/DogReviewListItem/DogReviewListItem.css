@@ -11,12 +11,19 @@
 }
 
 .DogReviewListItem__h3 {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .DogReviewListItem__star-outer-container {
     display: flex;
     flex-direction: column;
+}
+
+.DogReviewListItem__img {
+    width: 45%;
+    margin: 10px;
 }
 
 @media screen and (min-width: 750px) {
