@@ -27,9 +27,15 @@ const DogListView = (props) => {
                 className='DogListView__profile-link link'
                 to={`/dog-profile/${id}`}
             >
-                <div className='DogListView__dog-container'>
+                <div 
+                    className='DogListView__dog-container'
+                >
                     {image}
-                    View {name}'s profile
+                    <p
+                        className='DogListView__p'
+                    >
+                        View {name}'s profile
+                    </p>
                 </div>
             </Link>
         </li>

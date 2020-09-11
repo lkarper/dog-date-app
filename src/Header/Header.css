@@ -99,6 +99,7 @@
         list-style: none;
         align-items: center;
         justify-content: space-between;
+        margin-right: 25px;
     }
 
     .Header__ul li {
