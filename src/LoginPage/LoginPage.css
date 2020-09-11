@@ -42,3 +42,7 @@
 .LoginPage__loading {
     font-size: 30px;
 }
+
+.LoginPage__p.error {
+    margin: 10px;
+}
