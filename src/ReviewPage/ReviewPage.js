@@ -250,7 +250,10 @@ const ReviewPage = (props) => {
                                             reviews={reviews}
                                         />
                                         <ul className='ReviewPage__reviews-list'>
-                                            {reviews.map(review => <DogReviewListItem key={review.id} review={review} />)}
+                                            {reviews
+                                                .filter(review => review.id !== parseInt(id))
+                                                .map(review => <DogReviewListItem key={review.id} review={review} />)
+                                            }
                                         </ul>
                                     </div>
                             }
