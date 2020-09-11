@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 const NativeClickListener = (props) => {
     
     const globalClickHandler = (nativeEvent) => {
-        if (container && !container.contains(nativeEvent.target)) {
+        if (document.querySelector(`#${props.id}`).offsetHeight !== 0 && !document.querySelector(`#${props.id}`).contains(nativeEvent.target)) {
             return props.onClick(nativeEvent);
         }
     }
@@ -15,16 +15,10 @@ const NativeClickListener = (props) => {
         };
     });
 
-    let container = useRef(null);
-
-    const setRef = (el) => {
-        container = el;
-    }
-
     return (
-        <div 
+        <div
+            id={props.id} 
             className={props.className}
-            ref={el => setRef(el)} 
             role='alert'
         >
             {props.children}

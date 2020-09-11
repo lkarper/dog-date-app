@@ -72,6 +72,7 @@ const ForwardGeocodeAddress = (props) => {
                 onChange={(e) => setSearch(e.target.value)} 
             />
             <NativeClickListener
+                id='ForwardGeocodeAddress__click-container'
                 className={`ForwardGeocodeAddress__click-container ${hidden ? 'hidden' : ''}`}
                 onClick={() => setHidden(true)}
             >

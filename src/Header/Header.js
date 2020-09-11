@@ -93,6 +93,7 @@ const Header = (props) => {
                 </button>
             </div>
             <NativeClickListener
+                id='Header__native-click-div'
                 onClick={() => setShowMenu(false)}
             >
                 <nav 
