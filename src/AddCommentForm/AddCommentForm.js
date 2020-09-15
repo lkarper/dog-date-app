@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import ReviewsService from '../services/reviews-service';
 import './AddCommentForm.css';
@@ -9,9 +10,9 @@ const AddCommentForm = (props) => {
 
     const { 
         reviewId, 
-        oldComment = '',
-        suffix = '',
-        id = '',
+        oldComment,
+        suffix,
+        id,
         comments,
         setComments,
     } = props;
@@ -58,6 +59,16 @@ const AddCommentForm = (props) => {
         }
     }
 
+    if (!reviewId) {
+        return (
+            <p 
+                className='AddCommentForm__error error'
+            >
+                Cannot comment at this time.
+            </p>
+        );
+    }
+
     return (
         <form 
             className='AddCommentForm__form'
@@ -86,5 +97,23 @@ const AddCommentForm = (props) => {
         </form>
     );
 }
+
+AddCommentForm.defaultProps = {
+    reviewId: '', 
+    oldComment: '',
+    suffix: '',
+    id: '',
+    comments: [],
+    setComments: () => {},
+};
+
+AddCommentForm.propTypes = {
+    reviewId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    oldComment: PropTypes.string,
+    suffix: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    comments: PropTypes.array,
+    setComments: PropTypes.func,
+};
 
 export default AddCommentForm;
