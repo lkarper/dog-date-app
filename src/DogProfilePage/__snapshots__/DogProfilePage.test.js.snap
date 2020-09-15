@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DogProfilePage component renders the UI as expected 1`] = `
+<DogProfilePage
+  match={
+    Object {
+      "params": Object {
+        "id": "",
+      },
+    }
+  }
+>
+  <section
+    aria-live="polite"
+    className="DogProfilePage__section section error"
+  >
+    <p>
+      Error: Could not load profile.  Check your connection and the URL and try again.
+    </p>
+  </section>
+</DogProfilePage>
+`;
