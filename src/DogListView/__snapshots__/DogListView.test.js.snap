@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DogListView component renders the UI as expected 1`] = `
+<DogListView
+  dog={
+    Object {
+      "id": "",
+      "name": "",
+      "profile_img_url": "",
+    }
+  }
+>
+  <li
+    className="DogListView__li"
+  >
+    <p
+      className="DogListView__p error"
+    >
+      Error: Check your connection and the URL and try again.
+    </p>
+  </li>
+</DogListView>
+`;
