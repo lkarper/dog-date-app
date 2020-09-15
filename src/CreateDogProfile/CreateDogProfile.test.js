@@ -5,8 +5,6 @@ import { mount } from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import CreateDogProfile from './CreateDogProfile';
 
-global.scrollTo = jest.fn();
-
 describe('CreateDogProfile component', () => {
     it('renders the UI without crashing', () => {
         const div = document.createElement('div');
