@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateDogReviewPage renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <CreateDogReviewPage
+      match={
+        Object {
+          "params": Object {
+            "dog_id": "",
+          },
+        }
+      }
+    >
+      <section
+        aria-live="polite"
+        className="CreateDogReviewPage__section error"
+      >
+        <p>
+          Looks like something went wrong.  Check your connection and the url and try again.
+        </p>
+      </section>
+    </CreateDogReviewPage>
+  </Router>
+</BrowserRouter>
+`;
