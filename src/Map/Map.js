@@ -60,7 +60,9 @@ const Map = (props) => {
             setMarkerCoordinates({ lat: lngLat.lat, lon: lngLat.lng });
         }
 
-        marker.on('dragend', onDragEnd);
+        if (marker) {
+            marker.on('dragend', onDragEnd);
+        }
 
     }, [props.setTempCoordinates, markerCoordinates.lat, markerCoordinates.lon]);
 
@@ -75,7 +77,9 @@ const Map = (props) => {
                 setMarkerCoordinates({ lat: lngLat.lat, lon: lngLat.lng });
             }
 
-            marker.on('dragend', onDragEnd);
+            if (marker) {
+                marker.on('dragend', onDragEnd);
+            }
 
             if (tempCoordinates.lat !== markerCoordinates.lat && tempCoordinates.lon !== markerCoordinates.lon) {
                 const { lat, lon } = markerCoordinates;
