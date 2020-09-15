@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import BasicInfo from '../CreateDogProfileFormComponents/BasicInfo/BasicInfo';
 import DogDescription from '../CreateDogProfileFormComponents/DogDescription/DogDescription';
@@ -12,36 +13,39 @@ import './CreateDogProfile.css';
 const CreateDogProfile = (props) => {
 
     useEffect(() => {
-        if (!Object.keys(props).includes('suffix')) {
+        if (props.suffix === '') {
             window.scrollTo(0, 0);
         }
     }, [props]);
 
-    const { dog_profile = {}, suffix = '' } = props;
+    const { 
+        dog_profile, 
+        suffix
+    } = props;
 
     const { 
-        name = '',
-        profile_img_url = '',
-        age_years = 0,
-        age_months = 0,
-        sex = '',
-        breed = '',
-        weight = 0,
-        energy = '',
-        temperment = '',
-        obedience = '',
-        dislikes_puppies = false,
-        dislikes_men = false,
-        dislikes_women = false,
-        dislikes_children = false,
-        recently_adopted = false,
-        prefers_people = false,
-        leash_aggression = false,
-        elderly_dog = false,
-        little_time_with_other_dogs = false,
-        much_experience_with_other_dogs = false,
-        aggressive = false,
-        owner_description = '',
+        name,
+        profile_img_url,
+        age_years,
+        age_months,
+        sex,
+        breed,
+        weight,
+        energy,
+        temperment,
+        obedience,
+        dislikes_puppies,
+        dislikes_men,
+        dislikes_women,
+        dislikes_children,
+        recently_adopted,
+        prefers_people,
+        leash_aggression,
+        elderly_dog,
+        little_time_with_other_dogs,
+        much_experience_with_other_dogs,
+        aggressive,
+        owner_description,
     } = dog_profile;
 
     const context = useContext(UserContext);
@@ -387,5 +391,61 @@ const CreateDogProfile = (props) => {
         );
     }
 }
+
+CreateDogProfile.defaultProps = {
+    dog_profile: {
+        name: '',
+        profile_img_url: '',
+        age_years: 0,
+        age_months: 0,
+        sex: '',
+        breed: '',
+        weight: 0,
+        energy: '',
+        temperment: '',
+        obedience: '',
+        dislikes_puppies: false,
+        dislikes_men: false,
+        dislikes_women: false,
+        dislikes_children: false,
+        recently_adopted: false,
+        prefers_people: false,
+        leash_aggression: false,
+        elderly_dog: false,
+        little_time_with_other_dogs: false,
+        much_experience_with_other_dogs: false,
+        aggressive: false,
+        owner_description: '',
+    },
+    suffix: '',
+};
+
+CreateDogProfile.propTypes = {
+    dog_profile: PropTypes.shape({
+        name: PropTypes.string,
+        profile_img_url: PropTypes.string,
+        age_years: PropTypes.number,
+        age_months: PropTypes.number,
+        sex: PropTypes.string,
+        breed: PropTypes.string,
+        weight: PropTypes.number,
+        energy: PropTypes.string,
+        temperment: PropTypes.string,
+        obedience: PropTypes.string,
+        dislikes_puppies: PropTypes.bool,
+        dislikes_men: PropTypes.bool,
+        dislikes_women: PropTypes.bool,
+        dislikes_children: PropTypes.bool,
+        recently_adopted: PropTypes.bool,
+        prefers_people: PropTypes.bool,
+        leash_aggression: PropTypes.bool,
+        elderly_dog: PropTypes.bool,
+        little_time_with_other_dogs: PropTypes.bool,
+        much_experience_with_other_dogs: PropTypes.bool,
+        aggressive: PropTypes.bool,
+        owner_description: PropTypes.string,
+    }).isRequired,
+    suffix: PropTypes.string.isRequired,
+};
 
 export default withRouter(CreateDogProfile);
