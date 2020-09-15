@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DogAverageRating component renders the UI as expected 1`] = `
+<DogAverageRating
+  reviews={
+    Array [
+      Object {},
+    ]
+  }
+>
+  <p>
+    Average rating not available.
+  </p>
+</DogAverageRating>
+`;
