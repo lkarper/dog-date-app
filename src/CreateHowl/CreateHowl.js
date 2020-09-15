@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import MapForm from '../MapForm/MapForm';
 import SelectDogForHowl from '../SelectDogForHowl/SelectDogForHowl';
@@ -16,25 +17,8 @@ import './CreateHowl.css';
 const CreateHowl = (props) => {
 
     const {
-        suffix = '',
-        howl = {
-            dogs: [],
-            howl_title: '',
-            id: '',
-            location: {
-                address: '',
-                city: '',
-                lat: 0,
-                lon: 0,
-                state: '',
-                zipcode: '',
-            },
-            meeting_type: '',
-            date: '',
-            time_windows: [],
-            personal_message: '',
-            user_id: '',
-        },
+        suffix,
+        howl
     } = props;
 
     const context = useContext(UserContext);
@@ -423,5 +407,57 @@ const CreateHowl = (props) => {
         </section>
     );
 }
+
+CreateHowl.defaultProps = {
+    suffix: '',
+    howl: {
+        dogs: [],
+        howl_title: '',
+        id: '',
+        location: {
+            address: '',
+            city: '',
+            lat: 0,
+            lon: 0,
+            state: '',
+            zipcode: '',
+        },
+        meeting_type: '',
+        date: '',
+        time_windows: [],
+        personal_message: '',
+        user_id: '',
+    },
+    forceUpdate: () => {},
+    setShowEdit: () => {},
+    history: {
+        push: () => {},
+    }
+};
+
+CreateHowl.propTypes = {
+    suffix: PropTypes.string.isRequired,
+    howl: PropTypes.shape({
+        dogs: PropTypes.array,
+        howl_title: PropTypes.string,
+        id: PropTypes.string,
+        location: PropTypes.shape({
+            address: PropTypes.string,
+            city: PropTypes.string,
+            lat: PropTypes.number,
+            lon: PropTypes.number,
+            state: PropTypes.string,
+            zipcode: PropTypes.string
+        }),
+        meeting_type: PropTypes.string,
+        date: PropTypes.string,
+        time_windows: PropTypes.array,
+        personal_message: PropTypes.string,
+        user_id: PropTypes.string,
+    }),
+    forceUpdate: PropTypes.func,
+    setShowEdit: PropTypes.func,
+    history: PropTypes.object,
+};
 
 export default withRouter(CreateHowl);
