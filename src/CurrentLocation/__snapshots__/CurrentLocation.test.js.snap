@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrentLocation component renders the UI as expected 1`] = `
+<CurrentLocation
+  coordinates={
+    Object {
+      "lat": 0,
+      "lon": 0,
+    }
+  }
+>
+  <div
+    className="CurrentLocation__alert-div"
+    role="alert"
+  >
+    <p
+      id="current-set-coordinates"
+    >
+      No coordinates set (coordinates are optional).
+    </p>
+  </div>
+</CurrentLocation>
+`;
