@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ValidateDogProfileName from '../../validation-components/create-dog-profile-validation/ValidateDogProfileName';
 import ValidateDogProfileAge from '../../validation-components/create-dog-profile-validation/ValidateDogProfileAge';
 import ValidateDogProfileSex from '../../validation-components/create-dog-profile-validation/ValidateDogProfileSex';
@@ -308,5 +309,51 @@ const BasicInfo = (props) => {
         </fieldset>
     );
 }
+
+BasicInfo.defaultProps = {
+    data: {
+        ageErrorP: '',
+        ageMonthsP: 0,
+        ageYearsP: 0,
+        breedP: '',
+        nameErrorP: '',
+        nameP: '',
+        sexErrorP: '',
+        sexP: '',
+        weightP: 0,
+        setAgeErrorP: () => {},
+        setAgeMonthsP: () => {},
+        setAgeYearsP: () => {},
+        setBreedP: () => {},
+        setNameErrorP: () => {},
+        setNameP: () => {},
+        setSexErrorP: () => {},
+        setSexP: () => {},
+        setWeightP: () => {},
+    },
+};
+
+BasicInfo.propTypes = {
+    data: PropTypes.shape({
+        ageErrorP: PropTypes.string,
+        ageMonthsP: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        ageYearsP: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        breedP: PropTypes.string,
+        nameErrorP: PropTypes.string,
+        nameP: PropTypes.string,
+        sexErrorP: PropTypes.string,
+        sexP: PropTypes.string,
+        weightP: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        setAgeError: PropTypes.func,
+        setAgeMonthsP: PropTypes.func,
+        setAgeYearsP: PropTypes.func,
+        setBreedP: PropTypes.func,
+        setNameErrorP: PropTypes.func,
+        setNameP: PropTypes.func,
+        setSexErrorP: PropTypes.func,
+        setSexP: PropTypes.func,
+        setWeightP: PropTypes.func,
+    }),
+};
 
 export default BasicInfo;
