@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import DogProfileCharacteristics from '../DogProfileCharacteristics/DogProfileCharacteristics';
 import HowlListItem from '../HowlListItem/HowlListItem';
@@ -226,6 +227,17 @@ const DogProfilePage = (props) => {
         );
     }
 
+    if (!id) {
+        return (
+            <section
+                className='DogProfilePage__section section error'
+                aria-live='polite'
+            >
+                <p>Error: Could not load profile.  Check your connection and the URL and try again.</p>
+            </section>
+        );    
+    }
+
     return (
         <section
             aria-live='polite'
@@ -234,5 +246,17 @@ const DogProfilePage = (props) => {
         </section>
     );
 }
+
+DogProfilePage.defaultProps = {
+    match: {
+        params: {
+            id: '',
+        }
+    },
+}
+
+DogProfilePage.propTypes = {
+    match: PropTypes.object.isRequired,
+};
 
 export default DogProfilePage;
