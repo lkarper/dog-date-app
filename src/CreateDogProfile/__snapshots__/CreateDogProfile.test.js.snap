@@ -1,0 +1,989 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateDogProfile component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <withRouter(CreateDogProfile)>
+      <CreateDogProfile
+        dog_profile={
+          Object {
+            "age_months": 0,
+            "age_years": 0,
+            "aggressive": false,
+            "breed": "",
+            "dislikes_children": false,
+            "dislikes_men": false,
+            "dislikes_puppies": false,
+            "dislikes_women": false,
+            "elderly_dog": false,
+            "energy": "",
+            "leash_aggression": false,
+            "little_time_with_other_dogs": false,
+            "much_experience_with_other_dogs": false,
+            "name": "",
+            "obedience": "",
+            "owner_description": "",
+            "prefers_people": false,
+            "profile_img_url": "",
+            "recently_adopted": false,
+            "sex": "",
+            "temperment": "",
+            "weight": 0,
+          }
+        }
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          }
+        }
+        match={
+          Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        suffix=""
+      >
+        <div
+          aria-live="polite"
+          className="CreateDogProfile__outer-div"
+        >
+          <header
+            aria-hidden={false}
+            className="CreateDogProfile__header"
+          >
+            <h1>
+              Create a Profile
+            </h1>
+          </header>
+          <section
+            className="CreateDogProfile__outer-section"
+          >
+            <header
+              aria-hidden={false}
+              className="CreateDogProfile__form-header"
+            >
+              <h2>
+                Start barking about your dog!
+              </h2>
+            </header>
+            <form
+              className="CreateDogProfile__profile-creation-form"
+              onSubmit={[Function]}
+            >
+              <BasicInfo
+                data={
+                  Object {
+                    "ageErrorP": "You must enter an age.",
+                    "ageMonthsP": 0,
+                    "ageYearsP": 0,
+                    "breedP": "",
+                    "nameErrorP": "A name is required. (Max 72 characters.)",
+                    "nameP": "",
+                    "setAgeErrorP": [Function],
+                    "setAgeMonthsP": [Function],
+                    "setAgeYearsP": [Function],
+                    "setBreedP": [Function],
+                    "setNameErrorP": [Function],
+                    "setNameP": [Function],
+                    "setSexErrorP": [Function],
+                    "setSexP": [Function],
+                    "setWeightP": [Function],
+                    "sexErrorP": "You must select your dog's sex.",
+                    "sexP": "",
+                    "weightP": 0,
+                  }
+                }
+              >
+                <fieldset
+                  className="BasicInfo__outer-container outer-fieldset"
+                >
+                  <legend>
+                    Basic Info
+                  </legend>
+                  <div>
+                    <label
+                      className="BasicInfo__label bold-label"
+                      htmlFor="dog-name"
+                    >
+                      Dog's name:
+                    </label>
+                    <input
+                      aria-describedby="name-validator"
+                      id="dog-name"
+                      maxLength="72"
+                      name="dog-name"
+                      onChange={[Function]}
+                      placeholder="Seymour"
+                      required={true}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="BasicInfo__alert-div"
+                    role="alert"
+                  >
+                    <ValidateDogProfileName
+                      name=""
+                      nameError="A name is required. (Max 72 characters.)"
+                      setNameError={[Function]}
+                    >
+                      <p
+                        className="ValidateDogProfile__validator error"
+                        id="name-validator"
+                      >
+                        A name is required. (Max 72 characters.)
+                      </p>
+                    </ValidateDogProfileName>
+                  </div>
+                  <hr />
+                  <fieldset
+                    className="sub-fieldset"
+                  >
+                    <legend>
+                      Age
+                    </legend>
+                    <div>
+                      <label
+                        htmlFor="years"
+                      >
+                        Years:
+                      </label>
+                      <input
+                        aria-describedby="age-validator"
+                        id="years"
+                        max="30"
+                        min="0"
+                        name="years"
+                        onChange={[Function]}
+                        type="number"
+                        value={0}
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="months"
+                      >
+                        Months:
+                      </label>
+                      <input
+                        aria-describedby="age-validator"
+                        id="months"
+                        max="11"
+                        min="0"
+                        name="months"
+                        onChange={[Function]}
+                        type="number"
+                        value={0}
+                      />
+                    </div>
+                    <div
+                      className="BasicInfo__alert-div"
+                      role="alert"
+                    >
+                      <ValidateDogProfileAge
+                        ageError="You must enter an age."
+                        ageMonths={0}
+                        ageYears={0}
+                        setAgeError={[Function]}
+                      >
+                        <p
+                          className="ValidateDogProfileAge__validator error"
+                          id="age-validator"
+                        >
+                          You must enter an age.
+                        </p>
+                      </ValidateDogProfileAge>
+                    </div>
+                  </fieldset>
+                  <hr />
+                  <fieldset
+                    className="sub-fieldset"
+                  >
+                    <legend>
+                      Sex
+                    </legend>
+                    <div>
+                      <input
+                        aria-describedby="sex-validator"
+                        checked={false}
+                        className="BasicInfo__input radio"
+                        id="male-unneutered"
+                        name="sex"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Male, unneutered"
+                      />
+                      <label
+                        htmlFor="male-unneutered"
+                      >
+                        Male, unneutered
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="sex-validator"
+                        checked={false}
+                        className="BasicInfo__input radio"
+                        id="female-unspayed"
+                        name="sex"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Female, unspayed"
+                      />
+                      <label
+                        htmlFor="female-unspayed"
+                      >
+                        Female, unspayed
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="sex-validator"
+                        checked={false}
+                        className="BasicInfo__input radio"
+                        id="male-neutered"
+                        name="sex"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Male, neutered"
+                      />
+                      <label
+                        htmlFor="male-neutered"
+                      >
+                        Male, neutered
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="sex-validator"
+                        checked={false}
+                        className="BasicInfo__input radio"
+                        id="female-spayed"
+                        name="sex"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Female, spayed"
+                      />
+                      <label
+                        htmlFor="female-spayed"
+                      >
+                        Female, spayed
+                      </label>
+                    </div>
+                    <div
+                      className="BasicInfo__alert-div"
+                      role="alert"
+                    >
+                      <ValidateDogProfileSex
+                        setSexError={[Function]}
+                        sex=""
+                        sexError="You must select your dog's sex."
+                      >
+                        <p
+                          className="ValidateDogProfileSex__validator error"
+                          id="sex-validator"
+                        >
+                          You must select your dog's sex.
+                        </p>
+                      </ValidateDogProfileSex>
+                    </div>
+                  </fieldset>
+                  <hr />
+                  <div>
+                    <label
+                      className="BasicInfo__label bold-label"
+                      htmlFor="breed"
+                    >
+                      Breed:
+                    </label>
+                    <input
+                      aria-describedby="breed-optional"
+                      id="breed"
+                      maxLength="72"
+                      name="breed"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                    <p
+                      id="breed-optional"
+                    >
+                      (Optional; max 72 characters.)
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <label
+                      className="BasicInfo__label bold-label"
+                      htmlFor="weight"
+                    >
+                      Weight (in lbs):
+                    </label>
+                    <input
+                      aria-describedby="weight-optional"
+                      id="weight"
+                      max="300"
+                      min="1"
+                      name="weight"
+                      onChange={[Function]}
+                      type="number"
+                      value={0}
+                    />
+                    <p
+                      id="weight-optional"
+                    >
+                      (Optional; max. 300 lbs.)
+                    </p>
+                  </div>
+                </fieldset>
+              </BasicInfo>
+              <DogDescription
+                data={
+                  Object {
+                    "dislikesMenP": false,
+                    "dislikesPuppiesP": false,
+                    "dislikesWomenP": false,
+                    "elderlyDogP": false,
+                    "energyErrorP": "You must select your dog's energy level.",
+                    "energyP": "",
+                    "foodAggressionP": false,
+                    "leashAggressionP": false,
+                    "littleExperienceP": false,
+                    "lovesPeopleP": false,
+                    "muchExperienceP": false,
+                    "noChildrenP": false,
+                    "obedienceErrorP": "You must select your dog's obedience level.",
+                    "obedienceP": "",
+                    "personalMessageErrorP": null,
+                    "personalMessageP": "",
+                    "recentlyAdoptedP": false,
+                    "setDislikesMenP": [Function],
+                    "setDislikesPuppiesP": [Function],
+                    "setDislikesWomenP": [Function],
+                    "setElderlyDogP": [Function],
+                    "setEnergyErrorP": [Function],
+                    "setEnergyP": [Function],
+                    "setFoodAggressionP": [Function],
+                    "setLeashAggressionP": [Function],
+                    "setLittleExperienceP": [Function],
+                    "setLovesPeopleP": [Function],
+                    "setMuchExperienceP": [Function],
+                    "setNoChildrenP": [Function],
+                    "setObedienceErrorP": [Function],
+                    "setObedienceP": [Function],
+                    "setPersonalMessageErrorP": [Function],
+                    "setPersonalMessageP": [Function],
+                    "setRecentlyAdoptedP": [Function],
+                    "setTempermentErrorP": [Function],
+                    "setTempermentP": [Function],
+                    "tempermentErrorP": "You must select your dog's temperment.",
+                    "tempermentP": "",
+                  }
+                }
+              >
+                <fieldset
+                  className="DogDescription__outer-fieldset outer-fieldset"
+                >
+                  <legend>
+                    Describe your Dog
+                  </legend>
+                  <fieldset
+                    className="sub-fieldset"
+                  >
+                    <legend>
+                      How energetic is your dog?
+                    </legend>
+                    <div>
+                      <input
+                        aria-describedby="energy-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="low-energy"
+                        name="energy-level"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Not very..."
+                      />
+                      <label
+                        htmlFor="low-energy"
+                      >
+                        Not very...
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="energy-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="medium-energy"
+                        name="energy-level"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="About as energetic as the average dog."
+                      />
+                      <label
+                        htmlFor="medium-energy"
+                      >
+                        About as energetic as the average dog.
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="energy-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="high-energy"
+                        name="energy-level"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Very energetic."
+                      />
+                      <label
+                        htmlFor="high-energy"
+                      >
+                        Very energetic.
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="energy-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="extreme-energy"
+                        name="energy-level"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="So... much... energy... it never runs out."
+                      />
+                      <label
+                        htmlFor="extreme-energy"
+                      >
+                        So... much... energy... it never runs out.
+                      </label>
+                    </div>
+                    <div
+                      className="DogDescription__alert-div"
+                      role="alert"
+                    >
+                      <ValidateDogProfileEnergy
+                        energy=""
+                        energyError="You must select your dog's energy level."
+                        setEnergyError={[Function]}
+                      >
+                        <p
+                          className="ValidateDogProfileEnergy__validator error"
+                          id="energy-validator"
+                        >
+                          You must select your dog's energy level.
+                        </p>
+                      </ValidateDogProfileEnergy>
+                    </div>
+                  </fieldset>
+                  <hr />
+                  <fieldset
+                    className="sub-fieldset"
+                  >
+                    <legend>
+                      How would you describe your dog's temperment?
+                    </legend>
+                    <div>
+                      <input
+                        aria-describedby="temperment-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="temperment-nervous"
+                        name="temperment"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Nervous around new people or dogs"
+                      />
+                      <label
+                        htmlFor="temperment-nervous"
+                      >
+                        Nervous around new people or dogs
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="temperment-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="temperment-shy"
+                        name="temperment"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Shy, but not skiddish or nervous"
+                      />
+                      <label
+                        htmlFor="temperment-shy"
+                      >
+                        Shy, but not skiddish or nervous
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="temperment-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="temperment-indifferent"
+                        name="temperment"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Somewhat indifferent to most dogs"
+                      />
+                      <label
+                        htmlFor="temperment-indifferent"
+                      >
+                        Somewhat indifferent to most dogs
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="temperment-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="temperment-outgoing"
+                        name="temperment"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Outgoing and eager to be friends with most dogs"
+                      />
+                      <label
+                        htmlFor="temperment-outgoing"
+                      >
+                        Outgoing and eager to be friends with most dogs
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="temperment-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="temperment-aggressive"
+                        name="temperment"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="On the aggressive side and always trying to be the alpha"
+                      />
+                      <label
+                        htmlFor="temperment-aggressive"
+                      >
+                        On the aggressive side and always trying to be the alpha
+                      </label>
+                    </div>
+                    <div
+                      className="DogDescription__alert-div"
+                      role="alert"
+                    >
+                      <ValidateDogProfileTemperment
+                        setTempermentError={[Function]}
+                        temperment=""
+                        tempermentError="You must select your dog's temperment."
+                      >
+                        <p
+                          className="ValidateDogProfileTemperment__validator error"
+                          id="temperment-validator"
+                        >
+                          You must select your dog's temperment.
+                        </p>
+                      </ValidateDogProfileTemperment>
+                    </div>
+                  </fieldset>
+                  <hr />
+                  <fieldset
+                    className="sub-fieldset"
+                  >
+                    <legend>
+                      How well trained and obedient is your dog?
+                    </legend>
+                    <div>
+                      <input
+                        aria-describedby="obedience-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="no-training"
+                        name="training-level"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Not trained at all and struggles with obedience..."
+                      />
+                      <label
+                        htmlFor="no-training"
+                      >
+                        Not trained at all and struggles with obedience...
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="obedience-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="some-training"
+                        name="training-level"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Some training, but not always obedient"
+                      />
+                      <label
+                        htmlFor="some-training"
+                      >
+                        Some training, but not always obedient
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="obedience-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="well-trained"
+                        name="training-level"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Well trained in basic commands and generally obedient"
+                      />
+                      <label
+                        htmlFor="well-trained"
+                      >
+                        Well trained in basic commands and generally obedient
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        aria-describedby="obedience-validator"
+                        checked={false}
+                        className="DogDescription__input radio"
+                        id="very-well-trained"
+                        name="training-level"
+                        onChange={[Function]}
+                        required={true}
+                        type="radio"
+                        value="Very-well trained and always obedient"
+                      />
+                      <label
+                        htmlFor="very-well-trained"
+                      >
+                        Very-well trained and always obedient
+                      </label>
+                    </div>
+                    <div
+                      className="DogDescription__alert-div"
+                      role="alert"
+                    >
+                      <ValidateDogProfileObedience
+                        obedience=""
+                        obedienceError="You must select your dog's obedience level."
+                        setObedienceError={[Function]}
+                      >
+                        <p
+                          className="ValidateDogProfileObedience__validator error"
+                          id="obedience-validator"
+                        >
+                          You must select your dog's obedience level.
+                        </p>
+                      </ValidateDogProfileObedience>
+                    </div>
+                  </fieldset>
+                  <hr />
+                  <fieldset
+                    className="sub-fieldset"
+                  >
+                    <legend>
+                      What else should others know about your dog?
+                    </legend>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-dislikes-puppies"
+                        name="other-dislikes-puppies"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Dislikes puppies"
+                      />
+                      <label
+                        htmlFor="other-dislikes-puppies"
+                      >
+                        Dislikes puppies
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-dislikes-men"
+                        name="other-dislikes-men"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Dislikes men"
+                      />
+                      <label
+                        htmlFor="other-dislikes-men"
+                      >
+                        Dislikes men
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-dislikes-women"
+                        name="other-dislikes-women"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Dislikes women"
+                      />
+                      <label
+                        htmlFor="other-dislikes-women"
+                      >
+                        Dislikes women
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-no-children"
+                        name="other-no-children"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Not good with children"
+                      />
+                      <label
+                        htmlFor="other-no-children"
+                      >
+                        Not good with children
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-recently-adopted"
+                        name="other-recently-adopted"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Recently adopted"
+                      />
+                      <label
+                        htmlFor="other-recently-adopted"
+                      >
+                        Recently adopted
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-loves-people"
+                        name="other-loves-people"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Prefers people to dogs"
+                      />
+                      <label
+                        htmlFor="other-loves-people"
+                      >
+                        Prefers people to dogs
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-leash-aggression"
+                        name="other-leash-aggression"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Has leash aggression"
+                      />
+                      <label
+                        htmlFor="other-leash-aggression"
+                      >
+                        Has leash aggression
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-elderly"
+                        name="other-elderly"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Elderly dog"
+                      />
+                      <label
+                        htmlFor="other-elderly"
+                      >
+                        Elderly dog
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-little-experience"
+                        name="other-little-experience"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Has spent little time with other dogs"
+                      />
+                      <label
+                        htmlFor="other-little-experience"
+                      >
+                        Has spent little time with other dogs
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-much-experience"
+                        name="other-much-experience"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Has a lot of experience playing with other dogs"
+                      />
+                      <label
+                        htmlFor="other-much-experience"
+                      >
+                        Has a lot of experience playing with other dogs
+                      </label>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="DogDescription__input checkbox"
+                        id="other-food-aggression"
+                        name="other-food-aggression"
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="Aggressive around and protective of food"
+                      />
+                      <label
+                        htmlFor="other-food-aggression"
+                      >
+                        Aggressive around and protective of food
+                      </label>
+                    </div>
+                  </fieldset>
+                  <hr />
+                  <div
+                    className="DogDescription__message-container"
+                  >
+                    <label
+                      htmlFor="own-description"
+                    >
+                      <b>
+                        Describe your dog in your own words
+                      </b>
+                    </label>
+                    <textarea
+                      aria-describedby="personal-message-validator"
+                      id="own-description"
+                      maxLength="2000"
+                      name="own-description"
+                      onChange={[Function]}
+                      placeholder="My dog is..."
+                      rows="10"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="DogDescription__alert-div"
+                    role="alert"
+                  >
+                    <ValidatePersonalMessage
+                      personalMessage=""
+                      personalMessageError={null}
+                      setPersonalMessageError={[Function]}
+                    >
+                      <p
+                        className="ValidatePersonalMessage__validator"
+                        id="personal-message-validator"
+                      >
+                        Personal message optional. (Limited to 2000 characters.)
+                      </p>
+                    </ValidatePersonalMessage>
+                  </div>
+                </fieldset>
+              </DogDescription>
+              <button
+                className="CreateDogProfile__submit button"
+                disabled="A name is required. (Max 72 characters.)"
+                type="submit"
+              >
+                Submit
+              </button>
+            </form>
+          </section>
+        </div>
+      </CreateDogProfile>
+    </withRouter(CreateDogProfile)>
+  </Router>
+</BrowserRouter>
+`;
