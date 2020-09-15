@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const calculateAverageWithArrayOfReviews = (reviews) => {
     return reviews.reduce((acc, curr) => {
@@ -27,10 +28,24 @@ const DogAverageRating = (props) => {
 
     const totalAverage = calculateAverageWithArrayOfReviews(reviews);
 
+    if (isNaN(totalAverage)) {
+        return (
+            <p>Average rating not available.</p>
+        );
+    }
+
     return (
         <p>Average rating: {totalAverage.toFixed(2)} stars</p>
     );
 
 }
+
+DogAverageRating.defaultProps = {
+    reviews: [{}],
+};
+
+DogAverageRating.PropTypes = {
+    reviews: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default DogAverageRating;
