@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UploadDogProfile component renders the UI as expected 1`] = `
+<UploadDogProfilePhoto
+  apiError=""
+  imgUrlP=""
+  setApiError={[Function]}
+  setImgDataP={[Function]}
+  setImgUrlP={[Function]}
+  suffix=""
+  uploadDogProfile={[Function]}
+>
+  <section
+    className="UploadDogProfilePhoto__outer-section  section"
+  >
+    <header>
+      <h2>
+        Upload a photo for your dog's profile
+      </h2>
+    </header>
+    <form
+      onSubmit={[Function]}
+    >
+      <div>
+        <label
+          className="UploadDogProfilePhoto__photo-label"
+          htmlFor="profile-pic"
+        >
+          Select an image file
+        </label>
+        <input
+          accept="image/png, image/jpeg"
+          aria-describedby="file-type"
+          className="UploadDogProfilePhoto__file-input"
+          id="profile-pic"
+          name="profile-pic"
+          onChange={[Function]}
+          type="file"
+        />
+        <p
+          id="file-type"
+        >
+          (.png or .jpg only)
+        </p>
+      </div>
+      <s
+        circularCrop={false}
+        crop={
+          Object {
+            "aspect": 1.3333333333333333,
+            "height": 100,
+            "unit": "%",
+          }
+        }
+        disabled={false}
+        imageAlt=""
+        keepSelection={false}
+        locked={false}
+        minHeight={0}
+        minWidth={0}
+        onChange={[Function]}
+        onComplete={[Function]}
+        onDragEnd={[Function]}
+        onDragStart={[Function]}
+        onImageError={[Function]}
+        onImageLoaded={[Function]}
+        ruleOfThirds={false}
+      >
+        <div
+          className="ReactCrop ReactCrop--fixed-aspect"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchStart={[Function]}
+          tabIndex="0"
+        >
+          <div>
+            <img
+              alt=""
+              className="ReactCrop__image"
+              onError={[Function]}
+              onLoad={[Function]}
+            />
+          </div>
+        </div>
+      </s>
+      <div
+        className="UploadDogProfilePhoto__button-div"
+      >
+        <button
+          className="UploadDogProfilePhoto__button button"
+          disabled={true}
+          type="submit"
+        >
+          Upload new photo
+        </button>
+        <button
+          className="UploadDogProfilePhoto__button button"
+          onClick={[Function]}
+        >
+          Don't use a photo
+        </button>
+      </div>
+    </form>
+    <div
+      aria-live="polite"
+      className="UploadDogProfilePhoto__img-preview-container "
+    >
+      <p>
+        Upload image preview:
+      </p>
+      <img
+        alt="Upload a file to see a preview."
+        className="UploadDogProfilePhoto__preview-canvas "
+        src="/images/upload_to_see_preview.png"
+      />
+    </div>
+  </section>
+</UploadDogProfilePhoto>
+`;
