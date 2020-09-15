@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comment component renders the UI as expected 1`] = `
+<Comment
+  comment={
+    Object {
+      "comment": "",
+      "commenter": "",
+      "date_time": "",
+      "edited": false,
+      "id": 0,
+      "review_id": 0,
+    }
+  }
+  comments={Array []}
+  setComments={[Function]}
+>
+  <li
+    className="Comment__li error"
+  >
+    <p>
+      Could not load comment at this time.
+    </p>
+  </li>
+</Comment>
+`;
