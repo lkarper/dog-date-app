@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BasicInfo component renders the UI as expected 1`] = `
+<BasicInfo
+  data={
+    Object {
+      "ageErrorP": "",
+      "ageMonthsP": 0,
+      "ageYearsP": 0,
+      "breedP": "",
+      "nameErrorP": "",
+      "nameP": "",
+      "setAgeErrorP": [Function],
+      "setAgeMonthsP": [Function],
+      "setAgeYearsP": [Function],
+      "setBreedP": [Function],
+      "setNameErrorP": [Function],
+      "setNameP": [Function],
+      "setSexErrorP": [Function],
+      "setSexP": [Function],
+      "setWeightP": [Function],
+      "sexErrorP": "",
+      "sexP": "",
+      "weightP": 0,
+    }
+  }
+>
+  <fieldset
+    className="BasicInfo__outer-container outer-fieldset"
+  >
+    <legend>
+      Basic Info
+    </legend>
+    <div>
+      <label
+        className="BasicInfo__label bold-label"
+        htmlFor="dog-name"
+      >
+        Dog's name:
+      </label>
+      <input
+        aria-describedby="name-validator"
+        id="dog-name"
+        maxLength="72"
+        name="dog-name"
+        onChange={[Function]}
+        placeholder="Seymour"
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="BasicInfo__alert-div"
+      role="alert"
+    >
+      <ValidateDogProfileName
+        name=""
+        nameError="A name is required. (Max 72 characters.)"
+        setNameError={[Function]}
+      >
+        <p
+          className="ValidateDogProfile__validator error"
+          id="name-validator"
+        >
+          A name is required. (Max 72 characters.)
+        </p>
+      </ValidateDogProfileName>
+    </div>
+    <hr />
+    <fieldset
+      className="sub-fieldset"
+    >
+      <legend>
+        Age
+      </legend>
+      <div>
+        <label
+          htmlFor="years"
+        >
+          Years:
+        </label>
+        <input
+          aria-describedby="age-validator"
+          id="years"
+          max="30"
+          min="0"
+          name="years"
+          onChange={[Function]}
+          type="number"
+          value={0}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="months"
+        >
+          Months:
+        </label>
+        <input
+          aria-describedby="age-validator"
+          id="months"
+          max="11"
+          min="0"
+          name="months"
+          onChange={[Function]}
+          type="number"
+          value={0}
+        />
+      </div>
+      <div
+        className="BasicInfo__alert-div"
+        role="alert"
+      >
+        <ValidateDogProfileAge
+          ageError="You must enter an age."
+          ageMonths={0}
+          ageYears={0}
+          setAgeError={[Function]}
+        >
+          <p
+            className="ValidateDogProfileAge__validator error"
+            id="age-validator"
+          >
+            You must enter an age.
+          </p>
+        </ValidateDogProfileAge>
+      </div>
+    </fieldset>
+    <hr />
+    <fieldset
+      className="sub-fieldset"
+    >
+      <legend>
+        Sex
+      </legend>
+      <div>
+        <input
+          aria-describedby="sex-validator"
+          checked={false}
+          className="BasicInfo__input radio"
+          id="male-unneutered"
+          name="sex"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value="Male, unneutered"
+        />
+        <label
+          htmlFor="male-unneutered"
+        >
+          Male, unneutered
+        </label>
+      </div>
+      <div>
+        <input
+          aria-describedby="sex-validator"
+          checked={false}
+          className="BasicInfo__input radio"
+          id="female-unspayed"
+          name="sex"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value="Female, unspayed"
+        />
+        <label
+          htmlFor="female-unspayed"
+        >
+          Female, unspayed
+        </label>
+      </div>
+      <div>
+        <input
+          aria-describedby="sex-validator"
+          checked={false}
+          className="BasicInfo__input radio"
+          id="male-neutered"
+          name="sex"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value="Male, neutered"
+        />
+        <label
+          htmlFor="male-neutered"
+        >
+          Male, neutered
+        </label>
+      </div>
+      <div>
+        <input
+          aria-describedby="sex-validator"
+          checked={false}
+          className="BasicInfo__input radio"
+          id="female-spayed"
+          name="sex"
+          onChange={[Function]}
+          required={true}
+          type="radio"
+          value="Female, spayed"
+        />
+        <label
+          htmlFor="female-spayed"
+        >
+          Female, spayed
+        </label>
+      </div>
+      <div
+        className="BasicInfo__alert-div"
+        role="alert"
+      >
+        <ValidateDogProfileSex
+          setSexError={[Function]}
+          sex=""
+          sexError="You must select your dog's sex."
+        >
+          <p
+            className="ValidateDogProfileSex__validator error"
+            id="sex-validator"
+          >
+            You must select your dog's sex.
+          </p>
+        </ValidateDogProfileSex>
+      </div>
+    </fieldset>
+    <hr />
+    <div>
+      <label
+        className="BasicInfo__label bold-label"
+        htmlFor="breed"
+      >
+        Breed:
+      </label>
+      <input
+        aria-describedby="breed-optional"
+        id="breed"
+        maxLength="72"
+        name="breed"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <p
+        id="breed-optional"
+      >
+        (Optional; max 72 characters.)
+      </p>
+    </div>
+    <hr />
+    <div>
+      <label
+        className="BasicInfo__label bold-label"
+        htmlFor="weight"
+      >
+        Weight (in lbs):
+      </label>
+      <input
+        aria-describedby="weight-optional"
+        id="weight"
+        max="300"
+        min="1"
+        name="weight"
+        onChange={[Function]}
+        type="number"
+        value={0}
+      />
+      <p
+        id="weight-optional"
+      >
+        (Optional; max. 300 lbs.)
+      </p>
+    </div>
+  </fieldset>
+</BasicInfo>
+`;
