@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import TokenService from '../services/token-service';
 import IdleService from '../services/idle-service';
@@ -134,6 +135,18 @@ const Header = (props) => {
             </NativeClickListener>
         </header>
     );
+}
+
+Header.defaultProps = {
+    forceUpdate: () => {},
+    location: {
+        pathname: '/home',
+    }
+};
+
+Header.propTypes = {
+    forceUpdate: PropTypes.func.isRequired,
+    location: PropTypes.object,
 }
 
 export default Header;
