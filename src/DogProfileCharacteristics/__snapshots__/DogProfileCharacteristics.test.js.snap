@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DogProfileCharacteristics component renders the UI as expected 1`] = `
+<DogProfileCharacteristics
+  dog_profile={
+    Object {
+      "aggressive": false,
+      "dislikes_children": false,
+      "dislikes_men": false,
+      "dislikes_puppies": false,
+      "dislikes_women": false,
+      "elderly_dog": false,
+      "energy": "",
+      "leash_aggression": false,
+      "little_time_with_other_dogs": false,
+      "much_experience_with_other_dogs": false,
+      "obedience": "",
+      "prefers_people": false,
+      "recently_adopted": false,
+      "temperment": "",
+    }
+  }
+>
+  <ul>
+    <li>
+      Error: Could not load characteristics.  Check your connection and the URL and try again.
+    </li>
+  </ul>
+</DogProfileCharacteristics>
+`;
