@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../contexts/UserContext';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import AddCommentForm from '../AddCommentForm/AddCommentForm';
 import ReviewsService from '../services/reviews-service';
 import './Comment.css';
@@ -9,7 +10,11 @@ const Comment = (props) => {
 
     const context = useContext(UserContext);
 
-    const { comment, comments, setComments } = props;
+    const { 
+        comment, 
+        comments, 
+        setComments 
+    } = props;
 
     const [showEdit, setShowEdit] = useState(false);
     const [apiError, setApiError] = useState(false);
@@ -28,6 +33,18 @@ const Comment = (props) => {
                     setApiError(true);
                 });
         }
+    }
+
+    if (!comment.comment || !comment.id || !comment.review_id) {
+        return (
+            <li
+                className='Comment__li error'
+            >
+                <p>
+                    Could not load comment at this time.
+                </p>
+            </li>
+        )
     }
 
     return (
@@ -85,5 +102,31 @@ const Comment = (props) => {
         </li>
     );
 }
+
+Comment.defaultProps = {
+    comment: {
+        comment: '',
+        commenter: '',
+        date_time: '',
+        edited: false,
+        id: 0,
+        review_id: 0,
+    },
+    comments: [],
+    setComments: () => {},
+};
+
+Comment.propTypes = {
+    comment: PropTypes.shape({
+        comment: PropTypes.string,
+        commenter: PropTypes.string,
+        date_time: PropTypes.string,
+        edited: PropTypes.bool,
+        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        review_id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    }).isRequired,
+    comments: PropTypes.array.isRequired,
+    setComments: PropTypes.func,
+};
 
 export default Comment;
