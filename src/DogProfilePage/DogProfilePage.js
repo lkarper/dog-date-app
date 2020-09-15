@@ -127,7 +127,25 @@ const DogProfilePage = (props) => {
                                 <h2>About {dog.name}</h2>
                             </header>
                             <p>{dog.owner_description}</p>
-                            <p>Age: {dog.age_months ? `${dog.age_years} years, ${dog.age_months}, months` : `${dog.age_years}`}</p>
+                            <p>Age: {' '} 
+                                {dog.age_months 
+                                    ? 
+                                        `${dog.age_years === 1 
+                                            ? 
+                                                `${dog.age_years} year` 
+                                            : 
+                                                `${dog.age_years} year`
+                                        }, 
+                                        ${dog.age_months === 1 
+                                            ? 
+                                                `${dog.age_months} month` 
+                                            : 
+                                                `${dog.age_months} months`
+                                        }` 
+                                    : 
+                                        `${dog.age_years}`
+                                }
+                            </p>
                             <p>Breed: {dog.breed || `(not listed)`}</p>
                             <p>Weight: {dog.weight ? `${dog.weight} lbs` : `(Not listed)`}</p>
                             <p>Sex: {dog.sex || `(not listed)`}</p>

@@ -57,7 +57,25 @@ const HowlPageDogProfile = (props) => {
                     <h4>About {dog_profile.name}:</h4>
                 </header>
                 <p>{dog_profile.owner_description}</p>
-                <p>Age: {dog_profile.age_months ? `${dog_profile.age_years} years, ${dog_profile.age_months}, months` : `${dog_profile.age_years}`}</p>
+                <p>Age: {' '} 
+                                {dog_profile.age_months 
+                                    ? 
+                                        `${dog_profile.age_years === 1 
+                                            ? 
+                                                `${dog_profile.age_years} year` 
+                                            : 
+                                                `${dog_profile.age_years} year`
+                                        }, 
+                                        ${dog_profile.age_months === 1 
+                                            ? 
+                                                `${dog_profile.age_months} month` 
+                                            : 
+                                                `${dog_profile.age_months} months`
+                                        }` 
+                                    : 
+                                        `${dog_profile.age_years}`
+                                }
+                            </p>
                 <p>Breed: {dog_profile.breed || `(not listed)`}</p>
                 <p>Weight: {dog_profile.weight ? `${dog_profile.weight} lbs` : `(Not listed)`}</p>
                 <p>Sex: {dog_profile.sex || `(not listed)`}</p>
