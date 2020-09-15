@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './CurrentLocation.css';
 
 const CurrentLocation = (props) => {
@@ -28,5 +29,19 @@ const CurrentLocation = (props) => {
         </div>
     );
 }
+
+CurrentLocation.defaultProps = {
+    coordinates: {
+        lat: 0,
+        lon: 0,
+    },
+};
+
+CurrentLocation.propTypes = {
+    coordinates: PropTypes.shape({
+        lat: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        lon: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    }).isRequired,
+};
 
 export default CurrentLocation;
