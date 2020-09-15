@@ -83,7 +83,7 @@ const CreateDogProfile = (props) => {
     const [imgUrlP, setImgUrlP] = useState(profile_img_url);
     const [imgDataP, setImgDataP] = useState();
     const [showLoading, setShowLoading] = useState(false);
-    const [apiError, setApiError] = useState(false);
+    const [apiError, setApiError] = useState('');
 
     const handleInfoSubmit = (event) => {
         event.preventDefault();
