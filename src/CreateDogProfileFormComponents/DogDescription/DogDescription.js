@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ValidateDogProfileEnergy from '../../validation-components/create-dog-profile-validation/ValidateDogProfileEnergy';
 import ValidateDogProfileTemperment from '../../validation-components/create-dog-profile-validation/ValidateDogProfileTemperment';
 import ValidateDogProfileObedience from '../../validation-components/create-dog-profile-validation/ValidateDogProfileObedience';
@@ -573,5 +574,91 @@ const DogDescription = (props) => {
         </fieldset>
     );
 }
+
+DogDescription.defaultProps = {
+    data: {
+        energyP: '',
+        setEnergyP: () => {},
+        energyErrorP: '',
+        setEnergyErrorP: () => {},
+        tempermentP: '',
+        setTempermentP: () => {},
+        tempermentErrorP: '',
+        setTempermentErrorP: () => {},
+        obedienceP: '',
+        setObedienceP: () => {},
+        obedienceErrorP: '',
+        setObedienceErrorP: () => {},
+        dislikesPuppiesP: false,
+        setDislikesPuppiesP: () => {},
+        dislikesMenP: false,
+        setDislikesMenP: () => {},
+        dislikesWomenP: false,
+        setDislikesWomenP: () => {},
+        noChildrenP: false,
+        setNoChildrenP: () => {},
+        recentlyAdoptedP: false,
+        setRecentlyAdoptedP: () => {},
+        lovesPeopleP: false,
+        setLovesPeopleP: () => {},
+        leashAggressionP: false,
+        setLeashAggressionP: () => {},
+        elderlyDogP: false,
+        setElderlyDogP: () => {},
+        littleExperienceP: false,
+        setLittleExperienceP: () => {},
+        muchExperienceP: false,
+        setMuchExperienceP: () => {},
+        foodAggressionP: false,
+        setFoodAggressionP: () => {},
+        personalMessageP: '',
+        setPersonalMessageP: () => {},
+        personalMessageErrorP: '',
+        setPersonalMessageErrorP: () => {},
+    },
+};
+
+DogDescription.propTypes = {
+    data: PropTypes.shape({
+        energyP: PropTypes.string,
+        setEnergyP: PropTypes.func,
+        energyErrorP: PropTypes.string,
+        setEnergyErrorP: PropTypes.func,
+        tempermentP: PropTypes.string,
+        setTempermentP: PropTypes.func,
+        tempermentErrorP: PropTypes.string,
+        setTempermentErrorP: PropTypes.func,
+        obedienceP: PropTypes.string,
+        setObedienceP: PropTypes.func,
+        obedienceErrorP: PropTypes.string,
+        setObedienceErrorP: PropTypes.func,
+        dislikesPuppiesP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setDislikesPuppiesP: PropTypes.func,
+        dislikesMenP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setDislikesMenP: PropTypes.func,
+        dislikesWomenP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setDislikesWomenP: PropTypes.func,
+        noChildrenP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setNoChildrenP: PropTypes.func,
+        recentlyAdoptedP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setRecentlyAdoptedP: PropTypes.func,
+        lovesPeopleP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setLovesPeopleP: PropTypes.func,
+        leashAggressionP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setLeashAggressionP: PropTypes.func,
+        elderlyDogP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setElderlyDogP: PropTypes.func,
+        littleExperienceP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setLittleExperienceP: PropTypes.func,
+        muchExperienceP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setMuchExperienceP: PropTypes.func,
+        foodAggressionP: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        setFoodAggressionP: PropTypes.func,
+        personalMessageP: PropTypes.string,
+        setPersonalMessageP: PropTypes.func,
+        personalMessageErrorP: PropTypes.string,
+        setPersonalMessageErrorP: PropTypes.func,
+    }).isRequired,
+};
 
 export default DogDescription;
