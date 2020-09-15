@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import ReactCrop from 'react-image-crop';
+import PropTypes from 'prop-types';
 import 'react-image-crop/dist/ReactCrop.css';
 import './UploadDogProfilePhoto.css';
 
@@ -18,7 +19,7 @@ const UploadDogProfilePhoto = (props) => {
     const [imgFile, setImgFile] = useState();
     const [imgUrl, setImgUrl] = useState(imgUrlP);
     const [crop, setCrop] = useState({ 
-        unit: "%", 
+        unit: '%', 
         height: 100, 
         aspect: 4 / 3, 
     });
@@ -57,7 +58,7 @@ const UploadDogProfilePhoto = (props) => {
                 setCrop({ 
                     x: xOffset,
                     y: 0,
-                    unit: "%", 
+                    unit: '%', 
                     height: 100, 
                     aspect: 4 / 3, 
                 });
@@ -69,13 +70,13 @@ const UploadDogProfilePhoto = (props) => {
                 setCrop({
                     x: 0,
                     y: yOffset, 
-                    unit: "%", 
+                    unit: '%', 
                     height: 100, 
                     aspect: 4 / 3, 
                 });
             }
         }
-    }, [upImg, setCrop])
+    }, [upImg, setCrop]);
 
     const noPhoto = () => {
         setImgUrl(null);
@@ -86,12 +87,12 @@ const UploadDogProfilePhoto = (props) => {
 
     const pixelRatio = 10;
 
-    function getResizedCanvas(canvas, newWidth, newHeight) {
-        const tmpCanvas = document.createElement("canvas");
+    const getResizedCanvas = (canvas, newWidth, newHeight) => {
+        const tmpCanvas = document.createElement('canvas');
         tmpCanvas.width = newWidth;
         tmpCanvas.height = newHeight;
 
-        const ctx = tmpCanvas.getContext("2d");
+        const ctx = tmpCanvas.getContext('2d');
         ctx.drawImage(
             canvas,
             0,
@@ -119,7 +120,7 @@ const UploadDogProfilePhoto = (props) => {
                 reader.onload = () => setImgDataP(reader.result);
                 reader.readAsDataURL(blob);
             },
-            "image/png",
+            'image/png',
             1
         );
     }
@@ -139,7 +140,7 @@ const UploadDogProfilePhoto = (props) => {
 
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext('2d');
 
         canvas.width = crop.width * pixelRatio;
         canvas.height = crop.height * pixelRatio;
@@ -163,7 +164,7 @@ const UploadDogProfilePhoto = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         setApiError(false);
-        generateUpload(previewCanvasRef.current, completedCrop)
+        generateUpload(previewCanvasRef.current, completedCrop);
     }
 
     return (
@@ -175,20 +176,20 @@ const UploadDogProfilePhoto = (props) => {
                 <div>
                     <label 
                         className='UploadDogProfilePhoto__photo-label'
-                        htmlFor="profile-pic"
+                        htmlFor='profile-pic'
                     >
                         Select an image file
                     </label>
                     <input
                         className='UploadDogProfilePhoto__file-input'
-                        type="file"
-                        id="profile-pic"
-                        name="profile-pic"
-                        accept="image/png, image/jpeg"
-                        aria-describedby="file-type"
+                        type='file'
+                        id='profile-pic'
+                        name='profile-pic'
+                        accept='image/png, image/jpeg'
+                        aria-describedby='file-type'
                         onChange={(e) => setImgFile(e.target.files[0])}
                     />
-                    <p id="file-type">(.png or .jpg only)</p>
+                    <p id='file-type'>(.png or .jpg only)</p>
                 </div>
                 <ReactCrop 
                     src={upImg}
@@ -221,16 +222,21 @@ const UploadDogProfilePhoto = (props) => {
                 className={`UploadDogProfilePhoto__img-preview-container ${suffix}`}
             >
                 <p>Upload image preview:</p>
-                <canvas
-                    className={`UploadDogProfilePhoto__preview-canvas ${suffix}`}
-                    aria-label='Dog profile avatar preview.' 
-                    role='img'
-                    ref={previewCanvasRef}
-                    style={{
-                        width: upImg ? 200 : 0,
-                        height: upImg ? 150 : 0
-                    }}
-                />
+                {imgFile 
+                    ?
+                        <canvas
+                            className={`UploadDogProfilePhoto__preview-canvas ${suffix}`}
+                            aria-label='Dog profile avatar preview.' 
+                            role='img'
+                            ref={previewCanvasRef}
+                        />
+                    : 
+                        <img 
+                            src='/images/upload_to_see_preview.png'
+                            alt='Upload a file to see a preview.'
+                            className={`UploadDogProfilePhoto__preview-canvas ${suffix}`}
+                        />
+                }        
                 {imgUrl && 
                     <div className={`UploadDogProfilePhoto__current-img-container ${suffix}`}>
                         <p>Current image:</p>
@@ -251,5 +257,25 @@ const UploadDogProfilePhoto = (props) => {
         </section>
     );
 }
+
+UploadDogProfilePhoto.defaultProps = {
+    imgUrlP: '', 
+    setImgUrlP: () => {}, 
+    setImgDataP: () => {},
+    uploadDogProfile: () => {}, 
+    apiError: '',
+    setApiError: () => {},
+    suffix: '', 
+};
+
+UploadDogProfilePhoto.propTypes = {
+    imgUrlP: PropTypes.string.isRequired,
+    setImgUrlP: PropTypes.func.isRequired, 
+    setImgDataP: PropTypes.func.isRequired,
+    uploadDogProfile: PropTypes.func.isRequired, 
+    apiError: PropTypes.string.isRequired,
+    setApiError: PropTypes.func.isRequired,
+    suffix: PropTypes.string.isRequired, 
+};
 
 export default UploadDogProfilePhoto;
