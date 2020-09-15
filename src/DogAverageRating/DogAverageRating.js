@@ -44,7 +44,7 @@ DogAverageRating.defaultProps = {
     reviews: [{}],
 };
 
-DogAverageRating.PropTypes = {
+DogAverageRating.propTypes = {
     reviews: PropTypes.arrayOf(PropTypes.object),
 };
 
