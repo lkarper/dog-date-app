@@ -1,0 +1,1031 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateHowl component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <withRouter(CreateHowl)>
+      <CreateHowl
+        forceUpdate={[Function]}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        howl={
+          Object {
+            "date": "",
+            "dogs": Array [],
+            "howl_title": "",
+            "id": "",
+            "location": Object {
+              "address": "",
+              "city": "",
+              "lat": 0,
+              "lon": 0,
+              "state": "",
+              "zipcode": "",
+            },
+            "meeting_type": "",
+            "personal_message": "",
+            "time_windows": Array [],
+            "user_id": "",
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          }
+        }
+        match={
+          Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        setShowEdit={[Function]}
+        suffix=""
+      >
+        <section
+          className="CreateHowl__section  outer-section"
+        >
+          <header
+            className="CreateHowl__header-top"
+          >
+            <h2>
+              Enter details below to create a howl
+            </h2>
+          </header>
+          <form
+            className="CreateHowl__howl-form"
+            onSubmit={[Function]}
+          >
+            <fieldset
+              className="CreateHowl__fieldset outer-fieldset"
+            >
+              <legend>
+                Select your dog(s) to howl about
+              </legend>
+              <div
+                className="CreateHowl__dog-select-container"
+              />
+              <div
+                className="CreateHowl__alert-div dogs"
+                role="alert"
+              >
+                <ValidateDogSelection
+                  dogsForHowl={Array []}
+                  dogsForHowlError="You must select at least one dog."
+                  setDogsForHowlError={[Function]}
+                >
+                  <p
+                    className="ValidateDogSelection__validator error"
+                    id="dogs-validation"
+                  >
+                    You must select at least one dog.
+                  </p>
+                </ValidateDogSelection>
+              </div>
+            </fieldset>
+            <fieldset
+              className="CreateHowl__fieldset outer-fieldset"
+            >
+              <legend>
+                Where are you interested in meeting?
+              </legend>
+              <div
+                className="CreateHowl__map-outer-container"
+              >
+                <LocationForm
+                  location={
+                    Object {
+                      "address": "",
+                      "city": "",
+                      "state": "",
+                      "zipcode": "",
+                    }
+                  }
+                  setLocation={[Function]}
+                  setLocationError={[Function]}
+                >
+                  <fieldset
+                    className="LocationForm__fieldset sub-fieldset"
+                  >
+                    <legend>
+                      Enter the location for your meeting place here
+                    </legend>
+                    <div>
+                      <label
+                        htmlFor="address"
+                      >
+                        Location or street address:
+                         
+                      </label>
+                      <input
+                        aria-describedby="address-validator"
+                        id="address"
+                        maxLength="100"
+                        name="address"
+                        onChange={[Function]}
+                        required={true}
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <div
+                      className="LocationForm__alert-div large"
+                      role="alert"
+                    >
+                      <ValidateAddress
+                        address=""
+                        addressError="You must enter an address or location name. (Max 100 chars.)"
+                        setAddressError={[Function]}
+                      >
+                        <p
+                          className="ValidateAddress__validator error"
+                          id="address-validator"
+                        >
+                          You must enter an address or location name. (Max 100 chars.)
+                        </p>
+                      </ValidateAddress>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="city"
+                      >
+                        City:
+                         
+                      </label>
+                      <input
+                        aria-describedby="city-validator"
+                        id="city"
+                        maxLength="100"
+                        name="city"
+                        onChange={[Function]}
+                        required={true}
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <div
+                      className="LocationForm__alert-div large"
+                      role="alert"
+                    >
+                      <ValidateCity
+                        city=""
+                        cityError="You must enter a city. (Max 100 chars.)"
+                        setCityError={[Function]}
+                      >
+                        <p
+                          className="ValidateCity__validator error"
+                          id="city-validator"
+                        >
+                          You must enter a city. (Max 100 chars.)
+                        </p>
+                      </ValidateCity>
+                    </div>
+                    <StateSelector
+                      propState=""
+                      setState={[Function]}
+                    >
+                      <div>
+                        <label
+                          htmlFor="state"
+                        >
+                          State:
+                        </label>
+                        <select
+                          aria-describedby="state-validator"
+                          id="state"
+                          name="state"
+                          onChange={[Function]}
+                          required={true}
+                          value=""
+                        >
+                          <option
+                            value=""
+                          >
+                            Select a state:
+                          </option>
+                          <option
+                            value="AL"
+                          >
+                            Alabama
+                          </option>
+                          <option
+                            value="AK"
+                          >
+                            Alaska
+                          </option>
+                          <option
+                            value="AZ"
+                          >
+                            Arizona
+                          </option>
+                          <option
+                            value="AR"
+                          >
+                            Arkansas
+                          </option>
+                          <option
+                            value="CA"
+                          >
+                            California
+                          </option>
+                          <option
+                            value="CO"
+                          >
+                            Colorado
+                          </option>
+                          <option
+                            value="CT"
+                          >
+                            Connecticut
+                          </option>
+                          <option
+                            value="DE"
+                          >
+                            Delaware
+                          </option>
+                          <option
+                            value="DC"
+                          >
+                            District Of Columbia
+                          </option>
+                          <option
+                            value="FL"
+                          >
+                            Florida
+                          </option>
+                          <option
+                            value="GA"
+                          >
+                            Georgia
+                          </option>
+                          <option
+                            value="HI"
+                          >
+                            Hawaii
+                          </option>
+                          <option
+                            value="ID"
+                          >
+                            Idaho
+                          </option>
+                          <option
+                            value="IL"
+                          >
+                            Illinois
+                          </option>
+                          <option
+                            value="IN"
+                          >
+                            Indiana
+                          </option>
+                          <option
+                            value="IA"
+                          >
+                            Iowa
+                          </option>
+                          <option
+                            value="KS"
+                          >
+                            Kansas
+                          </option>
+                          <option
+                            value="KY"
+                          >
+                            Kentucky
+                          </option>
+                          <option
+                            value="LA"
+                          >
+                            Louisiana
+                          </option>
+                          <option
+                            value="ME"
+                          >
+                            Maine
+                          </option>
+                          <option
+                            value="MD"
+                          >
+                            Maryland
+                          </option>
+                          <option
+                            value="MA"
+                          >
+                            Massachusetts
+                          </option>
+                          <option
+                            value="MI"
+                          >
+                            Michigan
+                          </option>
+                          <option
+                            value="MN"
+                          >
+                            Minnesota
+                          </option>
+                          <option
+                            value="MS"
+                          >
+                            Mississippi
+                          </option>
+                          <option
+                            value="MO"
+                          >
+                            Missouri
+                          </option>
+                          <option
+                            value="MT"
+                          >
+                            Montana
+                          </option>
+                          <option
+                            value="NE"
+                          >
+                            Nebraska
+                          </option>
+                          <option
+                            value="NV"
+                          >
+                            Nevada
+                          </option>
+                          <option
+                            value="NH"
+                          >
+                            New Hampshire
+                          </option>
+                          <option
+                            value="NJ"
+                          >
+                            New Jersey
+                          </option>
+                          <option
+                            value="NM"
+                          >
+                            New Mexico
+                          </option>
+                          <option
+                            value="NY"
+                          >
+                            New York
+                          </option>
+                          <option
+                            value="NC"
+                          >
+                            North Carolina
+                          </option>
+                          <option
+                            value="ND"
+                          >
+                            North Dakota
+                          </option>
+                          <option
+                            value="OH"
+                          >
+                            Ohio
+                          </option>
+                          <option
+                            value="OK"
+                          >
+                            Oklahoma
+                          </option>
+                          <option
+                            value="OR"
+                          >
+                            Oregon
+                          </option>
+                          <option
+                            value="PA"
+                          >
+                            Pennsylvania
+                          </option>
+                          <option
+                            value="RI"
+                          >
+                            Rhode Island
+                          </option>
+                          <option
+                            value="SC"
+                          >
+                            South Carolina
+                          </option>
+                          <option
+                            value="SD"
+                          >
+                            South Dakota
+                          </option>
+                          <option
+                            value="TN"
+                          >
+                            Tennessee
+                          </option>
+                          <option
+                            value="TX"
+                          >
+                            Texas
+                          </option>
+                          <option
+                            value="UT"
+                          >
+                            Utah
+                          </option>
+                          <option
+                            value="VT"
+                          >
+                            Vermont
+                          </option>
+                          <option
+                            value="VA"
+                          >
+                            Virginia
+                          </option>
+                          <option
+                            value="WA"
+                          >
+                            Washington
+                          </option>
+                          <option
+                            value="WV"
+                          >
+                            West Virginia
+                          </option>
+                          <option
+                            value="WI"
+                          >
+                            Wisconsin
+                          </option>
+                          <option
+                            value="WY"
+                          >
+                            Wyoming
+                          </option>
+                        </select>
+                      </div>
+                    </StateSelector>
+                    <div
+                      className="LocationForm__alert-div"
+                      role="alert"
+                    >
+                      <ValidateState
+                        setStateError={[Function]}
+                        state=""
+                        stateError="You must select a state."
+                      >
+                        <p
+                          className="ValidateState__validator error"
+                          id="state-validator"
+                        >
+                          You must select a state.
+                        </p>
+                      </ValidateState>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="zipcode"
+                      >
+                        ZIP code:
+                         
+                      </label>
+                      <input
+                        aria-describedby="zipcode-validator"
+                        id="zipcode"
+                        maxLength="5"
+                        name="zipcode"
+                        onChange={[Function]}
+                        required={true}
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <div
+                      className="LocationForm__alert-div small"
+                      role="alert"
+                    >
+                      <ValidateZipCode
+                        setZipcodeError={[Function]}
+                        zipcode=""
+                        zipcodeError="ZIP code is required and must be 5 digits in length."
+                      >
+                        <p
+                          className="ValidateZipCode__validator error"
+                          id="zipcode-validator"
+                        >
+                          ZIP code is required and must be 5 digits in length.
+                        </p>
+                      </ValidateZipCode>
+                    </div>
+                  </fieldset>
+                </LocationForm>
+                <MapForm
+                  coordinates={
+                    Object {
+                      "lat": 0,
+                      "lon": 0,
+                    }
+                  }
+                  setCoordinates={[Function]}
+                >
+                  <fieldset
+                    className="MapForm__coordinates-fieldset sub-fieldset"
+                  >
+                    <legend>
+                      Set coordinates for your meeting here
+                    </legend>
+                    <p>
+                      Using this feature will make it easier for others to find the location you set, but it is not required.
+                    </p>
+                    <Map
+                      setTempCoordinates={[Function]}
+                      tempCoordinates={
+                        Object {
+                          "lat": 0,
+                          "lon": 0,
+                        }
+                      }
+                    >
+                      <div
+                        className="Map__search-container"
+                      >
+                        <div
+                          className="Map__map-outer-container"
+                        >
+                          <ForwardGeocodeAddress
+                            setMarkerCoordinates={[Function]}
+                          >
+                            <div
+                              aria-live="polite"
+                              className="ForwardGeocodeAddress__outer-container"
+                            >
+                              <input
+                                aria-describedby="current-set-coordinates"
+                                aria-label="Search for a place by name or address."
+                                className="ForwardGeocodeAddress__search-input"
+                                id="place-search"
+                                name="place-search"
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                placeholder="Search by name or address"
+                                type="text"
+                                value=""
+                              />
+                              <NativeClickListener
+                                className="ForwardGeocodeAddress__click-container hidden"
+                                id="ForwardGeocodeAddress__click-container"
+                                onClick={[Function]}
+                              >
+                                <div
+                                  className="ForwardGeocodeAddress__click-container hidden"
+                                  id="ForwardGeocodeAddress__click-container"
+                                  role="alert"
+                                >
+                                  <ol
+                                    className="ForwardGeocodeAddress__results hidden"
+                                  />
+                                </div>
+                              </NativeClickListener>
+                              <div
+                                role="alert"
+                              />
+                            </div>
+                          </ForwardGeocodeAddress>
+                          <div
+                            className="Map__map-container"
+                            id="map-container"
+                          />
+                          <div
+                            className="Map__marker"
+                          />
+                          <div
+                            className="Map__coordinates"
+                            id="coordinates"
+                          >
+                            Latitude: 
+                            0
+                            , Longitude: 
+                            0
+                          </div>
+                        </div>
+                        <button
+                          className="Map__set-marker-button button"
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          Set marker to my location
+                        </button>
+                        <p
+                          className="Map__marker-draggable-p"
+                        >
+                          (Marker is draggable.)
+                        </p>
+                      </div>
+                    </Map>
+                    <button
+                      className="MapForm__set-coordinates-button button"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Set meeting place to above coordinates
+                    </button>
+                    <CurrentLocation
+                      coordinates={
+                        Object {
+                          "lat": 0,
+                          "lon": 0,
+                        }
+                      }
+                    >
+                      <div
+                        className="CurrentLocation__alert-div"
+                        role="alert"
+                      >
+                        <p
+                          id="current-set-coordinates"
+                        >
+                          No coordinates set (coordinates are optional).
+                        </p>
+                      </div>
+                    </CurrentLocation>
+                  </fieldset>
+                </MapForm>
+              </div>
+            </fieldset>
+            <fieldset
+              className="CreateHowl__fieldset outer-fieldset"
+            >
+              <legend>
+                When are you interested in meeting?
+              </legend>
+              <fieldset
+                className="CreateHowl__fieldset sub-fieldset"
+              >
+                <legend>
+                  What type of howl would you like to create?
+                </legend>
+                <div>
+                  <input
+                    checked={false}
+                    id="meet-once"
+                    name="meeting-type"
+                    onChange={[Function]}
+                    required={true}
+                    type="radio"
+                    value="once"
+                  />
+                  <label
+                    htmlFor="meet-once"
+                  >
+                    One time meeting
+                  </label>
+                </div>
+                <div>
+                  <input
+                    checked={true}
+                    id="recurring-meeting"
+                    name="meeting-type"
+                    onChange={[Function]}
+                    required={true}
+                    type="radio"
+                    value="recurring"
+                  />
+                  <label
+                    htmlFor="recurring-meeting"
+                  >
+                    Recurring meeting
+                  </label>
+                </div>
+              </fieldset>
+              <div>
+                <ol>
+                  <RecurringMeetingForm
+                    currentData={
+                      Object {
+                        "dayOfWeek": "",
+                        "endTime": "",
+                        "startTime": "",
+                      }
+                    }
+                    index={0}
+                    key="0"
+                    removeRecurringMeetingWindow={[Function]}
+                    updateRecurringMeetingWindows={[Function]}
+                  >
+                    <li>
+                      <fieldset
+                        className="sub-fieldset"
+                      >
+                        <legend>
+                          I'm open for dog dates during the following windows of time:
+                        </legend>
+                        <div
+                          className="RecurringMeetingForm__input-container"
+                        >
+                          <label
+                            htmlFor="window-day-0"
+                          >
+                            Day of the week:
+                          </label>
+                          <select
+                            aria-describedby="day-validator-1"
+                            id="window-day-0"
+                            onChange={[Function]}
+                            required={true}
+                            value=""
+                          >
+                            <option
+                              value=""
+                            >
+                              --Select a day--
+                            </option>
+                            <option
+                              value="Monday"
+                            >
+                              Monday
+                            </option>
+                            <option
+                              value="Tuesday"
+                            >
+                              Tuesday
+                            </option>
+                            <option
+                              value="Wednesday"
+                            >
+                              Wednesday
+                            </option>
+                            <option
+                              value="Thursday"
+                            >
+                              Thursday
+                            </option>
+                            <option
+                              value="Friday"
+                            >
+                              Friday
+                            </option>
+                            <option
+                              value="Saturday"
+                            >
+                              Saturday
+                            </option>
+                            <option
+                              value="Sunday"
+                            >
+                              Sunday
+                            </option>
+                          </select>
+                        </div>
+                        <div
+                          className="RecurringMeetingForm__input-container"
+                        >
+                          <label
+                            htmlFor="window-start-time-0"
+                          >
+                            I'm available from:
+                          </label>
+                          <input
+                            aria-describedby="start-time-validator-0"
+                            id="window-start-time-0"
+                            name="window-start-time-0"
+                            onChange={[Function]}
+                            placeholder="10:30"
+                            required={true}
+                            type="time"
+                            value=""
+                          />
+                        </div>
+                        <div
+                          className="RecurringMeetingForm__input-container"
+                        >
+                          <label
+                            htmlFor="window-end-time-0"
+                          >
+                            I'm available until:
+                          </label>
+                          <input
+                            aria-describedby="end-time-validator-0"
+                            id="window-end-time-0"
+                            min=""
+                            name="window-end-time-0"
+                            onChange={[Function]}
+                            placeholder="16:00"
+                            required={true}
+                            type="time"
+                            value=""
+                          />
+                        </div>
+                      </fieldset>
+                    </li>
+                  </RecurringMeetingForm>
+                </ol>
+                <button
+                  className="CreateHowl__button button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Click to add another window
+                </button>
+              </div>
+              <div
+                role="alert"
+              >
+                <ValidateTime
+                  meetingType="recurring"
+                  oneTimeMeetingWindows={
+                    Object {
+                      "date": "",
+                      "timeWindows": Array [
+                        Object {
+                          "endTime": "",
+                          "startTime": "",
+                        },
+                      ],
+                    }
+                  }
+                  recurringMeetingWindows={
+                    Array [
+                      Object {
+                        "dayOfWeek": "",
+                        "endTime": "",
+                        "startTime": "",
+                      },
+                    ]
+                  }
+                  setTimeError={[Function]}
+                >
+                  <div>
+                    <ol>
+                      <li
+                        key="0"
+                      >
+                        <p
+                          className="ValidateTime__validator error"
+                          id="day-validator-0"
+                        >
+                          You must set day 1
+                        </p>
+                        <p
+                          className="ValidateTime__validator error"
+                          id="start-time-validator-0"
+                        >
+                          You must set start time 1
+                        </p>
+                        <p
+                          className="ValidateTime__validator error"
+                          id="end-time-validator-0"
+                        >
+                          You must set End time 1
+                        </p>
+                      </li>
+                    </ol>
+                  </div>
+                </ValidateTime>
+              </div>
+            </fieldset>
+            <fieldset
+              className="CreateHowl__fieldset outer-fieldset"
+            >
+              <legend>
+                Title and Message
+              </legend>
+              <fieldset
+                className="CreateHowl__fieldset sub-fieldset"
+              >
+                <div
+                  className="CreateHowl__title-container"
+                >
+                  <label
+                    className="CreateHowl__title-label"
+                    htmlFor="howl-title"
+                  >
+                    Howl title: 
+                  </label>
+                  <input
+                    aria-describedby="title-validator"
+                    className="CreateHowl__title-input"
+                    id="howl-title"
+                    maxLength="100"
+                    name="howl-title"
+                    onChange={[Function]}
+                    required={true}
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  role="alert"
+                >
+                  <ValidateTitle
+                    setTitleError={[Function]}
+                    title=""
+                    titleError="You must provide a title. (Max 100 chars.)"
+                  >
+                    <p
+                      className="ValidateTitle__validator error"
+                      id="title-validator"
+                    >
+                      You must provide a title. (Max 100 chars.)
+                    </p>
+                  </ValidateTitle>
+                </div>
+              </fieldset>
+              <fieldset
+                className="CreateHowl__fieldset sub-fieldset"
+              >
+                <div
+                  className="CreateHowl__description-container"
+                >
+                  <label
+                    htmlFor="howl-description"
+                  >
+                    Add a personal message to go with your howl:
+                  </label>
+                  <textarea
+                    aria-describedby="personal-message-validator"
+                    className="CreateHowl__description"
+                    id="howl-description"
+                    maxLength="2000"
+                    name="howl-description"
+                    onChange={[Function]}
+                    placeholder="(Write your personal message here)"
+                    rows="10"
+                    value=""
+                  />
+                </div>
+                <div
+                  className="CreateHowl__alert-div personal-message"
+                  role="alert"
+                >
+                  <ValidatePersonalMessage
+                    personalMessage=""
+                    personalMessageError={null}
+                    setPersonalMessageError={[Function]}
+                  >
+                    <p
+                      className="ValidatePersonalMessage__validator"
+                      id="personal-message-validator"
+                    >
+                      Personal message optional. (Limited to 2000 characters.)
+                    </p>
+                  </ValidatePersonalMessage>
+                </div>
+              </fieldset>
+            </fieldset>
+            <button
+              className="CreateHowl__submit button"
+              disabled="You must select at least one dog."
+              type="submit"
+            >
+              Submit
+            </button>
+          </form>
+          <div
+            role="alert"
+          />
+        </section>
+      </CreateHowl>
+    </withRouter(CreateHowl)>
+  </Router>
+</BrowserRouter>
+`;
