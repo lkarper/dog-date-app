@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import OneTimeMeetingTimeWindow from '../OneTimeMeetingTimeWindow/OneTimeMeetingTimeWindow';
 import ValidateTime from '../validation-components/create-howl-validation/ValidateTime';
 import RecurringMeetingForm from '../RecurringMeetingForm/RecurringMeetingForm';
@@ -310,5 +311,39 @@ const HowlsPageAdvancedSearch = (props) => {
         </div>
     );
 }
+
+HowlsPageAdvancedSearch.defaultProps = {
+    data: {
+        typeOfMeetingP: '',
+        setTypeOfMeetingP: () => {},
+        daysOfWeekP: [],
+        setDaysOfWeekP: () => {},
+        dateP: '',
+        setDateP: () => {},
+        timeWindowsP: [],
+        setTimeWindowsP: () => {},
+        timeErrorP: '',
+        setTimeErrorP: () => {},
+        recurringMeetingWindowsP: [],
+        setRecurringMeetingWindowsP: () => {},
+    },
+};
+
+HowlsPageAdvancedSearch.propTypes = {
+    data: PropTypes.shape({
+        typeOfMeetingP: PropTypes.string,
+        setTypeOfMeetingP: PropTypes.func,
+        daysOfWeekP: PropTypes.arrayOf(PropTypes.string),
+        setDaysOfWeekP: PropTypes.func,
+        dateP: PropTypes.string,
+        setDateP: PropTypes.func,
+        timeWindowsP: PropTypes.arrayOf(PropTypes.object),
+        setTimeWindowsP: PropTypes.func,
+        timeErrorP: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+        setTimeErrorP: PropTypes.func,
+        recurringMeetingWindowsP: PropTypes.arrayOf(PropTypes.object),
+        setRecurringMeetingWindowsP: PropTypes.func,
+    }).isRequired,
+};
 
 export default HowlsPageAdvancedSearch;
