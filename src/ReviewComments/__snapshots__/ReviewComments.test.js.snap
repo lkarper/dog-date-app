@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewComments component renders the UI as expected 1`] = `
+<ReviewComments
+  comments={Array []}
+  setComments={[Function]}
+>
+  <p>
+    No comments yet.
+  </p>
+</ReviewComments>
+`;
