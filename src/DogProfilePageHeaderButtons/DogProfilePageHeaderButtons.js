@@ -166,7 +166,12 @@ DogProfilePageHeaderButtons.defaultProps = {
     showEdit: false,
     setShowEdit: () => {},
     dog_profile: {
-        owner: '',
+        owner: {
+            email: '',
+            id: '',
+            phone: '',
+            username: '',
+        },
         id: '',
         name: '',
     },
@@ -176,7 +181,12 @@ DogProfilePageHeaderButtons.propTypes = {
     showEdit: PropTypes.bool.isRequired,
     setShowEdit: PropTypes.func.isRequired,
     dog_profile: PropTypes.shape({
-        owner: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        owner: PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+            email: PropTypes.string,
+            username: PropTypes.string,
+            phone: PropTypes.string,
+        }),
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         name: PropTypes.string
     }).isRequired,
