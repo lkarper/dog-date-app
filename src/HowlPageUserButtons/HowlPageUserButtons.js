@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import HowlPageButtons from '../HowlPageButtons/HowlPageButtons';
 import HowlsService from '../services/howls-service';
@@ -30,6 +31,18 @@ const HowlPageUserButtons = (props) => {
                     console.log(error);
                 });
         }
+    }
+
+    if (!howl.id) {
+        return (
+            <div 
+                className='HowlPageUserButtons__container error'
+            >
+                <p>
+                    Error: Looks like something went wrong. Check your connection and the URL and try again.
+                </p>
+            </div>
+        );
     }
 
     if (Object.keys(context.user).length) {
@@ -63,5 +76,27 @@ const HowlPageUserButtons = (props) => {
     return <Link to='/login'>Log in to edit and save Howls!</Link>;
 
 }
+
+HowlPageUserButtons.defaultProps = {
+    howl: {
+        id: '',
+        user_id: '',
+    }, 
+    showEdit: false,
+    setShowEdit: () => {},
+    history:  {
+        push: () => {},
+    },
+};
+
+HowlPageUserButtons.propTypes = {
+    howl: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        user_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }).isRequired,
+    showEdit: PropTypes.bool,
+    setShowEdit: PropTypes.func,
+    history: PropTypes.object,
+};
 
 export default withRouter(HowlPageUserButtons);
