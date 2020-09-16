@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewsOfMyDogs component renders the UI as expected 1`] = `
+<ReviewsOfMyDogs>
+  <section
+    className="ReviewsOfMyDogs__section section"
+  >
+    <header>
+      <h2>
+        Reviews of my Dogs
+      </h2>
+    </header>
+    <p>
+      Loading...
+    </p>
+    <div
+      role="alert"
+    />
+  </section>
+</ReviewsOfMyDogs>
+`;
