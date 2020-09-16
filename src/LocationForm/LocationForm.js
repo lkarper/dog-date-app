@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ValidateAddress from '../validation-components/create-howl-validation/ValidateAddress';
 import ValidateCity from '../validation-components/create-howl-validation/ValidateCity';
 import StateSelector from '../StateSelector/StateSelector';
@@ -8,7 +9,11 @@ import './LocationForm.css';
 
 const LocationForm = (props) => {
 
-    const { setLocation, setLocationError, location } = props;
+    const { 
+        setLocation, 
+        setLocationError, 
+        location, 
+    } = props;
 
     const [address, setAddress] = useState(location.address);
     const [addressError, setAddressError] = useState('');
@@ -154,5 +159,27 @@ const LocationForm = (props) => {
         </fieldset>
     );
 }
+
+LocationForm.defaultProps = {
+    setLocation: () => {},    
+    setLocationError: () => {}, 
+    location: {
+        address: '',
+        city: '',
+        state: '',
+        zipcode: '',
+    }, 
+};
+
+LocationForm.propTypes = {
+    setLocation: PropTypes.func.isRequired,
+    setLocationError: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+        address: PropTypes.string,
+        city: PropTypes.string,
+        state: PropTypes.string,
+        zipcode: PropTypes.string,
+    }).isRequired,
+};
 
 export default LocationForm;
