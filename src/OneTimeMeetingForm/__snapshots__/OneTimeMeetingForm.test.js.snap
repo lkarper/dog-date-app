@@ -49,6 +49,7 @@ exports[`OneTimeMeetingForm component renders the UI as expected 1`] = `
         }
         key="0"
         removeTimeWindow={[Function]}
+        type=""
         updateTimeWindows={[Function]}
       >
         <li
