@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -15,9 +16,9 @@ const RegistrationForm = (props) => {
     const context = useContext(UserContext);
 
     const {
-        suffix = '',
-        currentEmail = '',
-        currentPhone = '',
+        suffix,
+        currentEmail,
+        currentPhone,
         setShowEdit,
     } = props;
     
@@ -293,5 +294,23 @@ const RegistrationForm = (props) => {
         </section>
     );
 }
+
+RegistrationForm.defaultProps = {
+    suffix: '',
+    currentEmail: '',
+    currentPhone: '',
+    setShowEdit: () => {},
+    history: {
+        push: () => {},
+    }
+};
+
+RegistrationForm.propTypes = {
+    suffix: PropTypes.string.isRequired,
+    currentEmail: PropTypes.string.isRequired,
+    currentPhone: PropTypes.string.isRequired,
+    setShowEdit: PropTypes.func,
+    history: PropTypes.object,
+};
 
 export default RegistrationForm;
