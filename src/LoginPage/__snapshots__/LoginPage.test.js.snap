@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <LoginPage
+      forceUpdate={[Function]}
+      history={
+        Object {
+          "push": [Function],
+        }
+      }
+      location={
+        Object {
+          "state": Object {
+            "from": "",
+          },
+        }
+      }
+    >
+      <section
+        className="LoginPage__section outer-section"
+      >
+        <header>
+          <h1>
+            Already have an account?
+          </h1>
+        </header>
+        <form
+          className="LoginPage__form"
+          onSubmit={[Function]}
+        >
+          <fieldset
+            className="LoginPage__fieldset outer-fieldset"
+          >
+            <legend>
+              Log in
+            </legend>
+            <div
+              className="LoginPage__div label-input-container"
+            >
+              <label
+                htmlFor="username"
+              >
+                Username:
+              </label>
+              <input
+                autoComplete="username"
+                id="username"
+                onChange={[Function]}
+                required={true}
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="LoginPage__div label-input-container"
+            >
+              <label
+                htmlFor="password"
+              >
+                Password:
+              </label>
+              <input
+                autoComplete="current-password"
+                id="password"
+                onChange={[Function]}
+                required={true}
+                type="password"
+                value=""
+              />
+            </div>
+            <button
+              className="LoginPage__submit button"
+              disabled={true}
+              type="submit"
+            >
+              Submit
+            </button>
+          </fieldset>
+        </form>
+        <div
+          className="LoginPage__alert-div"
+          role="alert"
+        />
+        <p
+          className="LoginPage__no-account"
+        >
+          Don't have an account? 
+          <Link
+            className="link"
+            to="/register"
+          >
+            <LinkAnchor
+              className="link"
+              href="/register"
+              navigate={[Function]}
+            >
+              <a
+                className="link"
+                href="/register"
+                onClick={[Function]}
+              >
+                Register
+              </a>
+            </LinkAnchor>
+          </Link>
+        </p>
+      </section>
+    </LoginPage>
+  </Router>
+</BrowserRouter>
+`;
