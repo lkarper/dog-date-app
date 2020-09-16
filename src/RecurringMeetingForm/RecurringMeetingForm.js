@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './RecurringMeetingForm.css';
 
 const RecurringMeetingForm = (props) => {
 
     const { 
         index, 
-        currentData = {
-            dayOfWeek: '',
-            startTime: '',
-            endTime: '',
-        }, 
+        currentData, 
         updateRecurringMeetingWindows, 
         removeRecurringMeetingWindow,
-        type = '', 
+        type, 
     } = props;
 
     const [dayOfWeek, setDayOfWeek] = useState(props.dayOfWeek || currentData.dayOfWeek);
@@ -113,5 +110,28 @@ const RecurringMeetingForm = (props) => {
         </li>
     );
 }
+
+RecurringMeetingForm.defaultProps = {
+    currentData: {
+        dayOfWeek: '',
+        startTime: '',
+        endTime: '',
+    }, 
+    updateRecurringMeetingWindows: () => {}, 
+    removeRecurringMeetingWindow: () => {},
+    type: '', 
+};
+
+RecurringMeetingForm.propTypes = {
+    index: PropTypes.number, 
+    currentData: PropTypes.shape({
+        dayOfWeek: PropTypes.string,
+        startTime: PropTypes.string,
+        endTime: PropTypes.string,
+    }).isRequired, 
+    updateRecurringMeetingWindows: PropTypes.func.isRequired, 
+    removeRecurringMeetingWindow: PropTypes.func,
+    type: PropTypes.string, 
+};
 
 export default RecurringMeetingForm;
