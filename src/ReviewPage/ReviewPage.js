@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
@@ -267,7 +268,7 @@ const ReviewPage = (props) => {
         );
     }
     
-    if (apiError) {
+    if (apiError || !id) {
         return (
             <section 
                 aria-live='polite'
@@ -289,5 +290,25 @@ const ReviewPage = (props) => {
         </section>
     );
 }
+
+ReviewPage.defaultProps = {
+    match: {
+        params: {
+            id: '',
+        },
+    },
+    history: {
+        push: () => {},
+    }
+}
+
+ReviewPage.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string,
+        }),
+    }).isRequired,
+    history: PropTypes.object,
+};
 
 export default ReviewPage;
