@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StaticMap component renders the UI as expected 1`] = `
+<StaticMap
+  lat={0}
+  lon={0}
+>
+  <div
+    className="StaticMap__outer-container"
+  >
+    <div
+      className="StaticMap__map-container"
+      id="map-container"
+    />
+    <div
+      className="StaticMap__marker"
+    />
+  </div>
+</StaticMap>
+`;
