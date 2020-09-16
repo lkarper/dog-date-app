@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
 import MapForm from '../MapForm/MapForm';
@@ -16,32 +17,8 @@ const DogReviewForm = (props) => {
     const { 
         dogName,
         dog_id,
-        suffix = '',
-        review = {
-            id: '',
-            date_created: '',
-            dog_id: '',
-            review_title: '',
-            reviewer: '',
-            friendliness_dogs: '',
-            friendliness_people: '',
-            playing_interest: '',
-            obedience: '',
-            profile_accuracy: '',
-            location_suitability: '',
-            location: {
-                address: '',
-                city: '',
-                state: '',
-                zipcode: '',
-                lat: 0,
-                lon: 0,
-            },
-            date: '',
-            start_time: '',
-            end_time: '',        
-            personal_message: '',
-        },
+        suffix,
+        review,
     } = props;
 
     const [friendlinessDogs, setFriendlinessDogs] = useState(review.friendliness_dogs);
@@ -119,6 +96,12 @@ const DogReviewForm = (props) => {
                     setApiError(true);
                 });
         }
+    }
+
+    if (!dog_id) {
+        return (
+            <p>Error: Looks like something went wrong. Check your connection and the URL and try again.</p>
+        );
     }
 
     return (
@@ -358,5 +341,69 @@ const DogReviewForm = (props) => {
         </form>
     );
 }
+
+DogReviewForm.defaultProps = {
+    dogName: '',
+    dog_id: '',
+    suffix: '',
+    review: {
+        id: '',
+        date_created: '',
+        dog_id: '',
+        review_title: '',
+        reviewer: '',
+        friendliness_dogs: '',
+        friendliness_people: '',
+        playing_interest: '',
+        obedience: '',
+        profile_accuracy: '',
+        location_suitability: '',
+        location: {
+            address: '',
+            city: '',
+            state: '',
+            zipcode: '',
+            lat: 0,
+            lon: 0,
+        },
+        date: '',
+        start_time: '',
+        end_time: '',        
+        personal_message: '',
+    },
+    setShowEdit: () => {},
+    forceUpdate: () => {},
+};
+
+DogReviewForm.propTypes = {
+    dogName: PropTypes.string.isRequired,
+    dog_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    suffix: PropTypes.string.isRequired,
+    review: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        date_created: PropTypes.string,
+        dog_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        review_title: PropTypes.string,
+        reviewer: PropTypes.string,
+        friendliness_dogs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        friendliness_people: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        playing_interest: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        obedience: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        profile_accuracy: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        location_suitability: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        location: PropTypes.shape({
+            address: PropTypes.string,
+            city: PropTypes.string,
+            state: PropTypes.string,
+            zipcode: PropTypes.string,
+            lat: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+            lon: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        }),
+        date: PropTypes.string,
+        start_time: PropTypes.string,
+        end_time: PropTypes.string,        
+        personal_message: PropTypes.string,
+    }).isRequired,
+};
 
 export default withRouter(DogReviewForm);
