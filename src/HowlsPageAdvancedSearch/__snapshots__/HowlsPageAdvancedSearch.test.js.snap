@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowlsPageAdvancedSearch component renders the UI as expected 1`] = `
+<HowlsPageAdvancedSearch
+  data={
+    Object {
+      "dateP": "",
+      "daysOfWeekP": Array [],
+      "recurringMeetingWindowsP": Array [],
+      "setDateP": [Function],
+      "setDaysOfWeekP": [Function],
+      "setRecurringMeetingWindowsP": [Function],
+      "setTimeErrorP": [Function],
+      "setTimeWindowsP": [Function],
+      "setTypeOfMeetingP": [Function],
+      "timeErrorP": "",
+      "timeWindowsP": Array [],
+      "typeOfMeetingP": "",
+    }
+  }
+>
+  <div
+    aria-live="polite"
+  >
+    <fieldset
+      className="HowlsPageFilterForm__fieldset sub-fieldset"
+    >
+      <legend>
+        Type of meeting
+      </legend>
+      <div>
+        <input
+          checked={true}
+          className="HowlsPageAdvancedSearch__radio radio"
+          id="sort-howls-type-any"
+          name="sort-howls-type"
+          onChange={[Function]}
+          type="radio"
+          value=""
+        />
+        <label
+          htmlFor="sort-howls-type-any"
+        >
+          Show all types
+        </label>
+      </div>
+      <div>
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__radio radio"
+          id="sort-howls-type-recurring"
+          name="sort-howls-type"
+          onChange={[Function]}
+          type="radio"
+          value="recurring"
+        />
+        <label
+          htmlFor="sort-howls-type-recurring"
+        >
+          Recurring meetings only
+        </label>
+      </div>
+      <div>
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__radio radio"
+          id="sort-howls-type-once"
+          name="sort-howls-type"
+          onChange={[Function]}
+          type="radio"
+          value="once"
+        />
+        <label
+          htmlFor="sort-howls-type-once"
+        >
+          One time meetings only
+        </label>
+      </div>
+    </fieldset>
+    <fieldset
+      className="HowlsPageFilterForm__fieldset sub-fieldset"
+    >
+      <legend>
+        Only show howls on the following days of the week (optional)
+      </legend>
+      <div
+        key="Monday"
+      >
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__checkbox checkbox"
+          id="Monday"
+          name="Monday"
+          onChange={[Function]}
+          type="checkbox"
+          value="Monday"
+        />
+        <label
+          htmlFor="Monday"
+        >
+          Monday
+        </label>
+      </div>
+      <div
+        key="Tuesday"
+      >
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__checkbox checkbox"
+          id="Tuesday"
+          name="Tuesday"
+          onChange={[Function]}
+          type="checkbox"
+          value="Tuesday"
+        />
+        <label
+          htmlFor="Tuesday"
+        >
+          Tuesday
+        </label>
+      </div>
+      <div
+        key="Wednesday"
+      >
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__checkbox checkbox"
+          id="Wednesday"
+          name="Wednesday"
+          onChange={[Function]}
+          type="checkbox"
+          value="Wednesday"
+        />
+        <label
+          htmlFor="Wednesday"
+        >
+          Wednesday
+        </label>
+      </div>
+      <div
+        key="Thursday"
+      >
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__checkbox checkbox"
+          id="Thursday"
+          name="Thursday"
+          onChange={[Function]}
+          type="checkbox"
+          value="Thursday"
+        />
+        <label
+          htmlFor="Thursday"
+        >
+          Thursday
+        </label>
+      </div>
+      <div
+        key="Friday"
+      >
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__checkbox checkbox"
+          id="Friday"
+          name="Friday"
+          onChange={[Function]}
+          type="checkbox"
+          value="Friday"
+        />
+        <label
+          htmlFor="Friday"
+        >
+          Friday
+        </label>
+      </div>
+      <div
+        key="Saturday"
+      >
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__checkbox checkbox"
+          id="Saturday"
+          name="Saturday"
+          onChange={[Function]}
+          type="checkbox"
+          value="Saturday"
+        />
+        <label
+          htmlFor="Saturday"
+        >
+          Saturday
+        </label>
+      </div>
+      <div
+        key="Sunday"
+      >
+        <input
+          checked={false}
+          className="HowlsPageAdvancedSearch__checkbox checkbox"
+          id="Sunday"
+          name="Sunday"
+          onChange={[Function]}
+          type="checkbox"
+          value="Sunday"
+        />
+        <label
+          htmlFor="Sunday"
+        >
+          Sunday
+        </label>
+      </div>
+    </fieldset>
+    <fieldset
+      className="HowlsPageFilterForm__fieldset sub-fieldset"
+    >
+      <legend>
+        Only show howls on this date (optional)
+      </legend>
+      <label
+        htmlFor="once-date"
+      >
+        Date:
+      </label>
+      <input
+        id="once-date"
+        min="2020-09-16"
+        name="once-date"
+        onChange={[Function]}
+        placeholder="yyyy-mm-dd"
+        type="date"
+        value=""
+      />
+      <button
+        className="HowlsPageAdvancedSearch__button button"
+        onClick={[Function]}
+        type="button"
+      >
+        Reset Date
+      </button>
+    </fieldset>
+  </div>
+</HowlsPageAdvancedSearch>
+`;
