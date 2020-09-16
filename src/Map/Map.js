@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import ForwardGeocodeAddress from '../ForwardGeocodeAddress/ForwardGeocodeAddress';
 import config from '../config';
@@ -6,7 +7,10 @@ import './Map.css';
 
 const Map = (props) => {
 
-    const { tempCoordinates, setTempCoordinates } = props;
+    const { 
+        tempCoordinates, 
+        setTempCoordinates 
+    } = props;
 
     const [map, setMap] = useState(null);
     const [marker, setMarker] = useState(null);
@@ -112,5 +116,21 @@ const Map = (props) => {
         </div>
     );
 }
+
+Map.defaultProps = {
+    tempCoordinates: {
+        lat: 0,
+        lon: 0,
+    },
+    setTempCoordinates: () => {},
+};
+
+Map.propTypes = {
+    tempCoordinates: PropTypes.shape({
+        lat: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        lon: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }).isRequired,
+    setTempCoordinates: PropTypes.func.isRequired,
+};
 
 export default Map;
