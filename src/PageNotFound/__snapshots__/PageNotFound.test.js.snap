@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNotFound component renders the UI as expected 1`] = `
+<PageNotFound>
+  <section
+    className="section"
+  >
+    <header>
+      <h1>
+        Woof...
+      </h1>
+    </header>
+    <p>
+      We couldn't sniff out the page you're looking for.  Check the address and try again.
+    </p>
+  </section>
+</PageNotFound>
+`;
