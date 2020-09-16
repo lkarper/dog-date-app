@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MySavedHowls component renders the UI as expected 1`] = `
+<MySavedHowls>
+  <section
+    aria-live="polite"
+    className="MySavedHowls__section section"
+  >
+    <header>
+      <h2>
+        My Saved Howls
+      </h2>
+    </header>
+    <p>
+      No howls saved yet.
+    </p>
+  </section>
+</MySavedHowls>
+`;
