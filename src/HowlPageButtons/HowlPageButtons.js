@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import HowlsService from '../services/howls-service';
 
@@ -45,6 +46,17 @@ const HowlPageButtons = (props) => {
         }
     }
 
+    if (!howl_id) {
+        return (
+            <div 
+                className='error'
+                role='alert'
+            >
+                <p>Error: Looks like something went wrong. Please check your connection and the URL and try again.</p>
+            </div>
+        );
+    }
+
     if (howlSaved) {
         return (
             <div aria-live='polite'>
@@ -78,5 +90,13 @@ const HowlPageButtons = (props) => {
         </div>
     );
 }
+
+HowlPageButtons.defaultProps = {
+    howl_id: '',
+};
+
+HowlPageButtons.propTypes = {
+    howl_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
 
 export default HowlPageButtons;
