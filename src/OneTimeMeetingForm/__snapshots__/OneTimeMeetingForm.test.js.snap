@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OneTimeMeetingForm component renders the UI as expected 1`] = `
+<OneTimeMeetingForm
+  currentData={
+    Object {
+      "date": "",
+      "timeWindows": Array [
+        Object {
+          "endTime": "",
+          "startTime": "",
+        },
+      ],
+    }
+  }
+  setOneTimeMeetingWindows={[Function]}
+>
+  <fieldset
+    className="sub-fieldset"
+  >
+    <legend>
+      Looking for a one-time meeting on a specific date:
+    </legend>
+    <label
+      htmlFor="once-date"
+    >
+      Date:
+    </label>
+    <input
+      aria-describedby="date-validator"
+      id="once-date"
+      min="2020-09-16"
+      name="once-date"
+      onChange={[Function]}
+      placeholder="yyyy-mm-dd"
+      type="date"
+      value=""
+    />
+    <ol
+      aria-live="polite"
+    >
+      <OneTimeMeetingTimeWindow
+        index={0}
+        initialData={
+          Object {
+            "endTime": "",
+            "startTime": "",
+          }
+        }
+        key="0"
+        removeTimeWindow={[Function]}
+        updateTimeWindows={[Function]}
+      >
+        <li
+          className="OneTimeMeetingTimeWindow__li"
+        >
+          <div
+            className="OneTimeMeetingTimeWindow__time-input-container"
+          >
+            <label
+              htmlFor="once-start-time-1"
+            >
+              I'm available from: 
+            </label>
+            <input
+              aria-describedby="start-time-validator-1"
+              id="once-start-time-1"
+              name="once-start-time-1"
+              onChange={[Function]}
+              placeholder="10:30"
+              type="time"
+              value=""
+            />
+          </div>
+          <div
+            className="OneTimeMeetingTimeWindow__time-input-container"
+          >
+            <label
+              htmlFor="once-end-time-1"
+            >
+              I'm available until: 
+            </label>
+            <input
+              aria-describedby="end-time-validator-1"
+              id="once-end-time-1"
+              min=""
+              name="once-end-time-1"
+              onChange={[Function]}
+              placeholder="16:00"
+              type="time"
+              value=""
+            />
+          </div>
+        </li>
+      </OneTimeMeetingTimeWindow>
+    </ol>
+    <button
+      className="OneTimeMeetingForm__button button"
+      onClick={[Function]}
+      type="button"
+    >
+      Add another time window on this date
+    </button>
+  </fieldset>
+</OneTimeMeetingForm>
+`;
