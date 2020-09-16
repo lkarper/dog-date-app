@@ -440,7 +440,7 @@ CreateHowl.propTypes = {
     howl: PropTypes.shape({
         dogs: PropTypes.array,
         howl_title: PropTypes.string,
-        id: PropTypes.string,
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         location: PropTypes.shape({
             address: PropTypes.string,
             city: PropTypes.string,
@@ -453,7 +453,7 @@ CreateHowl.propTypes = {
         date: PropTypes.string,
         time_windows: PropTypes.array,
         personal_message: PropTypes.string,
-        user_id: PropTypes.string,
+        user_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
     forceUpdate: PropTypes.func,
     setShowEdit: PropTypes.func,
