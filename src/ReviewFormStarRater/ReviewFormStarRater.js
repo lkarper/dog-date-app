@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './ReviewFormStarRater.css';
 
 const ReviewFormStarRater = (props) => {
@@ -122,5 +123,21 @@ const ReviewFormStarRater = (props) => {
         </fieldset>
     );
 }
+
+ReviewFormStarRater.defaultProps = {
+    classSuffix: '', 
+    currentState: '', 
+    setter: () => {}, 
+    required: false,
+    legendText: '',
+};
+
+ReviewFormStarRater.propTypes = {
+    classSuffix: PropTypes.string.isRequired, 
+    currentState: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), 
+    setter: PropTypes.func.isRequired, 
+    required: PropTypes.bool,
+    legendText: PropTypes.string, 
+};
 
 export default ReviewFormStarRater;
