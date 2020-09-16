@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Header
+      forceUpdate={[Function]}
+      location={
+        Object {
+          "pathname": "/home",
+        }
+      }
+    >
+      <header
+        className="Header__header"
+      >
+        <div
+          className="Header__mobile-container"
+        >
+          <Link
+            className="Header__dog-date"
+            onClick={[Function]}
+            to="/"
+          >
+            <LinkAnchor
+              className="Header__dog-date"
+              href="/"
+              navigate={[Function]}
+              onClick={[Function]}
+            >
+              <a
+                className="Header__dog-date"
+                href="/"
+                onClick={[Function]}
+              >
+                Dog Date
+              </a>
+            </LinkAnchor>
+          </Link>
+          <button
+            className="Header__hamburger button"
+            onClick={[Function]}
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    448,
+                    512,
+                    Array [],
+                    "f0c9",
+                    "M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z",
+                  ],
+                  "iconName": "bars",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-bars fa-w-14 "
+                data-icon="bars"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </button>
+        </div>
+        <NativeClickListener
+          id="Header__native-click-div"
+          onClick={[Function]}
+        >
+          <div
+            id="Header__native-click-div"
+            role="alert"
+          >
+            <nav
+              aria-live="polite"
+              className="Header__nav"
+            >
+              <ul
+                className="Header__ul"
+              >
+                <li>
+                  <NavLink
+                    activeClassName="selected"
+                    className="Header__navlink"
+                    onClick={[Function]}
+                    to="/howls"
+                  >
+                    <Link
+                      aria-current={null}
+                      className="Header__navlink"
+                      onClick={[Function]}
+                      to={
+                        Object {
+                          "hash": "",
+                          "pathname": "/howls",
+                          "search": "",
+                          "state": null,
+                        }
+                      }
+                    >
+                      <LinkAnchor
+                        aria-current={null}
+                        className="Header__navlink"
+                        href="/howls"
+                        navigate={[Function]}
+                        onClick={[Function]}
+                      >
+                        <a
+                          aria-current={null}
+                          className="Header__navlink"
+                          href="/howls"
+                          onClick={[Function]}
+                        >
+                          Howls
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    activeClassName="selected"
+                    className="Header__link"
+                    onClick={[Function]}
+                    to="/register"
+                  >
+                    <Link
+                      aria-current={null}
+                      className="Header__link"
+                      onClick={[Function]}
+                      to={
+                        Object {
+                          "hash": "",
+                          "pathname": "/register",
+                          "search": "",
+                          "state": null,
+                        }
+                      }
+                    >
+                      <LinkAnchor
+                        aria-current={null}
+                        className="Header__link"
+                        href="/register"
+                        navigate={[Function]}
+                        onClick={[Function]}
+                      >
+                        <a
+                          aria-current={null}
+                          className="Header__link"
+                          href="/register"
+                          onClick={[Function]}
+                        >
+                          Register
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    activeClassName="selected"
+                    className="Header__link"
+                    onClick={[Function]}
+                    to={
+                      Object {
+                        "pathname": "/login",
+                        "state": Object {
+                          "from": "/home",
+                        },
+                      }
+                    }
+                  >
+                    <Link
+                      aria-current={null}
+                      className="Header__link"
+                      onClick={[Function]}
+                      to={
+                        Object {
+                          "pathname": "/login",
+                          "state": Object {
+                            "from": "/home",
+                          },
+                        }
+                      }
+                    >
+                      <LinkAnchor
+                        aria-current={null}
+                        className="Header__link"
+                        href="/login"
+                        navigate={[Function]}
+                        onClick={[Function]}
+                      >
+                        <a
+                          aria-current={null}
+                          className="Header__link"
+                          href="/login"
+                          onClick={[Function]}
+                        >
+                          Log in
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </NavLink>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </NativeClickListener>
+      </header>
+    </Header>
+  </Router>
+</BrowserRouter>
+`;
