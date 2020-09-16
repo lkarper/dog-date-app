@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowlListItem component renders the UI as expected 1`] = `
+<HowlListItem
+  howl={
+    Object {
+      "date": "",
+      "dogs": Array [],
+      "howl_title": "",
+      "id": "",
+      "location": Object {
+        "address": "",
+        "city": "",
+        "lat": "",
+        "lon": "",
+        "state": "",
+        "zipcode": "",
+      },
+      "meeting_type": "",
+      "personal_message": "",
+      "time_windows": Array [],
+      "user_id": "",
+    }
+  }
+>
+  <li
+    className="HowlListItem__li error"
+  >
+    <p>
+      Error: Could not load howl. Check your connection and the URL and try again.
+    </p>
+  </li>
+</HowlListItem>
+`;
