@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserContactInfo component renders the UI as expected 1`] = `
+<UserContactInfo>
+  <section
+    className="UserContactInfo__section section"
+  >
+    <header>
+      <h2>
+        My Contact Info
+      </h2>
+    </header>
+    <p
+      className="UserContactInfo__p"
+    >
+      Phone: (not provided)
+    </p>
+    <p
+      className="UserContactInfo__p"
+    >
+      Email:
+       
+      <a
+        className="link"
+        href="mailto:undefined"
+        rel="noopener noreferrer"
+        target="_blank"
+      />
+    </p>
+    <button
+      className="UserContactInfo__button button"
+      onClick={[Function]}
+    >
+      Edit contact info
+    </button>
+  </section>
+</UserContactInfo>
+`;

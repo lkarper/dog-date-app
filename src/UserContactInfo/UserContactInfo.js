@@ -7,7 +7,10 @@ const UserContactInfo = (props) => {
     
     const context = useContext(UserContext);
     
-    const { phone, email } = context.user;
+    const { 
+        phone, 
+        email 
+    } = context.user;
 
     const [showEdit, setShowEdit] = useState(false);
 
