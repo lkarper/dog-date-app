@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './SelectDogForHowl.css';
 
 const SelectDogForHowl = (props) => {
 
-    const { dog, dogsForHowl, updateDogsForHowl } = props;
+    const { 
+        dog, 
+        dogsForHowl, 
+        updateDogsForHowl 
+    } = props;
 
     const [checked, setChecked] = useState(dogsForHowl.includes(dog.id));
 
@@ -16,6 +21,16 @@ const SelectDogForHowl = (props) => {
         }
 
     }, [checked, dog.id, dogsForHowl, updateDogsForHowl]);
+
+    if (!dog.id) {
+        return (
+            <div
+                className='SelectDogForHowl__outer-container error'
+            >
+                <p>Error: something went wrong. Check your connection and the URL and try again.</p>
+            </div>
+        );
+    }
 
     return (
         <div
@@ -59,5 +74,25 @@ const SelectDogForHowl = (props) => {
         </div>
     );
 }
+
+SelectDogForHowl.defaultProps = {
+    dog: {
+        id: '',
+        name: '',
+        profile_img_url: '',
+    }, 
+    dogsForHowl: [], 
+    updateDogsForHowl: () => {}, 
+};
+
+SelectDogForHowl.propTypes = {
+    dog: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        name: PropTypes.string,
+        profile_img_url: PropTypes.string,
+    }),
+    dogsForHowl: PropTypes.array.isRequired,
+    updateDogsForHowl: PropTypes.func.isRequired,
+};
 
 export default SelectDogForHowl;
