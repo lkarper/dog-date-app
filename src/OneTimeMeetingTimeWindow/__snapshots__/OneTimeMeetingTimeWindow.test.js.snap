@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OneTimeMeetingTimeWindow component renders the UI as expected 1`] = `
+<OneTimeMeetingTimeWindow
+  initialData={
+    Object {
+      "endTime": "",
+      "startTime": "",
+    }
+  }
+  removeTimeWindow={[Function]}
+  type=""
+  updateTimeWindows={[Function]}
+>
+  <li
+    className="OneTimeMeetingTimeWindow__li error"
+  >
+    <p>
+      Error: Something went wrong. Check your connection and try again.
+    </p>
+  </li>
+</OneTimeMeetingTimeWindow>
+`;
