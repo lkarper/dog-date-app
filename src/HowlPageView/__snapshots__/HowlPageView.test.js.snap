@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowlPageView component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <HowlPageView
+      match={
+        Object {
+          "params": Object {
+            "howl_id": "",
+          },
+        }
+      }
+    >
+      <section
+        aria-live="polite"
+        className="HowlPageView__outer-section error"
+      >
+        <p>
+          Error: could not load howl.  Check your connection and the URL and try again.
+        </p>
+      </section>
+    </HowlPageView>
+  </Router>
+</BrowserRouter>
+`;
