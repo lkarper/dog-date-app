@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowlPageButtons component renders the UI as expected 1`] = `
+<HowlPageButtons
+  howl_id=""
+>
+  <div
+    className="error"
+    role="alert"
+  >
+    <p>
+      Error: Looks like something went wrong. Please check your connection and the URL and try again.
+    </p>
+  </div>
+</HowlPageButtons>
+`;
