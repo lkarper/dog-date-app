@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -8,11 +9,15 @@ import DogProfilesService from '../services/dog-profiles-service';
 import HowlsService from '../services/howls-service';
 import './LoginPage.css';
 
-const LoginForm = (props) => {
+const LoginPage = (props) => {
 
     const context = useContext(UserContext);
 
-    const { forceUpdate } = props;
+    const { 
+        forceUpdate,
+        location, 
+        history,
+    } = props;
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -20,7 +25,6 @@ const LoginForm = (props) => {
     const [showLoading, setShowLoading] = useState(false);
 
     const onLoginSuccess = () => {
-        const { location, history } = props;
         const destination = (location.state || {}).from || '/home';
 
         Promise.all([
@@ -40,8 +44,8 @@ const LoginForm = (props) => {
                 context.setUserSavedHowls(userSavedHowls);
                 context.setHowls(howls);
                 context.setError(false);
-                forceUpdate();
                 history.push(destination);
+                forceUpdate();
             })
             .catch(error => {
                 console.log(error);
@@ -172,4 +176,22 @@ const LoginForm = (props) => {
     );
 }
 
-export default LoginForm;
+LoginPage.defaultProps = {
+    forceUpdate: () => {},
+    location: {
+        state: {
+            from: '',
+        },
+    }, 
+    history: {
+        push: () => {},
+    },
+};
+
+LoginPage.propTypes = {
+    forceUpdate: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+};
+
+export default LoginPage;
