@@ -1,11 +1,15 @@
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import config from '../config';
 import './StaticMap.css';
 
 const StaticMap = (props) => {
 
-    const { lat, lon } = props;
+    const { 
+        lat, 
+        lon 
+    } = props;
 
     let mapContainer = useRef(null);
     let markerRef = useRef(null);
@@ -50,5 +54,15 @@ const StaticMap = (props) => {
         </div>
     );
 }
+
+StaticMap.defaultProps = {
+    lat: 0,
+    lon: 0,
+};
+
+StaticMap.propTypes = {
+    lat: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    lon: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
 
 export default StaticMap;
