@@ -36,3 +36,7 @@
 .RegistrationForm__header-edit {
     text-align: center;
 }
+
+.RegistrationForm__section.outer-section {
+    width: 100%;
+}
