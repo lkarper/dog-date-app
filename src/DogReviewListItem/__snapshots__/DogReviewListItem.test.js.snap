@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DogReviewListItem component renders the UI as expected 1`] = `
+<DogReviewListItem
+  noImage={false}
+  review={
+    Object {
+      "date_created": "",
+      "friendliness_dogs": 0,
+      "friendliness_people": 0,
+      "id": "",
+      "location_suitability": 0,
+      "obedience": 0,
+      "playing_interest": 0,
+      "profile_accuracy": 0,
+      "review_title": "",
+      "reviewer": "",
+    }
+  }
+>
+  <li
+    className="DogReviewListItem__li error"
+  >
+    <p>
+      Error: could not load review info.  Check your connection and the URL and try again.
+    </p>
+  </li>
+</DogReviewListItem>
+`;
