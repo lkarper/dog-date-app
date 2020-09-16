@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowlPageDogProfile component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <HowlPageDogProfile
+      dog_id=""
+      dog_profile={
+        Object {
+          "age_months": "",
+          "age_years": "",
+          "aggressive": false,
+          "breed": "",
+          "dislikes_children": false,
+          "dislikes_men": false,
+          "dislikes_puppies": false,
+          "dislikes_women": false,
+          "elderly_dog": false,
+          "energy": "",
+          "leash_aggression": false,
+          "little_time_with_other_dogs": false,
+          "much_experience_with_other_dogs": false,
+          "name": "",
+          "obedience": "",
+          "owner_description": "",
+          "prefers_people": false,
+          "profile_img_url": "",
+          "recently_adopted": false,
+          "sex": "",
+          "temperment": "",
+          "weight": "",
+        }
+      }
+      owner={
+        Object {
+          "email": "",
+          "id": "",
+          "phone": "",
+          "username": "",
+        }
+      }
+    >
+      <li
+        className="HowlPageDogProfile__li error"
+      >
+        <p>
+          Error: Could not load profile.  Check your connection and the URL and try again.
+        </p>
+      </li>
+    </HowlPageDogProfile>
+  </Router>
+</BrowserRouter>
+`;
