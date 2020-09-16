@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DogReviewForm component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <withRouter(DogReviewForm)>
+      <DogReviewForm
+        dogName=""
+        dog_id=""
+        forceUpdate={[Function]}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          }
+        }
+        match={
+          Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
+          }
+        }
+        review={
+          Object {
+            "date": "",
+            "date_created": "",
+            "dog_id": "",
+            "end_time": "",
+            "friendliness_dogs": "",
+            "friendliness_people": "",
+            "id": "",
+            "location": Object {
+              "address": "",
+              "city": "",
+              "lat": 0,
+              "lon": 0,
+              "state": "",
+              "zipcode": "",
+            },
+            "location_suitability": "",
+            "obedience": "",
+            "personal_message": "",
+            "playing_interest": "",
+            "profile_accuracy": "",
+            "review_title": "",
+            "reviewer": "",
+            "start_time": "",
+          }
+        }
+        setShowEdit={[Function]}
+        suffix=""
+      >
+        <p>
+          Error: Looks like something went wrong. Check your connection and the URL and try again.
+        </p>
+      </DogReviewForm>
+    </withRouter(DogReviewForm)>
+  </Router>
+</BrowserRouter>
+`;
