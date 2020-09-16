@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeWindow component renders the UI as expected 1`] = `
+<TimeWindow
+  endTime=""
+  startTime=""
+>
+  <p
+    className="error"
+  >
+    Error: Start or end time missing.
+  </p>
+</TimeWindow>
+`;
