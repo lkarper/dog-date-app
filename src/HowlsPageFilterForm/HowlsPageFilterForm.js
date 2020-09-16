@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import StateSelector from '../StateSelector/StateSelector';
 import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
 import HowlsPageAdvancedSearch from '../HowlsPageAdvancedSearch/HowlsPageAdvancedSearch';
@@ -146,6 +147,50 @@ const HowlsPageFilterForm = (props) => {
             </button>
         </form>
     );
+}
+
+HowlsPageFilterForm.defaultProps = {
+    data: {
+        stateP: '',
+        setStateP: () => {},
+        zipcodeP: '',
+        setZipcodeP: () => {},
+        ratingFilterP: '',
+        setRatingFilterP: () => {},
+        typeOfMeetingP: '',
+        setTypeOfMeetingP: () => {},
+        daysOfWeekP: [],
+        setDaysOfWeekP: () => {},
+        dateP: '',
+        setDateP: () => {},
+        timeWindowsP: [],
+        setTimeWindowsP: () => {},
+        recurringMeetingWindowsP: [],
+        setRecurringMeetingWindowsP: () => {},
+        handleSubmit: () => {},
+    },
+}
+
+HowlsPageFilterForm.propTypes = {
+    data: PropTypes.shape({
+        stateP: PropTypes.string,
+        setStateP: PropTypes.func,
+        zipcodeP: PropTypes.string,
+        setZipcodeP: PropTypes.func,
+        ratingFilterP: PropTypes.string,
+        setRatingFilterP: PropTypes.func,
+        typeOfMeetingP: PropTypes.string,
+        setTypeOfMeetingP: PropTypes.func,
+        daysOfWeekP: PropTypes.arrayOf(PropTypes.string),
+        setDaysOfWeekP: PropTypes.func,
+        dateP: PropTypes.string,
+        setDateP: PropTypes.func,
+        timeWindowsP: PropTypes.arrayOf(PropTypes.object),
+        setTimeWindowsP: PropTypes.func,
+        recurringMeetingWindowsP: PropTypes.arrayOf(PropTypes.object),
+        setRecurringMeetingWindowsP: PropTypes.func,
+        handleSubmit: PropTypes.func,
+    }).isRequired,
 }
 
 export default HowlsPageFilterForm;
