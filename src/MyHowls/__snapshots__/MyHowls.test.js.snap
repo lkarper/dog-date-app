@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyHowls component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <MyHowls>
+      <section
+        aria-live="polite"
+        className="MyHowls__section section"
+      >
+        <header>
+          <h2>
+            My Howls
+          </h2>
+        </header>
+        <p>
+          You haven't howled yet.
+        </p>
+        <p>
+          Create a dog profile to start howling!
+        </p>
+      </section>
+    </MyHowls>
+  </Router>
+</BrowserRouter>
+`;
