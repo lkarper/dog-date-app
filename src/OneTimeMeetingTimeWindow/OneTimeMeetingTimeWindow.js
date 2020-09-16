@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './OneTimeMeetingTimeWindow.css';
 
 const OneTimeMeetingTimeWindow = (props) => {
@@ -8,7 +9,7 @@ const OneTimeMeetingTimeWindow = (props) => {
         initialData, 
         updateTimeWindows, 
         removeTimeWindow,
-        type = '', 
+        type, 
     } = props;
 
     const [startTime, setStartTime] = useState(initialData.startTime);
@@ -23,6 +24,16 @@ const OneTimeMeetingTimeWindow = (props) => {
         }
     
     }, [startTime, endTime, index, initialData, updateTimeWindows]);
+
+    if (index !==0 && !index) {
+        return (
+            <li className='OneTimeMeetingTimeWindow__li error'>
+                <p>
+                    Error: Something went wrong. Check your connection and try again.
+                </p>
+            </li>
+        )
+    }
 
     return (
         <li className='OneTimeMeetingTimeWindow__li'>
@@ -66,5 +77,26 @@ const OneTimeMeetingTimeWindow = (props) => {
         </li>   
     );
 }
+
+OneTimeMeetingTimeWindow.defaultProps = {
+    initialData: {
+        startTime: '',
+        endTime: '',
+    }, 
+    updateTimeWindows: () => {}, 
+    removeTimeWindow: () => {},
+    type: '', 
+};
+
+OneTimeMeetingTimeWindow.propTypes = {
+    initialData: PropTypes.shape({
+        startTime: PropTypes.string,
+        endTime: PropTypes.string,
+    }).isRequired,
+    updateTimeWindows: PropTypes.func.isRequired,
+    removeTimeWindow: PropTypes.func,
+    type: PropTypes.string,
+    index: PropTypes.number,
+};
 
 export default OneTimeMeetingTimeWindow;
