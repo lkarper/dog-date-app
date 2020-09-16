@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyPack component renders the UI as expected 1`] = `
+<MyPack>
+  <section
+    aria-live="polite"
+    className="MyPack__section section"
+  >
+    <header>
+      <h2>
+        My Pack
+      </h2>
+    </header>
+    <p>
+      No pack members yet.
+    </p>
+  </section>
+</MyPack>
+`;
