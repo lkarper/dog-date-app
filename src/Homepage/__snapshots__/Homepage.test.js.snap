@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Homepage component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Homepage>
+      <header>
+        <h1>
+          My Dog Dating Life
+        </h1>
+      </header>
+      <UserContactInfo>
+        <section
+          className="UserContactInfo__section section"
+        >
+          <header>
+            <h2>
+              My Contact Info
+            </h2>
+          </header>
+          <p
+            className="UserContactInfo__p"
+          >
+            Phone: (not provided)
+          </p>
+          <p
+            className="UserContactInfo__p"
+          >
+            Email:
+             
+            <a
+              className="link"
+              href="mailto:undefined"
+              rel="noopener noreferrer"
+              target="_blank"
+            />
+          </p>
+          <button
+            className="UserContactInfo__button button"
+            onClick={[Function]}
+          >
+            Edit contact info
+          </button>
+        </section>
+      </UserContactInfo>
+      <MyDogs>
+        <section
+          aria-live="polite"
+          className="MyDogs__section section"
+        >
+          <header>
+            <h2>
+              My Dogs
+            </h2>
+          </header>
+          <Link
+            className="link"
+            to="/create-dog-profile"
+          >
+            <LinkAnchor
+              className="link"
+              href="/create-dog-profile"
+              navigate={[Function]}
+            >
+              <a
+                className="link"
+                href="/create-dog-profile"
+                onClick={[Function]}
+              >
+                Create a new dog profile!
+              </a>
+            </LinkAnchor>
+          </Link>
+          <p>
+            No dogs currently linked to your account.
+          </p>
+        </section>
+      </MyDogs>
+      <MyPack>
+        <section
+          aria-live="polite"
+          className="MyPack__section section"
+        >
+          <header>
+            <h2>
+              My Pack
+            </h2>
+          </header>
+          <p>
+            No pack members yet.
+          </p>
+        </section>
+      </MyPack>
+      <MySavedHowls>
+        <section
+          aria-live="polite"
+          className="MySavedHowls__section section"
+        >
+          <header>
+            <h2>
+              My Saved Howls
+            </h2>
+          </header>
+          <p>
+            No howls saved yet.
+          </p>
+        </section>
+      </MySavedHowls>
+      <MyHowls>
+        <section
+          aria-live="polite"
+          className="MyHowls__section section"
+        >
+          <header>
+            <h2>
+              My Howls
+            </h2>
+          </header>
+          <p>
+            You haven't howled yet.
+          </p>
+          <p>
+            Create a dog profile to start howling!
+          </p>
+        </section>
+      </MyHowls>
+      <ReviewsOfMyDogs>
+        <section
+          className="ReviewsOfMyDogs__section section"
+        >
+          <header>
+            <h2>
+              Reviews of my Dogs
+            </h2>
+          </header>
+          <p>
+            Loading...
+          </p>
+          <div
+            role="alert"
+          />
+        </section>
+      </ReviewsOfMyDogs>
+    </Homepage>
+  </Router>
+</BrowserRouter>
+`;
