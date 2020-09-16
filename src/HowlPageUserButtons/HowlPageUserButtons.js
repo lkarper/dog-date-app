@@ -56,7 +56,8 @@ const HowlPageUserButtons = (props) => {
                 </div>
             );
         }
-        return <HowlPageButtons user_id={context.user.id} howl_id={howl.id} />
+        
+        return <HowlPageButtons howl_id={howl.id} />;
     }
 
     return <Link to='/login'>Log in to edit and save Howls!</Link>;
