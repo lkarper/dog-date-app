@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import DogProfilesService from '../services/dog-profiles-service';
 
@@ -13,7 +14,11 @@ const DogProfilePageHeaderButtons = (props) => {
         dog_profile,
     } = props;
     
-    const { owner, id, name } = dog_profile;
+    const { 
+        owner, 
+        id, 
+        name 
+    } = dog_profile;
 
     const [apiError, setApiError] = useState(false);
 
@@ -72,6 +77,17 @@ const DogProfilePageHeaderButtons = (props) => {
         }
     }
 
+    if (!owner || !id) {
+        return (
+            <div 
+                className='error'
+                role='alert'
+            >
+                <p>Error: Looks like something went wrong. Please check your connection and try again.</p>
+            </div>
+        );
+    }
+
     if (owner.id === context.user.id) {
         return (
             <div 
@@ -92,7 +108,10 @@ const DogProfilePageHeaderButtons = (props) => {
                 >
                     Delete profile
                 </button>
-                <div role='alert'>
+                <div 
+                    className='error'
+                    role='alert'
+                >
                     {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                 </div>
             </div>
@@ -112,7 +131,10 @@ const DogProfilePageHeaderButtons = (props) => {
                     >
                         Click here to remove {name} from your pack
                     </button>
-                    <div role='alert'>
+                    <div 
+                        className='error'
+                        role='alert'
+                    >
                         {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                     </div>
                 </div>
@@ -129,12 +151,35 @@ const DogProfilePageHeaderButtons = (props) => {
                 >
                     Click here to add {name} to your pack!
                 </button>
-                <div role='alert'>
+                <div 
+                    className='error'
+                    role='alert'
+                >
                     {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
                 </div>
             </div>
         );
     }
 }
+
+DogProfilePageHeaderButtons.defaultProps = {
+    showEdit: false,
+    setShowEdit: () => {},
+    dog_profile: {
+        owner: '',
+        id: '',
+        name: '',
+    },
+}
+
+DogProfilePageHeaderButtons.propTypes = {
+    showEdit: PropTypes.bool.isRequired,
+    setShowEdit: PropTypes.func.isRequired,
+    dog_profile: PropTypes.shape({
+        owner: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        name: PropTypes.string
+    }).isRequired,
+};
 
 export default withRouter(DogProfilePageHeaderButtons);
