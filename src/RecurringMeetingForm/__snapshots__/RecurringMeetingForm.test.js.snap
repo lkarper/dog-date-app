@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecurringMeetingForm component renders the UI as expected 1`] = `
+<RecurringMeetingForm
+  currentData={
+    Object {
+      "dayOfWeek": "",
+      "endTime": "",
+      "startTime": "",
+    }
+  }
+  removeRecurringMeetingWindow={[Function]}
+  type=""
+  updateRecurringMeetingWindows={[Function]}
+>
+  <li>
+    <fieldset
+      className="sub-fieldset"
+    >
+      <legend>
+        I'm open for dog dates during the following windows of time:
+      </legend>
+      <div
+        className="RecurringMeetingForm__input-container"
+      >
+        <label
+          htmlFor="window-day-undefined"
+        >
+          Day of the week:
+        </label>
+        <select
+          aria-describedby="day-validator-NaN"
+          id="window-day-undefined"
+          onChange={[Function]}
+          required={true}
+          value=""
+        >
+          <option
+            value=""
+          >
+            --Select a day--
+          </option>
+          <option
+            value="Monday"
+          >
+            Monday
+          </option>
+          <option
+            value="Tuesday"
+          >
+            Tuesday
+          </option>
+          <option
+            value="Wednesday"
+          >
+            Wednesday
+          </option>
+          <option
+            value="Thursday"
+          >
+            Thursday
+          </option>
+          <option
+            value="Friday"
+          >
+            Friday
+          </option>
+          <option
+            value="Saturday"
+          >
+            Saturday
+          </option>
+          <option
+            value="Sunday"
+          >
+            Sunday
+          </option>
+        </select>
+      </div>
+      <div
+        className="RecurringMeetingForm__input-container"
+      >
+        <label
+          htmlFor="window-start-time-undefined"
+        >
+          I'm available from:
+        </label>
+        <input
+          aria-describedby="start-time-validator-undefined"
+          id="window-start-time-undefined"
+          name="window-start-time-undefined"
+          onChange={[Function]}
+          placeholder="10:30"
+          required={true}
+          type="time"
+          value=""
+        />
+      </div>
+      <div
+        className="RecurringMeetingForm__input-container"
+      >
+        <label
+          htmlFor="window-end-time-undefined"
+        >
+          I'm available until:
+        </label>
+        <input
+          aria-describedby="end-time-validator-undefined"
+          id="window-end-time-undefined"
+          min=""
+          name="window-end-time-undefined"
+          onChange={[Function]}
+          placeholder="16:00"
+          required={true}
+          type="time"
+          value=""
+        />
+      </div>
+      <button
+        className="RecurringMeetingForm__button button"
+        onClick={[Function]}
+        type="button"
+      >
+        Remove this window
+      </button>
+    </fieldset>
+  </li>
+</RecurringMeetingForm>
+`;
