@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import OneTimeMeetingTimeWindow from '../OneTimeMeetingTimeWindow/OneTimeMeetingTimeWindow';
 
 const OneTimeMeetingForm = (props) => {
 
-    const { currentData, setOneTimeMeetingWindows } = props;
+    const { 
+        currentData, 
+        setOneTimeMeetingWindows 
+    } = props;
     
     const [date, setDate] = useState(currentData.date);
     const [timeWindows, setTimeWindows] = useState(currentData.timeWindows);
@@ -103,5 +107,24 @@ const OneTimeMeetingForm = (props) => {
         </fieldset>
     );
 }
+
+OneTimeMeetingForm.defaultProps = {
+    currentData: {
+        date: '',
+        timeWindows: [{
+            startTime: '',
+            endTime: '',
+        }],
+    },
+    setOneTimeMeetingWindows: () => {},
+};
+
+OneTimeMeetingForm.propTypes = {
+    currentData: PropTypes.shape({
+        date: PropTypes.string,
+        timeWindows: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
+    setOneTimeMeetingWindows: PropTypes.func.isRequired,
+};
 
 export default OneTimeMeetingForm;
