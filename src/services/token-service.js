@@ -51,11 +51,11 @@ const TokenService = {
             TokenService.readJwtToken()
         );
         /*
-        queue a callback that will happen 10 seconds before the token expires
+        queue a callback that will happen 30 seconds before the token expires
         the callback is passed in as an argument so could be anything,
         in this app, the callback is for calling the refresh endpoint
         */
-        _timeoutId = setTimeout(callback, msUntilExpiry - 10000);
+        _timeoutId = setTimeout(callback, msUntilExpiry - 30000);
     },
     clearCallbackBeforeExpiry() {
         clearTimeout(_timeoutId);
