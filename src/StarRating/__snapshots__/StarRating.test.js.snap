@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StarRating component renders the UI as expected 1`] = `
+<StarRating
+  rating={0}
+>
+  <div
+    aria-label="Rating is 0 out of 5."
+    className="StarRating__stars"
+    style={
+      Object {
+        "--rating": "0",
+      }
+    }
+  />
+</StarRating>
+`;
