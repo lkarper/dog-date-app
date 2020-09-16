@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ForwardGeocodeResult from '../ForwardGeocodeResult/ForwardGeocodeResult';
 import config from '../config';
 import NativeClickListener from '../utils/NativeClickListener';
@@ -92,5 +93,13 @@ const ForwardGeocodeAddress = (props) => {
         </div>
     );
 }
+
+ForwardGeocodeAddress.defaultProps = {
+    setMarkerCoordinates: () => {},
+};
+
+ForwardGeocodeAddress.propTypes = {
+    setMarkerCoordinates: PropTypes.func.isRequired,
+};
 
 export default ForwardGeocodeAddress;
