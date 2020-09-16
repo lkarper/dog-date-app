@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ForwardGeocodeResult component renders the UI as expected 1`] = `
+<ForwardGeocodeResult
+  result={
+    Object {
+      "display_name": "",
+      "lat": 0,
+      "lon": 0,
+    }
+  }
+  setMarkerCoordinates={[Function]}
+>
+  <li>
+    <p>
+      Error: Check your connection and try again.
+    </p>
+  </li>
+</ForwardGeocodeResult>
+`;
