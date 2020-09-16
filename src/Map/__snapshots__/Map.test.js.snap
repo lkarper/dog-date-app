@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map component renders the UI as expected 1`] = `
+<Map
+  setTempCoordinates={[Function]}
+  tempCoordinates={
+    Object {
+      "lat": 0,
+      "lon": 0,
+    }
+  }
+>
+  <div
+    className="Map__search-container"
+  >
+    <div
+      className="Map__map-outer-container"
+    >
+      <ForwardGeocodeAddress
+        setMarkerCoordinates={[Function]}
+      >
+        <div
+          aria-live="polite"
+          className="ForwardGeocodeAddress__outer-container"
+        >
+          <input
+            aria-describedby="current-set-coordinates"
+            aria-label="Search for a place by name or address."
+            className="ForwardGeocodeAddress__search-input"
+            id="place-search"
+            name="place-search"
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="Search by name or address"
+            type="text"
+            value=""
+          />
+          <NativeClickListener
+            className="ForwardGeocodeAddress__click-container hidden"
+            id="ForwardGeocodeAddress__click-container"
+            onClick={[Function]}
+          >
+            <div
+              className="ForwardGeocodeAddress__click-container hidden"
+              id="ForwardGeocodeAddress__click-container"
+              role="alert"
+            >
+              <ol
+                className="ForwardGeocodeAddress__results hidden"
+              />
+            </div>
+          </NativeClickListener>
+          <div
+            role="alert"
+          />
+        </div>
+      </ForwardGeocodeAddress>
+      <div
+        className="Map__map-container"
+        id="map-container"
+      />
+      <div
+        className="Map__marker"
+      />
+      <div
+        className="Map__coordinates"
+        id="coordinates"
+      >
+        Latitude: 
+        0
+        , Longitude: 
+        0
+      </div>
+    </div>
+    <button
+      className="Map__set-marker-button button"
+      onClick={[Function]}
+      type="button"
+    >
+      Set marker to my location
+    </button>
+    <p
+      className="Map__marker-draggable-p"
+    >
+      (Marker is draggable.)
+    </p>
+  </div>
+</Map>
+`;
