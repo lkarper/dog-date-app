@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Comment from '../Comment/Comment';
 import './ReviewComments.css';
 
 const ReviewComments = (props) => {
 
-    const { comments, setComments } = props;
+    const { 
+        comments, 
+        setComments 
+    } = props;
 
     if (comments.length === 0) {
         return <p>No comments yet.</p>;
@@ -29,5 +33,14 @@ const ReviewComments = (props) => {
         </ul>
     );
 }
+
+ReviewComments.defaultProps = {
+    comments: [],
+    setComments: () => {},
+};
+
+ReviewComments.propTypes = {
+    comments: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default ReviewComments;
