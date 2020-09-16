@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import StaticMap from '../StaticMap/StaticMap';
 import HowlPageDogProfile from '../HowlPageDogProfile/HowlPageDogProfile';
 import TimeWindow from '../TimeWindow/TimeWindow';
-import './HowlPageView.css';
 import HowlPageUserButtons from '../HowlPageUserButtons/HowlPageUserButtons';
 import CreateHowl from '../CreateHowl/CreateHowl';
 import HowlsService from '../services/howls-service';
+import './HowlPageView.css';
 
 const HowlPageView  = (props) => {
 
@@ -90,7 +91,7 @@ const HowlPageView  = (props) => {
                     <h1>Howl not found</h1>
                 </header>
                 <p>Looks likes something went wrong.</p>
-                <p>Check the address and try again.</p>
+                <p>Check the address and your connection and try again.</p>
             </section>
         );
     }
@@ -218,11 +219,36 @@ const HowlPageView  = (props) => {
         );
     }
 
+    if (!howl_id) {
+        return (
+            <section 
+                className='HowlPageView__outer-section error'
+                aria-live='polite'
+            >
+                <p>
+                    Error: could not load howl.  Check your connection and the URL and try again.
+                </p>
+            </section>
+        );
+    }
+
     return (
         <section aria-live='polite'>
             <p>Loading...</p>
         </section>
     );
 }
+
+HowlPageView.defaultProps = {
+    match: {
+        params: {
+            howl_id: '',
+        },
+    },
+};
+
+HowlPageView.propTypes = {
+    match: PropTypes.object,
+};
 
 export default HowlPageView;
