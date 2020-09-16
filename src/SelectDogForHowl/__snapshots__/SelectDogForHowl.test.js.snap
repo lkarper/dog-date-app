@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectDogForHowl component renders the UI as expected 1`] = `
+<SelectDogForHowl
+  dog={
+    Object {
+      "id": "",
+      "name": "",
+      "profile_img_url": "",
+    }
+  }
+  dogsForHowl={Array []}
+  updateDogsForHowl={[Function]}
+>
+  <div
+    className="SelectDogForHowl__outer-container error"
+  >
+    <p>
+      Error: something went wrong. Check your connection and the URL and try again.
+    </p>
+  </div>
+</SelectDogForHowl>
+`;
