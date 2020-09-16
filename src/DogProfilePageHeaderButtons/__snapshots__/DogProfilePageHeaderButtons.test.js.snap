@@ -30,7 +30,12 @@ exports[`DogProfilePageHeaderButtons component renders the UI as expected 1`] = 
           Object {
             "id": "",
             "name": "",
-            "owner": "",
+            "owner": Object {
+              "email": "",
+              "id": "",
+              "phone": "",
+              "username": "",
+            },
           }
         }
         history={
