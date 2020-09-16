@@ -1,0 +1,366 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationForm component renders the UI as expected 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <RegistrationForm
+      currentEmail=""
+      currentPhone=""
+      history={
+        Object {
+          "push": [Function],
+        }
+      }
+      setShowEdit={[Function]}
+      suffix=""
+    >
+      <section
+        className="RegistrationForm__section outer-section"
+      >
+        <header
+          className="RegistrationForm__header"
+        >
+          <h1>
+            Even man's best friend needs a pack...
+          </h1>
+        </header>
+        <form
+          className="RegistrationForm__form"
+          onSubmit={[Function]}
+        >
+          <fieldset
+            className="RegistrationForm__fieldset outer-fieldset "
+          >
+            <legend>
+              Create an account to get started!
+            </legend>
+            <div>
+              <label
+                htmlFor="email"
+              >
+                Email:
+              </label>
+              <input
+                aria-describedby="email-validation"
+                id="email"
+                name="email"
+                onChange={[Function]}
+                placeholder="example@example.com"
+                required={true}
+                type="email"
+                value=""
+              />
+            </div>
+            <div
+              role="alert"
+            >
+              <ValidateEmail
+                email=""
+                emailAlreadyRegistered={false}
+                emailValidationError="Email invalid."
+                setEmailValidationError={[Function]}
+                suffix=""
+              >
+                <p
+                  className="ValidateEmail__validator error"
+                  id="email-validation"
+                >
+                  A valid email address is required.
+                  <br />
+                </p>
+              </ValidateEmail>
+            </div>
+            <div>
+              <label
+                htmlFor="phone"
+              >
+                Phone number:
+              </label>
+              <input
+                aria-describedby="phone-validation"
+                id="phone"
+                name="phone"
+                onChange={[Function]}
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                type="tel"
+                value=""
+              />
+            </div>
+            <div
+              role="alert"
+            >
+              <ValidatePhoneNumber
+                phone=""
+                phoneValidationError={null}
+                setPhoneValidationError={[Function]}
+              >
+                <p
+                  className="ValidatePhoneNumber__validator  "
+                  id="phone-validation"
+                >
+                  Phone number optional, but if provided must match format '123-456-7890'.
+                </p>
+              </ValidatePhoneNumber>
+            </div>
+            <div>
+              <label
+                htmlFor="username"
+              >
+                Username:
+              </label>
+              <input
+                aria-describedby="username-validation"
+                autoComplete="username"
+                id="username"
+                name="username"
+                onChange={[Function]}
+                placeholder="Username"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              role="alert"
+            >
+              <ValidateUsername
+                setUsernameValidationError={[Function]}
+                username=""
+                usernameExists={false}
+                usernameValidationError="Invalid username."
+              >
+                <p
+                  className="ValidateUserName__validator error"
+                  id="username-validation"
+                >
+                  Username required and must be 3-72 characters in length.
+                  <br />
+                </p>
+              </ValidateUsername>
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+              >
+                Password:
+              </label>
+              <input
+                aria-describedby="password-error-message"
+                autoComplete="new-password"
+                id="password"
+                name="password"
+                onChange={[Function]}
+                required={true}
+                type="password"
+                value=""
+              />
+            </div>
+            <ValidatePassword
+              password=""
+              passwordError={
+                Object {
+                  "endSpaces": false,
+                  "lowerCase": true,
+                  "number": true,
+                  "specialChar": true,
+                  "tooLong": false,
+                  "tooShort": true,
+                  "upperCase": true,
+                }
+              }
+              passwordErrorMessage={
+                Array [
+                  "Password must be at least 8 characters in length.",
+                  "Password must contain at least one lowercase character.",
+                  "Password must contain at least one uppercase character.",
+                  "Password must contain at least one number.",
+                  "Password must contain at least one special character.",
+                ]
+              }
+              setPasswordError={[Function]}
+              setPasswordErrorMessage={[Function]}
+            >
+              <PasswordChecklist
+                passwordError={
+                  Object {
+                    "endSpaces": false,
+                    "lowerCase": true,
+                    "number": true,
+                    "specialChar": true,
+                    "tooLong": false,
+                    "tooShort": true,
+                    "upperCase": true,
+                  }
+                }
+              >
+                <div>
+                  <p>
+                    Password must:
+                  </p>
+                  <ul>
+                    <li>
+                      Be at least 8 characters in length 
+                      <span
+                        style={
+                          Object {
+                            "color": "red",
+                          }
+                        }
+                      >
+                        ✖
+                      </span>
+                    </li>
+                    <li>
+                      Be no more than 72 characters in length 
+                      <span
+                        style={
+                          Object {
+                            "color": "hsl(245, 100%, 50%)",
+                          }
+                        }
+                      >
+                        ✔
+                      </span>
+                    </li>
+                    <li>
+                      Not begin or end with a space 
+                      <span
+                        style={
+                          Object {
+                            "color": "hsl(245, 100%, 50%)",
+                          }
+                        }
+                      >
+                        ✔
+                      </span>
+                    </li>
+                    <li>
+                      Contain at least one lowercase letter 
+                      <span
+                        style={
+                          Object {
+                            "color": "red",
+                          }
+                        }
+                      >
+                        ✖
+                      </span>
+                    </li>
+                    <li>
+                      Contain at least one uppercase letter 
+                      <span
+                        style={
+                          Object {
+                            "color": "red",
+                          }
+                        }
+                      >
+                        ✖
+                      </span>
+                    </li>
+                    <li>
+                      Contain at least one number 
+                      <span
+                        style={
+                          Object {
+                            "color": "red",
+                          }
+                        }
+                      >
+                        ✖
+                      </span>
+                    </li>
+                    <li>
+                      Contain at least one special character (e.g. !, @, #, $, etc.) 
+                      <span
+                        style={
+                          Object {
+                            "color": "red",
+                          }
+                        }
+                      >
+                        ✖
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </PasswordChecklist>
+              <div
+                className="ValidatePassword__password-error-message"
+                role="alert"
+              >
+                <p
+                  id="password-error-message"
+                >
+                  Password must be at least 8 characters in length. Password must contain at least one lowercase character. Password must contain at least one uppercase character. Password must contain at least one number. Password must contain at least one special character.
+                </p>
+              </div>
+            </ValidatePassword>
+            <div>
+              <label
+                htmlFor="reenter-password"
+              >
+                Re-enter password:
+              </label>
+              <input
+                aria-describedby="reenter-password-validation"
+                autoComplete="new-password"
+                id="reenter-password"
+                name="reenter-password"
+                onChange={[Function]}
+                required={true}
+                type="password"
+                value=""
+              />
+            </div>
+            <ValidateReenteredPassword
+              password=""
+              reenteredPassword=""
+              reenteredPasswordError={null}
+              setReenteredPasswordError={[Function]}
+            >
+              <p
+                className="ValidateReenteredPassword__validator valid"
+                id="reenter-password-validation"
+              >
+                Passwords match.
+              </p>
+            </ValidateReenteredPassword>
+          </fieldset>
+          <button
+            className="button"
+            disabled="Email invalid."
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+        <div
+          className="RegistrationForm__alert-div"
+          role="alert"
+        />
+      </section>
+    </RegistrationForm>
+  </Router>
+</BrowserRouter>
+`;
