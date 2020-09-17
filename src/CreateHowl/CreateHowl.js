@@ -37,6 +37,14 @@ const CreateHowl = (props) => {
     });
     const [locationError, setLocationError] = useState([]);
     const [meetingType, setMeetingType] = useState(howl.meeting_type || 'recurring');
+    
+    /* 
+        Howls returned from the api do not differentiate types of meeting windows in the time_windows property;
+        day_of_week will simply be an empty string if meeting_type === 'once'.
+        If the component is being used to edit a howl, the intial state must therefore be set based on the meeting_type,
+        since the nature of the form used to edit the howl requires separate states for recurringMeetingWindows
+        and oneTimeMeetingWindows.
+    */
     const [recurringMeetingWindows, setRecurringMeetingWindows] = useState(howl.meeting_type === 'recurring' 
         ?
             howl.time_windows.map(win => {
@@ -157,6 +165,8 @@ const CreateHowl = (props) => {
                     }),
             personal_message: personalMessage,
         };
+
+        // The suffix prop is only supplied when component is used to update a howl
         if (suffix) {
             HowlsService.updateHowl(howl.id, newHowl)
                 .then(() => HowlsService.getHowlById(howl.id))
@@ -359,7 +369,7 @@ const CreateHowl = (props) => {
                                 aria-describedby='personal-message-validator'
                                 value={personalMessage}
                                 onChange={(e) => setPersonalMessage(e.target.value)}
-                            ></textarea>
+                            />
                         </div>
                         <div
                             className='CreateHowl__alert-div personal-message' 
