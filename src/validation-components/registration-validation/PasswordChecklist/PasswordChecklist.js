@@ -1,19 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const PasswordChecklist = (props) => {
     const { passwordError } = props;
-    const { 
+
+    const {
         tooShort,
         tooLong,
         endSpaces,
-        upperCase,
         lowerCase,
+        upperCase,
         number,
-        specialChar,
+        specialChar
     } = passwordError;
 
     const checkMark = <span style={{ color: 'hsl(245, 100%, 50%)' }}>&#10004;</span>;
     const xMark = <span style={{ color: 'red' }}>&#10006;</span>;
+
+    if (Object.keys(passwordError).length < 7) {
+        return (
+            <div>
+                <p>Error: Something went wrong. Check your connection and try again.</p>
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -30,5 +40,21 @@ const PasswordChecklist = (props) => {
         </div>
     );
 }
+
+PasswordChecklist.defaultProps = {
+    passwordError: {},
+}
+
+PasswordChecklist.propTypes = {
+    passwordError: PropTypes.shape({
+        tooShort: PropTypes.bool,
+        tooLong: PropTypes.bool,
+        endSpaces: PropTypes.bool,
+        upperCase: PropTypes.bool,
+        lowerCase: PropTypes.bool,
+        number: PropTypes.bool,
+        specialChar: PropTypes.bool,
+    }),
+};
 
 export default PasswordChecklist;
