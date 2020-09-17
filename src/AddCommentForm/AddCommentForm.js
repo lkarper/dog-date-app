@@ -29,6 +29,7 @@ const AddCommentForm = (props) => {
             edited: !!suffix
         };
 
+        // The suffix prop will only be used if the form is being used to update a comment 
         if (suffix) {
             ReviewsService.updateComment(reviewId, id, newComment)
                 .then(() => {
@@ -82,8 +83,7 @@ const AddCommentForm = (props) => {
                 rows='8'
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
-            >
-            </textarea> 
+            />
             <button
                 className='AddCommentForm__submit button'
                 type='submit'
