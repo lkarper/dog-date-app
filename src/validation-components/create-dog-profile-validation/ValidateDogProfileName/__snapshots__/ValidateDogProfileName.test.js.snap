@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateDogProfileName component renders the UI as expected 1`] = `
+<ValidateDogProfileName
+  name=""
+  nameError="A name is required. (Max 72 characters.)"
+  setNameError={[Function]}
+>
+  <p
+    className="ValidateDogProfile__validator error"
+    id="name-validator"
+  >
+    A name is required. (Max 72 characters.)
+  </p>
+</ValidateDogProfileName>
+`;
