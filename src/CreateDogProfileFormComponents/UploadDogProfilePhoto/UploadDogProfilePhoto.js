@@ -5,7 +5,6 @@ import 'react-image-crop/dist/ReactCrop.css';
 import './UploadDogProfilePhoto.css';
 
 const UploadDogProfilePhoto = (props) => {
-    
     const { 
         imgUrlP, 
         setImgUrlP, 
@@ -29,6 +28,7 @@ const UploadDogProfilePhoto = (props) => {
     const imgRef = useRef(null);
     const previewCanvasRef = useRef(null);
     
+    // Triggers the profile upload api call if the user decides to keep an old profile photo when editing a profile
     useEffect(() => {
         if (imgUrl !== imgUrlP) {
             setImgUrlP(imgUrl);
@@ -37,6 +37,7 @@ const UploadDogProfilePhoto = (props) => {
         }
     }, [imgUrl, imgUrlP, setImgUrlP, uploadDogProfile]);
 
+    // Creates data URL from uploaded image file to be used in canvas element for image crop
     useEffect(() => {
         if (imgFile) {
             const reader = new FileReader();
@@ -45,13 +46,19 @@ const UploadDogProfilePhoto = (props) => {
         }
     }, [imgFile]);
 
+    /* 
+        Once the data URL is ready, the canvas is loaded for cropping the image; 
+        cropping aspect ratio is locked to 4:3 for uniform profile photos
+    */
     useEffect(() => {
         if (upImg) {
-
             const { width, height } = document.querySelector('.ReactCrop__image').getBoundingClientRect();
 
-            if (width > height) {
-                
+            /* 
+                Sets the initial crop field to be either the maximum height or the maximum width
+                allowed by a 4:3 aspect ratio, depending on the orientation of the uploaded photo
+            */
+            if (width > height) {    
                 const cropWidth = height * 4 / 3;
                 const xOffset = ((width - cropWidth) / 2) / width * 100;
                 
@@ -63,7 +70,6 @@ const UploadDogProfilePhoto = (props) => {
                     aspect: 4 / 3, 
                 });
             } else {
-
                 const cropHeight = width * 3 / 4;
                 const yOffset = ((height - cropHeight) / 2) / height * 100;
 
@@ -78,6 +84,10 @@ const UploadDogProfilePhoto = (props) => {
         }
     }, [upImg, setCrop]);
 
+    /* 
+        Sets parent state so that no image is used in a profile; 
+        if editing a profile, the old image is removed
+    */
     const noPhoto = () => {
         setImgUrl(null);
         if (apiError) {
@@ -85,8 +95,11 @@ const UploadDogProfilePhoto = (props) => {
         }
     }
 
-    const pixelRatio = 10;
-
+    /* 
+        Creates a new canvas from the cropped region by increasing the size,
+        since the preview sized canvas that is displayed on screen is too small
+        for the api upload
+    */
     const getResizedCanvas = (canvas, newWidth, newHeight) => {
         const tmpCanvas = document.createElement('canvas');
         tmpCanvas.width = newWidth;
@@ -108,6 +121,7 @@ const UploadDogProfilePhoto = (props) => {
         return tmpCanvas;
     }
 
+    // Generates data from the resized canavas that will be uploaded to api
     const generateUpload = (previewCanvas, crop) => {
         if (!crop || !previewCanvas) {
             return;
@@ -129,6 +143,10 @@ const UploadDogProfilePhoto = (props) => {
         imgRef.current = img;
     }, []);
 
+    /* 
+        Takes area of uploaded photo that falls within crop bounds and displays it as
+        a preview of the cropped region that will be uploaded as a profile photo
+    */
     useEffect(() => {
         if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
             return;
@@ -138,8 +156,19 @@ const UploadDogProfilePhoto = (props) => {
         const canvas = previewCanvasRef.current;
         const crop = completedCrop;
 
+        /*
+            Sets the scale by which the preview will be larger/smaller
+            than the cropped region shown while cropping
+        */
+        const pixelRatio = 10;
+
+        /* 
+            Scales are used to properly set the cropped area's dimensions,
+            since the image on screen that is being cropped has been resized
+        */
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
+
         const ctx = canvas.getContext('2d');
 
         canvas.width = crop.width * pixelRatio;
