@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateDogProfileObedience = (props) => {
     
-    const { obedience, obedienceError, setObedienceError } = props;
+    const { 
+        obedience, 
+        obedienceError, 
+        setObedienceError 
+    } = props;
 
     useEffect(() => {
         if (obedience) {
@@ -32,5 +37,17 @@ const ValidateDogProfileObedience = (props) => {
         </p>
     );
 }
+
+ValidateDogProfileObedience.defaultProps = {
+    obedience: '',
+    obedienceError: `You must select your dog's obedience level.`,
+    setObedienceError: () => {},
+};
+
+ValidateDogProfileObedience.propTypes = {
+    obedience: PropTypes.string.isRequired,
+    obedienceError: PropTypes.string.isRequired,
+    setObedienceError: PropTypes.func.isRequired,
+};
 
 export default ValidateDogProfileObedience;
