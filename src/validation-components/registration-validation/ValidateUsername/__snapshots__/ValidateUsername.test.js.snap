@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateUsername component renders the UI as expected 1`] = `
+<ValidateUsername
+  setUsernameValidationError={[Function]}
+  username=""
+  usernameExists=""
+  usernameValidationError="Username required and must be 3-72 characters in length."
+>
+  <p
+    className="ValidateUserName__validator error"
+    id="username-validation"
+  >
+    Username required and must be 3-72 characters in length.
+    <br />
+  </p>
+</ValidateUsername>
+`;
