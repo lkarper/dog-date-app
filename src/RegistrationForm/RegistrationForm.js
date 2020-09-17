@@ -27,11 +27,11 @@ const RegistrationForm = (props) => {
     }, [props]);
 
     const [email, setEmail] = useState(currentEmail);
-    const [emailValidationError, setEmailValidationError] = useState(null);
+    const [emailValidationError, setEmailValidationError] = useState('');
     const [phone, setPhone] = useState(currentPhone);
-    const [phoneValidationError, setPhoneValidationError] = useState(null);
+    const [phoneValidationError, setPhoneValidationError] = useState('');
     const [username, setUsername] = useState('');
-    const [usernameValidationError, setUsernameValidationError] = useState(null);
+    const [usernameValidationError, setUsernameValidationError] = useState('');
     const [password, setPassword] = useState('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState([]);
     const [passwordError, setPasswordError] = useState({
@@ -44,17 +44,17 @@ const RegistrationForm = (props) => {
         specialChar: true,
     });
     const [reenteredPassword, setReenteredPassword] = useState('');
-    const [reenteredPasswordError, setReenteredPasswordError] = useState(null);
-    const [emailAlreadyRegistered, setEmailAlreadyRegistered] = useState(false);
-    const [usernameExists, setUsernameExists] = useState(false);
-    const [apiError, setApiError] = useState(false);
+    const [reenteredPasswordError, setReenteredPasswordError] = useState('');
+    const [emailAlreadyRegistered, setEmailAlreadyRegistered] = useState('');
+    const [usernameExists, setUsernameExists] = useState('');
+    const [apiError, setApiError] = useState('');
     const [showLoading, setShowLoading] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setShowLoading(true);
-        setEmailAlreadyRegistered(false);
-        setUsernameExists(false);
+        setEmailAlreadyRegistered('');
+        setUsernameExists('');
 
         if (suffix) {
             AuthApiService.updateUser({
@@ -74,10 +74,10 @@ const RegistrationForm = (props) => {
                         email,
                         phone
                     });
-                    setEmailValidationError(false);
-                    setPhoneValidationError(false);
-                    setEmailAlreadyRegistered(false);
-                    setApiError(false);
+                    setEmailValidationError('');
+                    setPhoneValidationError('');
+                    setEmailAlreadyRegistered('');
+                    setApiError('');
                     setShowEdit(false);
                 })
                 .catch(res => {
@@ -96,16 +96,16 @@ const RegistrationForm = (props) => {
             })
                 .then(user => {
                     setEmail('');
-                    setEmailValidationError(false);
+                    setEmailValidationError('');
                     setPhone('');
-                    setPhoneValidationError(false);
+                    setPhoneValidationError('');
                     setUsername('');
-                    setUsernameValidationError(false);
+                    setUsernameValidationError('');
                     setPassword('');
                     setPasswordErrorMessage([]);
                     setReenteredPassword('');
-                    setEmailAlreadyRegistered(false);
-                    setUsernameExists(false);
+                    setEmailAlreadyRegistered('');
+                    setUsernameExists('');
                     props.history.push('/login');
                 })
                     .catch(res => {
