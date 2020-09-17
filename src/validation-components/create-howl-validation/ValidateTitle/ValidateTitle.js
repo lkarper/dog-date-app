@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateTitle = (props) => {
-    const { title, titleError, setTitleError } = props;
+    const { 
+        title, 
+        titleError, 
+        setTitleError 
+    } = props;
 
     useEffect(() => {
         if (title.trim().length === 0) {
-            setTitleError('You must provide a title. (Max 100 chars.)')
+            setTitleError('You must provide a title. (Max 100 chars.)');
         } else {
             setTitleError('');
         }
@@ -31,5 +36,17 @@ const ValidateTitle = (props) => {
         </p>
     );
 }
+
+ValidateTitle.defaultProps = {
+    title: '',
+    titleError: 'You must provide a title. (Max 100 chars.)',
+    setTitleError: () => {},
+};
+
+ValidateTitle.propTypes = {
+    title: PropTypes.string.isRequired,
+    titleError: PropTypes.string.isRequired,
+    setTitleError: PropTypes.func.isRequired,
+};
 
 export default ValidateTitle;
