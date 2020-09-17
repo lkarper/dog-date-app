@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateDogProfileEnergy component renders the UI as expected 1`] = `
+<ValidateDogProfileEnergy
+  energy=""
+  energyError=""
+  setEnergyError={[Function]}
+>
+  <p
+    className="ValidateDogProfileEnergy__validator error"
+    id="energy-validator"
+  />
+</ValidateDogProfileEnergy>
+`;
