@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateDogProfileEnergy = (props) => {
 
-    const { energy, energyError, setEnergyError } = props;
+    const { 
+        energy, 
+        energyError, 
+        setEnergyError 
+    } = props;
 
     useEffect(() => {
         if (energy) {
@@ -32,5 +37,17 @@ const ValidateDogProfileEnergy = (props) => {
         </p>
     );
 }
+
+ValidateDogProfileEnergy.defaultProps = {
+    energy: '',
+    energyError: '',
+    setEnergyError: () => {},
+};
+
+ValidateDogProfileEnergy.propTypes = {
+    energy: PropTypes.string.isRequired,
+    energyError: PropTypes.string.isRequired,
+    setEnergyError: PropTypes.func.isRequired,
+};
 
 export default ValidateDogProfileEnergy;
