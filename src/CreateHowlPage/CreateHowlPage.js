@@ -5,7 +5,6 @@ import CreateHowl from '../CreateHowl/CreateHowl';
 import './CreateHowlPage.css';
 
 const CreateHowlPage = (props) => {
-
     const context = useContext(UserContext);
 
     useEffect(() => {

@@ -15,7 +15,6 @@ import HowlsService from '../services/howls-service';
 import './CreateHowl.css';
 
 const CreateHowl = (props) => {
-
     const {
         suffix,
         howl
