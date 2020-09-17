@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ValidateAddress from '../validation-components/create-howl-validation/ValidateAddress';
-import ValidateCity from '../validation-components/create-howl-validation/ValidateCity';
+import ValidateAddress from '../validation-components/create-howl-validation/ValidateAddress/ValidateAddress';
+import ValidateCity from '../validation-components/create-howl-validation/ValidateCity/ValidateCity';
 import StateSelector from '../StateSelector/StateSelector';
-import ValidateState from '../validation-components/create-howl-validation/ValidateState';
-import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
+import ValidateState from '../validation-components/create-howl-validation/ValidateState/ValidateState';
+import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode/ValidateZipCode';
 import './LocationForm.css';
 
 const LocationForm = (props) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StateSelector from '../StateSelector/StateSelector';
-import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode';
+import ValidateZipCode from '../validation-components/create-howl-validation/ValidateZipCode/ValidateZipCode';
 import HowlsPageAdvancedSearch from '../HowlsPageAdvancedSearch/HowlsPageAdvancedSearch';
 import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
 import './HowlsPageFilterForm.css';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ValidateDogProfileEnergy from '../../validation-components/create-dog-profile-validation/ValidateDogProfileEnergy/ValidateDogProfileEnergy';
 import ValidateDogProfileTemperment from '../../validation-components/create-dog-profile-validation/ValidateDogProfileTemperment/ValidateDogProfileTemperment';
 import ValidateDogProfileObedience from '../../validation-components/create-dog-profile-validation/ValidateDogProfileObedience/ValidateDogProfileObedience';
-import ValidatePersonalMessage from '../../validation-components/create-howl-validation/ValidatePersonalMessage';
+import ValidatePersonalMessage from '../../validation-components/create-howl-validation/ValidatePersonalMessage/ValidatePersonalMessage';
 import './DogDescription.css';
 
 const DogDescription = (props) => {

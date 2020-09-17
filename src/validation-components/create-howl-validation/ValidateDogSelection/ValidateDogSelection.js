@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../../../contexts/UserContext';
 
 const ValidateDogSelection = (props) => {
     const { dogsForHowl, dogsForHowlError, setDogsForHowlError } = props;

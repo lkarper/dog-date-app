@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import OneTimeMeetingTimeWindow from '../OneTimeMeetingTimeWindow/OneTimeMeetingTimeWindow';
-import ValidateTime from '../validation-components/create-howl-validation/ValidateTime';
+import ValidateTime from '../validation-components/create-howl-validation/ValidateTime/ValidateTime';
 import RecurringMeetingForm from '../RecurringMeetingForm/RecurringMeetingForm';
 
 const HowlsPageAdvancedSearch = (props) => {

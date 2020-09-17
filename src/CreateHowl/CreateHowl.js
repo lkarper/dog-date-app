@@ -6,11 +6,11 @@ import MapForm from '../MapForm/MapForm';
 import SelectDogForHowl from '../SelectDogForHowl/SelectDogForHowl';
 import OneTimeMeetingForm from '../OneTimeMeetingForm/OneTimeMeetingForm';
 import RecurringMeetingForm from '../RecurringMeetingForm/RecurringMeetingForm';
-import ValidateDogSelection from '../validation-components/create-howl-validation/ValidateDogSelection';
-import ValidateTime from '../validation-components/create-howl-validation/ValidateTime';
-import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
+import ValidateDogSelection from '../validation-components/create-howl-validation/ValidateDogSelection/ValidateDogSelection';
+import ValidateTime from '../validation-components/create-howl-validation/ValidateTime/ValidateTime';
+import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage/ValidatePersonalMessage';
 import LocationForm from '../LocationForm/LocationForm';
-import ValidateTitle from '../validation-components/create-howl-validation/ValidateTitle';
+import ValidateTitle from '../validation-components/create-howl-validation/ValidateTitle/ValidateTitle';
 import HowlsService from '../services/howls-service';
 import './CreateHowl.css';
 

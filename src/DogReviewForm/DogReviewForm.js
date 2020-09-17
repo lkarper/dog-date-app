@@ -5,9 +5,9 @@ import UserContext from '../contexts/UserContext';
 import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
 import MapForm from '../MapForm/MapForm';
 import LocationForm from '../LocationForm/LocationForm';
-import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage';
+import ValidatePersonalMessage from '../validation-components/create-howl-validation/ValidatePersonalMessage/ValidatePersonalMessage';
 import ReviewsService from '../services/reviews-service';
-import ValidateTitle from '../validation-components/create-howl-validation/ValidateTitle';
+import ValidateTitle from '../validation-components/create-howl-validation/ValidateTitle/ValidateTitle';
 import './DogReviewForm.css';
 
 const DogReviewForm = (props) => {
