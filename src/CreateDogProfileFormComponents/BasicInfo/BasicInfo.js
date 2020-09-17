@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ValidateDogProfileName from '../../validation-components/create-dog-profile-validation/ValidateDogProfileName';
+import ValidateDogProfileName from '../../validation-components/create-dog-profile-validation/ValidateDogProfileName/ValidateDogProfileName';
 import ValidateDogProfileAge from '../../validation-components/create-dog-profile-validation/ValidateDogProfileAge/ValidateDogProfileAge';
-import ValidateDogProfileSex from '../../validation-components/create-dog-profile-validation/ValidateDogProfileSex';
+import ValidateDogProfileSex from '../../validation-components/create-dog-profile-validation/ValidateDogProfileSex/ValidateDogProfileSex';
 import './BasicInfo.css';
 
 const BasicInfo = (props) => {

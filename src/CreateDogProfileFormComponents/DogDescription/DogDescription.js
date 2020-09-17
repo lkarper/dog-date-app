@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ValidateDogProfileEnergy from '../../validation-components/create-dog-profile-validation/ValidateDogProfileEnergy';
-import ValidateDogProfileTemperment from '../../validation-components/create-dog-profile-validation/ValidateDogProfileTemperment';
-import ValidateDogProfileObedience from '../../validation-components/create-dog-profile-validation/ValidateDogProfileObedience';
+import ValidateDogProfileEnergy from '../../validation-components/create-dog-profile-validation/ValidateDogProfileEnergy/ValidateDogProfileEnergy';
+import ValidateDogProfileTemperment from '../../validation-components/create-dog-profile-validation/ValidateDogProfileTemperment/ValidateDogProfileTemperment';
+import ValidateDogProfileObedience from '../../validation-components/create-dog-profile-validation/ValidateDogProfileObedience/ValidateDogProfileObedience';
 import ValidatePersonalMessage from '../../validation-components/create-howl-validation/ValidatePersonalMessage';
 import './DogDescription.css';
 
