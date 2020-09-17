@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateDogProfileObedience component renders the UI as expected 1`] = `
+<ValidateDogProfileObedience
+  obedience=""
+  obedienceError="You must select your dog's obedience level."
+  setObedienceError={[Function]}
+>
+  <p
+    className="ValidateDogProfileObedience__validator error"
+    id="obedience-validator"
+  >
+    You must select your dog's obedience level.
+  </p>
+</ValidateDogProfileObedience>
+`;
