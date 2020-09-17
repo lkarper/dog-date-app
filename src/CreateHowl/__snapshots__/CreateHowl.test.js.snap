@@ -545,6 +545,7 @@ exports[`CreateHowl component renders the UI as expected 1`] = `
                       role="alert"
                     >
                       <ValidateZipCode
+                        notRequired={false}
                         setZipcodeError={[Function]}
                         zipcode=""
                         zipcodeError="ZIP code is required and must be 5 digits in length."

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateZipCode = (props) => {
     
@@ -6,7 +7,7 @@ const ValidateZipCode = (props) => {
         zipcode, 
         zipcodeError, 
         setZipcodeError, 
-        notRequired = false 
+        notRequired
     } = props;
 
     useEffect(() => {  
@@ -54,5 +55,19 @@ const ValidateZipCode = (props) => {
         </p>
     );
 }
+
+ValidateZipCode.defaultProps = {
+    zipcode: '', 
+    zipcodeError: `ZIP code is required and must be 5 digits in length.`, 
+    setZipcodeError: () => {}, 
+    notRequired: false, 
+};
+
+ValidateZipCode.propTypes = {
+    zipcode: PropTypes.string.isRequired,
+    zipcodeError: PropTypes.string.isRequired,
+    setZipcodeError: PropTypes.func.isRequired,
+    notRequired: PropTypes.bool.isRequired,
+};
 
 export default ValidateZipCode;
