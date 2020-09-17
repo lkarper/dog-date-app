@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateDogProfileAge = (props) => {
 
-    const { ageYears, ageMonths, ageError, setAgeError } = props;
+    const { 
+        ageYears, 
+        ageMonths, 
+        ageError, 
+        setAgeError 
+    } = props;
 
     useEffect(() => {
         if (!ageYears && !ageMonths) {
@@ -56,5 +62,19 @@ const ValidateDogProfileAge = (props) => {
     );
 
 }
+
+ValidateDogProfileAge.defaultProps = {
+    ageYears: '',
+    ageMonths: '',
+    ageError: '',
+    setAgeError: () => {},
+};
+
+ValidateDogProfileAge.propTypes = {
+    ageYears: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    ageMonths: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    ageError: PropTypes.string.isRequired,
+    setAgeError: PropTypes.func.isRequired,
+};
 
 export default ValidateDogProfileAge;
