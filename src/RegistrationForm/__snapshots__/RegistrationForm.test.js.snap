@@ -112,7 +112,7 @@ exports[`RegistrationForm component renders the UI as expected 1`] = `
             >
               <ValidatePhoneNumber
                 phone=""
-                phoneValidationError={null}
+                phoneValidationError=""
                 setPhoneValidationError={[Function]}
               >
                 <p

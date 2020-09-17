@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidatePhoneNumber = (props) => {
-
     const { 
         phone, 
         phoneValidationError,
@@ -16,13 +16,13 @@ const ValidatePhoneNumber = (props) => {
         const validPhone = regex.test(phone);
 
         if (phone && validPhone) {
-            setPhoneValidationError(null);
+            setPhoneValidationError('');
             setPhoneValidationMessage('Phone number properly formatted.'); 
         } else if (phone && !validPhone) {
             setPhoneValidationError('Phone number not valid.');
             setPhoneValidationMessage(`Phone number does not match format '123-456-7890'.`);
         } else {
-            setPhoneValidationError(null);
+            setPhoneValidationError('');
             setPhoneValidationMessage(`Phone number optional, but if provided must match format '123-456-7890'.`);
         }
 
@@ -37,5 +37,17 @@ const ValidatePhoneNumber = (props) => {
         </p>
     );
 }
+
+ValidatePhoneNumber.defaultProps = {
+    phone: '', 
+    phoneValidationError: '',
+    setPhoneValidationError: () => {}, 
+};
+
+ValidatePhoneNumber.propTypes = {
+    phone: PropTypes.string.isRequired,
+    phoneValidationError: PropTypes.string.isRequired,
+    setPhoneValidationError: PropTypes.func.isRequired,
+};
 
 export default ValidatePhoneNumber;
