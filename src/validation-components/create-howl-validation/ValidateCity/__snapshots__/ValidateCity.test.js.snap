@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateCity component renders the UI as expected 1`] = `
+<ValidateCity
+  city=""
+  cityError="You must enter a city. (Max 100 chars.)"
+  setCityError={[Function]}
+>
+  <p
+    className="ValidateCity__validator error"
+    id="city-validator"
+  >
+    You must enter a city. (Max 100 chars.)
+  </p>
+</ValidateCity>
+`;
