@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateDogProfileTemperment = (props) => {
 
-    const { temperment, tempermentError, setTempermentError } = props;
+    const { 
+        temperment, 
+        tempermentError, 
+        setTempermentError 
+    } = props;
 
     useEffect(() => {
         if (temperment) {
@@ -32,5 +37,17 @@ const ValidateDogProfileTemperment = (props) => {
         </p>
     );
 }
+
+ValidateDogProfileTemperment.defaultProps = {
+    temperment: '',
+    tempermentError: `You must select your dog's temperment.`,
+    setTempermentError: () => {},
+};
+
+ValidateDogProfileTemperment.propTypes = {
+    temperment: PropTypes.string.isRequired,
+    tempermentError: PropTypes.string.isRequired,
+    setTempermentError: PropTypes.func.isRequired,
+};
 
 export default ValidateDogProfileTemperment;
