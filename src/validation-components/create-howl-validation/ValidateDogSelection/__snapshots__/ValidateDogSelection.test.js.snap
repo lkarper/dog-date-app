@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateDogSelection component renders the UI as expected 1`] = `
+<ValidateDogSelection
+  dogsForHowl={Array []}
+  dogsForHowlError="You must select at least one dog."
+  setDogsForHowlError={[Function]}
+>
+  <p
+    className="ValidateDogSelection__validator error"
+    id="dogs-validation"
+  >
+    You must select at least one dog.
+  </p>
+</ValidateDogSelection>
+`;
