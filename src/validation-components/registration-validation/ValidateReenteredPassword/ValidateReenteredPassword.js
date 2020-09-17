@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateReenteredPassword = (props) => {
-    const { reenteredPasswordError } = props;
+    const { 
+        password, 
+        reenteredPassword, 
+        reenteredPasswordError,
+        setReenteredPasswordError
+    } = props;
 
     useEffect(() => {
-        const { setReenteredPasswordError, password, reenteredPassword } = props;
         if (password === reenteredPassword) {
-            setReenteredPasswordError(null);
+            setReenteredPasswordError('');
         } else {
             setReenteredPasswordError('Passwords do not match.');
         }
-    }, [props]);
+    }, [password, reenteredPassword, setReenteredPasswordError]);
 
     if (reenteredPasswordError) {
         return (
@@ -33,5 +38,19 @@ const ValidateReenteredPassword = (props) => {
     );
     
 }
+
+ValidateReenteredPassword.defaultProps = {
+    password: '', 
+    reenteredPassword: '', 
+    reenteredPasswordError: '',
+    setReenteredPasswordError: () => {},
+};
+
+ValidateReenteredPassword.propTypes = {
+    password: PropTypes.string.isRequired, 
+    reenteredPassword: PropTypes.string.isRequired, 
+    reenteredPasswordError: PropTypes.string.isRequired,
+    setReenteredPasswordError: PropTypes.func.isRequired,
+};
 
 export default ValidateReenteredPassword;
