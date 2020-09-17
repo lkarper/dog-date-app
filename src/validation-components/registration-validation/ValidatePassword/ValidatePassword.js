@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import PasswordChecklist from '../PasswordChecklist/PasswordChecklist';
 import './ValidatePassword.css';
 
 const ValidatePassword = (props) => {
-
-    const { passwordErrorMessage, passwordError } = props;
+    const { 
+        password,
+        passwordErrorMessage, 
+        passwordError,
+        setPasswordError,
+        setPasswordErrorMessage
+    } = props;
     
     useEffect(() => {
-        const password = props.password;
-        const setPasswordError = props.setPasswordError;
-        const setPasswordErrorMessage = props.setPasswordErrorMessage;
         const newPasswordError = {}
         const passwordErrorArray = [];
 
@@ -63,21 +66,65 @@ const ValidatePassword = (props) => {
         }
         setPasswordError(newPasswordError);
         setPasswordErrorMessage(passwordErrorArray);
-    }, [props.password, props.setPasswordError, props.setPasswordErrorMessage]);
+    }, [password, setPasswordError, setPasswordErrorMessage]);
+
+    if (Object.keys(passwordError).length < 7) {
+        return (
+            <div
+                role='alert'
+                className='ValidatePassword__password-error-message'
+            >
+                <p
+                    id='password-error-message'
+                >
+                    Error: Something went wrong. Check your connection and try again.
+                </p>
+            </div>
+        );
+    }
 
     return (
         <>
             <PasswordChecklist passwordError={passwordError} />
             <div
-                role="alert"
+                role='alert'
                 className='ValidatePassword__password-error-message'
             >
-                <p id="password-error-message">
-                    {passwordErrorMessage.length ? passwordErrorMessage.join(' ') : 'Password meets all requirements.'}
+                <p 
+                    id='password-error-message'
+                >
+                    {passwordErrorMessage.length 
+                        ? passwordErrorMessage.join(' ') 
+                        : 'Password meets all requirements.'
+                    }
                 </p>
             </div>
         </>
     );
 }
+
+ValidatePassword.defaultProps = {
+    password: '',
+    passwordErrorMessage: [], 
+    passwordError: {},
+    setPasswordError: () => {},
+    setPasswordErrorMessage: () => {},
+};
+
+ValidatePassword.propTypes = {
+    password: PropTypes.string.isRequired,
+    passwordErrorMessage: PropTypes.arrayOf(PropTypes.string).isRequired,
+    passwordError: PropTypes.shape({
+        tooShort: PropTypes.bool,
+        tooLong: PropTypes.bool,
+        endSpaces: PropTypes.bool,
+        upperCase: PropTypes.bool,
+        lowerCase: PropTypes.bool,
+        number: PropTypes.bool,
+        specialChar: PropTypes.bool,
+    }),
+    setPasswordError: PropTypes.func.isRequired,
+    setPasswordErrorMessage: PropTypes.func.isRequired,
+};
 
 export default ValidatePassword;
