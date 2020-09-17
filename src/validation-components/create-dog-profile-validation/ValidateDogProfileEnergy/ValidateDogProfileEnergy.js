@@ -40,7 +40,7 @@ const ValidateDogProfileEnergy = (props) => {
 
 ValidateDogProfileEnergy.defaultProps = {
     energy: '',
-    energyError: '',
+    energyError: `You must select your dog's energy level.`,
     setEnergyError: () => {},
 };
 

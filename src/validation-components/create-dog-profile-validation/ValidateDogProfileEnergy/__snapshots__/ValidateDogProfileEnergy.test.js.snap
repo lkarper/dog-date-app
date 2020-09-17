@@ -3,12 +3,14 @@
 exports[`ValidateDogProfileEnergy component renders the UI as expected 1`] = `
 <ValidateDogProfileEnergy
   energy=""
-  energyError=""
+  energyError="You must select your dog's energy level."
   setEnergyError={[Function]}
 >
   <p
     className="ValidateDogProfileEnergy__validator error"
     id="energy-validator"
-  />
+  >
+    You must select your dog's energy level.
+  </p>
 </ValidateDogProfileEnergy>
 `;
