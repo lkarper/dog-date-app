@@ -1,30 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-export const calculateAverageWithArrayOfReviews = (reviews) => {
-    return reviews.reduce((acc, curr) => {
-        const { 
-            friendliness_dogs,
-            friendliness_people,
-            playing_interest,
-            obedience,
-            profile_accuracy,
-            location_suitability,
-        } = curr;
-        const averageRating = (
-            friendliness_dogs +
-            friendliness_people +
-            playing_interest +
-            obedience +
-            profile_accuracy + 
-            location_suitability 
-        ) / 6;
-        return acc + averageRating;
-    }, 0) / reviews.length;
-}
+import StarRating from '../StarRating/StarRating';
+import './DogAverageRating.css';
 
 const DogAverageRating = (props) => {
     const { reviews } = props;
+
+    const calculateAverageWithArrayOfReviews = (reviews) => {
+        return reviews.reduce((acc, curr) => {
+            const { 
+                friendliness_dogs,
+                friendliness_people,
+                playing_interest,
+                obedience,
+                profile_accuracy,
+                location_suitability,
+            } = curr;
+            const averageRating = (
+                friendliness_dogs +
+                friendliness_people +
+                playing_interest +
+                obedience +
+                profile_accuracy + 
+                location_suitability 
+            ) / 6;
+            return acc + averageRating;
+        }, 0) / reviews.length;
+    }
 
     const totalAverage = calculateAverageWithArrayOfReviews(reviews);
 
@@ -35,9 +37,13 @@ const DogAverageRating = (props) => {
     }
 
     return (
-        <p>Average rating: {totalAverage.toFixed(2)} stars</p>
+        <div
+            className='DogAverageRating__star-outer-container'
+        >
+            <p>Average rating:</p> 
+            <StarRating rating={totalAverage.toFixed(2)} />
+        </div>
     );
-
 }
 
 DogAverageRating.defaultProps = {

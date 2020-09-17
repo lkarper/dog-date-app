@@ -1,0 +1,10 @@
+.DogAverageRating__star-outer-container {
+    display: flex;
+    flex-direction: column;
+}
+@media screen and (min-width: 750px) {
+    .DogAverageRating__star-outer-container {
+        flex-direction: row;
+        align-items: center;
+    }
+}
