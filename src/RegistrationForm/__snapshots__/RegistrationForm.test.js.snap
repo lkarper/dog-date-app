@@ -147,7 +147,7 @@ exports[`RegistrationForm component renders the UI as expected 1`] = `
                 setUsernameValidationError={[Function]}
                 username=""
                 usernameExists=""
-                usernameValidationError="Invalid username."
+                usernameValidationError="Username required and must be 3-72 characters in length."
               >
                 <p
                   className="ValidateUserName__validator error"
@@ -336,7 +336,7 @@ exports[`RegistrationForm component renders the UI as expected 1`] = `
             <ValidateReenteredPassword
               password=""
               reenteredPassword=""
-              reenteredPasswordError={null}
+              reenteredPasswordError=""
               setReenteredPasswordError={[Function]}
             >
               <p

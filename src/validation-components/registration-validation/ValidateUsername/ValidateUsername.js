@@ -1,18 +1,23 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ValidateUsername = (props) => {
-    const { usernameValidationError, usernameExists } = props;
+    const { 
+        username,
+        usernameValidationError, 
+        usernameExists,
+        setUsernameValidationError 
+    } = props;
 
     useEffect(() => {
-        const { username, setUsernameValidationError } = props;
         if (username.trim().length >= 3 && username.trim().length <= 72) {
-            setUsernameValidationError(null);
+            setUsernameValidationError('');
         } else {
-            setUsernameValidationError('Invalid username.');
+            setUsernameValidationError('Username required and must be 3-72 characters in length.');
         }
         
-    }, [props]);
+    }, [username, setUsernameValidationError]);
 
     const accountExistsText = (
         <>
@@ -25,7 +30,14 @@ const ValidateUsername = (props) => {
             <span
                 style={{ color: 'black' }}
             >
-                    If that account belongs to you, <span style={{ color: 'hsl(245, 100%, 50%)' }}>{<Link to='/login'>click here</Link>}</span> to login.            </span>
+                    If that account belongs to you,{' '} 
+                    <span 
+                        style={{ color: 'hsl(245, 100%, 50%)' }}
+                    >
+                        {<Link to='/login'>click here</Link>}
+                    </span> 
+                    {' '}to login.            
+            </span>
         </>
     );
 
@@ -35,7 +47,7 @@ const ValidateUsername = (props) => {
                 className='ValidateUserName__validator error' 
                 id='username-validation'
             >
-                Username required and must be 3-72 characters in length.
+                {usernameValidationError}
                 <br />
                 {usernameExists && accountExistsText}
             </p>
@@ -53,5 +65,19 @@ const ValidateUsername = (props) => {
         </p>
     );
 }
+
+ValidateUsername.defaultProps = {
+    username: '',
+    usernameValidationError: 'Username required and must be 3-72 characters in length.', 
+    usernameExists: '',
+    setUsernameValidationError: () => {},
+};
+
+ValidateUsername.propTypes = {
+    username: PropTypes.string.isRequired,
+    usernameValidationError: PropTypes.string.isRequired,
+    usernameExists: PropTypes.string.isRequired,
+    setUsernameValidationError: PropTypes.func.isRequired,
+};
 
 export default ValidateUsername;
