@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateAddress = (props) => {
 
-    const { address, addressError, setAddressError } = props;
+    const { 
+        address, 
+        addressError, 
+        setAddressError 
+    } = props;
 
     useEffect(() => {
 
@@ -34,5 +39,17 @@ const ValidateAddress = (props) => {
         </p>
     );
 }
+
+ValidateAddress.defaultProps = {
+    address: '',
+    addressError: `You must enter an address or location name. (Max 100 chars.)`,
+    setAddressError: () => {},
+};
+
+ValidateAddress.propTypes = {
+    address: PropTypes.string.isRequired,
+    addressError: PropTypes.string.isRequired,
+    setAddressError: PropTypes.func.isRequired,
+};
 
 export default ValidateAddress;
