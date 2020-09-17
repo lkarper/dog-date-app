@@ -571,7 +571,7 @@ exports[`DogDescription component renders the UI as expected 1`] = `
     >
       <ValidatePersonalMessage
         personalMessage=""
-        personalMessageError={null}
+        personalMessageError=""
         setPersonalMessageError={[Function]}
       >
         <p

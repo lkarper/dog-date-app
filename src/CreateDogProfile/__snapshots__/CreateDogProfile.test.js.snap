@@ -406,7 +406,7 @@ exports[`CreateDogProfile component renders the UI as expected 1`] = `
                     "noChildrenP": false,
                     "obedienceErrorP": "You must select your dog's obedience level.",
                     "obedienceP": "",
-                    "personalMessageErrorP": null,
+                    "personalMessageErrorP": "",
                     "personalMessageP": "",
                     "recentlyAdoptedP": false,
                     "setDislikesMenP": [Function],
@@ -959,7 +959,7 @@ exports[`CreateDogProfile component renders the UI as expected 1`] = `
                   >
                     <ValidatePersonalMessage
                       personalMessage=""
-                      personalMessageError={null}
+                      personalMessageError=""
                       setPersonalMessageError={[Function]}
                     >
                       <p

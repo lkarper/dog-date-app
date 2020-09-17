@@ -79,7 +79,7 @@ const CreateHowl = (props) => {
     const [howlTitle, setHowlTitle] = useState(howl.howl_title);
     const [howlTitleError, setHowlTitleError] = useState('');
     const [personalMessage, setPersonalMessage] = useState(howl.personal_message);
-    const [personalMessageError, setPersonalMessageError] = useState(null);
+    const [personalMessageError, setPersonalMessageError] = useState('');
     const [apiError, setApiError] = useState(false);
 
     const updateDogsForHowl = (id, checkedBool) => {
