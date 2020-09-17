@@ -25,42 +25,9 @@ exports[`CreateHowlPage component renders the UI as expected 1`] = `
     }
   >
     <CreateHowlPage>
-      <header
-        className="CreateHowlPage__header-top"
-      >
-        <h1>
-          Howl now!
-        </h1>
-        <p>
-          Look for friends for your dog!
-        </p>
-      </header>
-      <section>
-        <header>
-          <h2>
-            Looks like you haven't created a dog profile yet.
-          </h2>
-        </header>
-        <p>
-          You must have at least one dog profile associated with your account to create a howl.
-        </p>
-        <Link
-          to="/create-dog-profile"
-        >
-          <LinkAnchor
-            href="/create-dog-profile"
-            navigate={[Function]}
-          >
-            <a
-              href="/create-dog-profile"
-              onClick={[Function]}
-            >
-              Click here
-            </a>
-          </LinkAnchor>
-        </Link>
-         to create a dog profile now!
-      </section>
+      <p>
+        Loading...
+      </p>
     </CreateHowlPage>
   </Router>
 </BrowserRouter>
