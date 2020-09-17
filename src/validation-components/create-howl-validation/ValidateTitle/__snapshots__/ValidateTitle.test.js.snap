@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateTitle component renders the UI as expected 1`] = `
+<ValidateTitle
+  setTitleError={[Function]}
+  title=""
+  titleError="You must provide a title. (Max 100 chars.)"
+>
+  <p
+    className="ValidateTitle__validator error"
+    id="title-validator"
+  >
+    You must provide a title. (Max 100 chars.)
+  </p>
+</ValidateTitle>
+`;
