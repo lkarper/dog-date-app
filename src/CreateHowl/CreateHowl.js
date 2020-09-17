@@ -24,7 +24,7 @@ const CreateHowl = (props) => {
     const context = useContext(UserContext);
 
     const [dogsForHowl, setDogsForHowl] = useState(howl.dogs.map(d => d.dog_id));
-    const [dogsForHowlError, setDogsForHowlError] = useState(null);
+    const [dogsForHowlError, setDogsForHowlError] = useState('');
     const [location, setLocation] = useState({
         address: howl.location.address,
         city: howl.location.city,
