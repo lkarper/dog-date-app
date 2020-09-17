@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateDogProfileSex = (props) => {
 
-    const { sex, sexError, setSexError } = props;
+    const { 
+        sex, 
+        sexError, 
+        setSexError 
+    } = props;
 
     useEffect(() => {
         if (sex) {
@@ -32,5 +37,17 @@ const ValidateDogProfileSex = (props) => {
         </p>
     );
 }
+
+ValidateDogProfileSex.defaultProps = {
+    sex: '',
+    sexError: `You must select your dog's sex.`,
+    setSexError: () => {},
+};
+
+ValidateDogProfileSex.propTypes = {
+    sex: PropTypes.string.isRequired,
+    sexError: PropTypes.string.isRequired,
+    setSexError: PropTypes.func.isRequired,
+};
 
 export default ValidateDogProfileSex;
