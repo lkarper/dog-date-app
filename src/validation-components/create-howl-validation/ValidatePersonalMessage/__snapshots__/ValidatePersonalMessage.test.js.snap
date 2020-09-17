@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidatePersonalMessage component renders the UI as expected 1`] = `
+<ValidatePersonalMessage
+  personalMessage=""
+  personalMessageError=""
+  setPersonalMessageError={[Function]}
+>
+  <p
+    className="ValidatePersonalMessage__validator"
+    id="personal-message-validator"
+  >
+    Personal message optional. (Limited to 2000 characters.)
+  </p>
+</ValidatePersonalMessage>
+`;
