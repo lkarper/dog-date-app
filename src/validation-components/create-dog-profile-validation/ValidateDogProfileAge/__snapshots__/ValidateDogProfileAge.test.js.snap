@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateDogProfileAge component renders the UI as expected 1`] = `
+<ValidateDogProfileAge
+  ageError=""
+  ageMonths=""
+  ageYears=""
+  setAgeError={[Function]}
+>
+  <p
+    className="ValidateDogProfileAge__validator valid"
+    id="age-validator"
+  >
+    Age set to: 
+     
+    months 
+    old.
+  </p>
+</ValidateDogProfileAge>
+`;
