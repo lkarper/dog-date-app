@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateAddress component renders the UI as expected 1`] = `
+<ValidateAddress
+  address=""
+  addressError="You must enter an address or location name. (Max 100 chars.)"
+  setAddressError={[Function]}
+>
+  <p
+    className="ValidateAddress__validator error"
+    id="address-validator"
+  >
+    You must enter an address or location name. (Max 100 chars.)
+  </p>
+</ValidateAddress>
+`;
