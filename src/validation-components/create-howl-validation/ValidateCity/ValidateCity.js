@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateCity = (props) => {
 
-    const { city, cityError, setCityError } = props;
+    const { 
+        city, 
+        cityError, 
+        setCityError 
+    } = props;
 
     useEffect(() => {
         
@@ -34,5 +39,17 @@ const ValidateCity = (props) => {
         </p>
     );
 }
+
+ValidateCity.defaultProps = {
+    city: '',
+    cityError: 'You must enter a city. (Max 100 chars.)',
+    setCityError: () => {},
+};
+
+ValidateCity.propTypes = {
+    city: PropTypes.string.isRequired,
+    cityError: PropTypes.string.isRequired,
+    setCityError: PropTypes.func.isRequired,
+};
 
 export default ValidateCity;
