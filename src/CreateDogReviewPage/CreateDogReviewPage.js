@@ -8,7 +8,6 @@ import DogProfilesService from '../services/dog-profiles-service';
 import './CreateDogReviewPage.css';
 
 const CreateDogReviewPage = (props) => {
-
     const { dog_id } = props.match.params;
 
     const context = useContext(UserContext);
