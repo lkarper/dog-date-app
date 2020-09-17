@@ -13,7 +13,7 @@ const Comment = (props) => {
     const { 
         comment, 
         comments, 
-        setComments 
+        setComments, 
     } = props;
 
     const [showEdit, setShowEdit] = useState(false);
