@@ -12,6 +12,12 @@ const CreateHowlPage = (props) => {
         window.scrollTo(0, 0);
     }, [props]);
 
+    if (Object.keys(context.user).length === 0 || context.loading) {
+        return (
+            <p>Loading...</p>
+        );
+    }
+
     return (
         <>
             <header

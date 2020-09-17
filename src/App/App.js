@@ -63,6 +63,8 @@ const App = (props) => {
         phone: window.sessionStorage.getItem('phone'),
       });
 
+      context.setLoading(true);
+
       Promise.all([
           DogProfilesService.fetchUserDogs(), 
           DogProfilesService.fetchPackMembers(),
@@ -79,11 +81,13 @@ const App = (props) => {
           context.setUserPackMembers(packMembers);
           context.setUserSavedHowls(userSavedHowls);
           context.setHowls(howls);
+          context.setLoading(false);
           context.setError(false);
           forceUpdate();
       })
       .catch(error => {
         console.log(error);
+        context.setLoading(false);
         context.setError(true);
       });
     }

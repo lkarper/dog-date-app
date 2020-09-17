@@ -27,6 +27,8 @@ const LoginPage = (props) => {
     const onLoginSuccess = () => {
         const destination = (location.state || {}).from || '/home';
 
+        context.setLoading(true);
+
         Promise.all([
                 DogProfilesService.fetchUserDogs(), 
                 DogProfilesService.fetchPackMembers(),
@@ -43,6 +45,7 @@ const LoginPage = (props) => {
                 context.setUserPackMembers(packMembers);
                 context.setUserSavedHowls(userSavedHowls);
                 context.setHowls(howls);
+                context.setLoading(false);
                 context.setError(false);
                 history.push(destination);
                 forceUpdate();
@@ -50,6 +53,7 @@ const LoginPage = (props) => {
             .catch(error => {
                 console.log(error);
                 setShowLoading(false);
+                context.setLoading(false);
                 context.setError(true);
             });
     }

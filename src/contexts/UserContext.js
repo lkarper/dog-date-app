@@ -6,7 +6,9 @@ const UserContext = createContext({
     howls: [],
     userSavedHowls: [],
     packMembers: [],
+    loading: false,
     error: false,
+    setLoading: () => {},
     setError: () => {},
     addHowl: () => {},
     removeHowl: () => {},
@@ -34,6 +36,7 @@ export const UserProvider = (props) => {
     const [howls, setHowls] = useState([]);
     const [userSavedHowls, setUserSavedHowls] = useState([]);
     const [packMembers, setUserPackMembers] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const addHowl = (newHowl) => {
@@ -93,7 +96,9 @@ export const UserProvider = (props) => {
         howls,
         userSavedHowls,
         packMembers,
+        loading,
         error,
+        setLoading,
         setError,
         setUser,
         addHowl,
