@@ -894,6 +894,7 @@ exports[`CreateHowl component renders the UI as expected 1`] = `
                     ]
                   }
                   setTimeError={[Function]}
+                  timeWindows={Array []}
                 >
                   <div>
                     <ol>
