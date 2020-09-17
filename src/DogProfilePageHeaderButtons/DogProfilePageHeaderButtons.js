@@ -5,7 +5,6 @@ import UserContext from '../contexts/UserContext';
 import DogProfilesService from '../services/dog-profiles-service';
 
 const DogProfilePageHeaderButtons = (props) => {
-
     const context = useContext(UserContext);
   
     const {
@@ -22,9 +21,7 @@ const DogProfilePageHeaderButtons = (props) => {
 
     const [apiError, setApiError] = useState(false);
 
-    const isAPackMember = context.packMembers.length 
-        ? context.packMembers.find(pm => pm.profile.id === id)
-        : false;
+    const isAPackMember = context.packMembers.length !== 0 && context.packMembers.find(pm => pm.profile.id === id);
 
     const removePackMemberCheck = () => {
         const confirmation = window.confirm(`Are you sure that you'd like to remove ${name} from your pack?`);
@@ -88,6 +85,7 @@ const DogProfilePageHeaderButtons = (props) => {
         );
     }
 
+    // Buttons to load on profile page if the user who is logged in is the owner of the profile
     if (owner.id === context.user.id) {
         return (
             <div 
