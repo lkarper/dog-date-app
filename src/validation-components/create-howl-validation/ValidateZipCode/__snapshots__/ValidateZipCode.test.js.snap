@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidateZipCode component renders the UI as expected 1`] = `
+<ValidateZipCode
+  notRequired={false}
+  setZipcodeError={[Function]}
+  zipcode=""
+  zipcodeError="ZIP code is required and must be 5 digits in length."
+>
+  <p
+    className="ValidateZipCode__validator error"
+    id="zipcode-validator"
+  >
+    ZIP code is required and must be 5 digits in length.
+  </p>
+</ValidateZipCode>
+`;
