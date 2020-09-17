@@ -29,7 +29,7 @@ TimeWindow.defaultProps = {
     endTime: '',
 };
 
-TimeWindow.PropTypes = {
+TimeWindow.propTypes = {
     startTime: PropTypes.string.isRequired,
     endTime: PropTypes.string.isRequired,
 }
