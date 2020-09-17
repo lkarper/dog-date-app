@@ -123,7 +123,7 @@ RecurringMeetingForm.defaultProps = {
 };
 
 RecurringMeetingForm.propTypes = {
-    index: PropTypes.number, 
+    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), 
     currentData: PropTypes.shape({
         dayOfWeek: PropTypes.string,
         startTime: PropTypes.string,
