@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateTime = (props) => {
     const { 
-        meetingType = '', 
-        oneTimeMeetingWindows = {}, 
-        recurringMeetingWindows = [], 
-        timeWindows = [],
+        meetingType, 
+        oneTimeMeetingWindows, 
+        recurringMeetingWindows, 
+        timeWindows,
         setTimeError 
     } = props;
 
@@ -44,6 +45,16 @@ const ValidateTime = (props) => {
             });
         }
     }, [meetingType, timeWindows, oneTimeMeetingWindows, recurringMeetingWindows, setTimeError]);
+
+    if (!meetingType) {
+        return (
+            <div
+                className='error'
+            >
+                <p>Error: Something went wrong. Check your connection and try again.</p>
+            </div>
+        )
+    }
 
     if (meetingType === 'search') {
         return (
@@ -190,5 +201,42 @@ const ValidateTime = (props) => {
         );
     }
 }
+
+ValidateTime.defaultProps = {
+    meetingType: '', 
+    oneTimeMeetingWindows: {
+        date: '',
+        timeWindows: [],
+    }, 
+    recurringMeetingWindows: [], 
+    timeWindows: [],
+    setTimeError: () => {},
+};
+
+ValidateTime.propTypes = {
+    meetingType: PropTypes.string.isRequired,
+    oneTimeMeetingWindows: PropTypes.shape({
+        date: PropTypes.string,
+        timeWindows: PropTypes.arrayOf(PropTypes.shape({
+            startTime: PropTypes.string,
+            endTime: PropTypes.string,
+        })),
+    }),
+    recurringMeetingWindows: PropTypes.arrayOf(
+        PropTypes.shape({
+            dayOfWeek: PropTypes.string,
+            startTime: PropTypes.string,
+            endTime: PropTypes.string,
+    
+        })
+    ),
+    timeWindows: PropTypes.arrayOf(
+        PropTypes.shape({
+            startTime: PropTypes.string,
+            endTime: PropTypes.string,
+        }),
+    ),
+    setTimeError: PropTypes.func.isRequired,
+};
 
 export default ValidateTime;
