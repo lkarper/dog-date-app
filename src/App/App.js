@@ -30,7 +30,6 @@ const useForceUpdate = () => {
 }
 
 const App = (props) => {
-
   const context = useContext(UserContext);
 
   const forceUpdate = useForceUpdate();

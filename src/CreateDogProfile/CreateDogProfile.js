@@ -11,7 +11,6 @@ import DogProfilesService from '../services/dog-profiles-service';
 import './CreateDogProfile.css';
 
 const CreateDogProfile = (props) => {
-
     useEffect(() => {
         if (props.suffix === '') {
             window.scrollTo(0, 0);

@@ -6,7 +6,6 @@ import ValidateDogProfileSex from '../../validation-components/create-dog-profil
 import './BasicInfo.css';
 
 const BasicInfo = (props) => {
-
     const {
         nameP,
         setNameP,
@@ -25,7 +24,7 @@ const BasicInfo = (props) => {
         breedP,
         setBreedP,
         weightP,
-        setWeightP
+        setWeightP,
     } = props.data;
 
     const [name, setName] = useState(nameP);
@@ -38,6 +37,10 @@ const BasicInfo = (props) => {
     const [breed, setBreed] = useState(breedP);
     const [weight, setWeight] = useState(weightP);
 
+    /* 
+        Since the eventual api call in the multi-step profile creation process is made in the parent component, 
+        a series of useEffect calls updates the parent's state if the child's state changes
+    */
     useEffect(() => {
         if (name !== nameP) {
             setNameP(name);
@@ -122,15 +125,15 @@ const BasicInfo = (props) => {
             <div>
                 <label 
                     className='BasicInfo__label bold-label'
-                    htmlFor="dog-name"
+                    htmlFor='dog-name'
                 >
                     Dog's name:
                 </label>
                 <input 
-                    type="text" 
-                    placeholder="Seymour" 
-                    id="dog-name" 
-                    name="dog-name" 
+                    type='text' 
+                    placeholder='Seymour' 
+                    id='dog-name' 
+                    name='dog-name' 
                     maxLength='72'
                     aria-describedby='name-validator'
                     value={name}
@@ -149,20 +152,20 @@ const BasicInfo = (props) => {
                 />
             </div>
             <hr />
-            <fieldset className="sub-fieldset">
+            <fieldset className='sub-fieldset'>
                 <legend>Age</legend>
                 <div>
                     <label 
-                        htmlFor="years"
+                        htmlFor='years'
                     >
                         Years:
                     </label>
                     <input 
-                        type="number" 
-                        id="years" 
-                        name="years" 
-                        min="0" 
-                        max="30" 
+                        type='number' 
+                        id='years' 
+                        name='years' 
+                        min='0' 
+                        max='30' 
                         value={ageYears}
                         aria-describedby='age-validator'
                         onChange={(e) => checkAgeYears(e.target.value)}
@@ -170,16 +173,16 @@ const BasicInfo = (props) => {
                 </div>
                 <div>
                     <label 
-                        htmlFor="months"
+                        htmlFor='months'
                     >
                         Months:
                     </label>
                     <input 
-                        type="number" 
-                        id="months" 
-                        name="months" 
-                        min="0" 
-                        max="11" 
+                        type='number' 
+                        id='months' 
+                        name='months' 
+                        min='0' 
+                        max='11' 
                         value={ageMonths}
                         aria-describedby='age-validator'
                         onChange={(e) => checkAgeMonths(e.target.value)}
@@ -198,63 +201,63 @@ const BasicInfo = (props) => {
                 </div>
             </fieldset>
             <hr />
-            <fieldset className="sub-fieldset">
+            <fieldset className='sub-fieldset'>
                 <legend>Sex</legend>
                 <div>
                     <input
                         className='BasicInfo__input radio' 
-                        type="radio" 
-                        id="male-unneutered" 
-                        name="sex" 
-                        value="Male, unneutered"
+                        type='radio' 
+                        id='male-unneutered' 
+                        name='sex' 
+                        value='Male, unneutered'
                         checked={sex === 'Male, unneutered'}
                         aria-describedby='sex-validator'
                         onChange={(e) => setSex(e.target.value)} 
                         required
                     />
-                    <label htmlFor="male-unneutered">Male, unneutered</label>
+                    <label htmlFor='male-unneutered'>Male, unneutered</label>
                 </div>
                 <div>
                     <input 
                         className='BasicInfo__input radio'
-                        type="radio" 
-                        id="female-unspayed" 
-                        name="sex" 
-                        value="Female, unspayed" 
+                        type='radio' 
+                        id='female-unspayed' 
+                        name='sex' 
+                        value='Female, unspayed' 
                         checked={sex === 'Female, unspayed'}
                         aria-describedby='sex-validator'
                         onChange={(e) => setSex(e.target.value)}
                         required
                     />
-                    <label htmlFor="female-unspayed">Female, unspayed</label>
+                    <label htmlFor='female-unspayed'>Female, unspayed</label>
                 </div>
                 <div>
                     <input 
                         className='BasicInfo__input radio'
-                        type="radio" 
-                        id="male-neutered" 
-                        name="sex" 
-                        value="Male, neutered" 
+                        type='radio' 
+                        id='male-neutered' 
+                        name='sex' 
+                        value='Male, neutered' 
                         checked={sex === 'Male, neutered'}
                         aria-describedby='sex-validator'
                         onChange={(e) => setSex(e.target.value)}
                         required
                     />
-                    <label htmlFor="male-neutered">Male, neutered</label>
+                    <label htmlFor='male-neutered'>Male, neutered</label>
                 </div>
                 <div>
                     <input 
                         className='BasicInfo__input radio'
-                        type="radio" 
-                        id="female-spayed" 
-                        name="sex" 
-                        value="Female, spayed" 
+                        type='radio' 
+                        id='female-spayed' 
+                        name='sex' 
+                        value='Female, spayed' 
                         checked={sex === 'Female, spayed'}
                         aria-describedby='sex-validator'
                         onChange={(e) => setSex(e.target.value)}
                         required
                     />
-                    <label htmlFor="female-spayed">Female, spayed</label>
+                    <label htmlFor='female-spayed'>Female, spayed</label>
                 </div>
                 <div
                     className='BasicInfo__alert-div' 
@@ -271,14 +274,14 @@ const BasicInfo = (props) => {
             <div>
                 <label
                     className='BasicInfo__label bold-label' 
-                    htmlFor="breed"
+                    htmlFor='breed'
                 >
                     Breed:
                 </label>
                 <input 
-                    type="text" 
-                    id="breed" 
-                    name="breed" 
+                    type='text' 
+                    id='breed' 
+                    name='breed' 
                     maxLength='72'
                     aria-describedby='breed-optional'
                     value={breed}
@@ -290,16 +293,16 @@ const BasicInfo = (props) => {
             <div>
                 <label
                     className='BasicInfo__label bold-label' 
-                    htmlFor="weight"
+                    htmlFor='weight'
                 >
                     Weight (in lbs):
                 </label>
                 <input 
-                    type="number" 
-                    id="weight" 
-                    name="weight" 
-                    min="1" 
-                    max="300"
+                    type='number' 
+                    id='weight' 
+                    name='weight' 
+                    min='1' 
+                    max='300'
                     aria-describedby='weight-optional' 
                     value={weight}
                     onChange={(e) => checkWeight(e.target.value)}

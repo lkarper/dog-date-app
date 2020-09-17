@@ -5,7 +5,6 @@ import ReviewsService from '../services/reviews-service';
 import './AddCommentForm.css';
 
 const AddCommentForm = (props) => {
-
     const context = useContext(UserContext);
 
     const { 

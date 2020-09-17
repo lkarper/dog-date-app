@@ -7,7 +7,6 @@ import ReviewsService from '../services/reviews-service';
 import './Comment.css';
 
 const Comment = (props) => {
-
     const context = useContext(UserContext);
 
     const { 
