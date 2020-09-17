@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateDogProfileName = (props) => {
 
-    const { name, nameError, setNameError } = props;
+    const { 
+        name, 
+        nameError, 
+        setNameError 
+    } = props;
 
     useEffect(() => {
         if (name.trim().length === 0) {
@@ -33,5 +38,17 @@ const ValidateDogProfileName = (props) => {
     );
     
 }
+
+ValidateDogProfileName.defaultProps = {
+    name: '',
+    nameError: 'A name is required. (Max 72 characters.)',
+    setNameError: () => {},
+};
+
+ValidateDogProfileName.propTypes = {
+    name: PropTypes.string.isRequired,
+    nameError: PropTypes.string.isRequired,
+    setNameError: PropTypes.func.isRequired,
+};
 
 export default ValidateDogProfileName;
