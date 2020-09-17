@@ -120,7 +120,8 @@ const CreateDogProfile = (props) => {
             owner_description: personalMessageP,
         };
 
-        if (Object.keys(dog_profile).length === 0) {
+        // The suffix prop is only supplied when the component is used to update a profile
+        if (suffix === '') {
             DogProfilesService.createDogProfile(newDogProfile)
                 .then(profile => {
                     props.history.push(`/dog-profile/${profile.id}`);
@@ -150,6 +151,7 @@ const CreateDogProfile = (props) => {
     }, [
         setApiError,
         setShowLoading,
+        suffix,
         context,
         nameP,
         imgUrlP,
@@ -178,12 +180,21 @@ const CreateDogProfile = (props) => {
         props,
     ]);
 
+    /*
+        The profile creation process is split into two forms which do not appear on screen together.
+        This useEffect call triggers the api call when the user completes the second form, 
+        choosing a profile photo.
+    */
     useEffect(() => {
         if ((imgDataP || imgDataP === null) && !showLoading && !apiError) {
             uploadDogProfile();
         }
     }, [imgDataP, uploadDogProfile, showLoading, apiError]);
 
+    /* 
+        Used to signify that no image will be used, so the api call is triggered without
+        loading the image upload form or before submitting that form
+    */ 
     const useNoImg = () => {
         setImgUrlP('');
         setImgDataP(null);
@@ -192,6 +203,7 @@ const CreateDogProfile = (props) => {
         }
     }
 
+    // State is used to control which form element of the multi-step profile creation process is displayed
     if (infoForm) {
         return (
             <div
@@ -356,6 +368,7 @@ const CreateDogProfile = (props) => {
                 </div>
             )
         }
+
         return (
             <div
                 className='CreateDogProfile__outer-div' 
