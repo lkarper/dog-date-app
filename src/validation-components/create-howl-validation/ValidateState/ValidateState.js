@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const ValidateState = (props) => {
 
-    const { state, stateError, setStateError } = props;
+    const { 
+        state, 
+        stateError, 
+        setStateError 
+    } = props;
 
     useEffect(() => {
         if (state.length === 0) {
@@ -32,5 +37,17 @@ const ValidateState = (props) => {
         </p>
     );
 }
+
+ValidateState.defaultProps = {
+    state: '',
+    stateError: 'You must select a state.',
+    setStateError: () => {}, 
+};
+
+ValidateState.propTypes = {
+    state: PropTypes.string.isRequired,
+    stateError: PropTypes.string.isRequired,
+    setStateError: PropTypes.func.isRequired,
+};
 
 export default ValidateState;
