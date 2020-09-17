@@ -66,7 +66,7 @@ const ValidateDogProfileAge = (props) => {
 ValidateDogProfileAge.defaultProps = {
     ageYears: '',
     ageMonths: '',
-    ageError: '',
+    ageError: 'You must enter an age.',
     setAgeError: () => {},
 };
 

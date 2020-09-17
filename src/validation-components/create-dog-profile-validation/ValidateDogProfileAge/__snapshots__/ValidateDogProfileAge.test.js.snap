@@ -2,19 +2,16 @@
 
 exports[`ValidateDogProfileAge component renders the UI as expected 1`] = `
 <ValidateDogProfileAge
-  ageError=""
+  ageError="You must enter an age."
   ageMonths=""
   ageYears=""
   setAgeError={[Function]}
 >
   <p
-    className="ValidateDogProfileAge__validator valid"
+    className="ValidateDogProfileAge__validator error"
     id="age-validator"
   >
-    Age set to: 
-     
-    months 
-    old.
+    You must enter an age.
   </p>
 </ValidateDogProfileAge>
 `;
