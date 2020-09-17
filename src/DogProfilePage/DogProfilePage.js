@@ -14,7 +14,6 @@ import CreateDogProfile from '../CreateDogProfile/CreateDogProfile';
 import './DogProfilePage.css';
 
 const DogProfilePage = (props) => {
-
     const context = useContext(UserContext);
 
     const { id } = props.match.params;
@@ -135,7 +134,7 @@ const DogProfilePage = (props) => {
                                             ? 
                                                 `${dog.age_years} year` 
                                             : 
-                                                `${dog.age_years} year`
+                                                `${dog.age_years} years`
                                         }, 
                                         ${dog.age_months === 1 
                                             ? 
@@ -172,8 +171,14 @@ const DogProfilePage = (props) => {
                             <ul 
                                 className='DogProfilePage__howls-list'
                             >
-                                {(howls && howls.length > 0) && howls.map(howl => <HowlListItem key={howl.id} howl={howl}/>)}
-                                {(howls && howls.length === 0) && <p>No howls featuring {dog.name} yet. <Link to='/create-howl'>Create a howl now!</Link></p>}
+                                {(howls && howls.length > 0) && 
+                                    howls.map(howl => 
+                                        <HowlListItem key={howl.id} howl={howl}/>
+                                    )
+                                }
+                                {(howls && howls.length === 0) && (
+                                    <p>No howls featuring {dog.name} yet. <Link to='/create-howl'>Create a howl now!</Link></p>
+                                )}
                                 {!howls && <p>Loading...</p>}
                             </ul>
                         </section>

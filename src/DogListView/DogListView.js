@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import './DogListView.css';
 
 const DogListView = (props) => {
-
     const { 
         profile_img_url, 
         name, 
