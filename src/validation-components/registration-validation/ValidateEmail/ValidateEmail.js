@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
+import PropTypes from 'prop-types';
 
 const ValidateEmail = (props) => {
     const { 
         emailValidationError, 
         emailAlreadyRegistered,
-        suffix = '', 
+        suffix, 
+        email, 
+        setEmailValidationError
     } = props;
 
     useEffect(() => {
-        const { email, setEmailValidationError } = props;
         if (isEmail(email)) {
-            setEmailValidationError(null);
+            setEmailValidationError('');
         } else {
             setEmailValidationError('Email invalid.')
         }
-    }, [props]);
+    }, [email, setEmailValidationError]);
 
     const accountExistsText = (
         <>
@@ -58,8 +60,23 @@ const ValidateEmail = (props) => {
             <br />
             {emailAlreadyRegistered && accountExistsText}    
         </p>
-    );
-   
+    );  
 }
+
+ValidateEmail.defaultProps = {
+    emailValidationError: 'Email invalid.', 
+    emailAlreadyRegistered: '',
+    suffix: '', 
+    email: '', 
+    setEmailValidationError: () => {},
+};
+
+ValidateEmail.propTypes = {
+    emailValidationError: PropTypes.string.isRequired,
+    emailAlreadyRegistered: PropTypes.string.isRequired,
+    suffix: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    setEmailValidationError: PropTypes.func.isRequired,
+};
 
 export default ValidateEmail;
