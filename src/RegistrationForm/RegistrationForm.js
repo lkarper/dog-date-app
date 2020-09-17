@@ -4,11 +4,11 @@ import UserContext from '../contexts/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import AuthApiService from '../services/auth-api-service';
-import ValidateEmail from '../validation-components/registration-validation/ValidateEmail';
-import ValidatePhoneNumber from '../validation-components/registration-validation/ValidatePhoneNumber';
-import ValidateUsername from '../validation-components/registration-validation/ValidateUsername';
-import ValidatePassword from '../validation-components/registration-validation/ValidatePassword';
-import ValidateReenteredPassword from '../validation-components/registration-validation/ValidateReenteredPassword';
+import ValidateEmail from '../validation-components/registration-validation/ValidateEmail/ValidateEmail';
+import ValidatePhoneNumber from '../validation-components/registration-validation/ValidatePhoneNumber/ValidatePhoneNumber';
+import ValidateUsername from '../validation-components/registration-validation/ValidateUsername/ValidateUsername';
+import ValidatePassword from '../validation-components/registration-validation/ValidatePassword/ValidatePassword';
+import ValidateReenteredPassword from '../validation-components/registration-validation/ValidateReenteredPassword/ValidateReenteredPassword';
 import './RegistrationForm.css';
 
 const RegistrationForm = (props) => {

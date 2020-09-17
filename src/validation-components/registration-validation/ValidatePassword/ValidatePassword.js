@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PasswordChecklist from './PasswordChecklist';
+import PasswordChecklist from '../PasswordChecklist/PasswordChecklist';
 import './ValidatePassword.css';
 
 const ValidatePassword = (props) => {
