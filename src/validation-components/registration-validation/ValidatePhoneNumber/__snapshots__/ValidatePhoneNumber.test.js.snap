@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidatePhoneNumber component renders the UI as expected 1`] = `
+<ValidatePhoneNumber
+  phone=""
+  phoneValidationError=""
+  setPhoneValidationError={[Function]}
+>
+  <p
+    className="ValidatePhoneNumber__validator  "
+    id="phone-validation"
+  >
+    Phone number optional, but if provided must match format '123-456-7890'.
+  </p>
+</ValidatePhoneNumber>
+`;
