@@ -3,6 +3,10 @@
     flex-direction: row;
 }
 
+/* 
+    Removes the original radio buttons from the screen, 
+    but keeps them in the DOM so that they are accessible to assistive technology 
+*/
 .ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__input {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
@@ -14,54 +18,51 @@
     position: absolute;
 }
 
-.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label {
+/* 
+    By setting the label width to 1em and hiding the overflow, the star content
+    is visible, but the label text is not; the label text remains in the DOM and
+    is accessible to assistive technology.
+*/
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label {
     width: 1em;
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
     font-size: 30px;
-    color: #ccc;
 }
 
-.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label:before {
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label:before {
     content: '★ ';
 }
 
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label {
-    color: #ffc700 !important;    
+/* 
+    The colors of the stars are altered so that sighted users (who cannot see the label text)
+    know how may stars they are selecting. Anyone using assistive technology can access the label
+    text and determine the rating they are selecting.
+*/
+
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label.auto-selected {
+    color: #ffc700;
 }
 
-.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label:hover,
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label.not-selected {
+    color: #ccc;
+}
+
+.ReviewFormStarRater__rate-container .ReviewFormStarRater__label:hover,
 .ReviewFormStarRater__rate-container:hover .ReviewFormStarRater__label,
 .ReviewFormStarRater__rate-container:hover .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label {
-    color: #deb217 !important;  
+    color: #deb217;  
 }
 
 .ReviewFormStarRater__rate-container .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__label,
 .ReviewFormStarRater__rate-container:hover .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label {
-    color: #ccc !important;
+    color: #ccc;
 }
 
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label:hover,
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__label,
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label:hover,
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__label,
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__label:hover ~ .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label {
-    color: #c59b08;
-}
-
-.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label:focus,
-.ReviewFormStarRater__rate-container:not(:checked) .ReviewFormStarRater__label:focus ~ .ReviewFormStarRater__label {
-    color: #deb217;  
-}
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label:focus,
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked + .ReviewFormStarRater__label:focus ~ .ReviewFormStarRater__label,
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label:focus,
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label:focus ~ .ReviewFormStarRater__label,
-.ReviewFormStarRater__rate-container .ReviewFormStarRater__label:focus ~ .ReviewFormStarRater__input:checked ~ .ReviewFormStarRater__label {
-    color: #c59b08;
-}
-
+/*
+    Setting borders around the stars enables keyboard users to see which star rating they have selected.
+*/
 .ReviewFormStarRater__rate-container .ReviewFormStarRater__label {
     border: 1px solid white;
 }
