@@ -6,7 +6,6 @@ import TimeWindow from '../TimeWindow/TimeWindow';
 import './HowlListItem.css';
 
 const HowlListItem = (props) => {
-
     const { howl } = props;
 
     if (!howl.id) {
@@ -18,9 +17,10 @@ const HowlListItem = (props) => {
                     Error: Could not load howl. Check your connection and the URL and try again.
                 </p>
             </li>
-        )
+        );
     } else { 
 
+        // The date and time display will differ depending on whether the howl is a one-time or recurring event
         const howlDateTime = howl.meeting_type === 'once'
             ?
                 (            
@@ -28,7 +28,9 @@ const HowlListItem = (props) => {
                         <h4>One-time playdate</h4>
                         <p
                             className='HowlListItem__date'
-                        >{moment(howl.date).format("dddd, MMMM Do, YYYY")}</p>
+                        >
+                            {moment(howl.date).format("dddd, MMMM Do, YYYY")}
+                        </p>
                         <p>Available during the following times:</p>
                         <ul>
                             {howl.time_windows
@@ -40,7 +42,8 @@ const HowlListItem = (props) => {
                                             endTime={window.end_time}
                                         />
                                     </li>
-                                ))}
+                                ))
+                            }
                         </ul>
                     </div>
                 )
