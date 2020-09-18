@@ -9,18 +9,18 @@ import ReviewsService from '../services/reviews-service';
 import './HowlPageDogProfile.css';
 
 const HowlPageDogProfile = (props) => {
-
     const context = useContext(UserContext);
     
     const { 
         dog_profile, 
         dog_id, 
-        owner 
+        owner, 
     } = props;
 
     const [reviews, setReviews] = useState();
     const [apiError, setApiError] = useState(false);
 
+    // Fetches reviews of a dog for display with profile
     useEffect(() => {
         if (dog_id) {
             ReviewsService.getReviewsByDogId(dog_id)
@@ -42,7 +42,7 @@ const HowlPageDogProfile = (props) => {
                     Error: Could not load profile.  Check your connection and the URL and try again.
                 </p>
             </li>
-        )
+        );
     }
 
     return (
@@ -76,42 +76,39 @@ const HowlPageDogProfile = (props) => {
                 </header>
                 <p>{dog_profile.owner_description}</p>
                 <p>Age: {' '} 
-                                {dog_profile.age_months 
-                                    ? 
-                                        `${dog_profile.age_years === 1 
-                                            ? 
-                                                `${dog_profile.age_years} year` 
-                                            : 
-                                                `${dog_profile.age_years} year`
-                                        }, 
-                                        ${dog_profile.age_months === 1 
-                                            ? 
-                                                `${dog_profile.age_months} month` 
-                                            : 
-                                                `${dog_profile.age_months} months`
-                                        }` 
-                                    : 
-                                        `${dog_profile.age_years}`
-                                }
-                            </p>
-                <p>Breed: {dog_profile.breed || `(not listed)`}</p>
+                    {dog_profile.age_months 
+                        ? 
+                            `${dog_profile.age_years === 1 
+                                ? 
+                                    `${dog_profile.age_years} year` 
+                                : 
+                                    `${dog_profile.age_years} years`
+                            }, ${dog_profile.age_months === 1 
+                                ? 
+                                    `${dog_profile.age_months} month` 
+                                : 
+                                    `${dog_profile.age_months} months`
+                            }` 
+                        : 
+                            `${dog_profile.age_years}`
+                    }
+                </p>
+                <p>Breed: {dog_profile.breed || `(Not listed)`}</p>
                 <p>Weight: {dog_profile.weight ? `${dog_profile.weight} lbs` : `(Not listed)`}</p>
-                <p>Sex: {dog_profile.sex || `(not listed)`}</p>
+                <p>Sex: {dog_profile.sex || `(Not listed)`}</p>
             </section>
             <section>
                 <header>
                     <h4>Characteristics</h4>
                 </header>
-                <DogProfileCharacteristics dog_profile={dog_profile}/>
+                <DogProfileCharacteristics dog_profile={dog_profile} />
             </section>
             <section aria-live='polite'>
                 <header>
                     <h4>Reviews of {dog_profile.name}</h4>
                 </header>
-                {context.user.id === owner.id 
-                    ? '' 
-                    : <Link to={`/leave-review/${dog_id}`}>Leave your own review of {dog_profile.name}</Link>
-                }
+                {/* If the user is the owner of the profile, no need to ask if they'd like to leave a review of the dog */}
+                {context.user.id === owner.id || <Link to={`/leave-review/${dog_id}`}>Leave your own review of {dog_profile.name}</Link>}
                 {(reviews && reviews.length > 0) 
                     && 
                         <div className='HowlPageDogProfile__reviews-container'>
