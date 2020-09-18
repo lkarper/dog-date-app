@@ -6,14 +6,14 @@ const DogProfilesService = {
         return fetch(`${config.API_ENDPOINT}/dog-profiles/user-dogs`, {
             headers: {
                 'authorization': `Bearer ${TokenService.getAuthToken()}`,
-            }
+            },
         });
     },
     fetchPackMembers() {
         return fetch(`${config.API_ENDPOINT}/dog-profiles/pack-members`, {
             headers: {
                 'authorization': `Bearer ${TokenService.getAuthToken()}`,
-            }
+            },
         });
     },
     fetchDogProfileById(id) {
@@ -76,7 +76,7 @@ const DogProfilesService = {
                 'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify(newProfile)
+            body: JSON.stringify(newProfile),
         })
             .then(res =>
                 (!res.ok)
@@ -91,7 +91,7 @@ const DogProfilesService = {
                 'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify(updatedProfile)
+            body: JSON.stringify(updatedProfile),
         })
             .then(res => {
                 if (!res.ok) {
@@ -99,6 +99,6 @@ const DogProfilesService = {
                 }
             });
     },
-}
+};
 
 export default DogProfilesService;

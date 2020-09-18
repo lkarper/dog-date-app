@@ -13,7 +13,7 @@ const HowlsService = {
         return fetch(`${config.API_ENDPOINT}/howls/by-user`, {
             headers: {
                 'authorization': `Bearer ${TokenService.getAuthToken()}`,
-            }
+            },
         });
     },
     addUserSavedHowl(newSavedHowl) {
@@ -68,7 +68,7 @@ const HowlsService = {
         return fetch(`${config.API_ENDPOINT}/howls/${id}`, {
             method: 'DELETE',
             headers: {
-                'authorization': `Bearer ${TokenService.getAuthToken()}`
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(res => {
@@ -80,7 +80,7 @@ const HowlsService = {
     fetchHowlByDogId(dogId) {
         return fetch(`${config.API_ENDPOINT}/howls/by-dog/${dogId}`, {
             headers: {
-                'authorization': `Bearer ${TokenService.getAuthToken()}`
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         });
     },
@@ -90,7 +90,7 @@ const HowlsService = {
             body: JSON.stringify(newHowl),
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(res =>
@@ -105,7 +105,7 @@ const HowlsService = {
             body: JSON.stringify(updatedHowl),
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
         .then(res => {

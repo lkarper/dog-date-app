@@ -94,6 +94,7 @@ const App = (props) => {
     }
   }, [props, context, forceUpdate]);
 
+  // Checks local storage for jwt on re-render and sets idle timeouts
   useEffect(() => {
 
       /* 
@@ -120,8 +121,7 @@ const App = (props) => {
           // Clear local storage and remove event listeners when App unmounts
           IdleService.unRegisterIdleResets();
           TokenService.clearCallbackBeforeExpiry();
-      }
-      
+      }      
   });
 
   return (

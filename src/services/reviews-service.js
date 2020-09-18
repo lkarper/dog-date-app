@@ -51,7 +51,7 @@ const ReviewsService = {
             body: JSON.stringify(newReview),
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(res =>
@@ -66,7 +66,7 @@ const ReviewsService = {
             body: JSON.stringify(updatedReview),
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(res => {
@@ -79,7 +79,7 @@ const ReviewsService = {
         return fetch(`${config.API_ENDPOINT}/reviews/${id}`, {
             method: 'DELETE',
             headers: {
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(res => {
@@ -94,7 +94,7 @@ const ReviewsService = {
             body: JSON.stringify(newComment),
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(res =>
@@ -109,7 +109,7 @@ const ReviewsService = {
             body: JSON.stringify(updatedComment),
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(res => {
@@ -122,7 +122,7 @@ const ReviewsService = {
         return fetch(`${config.API_ENDPOINT}/reviews/${reviewId}/comments/${commentId}`, {
             method: 'DELETE',
             headers: {
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(res => {

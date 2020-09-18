@@ -17,15 +17,16 @@ const AuthApiService = {
                     : res.json()
             )
             .then(res => {
-                /*
-                  whenever a login is performed:
-                  1. save the token in local storage
-                  2. queue auto logout when the user goes idle
-                  3. queue a call to the refresh endpoint based on the JWT's exp value
-                */
+
+                // Saves the jwt from api in local storage
                 TokenService.saveAuthToken(res);
+
+                // Registers the event listeners that will reset the idle timeout
                 IdleService.regiserIdleTimerResets();
+
+                // Queues a callback that will fire just before the jwt in local storage expires
                 TokenService.queueCallbackBeforeExpiry(() => {
+                    // Calls the api to send a new jwt
                     AuthApiService.postRefreshToken();
                 });
                 return res;
@@ -50,9 +51,9 @@ const AuthApiService = {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify(newUserInfo)
+            body: JSON.stringify(newUserInfo),
         })
             .then(res => {
                 if (!res.ok) {
@@ -73,22 +74,22 @@ const AuthApiService = {
                 : res.json()
         )
         .then(res => {
-            /*
-            similar logic to whenever a user logs in, the only differences are:
-            - we don't need to queue the idle timers again as the user is already logged in.
-            - we'll catch the error here as this refresh is happening behind the scenes
-            */
+            
+            // Saves new jwt to local storage
             TokenService.saveAuthToken(res);
+
+            // Queues a callback that will fire just before the jwt in local storage expires
             TokenService.queueCallbackBeforeExpiry(() => {
+                // Calls the api to send a new jwt
                 AuthApiService.postRefreshToken();
             });
             return res;
         })
-        .catch(err => {
+        .catch(error => {
             console.log('refresh token request error');
-            console.error(err);
+            console.error(error);
         });
     },
-}
+};
 
 export default AuthApiService;

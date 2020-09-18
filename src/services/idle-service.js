@@ -1,39 +1,32 @@
-
-/*
-  Idle Service
-  this service manages when a user has gone idle (not interacting with the page).
-*/
-
 let _timeoutId;
 let _idleCallback = null;
 const _notIdleEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-const _FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
+const _TEN_MINUTES_IN_MS = 10 * 60 * 1000;
 
+// Manages when a user has gone idle and does not interact with the page.
 const IdleService = {
     setIdleCallback(idleCallback) {
-        /* store a callback to call when the user goes idle */
+        // Sets the callback that will be called when a user goes idle for ten min.
         _idleCallback = idleCallback;
     },
-    /* called when a user interacts with the page */
     resetIdleTimer(ev) {
-        /* remove any timeouts as the user just interacted */
+        // Resets inactivity timer when a user interacts with the page
         clearTimeout(_timeoutId);
-        /* queue the callback to happen 5 minutes from now */
-        _timeoutId = setTimeout(_idleCallback, _FIVE_MINUTES_IN_MS);
+        _timeoutId = setTimeout(_idleCallback, _TEN_MINUTES_IN_MS);
     },
     regiserIdleTimerResets() {
-        /* register the resetIdleTimer for events when a user interacts with page */
+        // Registers the event listeners the are used to determine whether a user is interacting with the page
         _notIdleEvents.forEach(event =>
             document.addEventListener(event, IdleService.resetIdleTimer, true)
         );
     },
     unRegisterIdleResets() {
-        /* remove any queued callbacks and events that will queue callbacks */
+        // Removes inactivity timer and unregisters event listeners that reset it
         clearTimeout(_timeoutId);
         _notIdleEvents.forEach(event =>
             document.removeEventListener(event, IdleService.resetIdleTimer, true)
         );
     },
-}
+};
 
 export default IdleService;
