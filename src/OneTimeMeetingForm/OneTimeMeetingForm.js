@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import OneTimeMeetingTimeWindow from '../OneTimeMeetingTimeWindow/OneTimeMeetingTimeWindow';
 
 const OneTimeMeetingForm = (props) => {
-
     const { 
         currentData, 
-        setOneTimeMeetingWindows 
+        setOneTimeMeetingWindows, 
     } = props;
     
     const [date, setDate] = useState(currentData.date);
     const [timeWindows, setTimeWindows] = useState(currentData.timeWindows);
 
+    // Updates time windows and date in parent component for form submission
     useEffect(() => {
-
         if (currentData.date !== date) {
             setOneTimeMeetingWindows({
                 date,
@@ -39,7 +38,6 @@ const OneTimeMeetingForm = (props) => {
                 timeWindows
             });
         }
-
     }, [date, timeWindows, currentData, setOneTimeMeetingWindows]);
 
     const updateTimeWindows = (index, startTime, endTime) => {
