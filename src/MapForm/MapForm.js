@@ -10,6 +10,10 @@ const MapForm = (props) => {
         setCoordinates, 
     } = props;
 
+    /* 
+        tempCoordinates reflects the present coordinates of the marker on the map;
+        the coordinates prop is used to set coordinates for the api call when the form is submitted 
+    */
     const [tempCoordinates, setTempCoordinates] = useState(coordinates);
 
     return (
