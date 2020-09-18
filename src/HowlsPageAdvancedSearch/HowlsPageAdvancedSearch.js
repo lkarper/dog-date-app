@@ -5,7 +5,6 @@ import ValidateTime from '../validation-components/create-howl-validation/Valida
 import RecurringMeetingForm from '../RecurringMeetingForm/RecurringMeetingForm';
 
 const HowlsPageAdvancedSearch = (props) => {
-
     const {
         typeOfMeetingP,
         setTypeOfMeetingP,
@@ -28,6 +27,13 @@ const HowlsPageAdvancedSearch = (props) => {
     const [timeError, setTimeError] = useState('');
     const [recurringMeetingWindows, setRecurringMeetingWindows] = useState(recurringMeetingWindowsP);
 
+    /*
+        This useEffect call removes incomplete time windows if the user unchecks a day of the week;
+        complete time windows that have a start and end time set are saved
+        if a user unchecks the day, in case the user changes their mind and wants to 
+        use the day after all.  The day is not used in the search if it is not clicked,
+        even if there are time windows stored under it.
+    */
     useEffect(() => {
         const keysToRemove = [];
         if (recurringMeetingWindows.length !== 0) {
@@ -45,7 +51,7 @@ const HowlsPageAdvancedSearch = (props) => {
         }
     }, [daysOfWeek, recurringMeetingWindows, setRecurringMeetingWindows]);
 
-
+    // A series of useEffect calls passes the state of this component up the DOM tree, where the api call is made
     useEffect(() => {
         setRecurringMeetingWindowsP(recurringMeetingWindows);
     }, [recurringMeetingWindows, setRecurringMeetingWindowsP])
@@ -82,6 +88,7 @@ const HowlsPageAdvancedSearch = (props) => {
         }
     }, [date, dateP, setDateP, setDaysOfWeek]);
 
+    // Adds or removes day of week from array of days to search for howls
     const checkDayOfWeek = (day, add) => {
         if (add) {
             const updatedDays = [...daysOfWeek, day];
@@ -92,6 +99,7 @@ const HowlsPageAdvancedSearch = (props) => {
         }
     }
 
+    // Recurring meeting windows are used to search for howls on certain days of the week (e.g. Fridays)
     const updateRecurringMeetingWindows = (index, dayOfWeek, startTime, endTime) => {
         const updatedWindow = {
             [index]: {
@@ -125,6 +133,7 @@ const HowlsPageAdvancedSearch = (props) => {
         setRecurringMeetingWindows(newRecurringMeetingWindows.filter(window => Object.keys(window)[0] !== index));
     }
 
+    // Time windows are used to search for howls on a specific date (e.g. June 1)
     const updateTimeWindows = (index, startTime, endTime) => {
         const updatedTimeWindow = {
             startTime,
@@ -152,8 +161,16 @@ const HowlsPageAdvancedSearch = (props) => {
         setTimeWindows(newTimeWindows);
     }
 
+    // Sets the minimum date for searching for one-time howls to today
     const today = new Date();
-    const minDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1 < 10 
+        ? `0${today.getMonth() + 1}` 
+        : today.getMonth() + 1;
+    const day = today.getDate() < 10 
+        ? `0${today.getDate()}` 
+        : today.getDate();
+    const minDate = `${year}-${month}-${day}`;
 
     return (
         <div aria-live='polite'>
