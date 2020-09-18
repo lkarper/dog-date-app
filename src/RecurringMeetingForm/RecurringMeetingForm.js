@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './RecurringMeetingForm.css';
 
 const RecurringMeetingForm = (props) => {
-
     const { 
         index, 
         currentData, 
@@ -16,11 +15,17 @@ const RecurringMeetingForm = (props) => {
     const [startTime, setStartTime] = useState(currentData.startTime);
     const [endTime, setEndTime] = useState(currentData.endTime);
 
+    // Updates recurring meeting windows in parent component for submission with form
     useEffect(() => {
         if (currentData.dayOfWeek !== dayOfWeek || 
             currentData.startTime !== startTime || 
             currentData.endTime !== endTime) {
-            updateRecurringMeetingWindows(index, dayOfWeek, startTime, endTime);
+            updateRecurringMeetingWindows(
+                index, 
+                dayOfWeek, 
+                startTime, 
+                endTime
+            );
         }
     }, [
         dayOfWeek, 
@@ -31,12 +36,13 @@ const RecurringMeetingForm = (props) => {
         updateRecurringMeetingWindows
     ]);
 
+    // When the type prop is set to 'search', the component is being used to search for howls, rather than create one
     return (
         <li>
             <fieldset className="sub-fieldset">
                 <legend>I'm open for dog dates during the following windows of time:</legend>
                 {type !== 'search'
-                    ?
+                    &&
                         <div className='RecurringMeetingForm__input-container'>
                             <label htmlFor={`window-day-${index}`}>Day of the week:</label>
                             <select 
@@ -56,7 +62,6 @@ const RecurringMeetingForm = (props) => {
                                 <option value="Sunday">Sunday</option>
                             </select>
                         </div>
-                    :   ''
                 }
                 <div className='RecurringMeetingForm__input-container'>
                     <label htmlFor={`window-start-time-${index}`} >I'm available from:</label>
@@ -94,8 +99,8 @@ const RecurringMeetingForm = (props) => {
                         Remove this window
                     </button>
                 }
-                {index !== 0 && type !== 'search'
-                    ? 
+                {(index !== 0 && type !== 'search')
+                    && 
                         <button 
                             className='RecurringMeetingForm__button button' 
                             type='button' 
@@ -103,8 +108,6 @@ const RecurringMeetingForm = (props) => {
                         >
                             Remove this window
                         </button>
-                    : 
-                        ''
                 }
             </fieldset>
         </li>
