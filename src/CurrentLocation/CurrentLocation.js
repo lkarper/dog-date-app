@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './CurrentLocation.css';
 
+// These are the coordinates that will be set for the api call when the form is submitted
 const CurrentLocation = (props) => {
     const { coordinates } = props;
 
