@@ -8,7 +8,6 @@ import ValidateZipCode from '../validation-components/create-howl-validation/Val
 import './LocationForm.css';
 
 const LocationForm = (props) => {
-
     const { 
         setLocation, 
         setLocationError, 
@@ -24,6 +23,7 @@ const LocationForm = (props) => {
     const [zipcode, setZipcode] = useState(location.zipcode);
     const [zipcodeError, setZipcodeError] = useState('');
 
+    // Builds an error message that is passed up the DOM tree to a parent 
     useEffect(() => {
         const errorsArray = [];
 
