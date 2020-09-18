@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import './SelectDogForHowl.css';
 
 const SelectDogForHowl = (props) => {
-
     const { 
         dog, 
         dogsForHowl, 
-        updateDogsForHowl 
+        updateDogsForHowl,
     } = props;
 
     const [checked, setChecked] = useState(dogsForHowl.includes(dog.id));
 
+    // Adds or removes id from array of checked dogs for howl in parent component
     useEffect(() => {
-
         if (checked === true && !dogsForHowl.includes(dog.id)) {
             updateDogsForHowl(dog.id, checked);
         } else if (checked === false && dogsForHowl.includes(dog.id)) {
