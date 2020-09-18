@@ -69,8 +69,16 @@ const OneTimeMeetingForm = (props) => {
         setTimeWindows(newTimeWindows);
     }
 
+    // Sets the minimum date for creating a one-time howl to today
     const today = new Date();
-    const minDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1 < 10 
+        ? `0${today.getMonth() + 1}` 
+        : today.getMonth() + 1;
+    const day = today.getDate() < 10 
+        ? `0${today.getDate()}` 
+        : today.getDate();
+    const minDate = `${year}-${month}-${day}`;
 
     return (
         <fieldset className='sub-fieldset'>
