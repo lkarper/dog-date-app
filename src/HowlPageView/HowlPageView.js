@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import UserContext from '../contexts/UserContext';
 import StaticMap from '../StaticMap/StaticMap';
 import HowlPageDogProfile from '../HowlPageDogProfile/HowlPageDogProfile';
 import TimeWindow from '../TimeWindow/TimeWindow';
@@ -11,16 +10,13 @@ import HowlsService from '../services/howls-service';
 import './HowlPageView.css';
 
 const HowlPageView  = (props) => {
-
-    const context = useContext(UserContext);
-
-    const { user } = context;
-
     const { howl_id } = props.match.params;
 
     const [showEdit, setShowEdit] = useState(false);
     const [howl, setHowl] = useState();
     const [howlNotFound, setHowlNotFound] = useState(false);
+
+    // Updates the page if the user edits the howl by making a state change that triggers a new api call
     const [update, setUpdate] = useState(null);
 
     useEffect(() => {
@@ -44,6 +40,8 @@ const HowlPageView  = (props) => {
     let howlDateTime;
     
     if (howl) {
+
+        // The date and time display will differ depending on whether the howl is a one-time or recurring event
         if (howl.meeting_type === 'once') {
             howlDateTime = (            
                 <div className='HowlPageView__time-list'>
@@ -169,10 +167,10 @@ const HowlPageView  = (props) => {
                                 className='HowlPageView__contact-info-ul'
                             >
                                 <li>
-                                    <p>Username: {user.username}</p>
+                                    <p>Username: {howl.user_info.username}</p>
                                 </li>
                                 <li>
-                                    <p>Phone: {user.phone || '(Not given.)'}</p>
+                                    <p>Phone: {howl.user_info.phone || '(Not given.)'}</p>
                                 </li>
                                 <li>
                                     <p>Email:{' '} 
@@ -180,9 +178,9 @@ const HowlPageView  = (props) => {
                                             className='link'
                                             target='_blank'
                                             rel="noopener noreferrer"
-                                            href={`mailto:${user.email}`}
+                                            href={`mailto:${howl.user_info.email}`}
                                         >
-                                            {user.email}
+                                            {howl.user_info.email}
                                         </a>
                                     </p>
                                 </li>
