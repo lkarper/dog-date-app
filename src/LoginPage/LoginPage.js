@@ -10,7 +10,6 @@ import HowlsService from '../services/howls-service';
 import './LoginPage.css';
 
 const LoginPage = (props) => {
-
     const context = useContext(UserContext);
 
     const { 
@@ -27,8 +26,10 @@ const LoginPage = (props) => {
     const onLoginSuccess = () => {
         const destination = (location.state || {}).from || '/home';
 
+        // Lets components know that basic user data is still being retrieved from the api
         context.setLoading(true);
 
+        // Retrieves basic user data on login
         Promise.all([
                 DogProfilesService.fetchUserDogs(), 
                 DogProfilesService.fetchPackMembers(),
@@ -63,7 +64,7 @@ const LoginPage = (props) => {
         setLoginError(null);
         setShowLoading(true);
         AuthApiService.postLogin({
-            username: username,
+            username,
             password
         })
             .then(res => {
@@ -79,7 +80,7 @@ const LoginPage = (props) => {
                     id,
                     username,
                     email,
-                    phone
+                    phone,
                 });
                 onLoginSuccess();
             })
