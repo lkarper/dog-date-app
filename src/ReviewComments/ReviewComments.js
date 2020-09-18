@@ -4,10 +4,9 @@ import Comment from '../Comment/Comment';
 import './ReviewComments.css';
 
 const ReviewComments = (props) => {
-
     const { 
         comments, 
-        setComments 
+        setComments, 
     } = props;
 
     if (comments.length === 0) {
