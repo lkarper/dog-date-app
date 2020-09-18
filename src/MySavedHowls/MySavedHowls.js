@@ -4,7 +4,6 @@ import HowlListItem from '../HowlListItem/HowlListItem';
 import './MySavedHowls.css';
 
 const MySavedHowls = (props) => {
-
     const context = useContext(UserContext);
 
     return (

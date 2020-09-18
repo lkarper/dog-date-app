@@ -5,7 +5,6 @@ import HowlListItem from '../HowlListItem/HowlListItem';
 import './MyHowls.css';
 
 const MyHowls = (props) => {
-    
     const context = useContext(UserContext);
 
     return (

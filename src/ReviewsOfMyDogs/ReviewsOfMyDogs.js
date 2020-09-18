@@ -17,7 +17,7 @@ const ReviewsOfMyDogs = (props) => {
             .catch(error => {
                 console.log(error);
                 setApiError(true);
-            })
+            });
     }, [props, setApiError, setReviews]);
 
     return (

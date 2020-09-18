@@ -4,7 +4,6 @@ import DogListView from '../DogListView/DogListView';
 import './MyPack.css';
 
 const MyPack = (props) => {
-
     const context = useContext(UserContext);
     const { packMembers } = context;
 

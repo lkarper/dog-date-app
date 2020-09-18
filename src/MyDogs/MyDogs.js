@@ -5,7 +5,6 @@ import DogListView from '../DogListView/DogListView';
 import './MyDogs.css';
 
 const MyDogs = (props) => {
-
     const context = useContext(UserContext);
     const { dogs } = context;
 
@@ -34,8 +33,8 @@ const MyDogs = (props) => {
                         )}
                     </ul>
                 :
-                    <p>No dogs currently linked to your account.</p>)
-            }
+                    <p>No dogs currently linked to your account.</p>
+            )}
         </section>
     );
 }
