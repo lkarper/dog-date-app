@@ -11,7 +11,6 @@ import ValidateTitle from '../validation-components/create-howl-validation/Valid
 import './DogReviewForm.css';
 
 const DogReviewForm = (props) => {
-
     const context = useContext(UserContext);
 
     const { 
@@ -47,8 +46,17 @@ const DogReviewForm = (props) => {
     const [endTime, setEndTime] = useState(review.end_time);
     const [apiError, setApiError] = useState(false);
 
+    
+    // Sets the max. date of playdate to today, since you cannot review events in the future
     const today = new Date();
-    const maxDate = `${today.getFullYear()}-${today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1}-${today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()}`;
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1 < 10 
+        ? `0${today.getMonth() + 1}` 
+        : today.getMonth() + 1;
+    const day = today.getDate() < 10 
+        ? `0${today.getDate()}` 
+        : today.getDate(); 
+    const maxDate = `${year}-${month}-${day}`;
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -75,6 +83,8 @@ const DogReviewForm = (props) => {
             end_time: endTime,
             personal_message: personalMessage,
         };
+
+        // The suffix prop is only supplied if the component is being used to update a review
         if (suffix) {
             ReviewsService.updateReview(review.id, newReview)
                 .then(() => {
@@ -236,6 +246,7 @@ const DogReviewForm = (props) => {
                     classSuffix='loc'
                     currentState={locationSuitability}
                     setter={setLocationSuitability}
+                    required={true}
                     legendText={`How would you rate this location's suitability for a dog date?`}
                 />
             </fieldset>
