@@ -6,13 +6,12 @@ import HowlPageButtons from '../HowlPageButtons/HowlPageButtons';
 import HowlsService from '../services/howls-service';
 
 const HowlPageUserButtons = (props) => {
-
     const context = useContext(UserContext);
 
     const { 
         howl, 
         showEdit,
-        setShowEdit 
+        setShowEdit, 
     } = props;
 
     const [apiError, setApiError] = useState(false);
@@ -45,7 +44,10 @@ const HowlPageUserButtons = (props) => {
         );
     }
 
+    // Only display user buttons if the user is logged in
     if (Object.keys(context.user).length) {
+
+        // Only display the buttons for editing or deleting a howl if the user owns the howl
         if (context.user.id === howl.user_id) {
             return (
                 <div className='HowlPageUserButtons__container'>
@@ -70,6 +72,7 @@ const HowlPageUserButtons = (props) => {
             );
         }
         
+        // Display buttons for adding to or removing from saved howls if the user does not own the howl
         return <HowlPageButtons howl_id={howl.id} />;
     }
 
