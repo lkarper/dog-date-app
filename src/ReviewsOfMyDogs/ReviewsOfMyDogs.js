@@ -4,7 +4,6 @@ import ReviewsService from '../services/reviews-service';
 import './ReviewsOfMyDogs.css'; 
 
 const ReviewsOfMyDogs = (props) => {
-
     const [reviews, setReviews] = useState();
     const [apiError, setApiError] = useState(false);
 
