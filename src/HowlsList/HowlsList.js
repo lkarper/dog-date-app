@@ -8,7 +8,6 @@ import HowlsService from '../services/howls-service';
 import './HowlsList.css';
 
 const HowlsList = (props) => {
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [props]);
@@ -31,6 +30,7 @@ const HowlsList = (props) => {
         setApiError(false);
         setShowLoading(true);
 
+        // Create query string that will be used to search howls in database
         const queryParams = [];
         if (stateP) {
             queryParams.push(`state=${stateP}`);
