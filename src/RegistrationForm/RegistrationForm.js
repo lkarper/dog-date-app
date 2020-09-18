@@ -12,7 +12,6 @@ import ValidateReenteredPassword from '../validation-components/registration-val
 import './RegistrationForm.css';
 
 const RegistrationForm = (props) => {
-
     const context = useContext(UserContext);
 
     const {
@@ -56,6 +55,7 @@ const RegistrationForm = (props) => {
         setEmailAlreadyRegistered('');
         setUsernameExists('');
 
+        // The suffix prop is only supplied when the component is being used to edit user information
         if (suffix) {
             AuthApiService.updateUser({
                 email,
@@ -145,12 +145,12 @@ const RegistrationForm = (props) => {
                 >
                     {!suffix && <legend>Create an account to get started!</legend>}
                     <div>
-                        <label htmlFor="email">Email:</label>
+                        <label htmlFor='email'>Email:</label>
                         <input 
-                            type="email" 
-                            placeholder="example@example.com" 
-                            id="email" 
-                            name="email"
+                            type='email' 
+                            placeholder='example@example.com' 
+                            id='email' 
+                            name='email'
                             value={email} 
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -167,14 +167,14 @@ const RegistrationForm = (props) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="phone">Phone number:</label>
+                        <label htmlFor='phone'>Phone number:</label>
                         <input 
-                            type="tel" 
-                            id="phone" 
-                            name="phone"
+                            type='tel' 
+                            id='phone' 
+                            name='phone'
                             value={phone} 
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
-                            aria-describedby="phone-validation" 
+                            pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' 
+                            aria-describedby='phone-validation' 
                             onChange={(e) => setPhone(e.target.value)}
                         />
                     </div>
@@ -185,15 +185,16 @@ const RegistrationForm = (props) => {
                             setPhoneValidationError={setPhoneValidationError}
                         /> 
                     </div>
+                    {/* If there is no suffix prop, the component is being used for initial account registration */}
                     {!suffix &&
                         <> 
                             <div>
-                                <label htmlFor="username">Username:</label>
+                                <label htmlFor='username'>Username:</label>
                                 <input 
-                                    type="text" 
-                                    placeholder="Username" 
-                                    id="username" 
-                                    name="username"
+                                    type='text' 
+                                    placeholder='Username' 
+                                    id='username' 
+                                    name='username'
                                     value={username}
                                     autoComplete='username' 
                                     aria-describedby='username-validation'
@@ -209,14 +210,14 @@ const RegistrationForm = (props) => {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="password">Password:</label>
+                                <label htmlFor='password'>Password:</label>
                                 <input 
-                                    type="password" 
-                                    id="password" 
-                                    name="password" 
+                                    type='password' 
+                                    id='password' 
+                                    name='password' 
                                     value={password}
                                     autoComplete='new-password'
-                                    aria-describedby="password-error-message"
+                                    aria-describedby='password-error-message'
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
                                     />
@@ -229,14 +230,14 @@ const RegistrationForm = (props) => {
                                 setPasswordError={setPasswordError}
                             />
                             <div>
-                                <label htmlFor="reenter-password">Re-enter password:</label>
+                                <label htmlFor='reenter-password'>Re-enter password:</label>
                                 <input 
-                                    type="password" 
-                                    id="reenter-password" 
-                                    name="reenter-password" 
+                                    type='password' 
+                                    id='reenter-password' 
+                                    name='reenter-password' 
                                     value={reenteredPassword}
                                     autoComplete='new-password'
-                                    aria-describedby="reenter-password-validation"
+                                    aria-describedby='reenter-password-validation'
                                     onChange={(e) => setReenteredPassword(e.target.value)}
                                     required
                                 />
@@ -252,7 +253,7 @@ const RegistrationForm = (props) => {
                 </fieldset>
                 <button 
                     className='button'
-                    type="submit"
+                    type='submit'
                     disabled={
                         emailValidationError || 
                         phoneValidationError || 
@@ -265,7 +266,7 @@ const RegistrationForm = (props) => {
             </form>
             <div
                 className='RegistrationForm__alert-div'
-                role="alert"
+                role='alert'
             >
                 {(apiError && !suffix) && 
                     <section
@@ -302,7 +303,7 @@ RegistrationForm.defaultProps = {
     setShowEdit: () => {},
     history: {
         push: () => {},
-    }
+    },
 };
 
 RegistrationForm.propTypes = {
