@@ -15,7 +15,6 @@ import StarRating from '../StarRating/StarRating';
 import './ReviewPage.css';
 
 const ReviewPage = (props) => {
-
     const { id } = props.match.params;
 
     const context = useContext(UserContext);
@@ -49,7 +48,9 @@ const ReviewPage = (props) => {
 
     useEffect(() => {
         if (review) {
-            setComments(review.comments)
+            setComments(review.comments);
+
+            // Get other reviews for the same dog that present review is about
             ReviewsService.getReviewsByDogId(review.dog_profile.id)
                 .then(reviews => {
                     setApiError(false);
@@ -64,7 +65,6 @@ const ReviewPage = (props) => {
     
 
     if (review) {
-        
         const { 
             reviewer,
             review_title,
@@ -108,6 +108,7 @@ const ReviewPage = (props) => {
             location_suitability 
         ) / 6;
 
+        // Set buttons to edit or delete review if the user is the author of the review
         if (Object.keys(context.user).length) {
             if (context.user.username === review.reviewer) {
                 userButtons = (
@@ -240,10 +241,8 @@ const ReviewPage = (props) => {
                             <header>
                                 <h2>Other reviews of {dog_profile.name}</h2>
                             </header>
-                            {context.user.id === dog_profile.owner_id 
-                                ? '' 
-                                : <Link to={`/leave-review/${dog_profile.id}`}>Leave your own review of {dog_profile.name}</Link>
-                            }
+                            {/* No need to display a link to leave a review if the user is the owner of the dog being reviewed */}
+                            {context.user.id === dog_profile.owner_id || <Link to={`/leave-review/${dog_profile.id}`}>Leave your own review of {dog_profile.name}</Link>}
                             {(reviews && reviews.length > 1) 
                                 && 
                                     <div>
@@ -259,7 +258,6 @@ const ReviewPage = (props) => {
                                     </div>
                             }
                             {(reviews && reviews.length === 1) && <p>This is the only review of {dog_profile.name}.</p>}
-                            {(reviews && reviews.length === 0) && <p>No reviews of {dog_profile.name} yet.</p>}
                             {!reviews && <p>Loading...</p>}
                         </section>
                     </>
