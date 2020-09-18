@@ -4,13 +4,13 @@ import UserContext from '../contexts/UserContext';
 import HowlsService from '../services/howls-service';
 
 const HowlPageButtons = (props) => {
-
     const { howl_id } = props;
 
     const context = useContext(UserContext);
 
     const [apiError, setApiError] = useState(false);
 
+    // Checks to see if the howl being displayed is one of the user's saved howls
     const howlSaved = context.userSavedHowls.find(ush => ush.howl.id === howl_id);
 
     const removeHowlCheck = () => {
