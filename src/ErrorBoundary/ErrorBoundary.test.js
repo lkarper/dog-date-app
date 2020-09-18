@@ -13,7 +13,8 @@ describe('Error boundary', () => {
             <ErrorBoundary>
                 <p>Test</p>
             </ErrorBoundary>,
-            div);
+            div
+        );
         ReactDOM.unmountComponentAtNode(div);
     });
 
