@@ -7,7 +7,6 @@ import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
 import './HowlsPageFilterForm.css';
 
 const HowlsPageFilterForm = (props) => {
-
     const {
         stateP,
         setStateP,
@@ -28,13 +27,16 @@ const HowlsPageFilterForm = (props) => {
         handleSubmit,
     } = props.data;
 
-    const [showAdvanced, setShowAdvanced] = useState(false);
     const [state, setState] = useState('');
     const [zipcode, setZipcode] = useState('');
     const [zipcodeError, setZipcodeError] = useState('');
     const [ratingFilter, setRatingFilter] = useState('');
     const [timeErrorP, setTimeErrorP] = useState('');
 
+    // Toggles the advanced search form
+    const [showAdvanced, setShowAdvanced] = useState(false);
+
+    // A series of useEffect calls passes the state of this component up the DOM tree, where the api call is made
     useEffect(() => {
         if (state !== stateP) {
             setStateP(state);
