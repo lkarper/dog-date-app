@@ -6,10 +6,9 @@ import config from '../config';
 import './Map.css';
 
 const Map = (props) => {
-
     const { 
         tempCoordinates, 
-        setTempCoordinates 
+        setTempCoordinates, 
     } = props;
 
     const [map, setMap] = useState(null);
@@ -29,7 +28,6 @@ const Map = (props) => {
 
     const setMarkerToMyLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {
-
             setMarkerCoordinates({
                 lat: position.coords.latitude,
                 lon: position.coords.longitude 
@@ -38,7 +36,6 @@ const Map = (props) => {
     }
 
     useEffect(() => {
-
         const locationiqKey = config.mapbox_key;
 
         const map = new mapboxgl.Map({
@@ -59,6 +56,7 @@ const Map = (props) => {
         
         setMarker(marker);
 
+        // Resets location coordinates when the draggable marker has been dragged
         const onDragEnd = () => {
             const lngLat = marker.getLngLat();
             setMarkerCoordinates({ lat: lngLat.lat, lon: lngLat.lng });
@@ -76,6 +74,7 @@ const Map = (props) => {
             marker.setLngLat([markerCoordinates.lon, markerCoordinates.lat]).addTo(map);
             setMarker(marker);
 
+            // Resets location coordinates when the draggable marker has been dragged
             const onDragEnd = () => {
                 const lngLat = marker.getLngLat();
                 setMarkerCoordinates({ lat: lngLat.lat, lon: lngLat.lng });
@@ -85,6 +84,7 @@ const Map = (props) => {
                 marker.on('dragend', onDragEnd);
             }
 
+            // Resets the temporary coordinates to equal those of the map marker
             if (tempCoordinates.lat !== markerCoordinates.lat && tempCoordinates.lon !== markerCoordinates.lon) {
                 const { lat, lon } = markerCoordinates;
                 setTempCoordinates({
