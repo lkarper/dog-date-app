@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 const ForwardGeocodeResult = (props) => {
     const { 
         result, 
-        setMarkerCoordinates 
+        setMarkerCoordinates, 
     } = props;
 
+    // Sets map marker to coordinates that match the selected address displayed in results
     const handleClick = () => {
         const { lat, lon } = result;
         setMarkerCoordinates({
             lat,
-            lon
+            lon,
         });
     }
 

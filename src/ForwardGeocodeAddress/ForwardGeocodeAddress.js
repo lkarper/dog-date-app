@@ -6,7 +6,6 @@ import NativeClickListener from '../utils/NativeClickListener';
 import './ForwardGeocodeAddress.css';
 
 const ForwardGeocodeAddress = (props) => {
-
     const { setMarkerCoordinates } = props;
 
     const [results, setResults] = useState([]);
@@ -20,8 +19,8 @@ const ForwardGeocodeAddress = (props) => {
 
     useEffect(() => {
 
+        // Searches for an address and its coordinates based on user input
         const handleSearch = () => {
-
             const query = encodeURIComponent(search);
             const key = config.mapbox_key;
             setApiError(false);
@@ -43,12 +42,14 @@ const ForwardGeocodeAddress = (props) => {
                 });
         }
 
+        // Delays api call until the user stops typing for 2 seconds
         if (search) {
             const timeout = setTimeout(handleSearch, 2000);
             return () => clearTimeout(timeout);
         }
     }, [search, setResults]);
 
+    // Displays drop-down results again if the user clicks inside the input search box
     const handleFocus = (event) => {
         if (results.length) {
             setHidden(false);
@@ -62,9 +63,9 @@ const ForwardGeocodeAddress = (props) => {
         >
             <input 
                 className='ForwardGeocodeAddress__search-input'
-                type="text" 
-                id="place-search" 
-                name="place-search"
+                type='text' 
+                id='place-search' 
+                name='place-search'
                 placeholder='Search by name or address'
                 aria-describedby='current-set-coordinates'
                 aria-label='Search for a place by name or address.'
@@ -72,6 +73,11 @@ const ForwardGeocodeAddress = (props) => {
                 onFocus={handleFocus}
                 onChange={(e) => setSearch(e.target.value)} 
             />
+            {/* 
+                NativeClickListener fires a callback passed as the onClick prop if a user clicks 
+                outside of NativeClickListener and its children.  Here, it closes the dropdown
+                search results box if the user clicks outside of it.  
+            */}
             <NativeClickListener
                 id='ForwardGeocodeAddress__click-container'
                 className={`ForwardGeocodeAddress__click-container ${hidden ? 'hidden' : ''}`}
@@ -84,7 +90,8 @@ const ForwardGeocodeAddress = (props) => {
                             result={result} 
                             setMarkerCoordinates={setMarkerCoordinates} 
                             setHidden={setHidden}
-                        />)}
+                        />
+                    )}
                 </ol>
             </NativeClickListener>
             <div role='alert'>
