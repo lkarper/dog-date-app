@@ -19,9 +19,17 @@ const Header = (props) => {
 
     const handleLogout = () => {
         setShowMenu(false);
+
+        // Removes data from local storage
         TokenService.clearAuthToken();
+            
+        // Clears the timeout function set to make an api call to the refresh endpoint
         TokenService.clearCallbackBeforeExpiry();
+
+        // Removes the timeout that auto logs-out when idle and the event listeners that reset it
         IdleService.unRegisterIdleResets();
+
+        // Resets context and rerenders the app after local storage has been cleared
         context.setUser({});
         context.setDogs([]);
         context.setUserPackMembers([]);
@@ -93,6 +101,11 @@ const Header = (props) => {
                     />
                 </button>
             </div>
+            {/* 
+                NativeClickListener fires a callback passed as the onClick prop if a user clicks 
+                outside of NativeClickListener and its children.  Here, it closes the dropdown
+                menu if the user clicks outside of it.  
+            */}
             <NativeClickListener
                 id='Header__native-click-div'
                 onClick={() => setShowMenu(false)}
@@ -104,21 +117,6 @@ const Header = (props) => {
                     <ul
                         className={`Header__ul`}
                     >
-                        {TokenService.hasAuthToken()
-                            ? 
-                                <li>
-                                    <NavLink 
-                                        className='Header__navlink' 
-                                        activeClassName='selected'
-                                        to='/home'
-                                        onClick={() => setShowMenu(false)}
-                                    >
-                                        Homepage
-                                    </NavLink>
-                                </li>
-                            : 
-                                ''
-                        }
                         <li>
                             <NavLink 
                                 className='Header__navlink' 
@@ -129,7 +127,19 @@ const Header = (props) => {
                                 Howls
                             </NavLink>
                         </li>
-                        {TokenService.hasAuthToken() ? logoutLink : loginLink }
+                        {TokenService.hasAuthToken() && (
+                            <li>
+                                <NavLink 
+                                    className='Header__navlink' 
+                                    activeClassName='selected'
+                                    to='/home'
+                                    onClick={() => setShowMenu(false)}
+                                >
+                                    Homepage
+                                </NavLink>
+                            </li>
+                        )}
+                        {TokenService.hasAuthToken() ? logoutLink : loginLink}
                     </ul> 
                 </nav>
             </NativeClickListener>
