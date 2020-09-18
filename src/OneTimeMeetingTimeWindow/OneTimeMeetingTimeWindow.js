@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './OneTimeMeetingTimeWindow.css';
 
 const OneTimeMeetingTimeWindow = (props) => {
-
     const { 
         index, 
         initialData, 
@@ -15,6 +14,7 @@ const OneTimeMeetingTimeWindow = (props) => {
     const [startTime, setStartTime] = useState(initialData.startTime);
     const [endTime, setEndTime] = useState(initialData.endTime);
 
+    // Updates time windows in parent component
     useEffect(() => {
         if (initialData.startTime !== startTime) {
             updateTimeWindows(index, startTime, endTime);
@@ -22,10 +22,9 @@ const OneTimeMeetingTimeWindow = (props) => {
         if (initialData.endTime !== endTime) {
             updateTimeWindows(index, startTime, endTime);
         }
-    
     }, [startTime, endTime, index, initialData, updateTimeWindows]);
 
-    if (index !==0 && !index) {
+    if (index !== 0 && !index) {
         return (
             <li className='OneTimeMeetingTimeWindow__li error'>
                 <p>
