@@ -7,7 +7,6 @@ import MyHowls from '../MyHowls/MyHowls';
 import ReviewsOfMyDogs from '../ReviewsOfMyDogs/ReviewsOfMyDogs';
 
 const Homepage = (props) => {
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [props]);
