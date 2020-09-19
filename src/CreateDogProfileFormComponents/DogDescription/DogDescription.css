@@ -8,6 +8,10 @@
 }
 
 @media screen and (min-width: 750px) {
+    .DogDescription__message-container textarea {
+        min-width: 500px;
+    }
+
     .DogDescription__alert-div {
         height: 50px;
     }
