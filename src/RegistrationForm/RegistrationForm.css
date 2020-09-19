@@ -40,3 +40,10 @@
 .RegistrationForm__section.outer-section {
     width: 100%;
 }
+
+.RegistrationForm__alert-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

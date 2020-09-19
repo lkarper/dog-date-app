@@ -259,6 +259,17 @@ blockquote {
   margin: 10px 20px;
 }
 
+.outer-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+hr {
+  color: black;
+}
+
 @media screen and (min-width: 750px) {
   .section {
     width: 80%;
@@ -266,6 +277,7 @@ blockquote {
 
   .outer-fieldset {
     width: 80%;
+    align-items: flex-start;
   }
 
   .section p {

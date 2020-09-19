@@ -12,8 +12,10 @@
 .CreateHowl__dog-select-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .CreateHowl__description-outer-container {
@@ -53,6 +55,25 @@
 
 .CreateHowl__alert-div.personal-message {
     min-height: 115px;
+}
+
+.CreateHowl__loading-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 75px;
+    left: 0;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CreateHowl__loading {
+    font-size: 30px;
 }
 
 @media screen and (min-width: 900px) {
