@@ -7,7 +7,7 @@ const ValidateUsername = (props) => {
         username,
         usernameValidationError, 
         usernameExists,
-        setUsernameValidationError 
+        setUsernameValidationError, 
     } = props;
 
     useEffect(() => {
@@ -16,9 +16,9 @@ const ValidateUsername = (props) => {
         } else {
             setUsernameValidationError('Username required and must be 3-72 characters in length.');
         }
-        
     }, [username, setUsernameValidationError]);
 
+    // Message to load if api call on registration attempt returns username already exists
     const accountExistsText = (
         <>
             <span
