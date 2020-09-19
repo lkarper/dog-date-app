@@ -6,7 +6,7 @@ const ValidateReenteredPassword = (props) => {
         password, 
         reenteredPassword, 
         reenteredPasswordError,
-        setReenteredPasswordError
+        setReenteredPasswordError,
     } = props;
 
     useEffect(() => {

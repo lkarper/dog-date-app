@@ -9,14 +9,14 @@ const ValidateEmail = (props) => {
         emailAlreadyRegistered,
         suffix, 
         email, 
-        setEmailValidationError
+        setEmailValidationError,
     } = props;
 
     useEffect(() => {
         if (isEmail(email)) {
             setEmailValidationError('');
         } else {
-            setEmailValidationError('Email invalid.')
+            setEmailValidationError('Email invalid.');
         }
     }, [email, setEmailValidationError]);
 
