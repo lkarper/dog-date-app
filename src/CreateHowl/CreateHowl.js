@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import MapForm from '../MapForm/MapForm';
@@ -36,7 +38,8 @@ const CreateHowl = (props) => {
     });
     const [locationError, setLocationError] = useState([]);
     const [meetingType, setMeetingType] = useState(howl.meeting_type || 'recurring');
-    
+    const [showLoading, setShowLoading] = useState(false);
+
     /* 
         Howls returned from the api do not differentiate types of meeting windows in the time_windows property;
         day_of_week will simply be an empty string if meeting_type === 'once'.
@@ -131,6 +134,7 @@ const CreateHowl = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setShowLoading(true);
         setApiError(false);
 
         const newHowl = {
@@ -170,22 +174,26 @@ const CreateHowl = (props) => {
             HowlsService.updateHowl(howl.id, newHowl)
                 .then(() => HowlsService.getHowlById(howl.id))
                 .then(howl => {
+                    setShowLoading(false);
                     context.updateHowl(howl);
                     props.forceUpdate(new Date().toJSON());
                     props.setShowEdit(false);
                 })
                 .catch(error => {
                     console.log(error);
+                    setShowLoading(false);
                     setApiError(true);
                 }); 
         } else {
             HowlsService.createNewHowl(newHowl)
                 .then(howl => {
+                    setShowLoading(false);
                     context.addHowl(howl);
                     props.history.push(`/howls/${howl.id}`);
                 })
                 .catch(error => {
                     console.log(error)
+                    setShowLoading(false);
                     setApiError(true);
                 });
         }
@@ -259,7 +267,8 @@ const CreateHowl = (props) => {
                     >
                         <legend>What type of howl would you like to create?</legend>
                         <div>
-                            <input 
+                            <input
+                                className='CreateHowl__radio radio' 
                                 type='radio'
                                 name='meeting-type'
                                 id='meet-once'
@@ -272,6 +281,7 @@ const CreateHowl = (props) => {
                         </div>
                         <div>
                             <input 
+                                className='CreateHowl__radio radio'
                                 type='radio'
                                 name='meeting-type'
                                 id='recurring-meeting'
@@ -413,6 +423,15 @@ const CreateHowl = (props) => {
                     </p>
                 }
             </div>
+            {showLoading && 
+                <div className='CreateHowl__loading-container'>
+                    <FontAwesomeIcon 
+                        className='CreateHowl__loading' 
+                        icon={faSpinner} 
+                        spin 
+                    />
+                </div>
+            }
         </section>
     );
 }
@@ -453,8 +472,8 @@ CreateHowl.propTypes = {
         location: PropTypes.shape({
             address: PropTypes.string,
             city: PropTypes.string,
-            lat: PropTypes.number,
-            lon: PropTypes.number,
+            lat: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+            lon: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
             state: PropTypes.string,
             zipcode: PropTypes.string
         }),
