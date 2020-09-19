@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateDogProfileAge = (props) => {
-
     const { 
         ageYears, 
         ageMonths, 
         ageError, 
-        setAgeError 
+        setAgeError,
     } = props;
 
     useEffect(() => {

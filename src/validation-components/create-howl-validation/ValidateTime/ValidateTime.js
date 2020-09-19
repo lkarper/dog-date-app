@@ -7,7 +7,7 @@ const ValidateTime = (props) => {
         oneTimeMeetingWindows, 
         recurringMeetingWindows, 
         timeWindows,
-        setTimeError 
+        setTimeError, 
     } = props;
 
     useEffect(() => {
@@ -53,7 +53,7 @@ const ValidateTime = (props) => {
             >
                 <p>Error: Something went wrong. Check your connection and try again.</p>
             </div>
-        )
+        );
     }
 
     if (meetingType === 'search') {
@@ -68,8 +68,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window.startTime 
-                                    ? `Start time ${i + 1} set` 
-                                    : `You must set start time ${i + 1}`
+                                        ? `Start time ${i + 1} set` 
+                                        : `You must set start time ${i + 1}`
                                 }
                             </p>
                             <p 
@@ -78,8 +78,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window.endTime 
-                                    ? `End time ${i + 1} set` 
-                                    : `You must set end time ${i + 1}`
+                                        ? `End time ${i + 1} set` 
+                                        : `You must set end time ${i + 1}`
                                 }
                             </p>
                         </li>
@@ -99,8 +99,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window[Object.keys(window)[0]].startTime 
-                                    ? `Start time ${i + 1} set` 
-                                    : `You must set start time ${i + 1}`
+                                        ? `Start time ${i + 1} set` 
+                                        : `You must set start time ${i + 1}`
                                 }
                             </p>
                             <p 
@@ -109,8 +109,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window[Object.keys(window)[0]].endTime 
-                                    ? `End time ${i + 1} set` 
-                                    : `You must set End time ${i + 1}`
+                                        ? `End time ${i + 1} set` 
+                                        : `You must set end time ${i + 1}`
                                 }
                             </p>
                         </li>
@@ -125,9 +125,10 @@ const ValidateTime = (props) => {
                     className={`ValidateTime__validator ${oneTimeMeetingWindows.date ? 'valid' : 'error'}`}
                     id={`date-validator`}
                 >
-                    {oneTimeMeetingWindows.date 
-                        ? 'Date set' 
-                        : 'You must select a date'
+                    {
+                        oneTimeMeetingWindows.date 
+                            ? 'Date set' 
+                            : 'You must select a date'
                     }
                 </p>
                 <ol>
@@ -139,8 +140,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window.startTime 
-                                    ? `Start time ${i + 1} set` 
-                                    : `You must set start time ${i + 1}`
+                                        ? `Start time ${i + 1} set` 
+                                        : `You must set start time ${i + 1}`
                                 }
                             </p>
                             <p 
@@ -149,8 +150,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window.endTime 
-                                    ? `End time ${i + 1} set` 
-                                    : `You must set end time ${i + 1}`
+                                        ? `End time ${i + 1} set` 
+                                        : `You must set end time ${i + 1}`
                                 }
                             </p>
                         </li>
@@ -170,8 +171,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window.dayOfWeek 
-                                    ? `Day ${i + 1} set`
-                                    : `You must set day ${i + 1}`
+                                        ? `Day ${i + 1} set`
+                                        : `You must set day ${i + 1}`
                                 }
                             </p>
                             <p 
@@ -180,8 +181,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window.startTime 
-                                    ? `Start time ${i + 1} set` 
-                                    : `You must set start time ${i + 1}`
+                                        ? `Start time ${i + 1} set` 
+                                        : `You must set start time ${i + 1}`
                                 }
                             </p>
                             <p 
@@ -190,8 +191,8 @@ const ValidateTime = (props) => {
                             >
                                 {
                                     window.endTime 
-                                    ? `End time ${i + 1} set` 
-                                    : `You must set End time ${i + 1}`
+                                        ? `End time ${i + 1} set` 
+                                        : `You must set end time ${i + 1}`
                                 }
                             </p>
                         </li>
@@ -226,9 +227,8 @@ ValidateTime.propTypes = {
         PropTypes.shape({
             dayOfWeek: PropTypes.string,
             startTime: PropTypes.string,
-            endTime: PropTypes.string,
-    
-        })
+            endTime: PropTypes.string,    
+        }),
     ),
     timeWindows: PropTypes.arrayOf(
         PropTypes.shape({

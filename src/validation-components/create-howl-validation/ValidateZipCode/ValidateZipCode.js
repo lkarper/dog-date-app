@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateZipCode = (props) => {
-    
     const { 
         zipcode, 
         zipcodeError, 
         setZipcodeError, 
-        notRequired
+        notRequired,
     } = props;
 
     useEffect(() => {  
@@ -15,7 +14,7 @@ const ValidateZipCode = (props) => {
             setZipcodeError('');
         } else if (!/^[0-9]{5}$/.test(zipcode)) {
             if (notRequired) {
-                setZipcodeError(`Zip code must be 5 digits in length if provided.`);
+                setZipcodeError(`ZIP code must be 5 digits in length if provided.`);
             } else {
                 setZipcodeError(`ZIP code is required and must be 5 digits in length.`);
             } 
@@ -41,7 +40,7 @@ const ValidateZipCode = (props) => {
                 className='ValidateZipCode__validator' 
                 id='zipcode-validator'
             >
-                Zip code is optional, but must be 5 digits in length if provided.
+                ZIP code is optional, but must be 5 digits in length if provided.
             </p>
         );
     }

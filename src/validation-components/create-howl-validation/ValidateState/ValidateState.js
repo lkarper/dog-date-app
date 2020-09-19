@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateState = (props) => {
-
     const { 
         state, 
         stateError, 
-        setStateError 
+        setStateError, 
     } = props;
 
     useEffect(() => {

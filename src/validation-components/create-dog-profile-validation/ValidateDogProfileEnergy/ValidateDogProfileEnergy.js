@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateDogProfileEnergy = (props) => {
-
     const { 
         energy, 
         energyError, 
-        setEnergyError 
+        setEnergyError,
     } = props;
 
     useEffect(() => {

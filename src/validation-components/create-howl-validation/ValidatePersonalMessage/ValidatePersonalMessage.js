@@ -5,7 +5,7 @@ const ValidatePersonalMessage = (props) => {
     const { 
         personalMessage, 
         personalMessageError, 
-        setPersonalMessageError 
+        setPersonalMessageError, 
     } = props;
 
     useEffect(() => {
@@ -14,7 +14,6 @@ const ValidatePersonalMessage = (props) => {
         } else {
             setPersonalMessageError('');
         }
-
     }, [personalMessage, setPersonalMessageError]);
 
     if (personalMessageError) {

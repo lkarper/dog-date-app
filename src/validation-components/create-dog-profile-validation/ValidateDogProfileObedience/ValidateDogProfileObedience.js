@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateDogProfileObedience = (props) => {
-    
     const { 
         obedience, 
         obedienceError, 
-        setObedienceError 
+        setObedienceError, 
     } = props;
 
     useEffect(() => {

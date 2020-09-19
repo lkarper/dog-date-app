@@ -6,7 +6,7 @@ const ValidateDogSelection = (props) => {
     const { 
         dogsForHowl, 
         dogsForHowlError, 
-        setDogsForHowlError 
+        setDogsForHowlError,
     } = props;
 
     const context = useContext(UserContext);

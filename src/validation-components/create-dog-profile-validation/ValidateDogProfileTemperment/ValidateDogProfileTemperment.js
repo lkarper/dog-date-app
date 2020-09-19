@@ -2,18 +2,17 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateDogProfileTemperment = (props) => {
-
     const { 
         temperment, 
         tempermentError, 
-        setTempermentError 
+        setTempermentError, 
     } = props;
 
     useEffect(() => {
         if (temperment) {
             setTempermentError('');
         } else {
-            setTempermentError(`You must select your dog's temperment.`)
+            setTempermentError(`You must select your dog's temperment.`);
         }
     }, [temperment, setTempermentError]);
 

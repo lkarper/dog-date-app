@@ -5,7 +5,7 @@ const ValidateTitle = (props) => {
     const { 
         title, 
         titleError, 
-        setTitleError 
+        setTitleError, 
     } = props;
 
     useEffect(() => {

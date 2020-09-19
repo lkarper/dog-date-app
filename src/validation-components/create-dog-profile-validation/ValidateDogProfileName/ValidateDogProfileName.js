@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateDogProfileName = (props) => {
-
     const { 
         name, 
         nameError, 
-        setNameError 
+        setNameError, 
     } = props;
 
     useEffect(() => {

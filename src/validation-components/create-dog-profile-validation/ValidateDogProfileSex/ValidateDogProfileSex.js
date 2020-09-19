@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateDogProfileSex = (props) => {
-
     const { 
         sex, 
         sexError, 
-        setSexError 
+        setSexError, 
     } = props;
 
     useEffect(() => {

@@ -2,15 +2,13 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ValidateAddress = (props) => {
-
     const { 
         address, 
         addressError, 
-        setAddressError 
+        setAddressError, 
     } = props;
 
     useEffect(() => {
-
         if (address.trim().length === 0) {
             setAddressError(`You must enter an address or location name. (Max 100 chars.)`);
         } else {
