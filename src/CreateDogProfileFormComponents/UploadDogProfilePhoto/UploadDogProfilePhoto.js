@@ -84,7 +84,7 @@ const UploadDogProfilePhoto = (props) => {
                 });
             }
         }
-    }, [upImg, initialWidth, initialHeight, setCrop]);
+    }, [initialWidth, initialHeight, setCrop]);
 
     /* 
         Sets parent state so that no image is used in a profile; 
