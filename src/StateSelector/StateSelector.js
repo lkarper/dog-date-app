@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const StateSelector = (props) => {
-
     const { propState } = props;
 
+    // state and setState refer to geographic state in the US (e.g. New York, Maine, etc.)
     const [state, setState] = useState(propState);
 
+    // Used to pass the state up to a parent component
     useEffect(() => {
         if (state !== propState) {
             props.setState(state);

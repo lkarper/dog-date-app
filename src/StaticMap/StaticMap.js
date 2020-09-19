@@ -5,10 +5,9 @@ import config from '../config';
 import './StaticMap.css';
 
 const StaticMap = (props) => {
-
     const { 
         lat, 
-        lon 
+        lon,
     } = props;
 
     let mapContainer = useRef(null);
@@ -22,8 +21,8 @@ const StaticMap = (props) => {
         markerRef = el;
     }
 
+    // Loads the static map after the component mounts
     useEffect(() => {
-
         const locationiqKey = config.mapbox_key;
 
         const map = new mapboxgl.Map({
@@ -31,7 +30,7 @@ const StaticMap = (props) => {
             attributionControl: false,
             style: `https://tiles.locationiq.com/v2/streets/vector.json?key=${locationiqKey}`,
             center: [lon, lat],
-            zoom: 12
+            zoom: 12,
         });
 
         new mapboxgl.Marker(markerRef)
