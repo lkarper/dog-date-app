@@ -3,8 +3,7 @@ import UserContext from '../contexts/UserContext';
 import RegistrationForm from '../RegistrationForm/RegistrationForm';
 import './UserContactInfo.css';
 
-const UserContactInfo = (props) => {
-    
+const UserContactInfo = (props) => {    
     const context = useContext(UserContext);
     
     const { 
