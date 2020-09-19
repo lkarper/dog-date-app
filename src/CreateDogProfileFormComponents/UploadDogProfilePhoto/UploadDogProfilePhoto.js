@@ -24,6 +24,8 @@ const UploadDogProfilePhoto = (props) => {
     });
     const [completedCrop, setCompletedCrop] = useState(null);
     const [upImg, setUpImg] = useState();
+    const [initialWidth, setInitialWidth] = useState();
+    const [initialHeight, setInitialHeight] = useState();
 
     const imgRef = useRef(null);
     const previewCanvasRef = useRef(null);
@@ -50,17 +52,17 @@ const UploadDogProfilePhoto = (props) => {
         Once the data URL is ready, the canvas is loaded for cropping the image; 
         cropping aspect ratio is locked to 4:3 for uniform profile photos
     */
-    useEffect(() => {
-        if (upImg) {
-            const { width, height } = document.querySelector('.ReactCrop__image').getBoundingClientRect();
 
+    useEffect(() => {
+        if (initialWidth && initialHeight) {
+            
             /* 
                 Sets the initial crop field to be either the maximum height or the maximum width
                 allowed by a 4:3 aspect ratio, depending on the orientation of the uploaded photo
             */
-            if (width > height) {    
-                const cropWidth = height * 4 / 3;
-                const xOffset = ((width - cropWidth) / 2) / width * 100;
+            if (initialWidth > initialHeight) {    
+                const cropWidth = initialHeight * 4 / 3;
+                const xOffset = ((initialWidth - cropWidth) / 2) / initialWidth * 100;
                 
                 setCrop({ 
                     x: xOffset,
@@ -70,8 +72,8 @@ const UploadDogProfilePhoto = (props) => {
                     aspect: 4 / 3, 
                 });
             } else {
-                const cropHeight = width * 3 / 4;
-                const yOffset = ((height - cropHeight) / 2) / height * 100;
+                const cropHeight = initialWidth * 3 / 4;
+                const yOffset = ((initialHeight - cropHeight) / 2) / initialHeight * 100;
 
                 setCrop({
                     x: 0,
@@ -82,7 +84,7 @@ const UploadDogProfilePhoto = (props) => {
                 });
             }
         }
-    }, [upImg, setCrop]);
+    }, [upImg, initialWidth, initialHeight, setCrop]);
 
     /* 
         Sets parent state so that no image is used in a profile; 
@@ -139,8 +141,19 @@ const UploadDogProfilePhoto = (props) => {
         );
     }
 
+    const loaded = () => {
+        const { width, height } = imgRef.current.getBoundingClientRect();
+        setInitialWidth(width);
+        setInitialHeight(height);
+    }
+
     const onLoad = useCallback((img) => {
         imgRef.current = img;
+        if (imgRef.current.complete) {
+            loaded();
+        } else {
+            imgRef.current.addEventListener('load', loaded);
+        }
     }, []);
 
     /* 
