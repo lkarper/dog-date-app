@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// This component displays a visual representation of password requirements
 const PasswordChecklist = (props) => {
     const { passwordError } = props;
 
@@ -11,7 +12,7 @@ const PasswordChecklist = (props) => {
         lowerCase,
         upperCase,
         number,
-        specialChar
+        specialChar,
     } = passwordError;
 
     const checkMark = <span style={{ color: 'hsl(245, 100%, 50%)' }}>&#10004;</span>;

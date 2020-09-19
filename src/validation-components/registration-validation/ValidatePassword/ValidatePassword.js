@@ -3,17 +3,24 @@ import PropTypes from 'prop-types';
 import PasswordChecklist from '../PasswordChecklist/PasswordChecklist';
 import './ValidatePassword.css';
 
+/* 
+    This component validates a password and provides two types of validation messages: 
+    1. a password validation message for users of assistive technology is hidden from view
+        but kept in the DOM;
+    2. sighted users see a password validation checklist provided by the
+        PasswordChecklist component
+*/
 const ValidatePassword = (props) => {
     const { 
         password,
         passwordErrorMessage, 
         passwordError,
         setPasswordError,
-        setPasswordErrorMessage
+        setPasswordErrorMessage,
     } = props;
     
     useEffect(() => {
-        const newPasswordError = {}
+        const newPasswordError = {};
         const passwordErrorArray = [];
 
         if (password.length < 8) {
@@ -85,7 +92,10 @@ const ValidatePassword = (props) => {
 
     return (
         <>
+            {/* A visual respresentation of password validation for sighted users */}
             <PasswordChecklist passwordError={passwordError} />
+            
+            {/* Not visible on screen, but in the DOM for users of assistive technology */}
             <div
                 role='alert'
                 className='ValidatePassword__password-error-message'
