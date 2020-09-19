@@ -199,11 +199,46 @@ const ReviewPage = (props) => {
                                 <h2>About {dog_profile.name}</h2>
                             </header>
                                 <ul>
-                                    <li>Friendliness towards other dogs: {friendliness_dogs}</li>
-                                    <li>Friendliness towards people: {friendliness_people}</li>
-                                    <li>Interest in playing: {playing_interest}</li>
-                                    <li>Obedience: {obedience}</li>
-                                    <li>Accuracy of profile: {profile_accuracy}</li>
+                                    <li>
+                                        <div
+                                            className='ReviewPage__star-div'
+                                        >
+                                            <p>Friendliness towards other dogs: </p>
+                                            <StarRating rating={friendliness_dogs} />
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            className='ReviewPage__star-div'
+                                        >
+                                            <p>Friendliness towards people: </p>
+                                            <StarRating rating={friendliness_people} />
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            className='ReviewPage__star-div'
+                                        >
+                                            <p>Interest in playing: </p>
+                                            <StarRating rating={playing_interest} />
+                                        </div>
+                                    </li>
+                                    <li>
+                                       <div
+                                            className='ReviewPage__star-div'
+                                        >
+                                            <p>Obedience: </p>
+                                            <StarRating rating={obedience} />
+                                        </div>
+                                    </li>
+                                    <li>
+                                       <div
+                                            className='ReviewPage__star-div'
+                                        >
+                                            <p>Accuracy of profile: </p>
+                                            <StarRating rating={profile_accuracy} />
+                                        </div>        
+                                    </li>
                                 </ul>
                                 <h3>This is what {reviewer} had to say about {dog_profile.name}</h3>
                                 <blockquote>{personal_message}</blockquote>
