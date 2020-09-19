@@ -19,7 +19,7 @@ const CreateDogProfile = (props) => {
 
     const { 
         dog_profile, 
-        suffix
+        suffix,
     } = props;
 
     const { 
@@ -90,7 +90,7 @@ const CreateDogProfile = (props) => {
     }
 
     const uploadDogProfile = useCallback(() => {
-        setApiError(false);
+        setApiError('');
         setShowLoading(true);
         const newDogProfile = {
             owner_id: context.user.id,
