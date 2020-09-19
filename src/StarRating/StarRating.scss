@@ -4,6 +4,10 @@
 }
   
 .StarRating__stars {
+    /* 
+        Calculates the transition point for the linear-gradient
+        --rating is passed by an inline style from the component
+    */
     --percent: calc(var(--rating) / 5 * 100%);
 
     display: inline-block;
