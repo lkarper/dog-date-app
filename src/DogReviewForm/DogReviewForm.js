@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import UserContext from '../contexts/UserContext';
 import ReviewFormStarRater from '../ReviewFormStarRater/ReviewFormStarRater';
@@ -45,7 +47,7 @@ const DogReviewForm = (props) => {
     const [startTime, setStartTime] = useState(review.start_time)
     const [endTime, setEndTime] = useState(review.end_time);
     const [apiError, setApiError] = useState(false);
-
+    const [showLoading, setShowLoading] = useState(false);
     
     // Sets the max. date of playdate to today, since you cannot review events in the future
     const today = new Date();
@@ -60,6 +62,7 @@ const DogReviewForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setShowLoading(true);
         setApiError(false);
         const newReview = {
             date_created: new Date().toJSON(),
@@ -90,9 +93,11 @@ const DogReviewForm = (props) => {
                 .then(() => {
                     props.setShowEdit(false);
                     props.forceUpdate(new Date().toJSON());
+                    setShowLoading(false);
                 })
                 .catch(error => {
                     console.log(error);
+                    setShowLoading(false);
                     setApiError(true);
                 })
 
@@ -103,6 +108,7 @@ const DogReviewForm = (props) => {
                 })
                 .catch(error => {
                     console.log(error);
+                    setShowLoading(false);
                     setApiError(true);
                 });
         }
@@ -349,6 +355,15 @@ const DogReviewForm = (props) => {
             >
                 {apiError && <p>Error: Looks like something went wrong. Please check your connection and try again.</p>}
             </div>
+            {showLoading && 
+                <div className='DogReviewForm__loading-container'>
+                    <FontAwesomeIcon 
+                        className='DogReviewForm__loading' 
+                        icon={faSpinner} 
+                        spin 
+                    />
+                </div>
+            }
         </form>
     );
 }
