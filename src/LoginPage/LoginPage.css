@@ -46,3 +46,9 @@
 .LoginPage__p.error {
     margin: 10px;
 }
+
+@media screen and (min-width: 750px) {
+    .LoginPage__fieldset.outer-fieldset {
+        width: 52%;
+    }
+}
