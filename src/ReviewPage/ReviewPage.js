@@ -224,7 +224,7 @@ const ReviewPage = (props) => {
                                         </div>
                                     </li>
                                     <li>
-                                       <div
+                                        <div
                                             className='ReviewPage__star-div'
                                         >
                                             <p>Obedience: </p>
@@ -232,7 +232,7 @@ const ReviewPage = (props) => {
                                         </div>
                                     </li>
                                     <li>
-                                       <div
+                                        <div
                                             className='ReviewPage__star-div'
                                         >
                                             <p>Accuracy of profile: </p>
@@ -248,7 +248,12 @@ const ReviewPage = (props) => {
                                 <h2>About the playdate:</h2>
                             </header>
                             <h3>Location</h3>
-                            <p>Location suitabilty for a playdate: {location_suitability}</p>
+                            <div
+                                className='ReviewPage__star-div'
+                            >
+                                <p>Location suitabilty for a playdate: </p>
+                                <StarRating rating={location_suitability} />
+                            </div>
                             <p>Location: {location.address}, {location.city}, {location.state}{' '}{location.zipcode}</p>
                             {(location.lat && location.lon ) && (location.lat !== '0' && location.lon !== '0')
                                 ?
