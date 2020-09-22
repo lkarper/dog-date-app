@@ -28,6 +28,7 @@
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .HowlListItem__img {

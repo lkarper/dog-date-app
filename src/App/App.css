@@ -224,7 +224,7 @@ label {
 }
 
 .checkbox:checked + label::before {
-  content: '✔ ';
+  content: '✔\fe0e ';
   display: flex;
   align-items: center;
   justify-content: center;

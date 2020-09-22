@@ -18,6 +18,10 @@
     margin: 10px 0;
 }
 
+.HowlsPageFilterForm__fieldset.sub-fieldset div {
+    margin: 5px;
+}
+
 @media screen and (min-width: 750px) {
     .HowlsPageFilterForm__form {
         width: 80%;
