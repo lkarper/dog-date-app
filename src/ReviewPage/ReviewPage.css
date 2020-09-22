@@ -41,3 +41,7 @@
 .ReviewPage__edit-div {
     width: 100%;
 }
+
+.ReviewPage__ul {
+    list-style: none;
+}

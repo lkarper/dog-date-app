@@ -198,7 +198,7 @@ const ReviewPage = (props) => {
                             <header>
                                 <h2>About {dog_profile.name}</h2>
                             </header>
-                                <ul>
+                                <ul className='ReviewPage__ul'>
                                     <li>
                                         <div
                                             className='ReviewPage__star-div'
