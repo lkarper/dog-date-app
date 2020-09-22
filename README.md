@@ -1,7 +1,8 @@
 # Dog Date
 
-## Demo
+## Demo and API
 [Live Demo](https://dog-date-app.herokuapp.com/)
+[API](https://github.com/lkarper/dog-date-api)
 
 ## Summary
 Dog Date is a web app for users who want to find playmates for their dogs. Whether you have one or one-hundred dogs, you can create profiles for them on Dog Date. You can set a profile picture for your dog, characterize its energy-levels, obedience, experience with other dogs, and more! This allows others to decide if your dog is the right playmate for their dog! Other users can leave reviews of your dog(s) and their dates, and then you can comment on those reviews in response.
