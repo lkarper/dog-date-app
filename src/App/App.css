@@ -141,6 +141,10 @@ label {
   font-weight: bold;
 }
 
+.sub-fieldset div {
+  margin: 5px 0;
+}
+
 .bold-label {
   font-weight: bold;
 }
