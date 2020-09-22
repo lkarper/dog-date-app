@@ -15,8 +15,8 @@ const PasswordChecklist = (props) => {
         specialChar,
     } = passwordError;
 
-    const checkMark = <span style={{ color: 'hsl(245, 100%, 50%)' }}>&#10004;</span>;
-    const xMark = <span style={{ color: 'red' }}>&#10006;</span>;
+    const checkMark = <span className='valid'>✔&#xfe0e;</span>;
+    const xMark = <span className='error'>✖&#xfe0e;</span>;
 
     if (Object.keys(passwordError).length < 7) {
         return (
