@@ -134,8 +134,8 @@ const DogProfilePage = (props) => {
                                             ? 
                                                 `${dog.age_years} year` 
                                             : 
-                                                `${dog.age_years} years`
-                                        }, ${dog.age_months === 1 
+                                                dog.age_years !== 0 ? `${dog.age_years} years, ` : ''
+                                        }${dog.age_months === 1 
                                             ? 
                                                 `${dog.age_months} month` 
                                             : 
