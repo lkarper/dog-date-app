@@ -80,7 +80,7 @@ const HowlPageDogProfile = (props) => {
                         ? 
                             `${dog_profile.age_years === 1 
                                 ? 
-                                    `${dog_profile.age_years} year` 
+                                    `${dog_profile.age_years} year, ` 
                                 : 
                                     dog_profile.age_years !== 0 ? `${dog_profile.age_years} years, ` : ''
                             }${dog_profile.age_months === 1 
