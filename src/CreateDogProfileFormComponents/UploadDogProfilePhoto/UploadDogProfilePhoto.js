@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import ReactCrop from 'react-image-crop';
 import PropTypes from 'prop-types';
+import loadImage from 'blueimp-load-image';
 import 'react-image-crop/dist/ReactCrop.css';
 import './UploadDogProfilePhoto.css';
 
@@ -39,20 +40,10 @@ const UploadDogProfilePhoto = (props) => {
         }
     }, [imgUrl, imgUrlP, setImgUrlP, uploadDogProfile]);
 
-    // Creates data URL from uploaded image file to be used in canvas element for image crop
-    useEffect(() => {
-        if (imgFile) {
-            const reader = new FileReader();
-            reader.onload = () => setUpImg(reader.result);
-            reader.readAsDataURL(imgFile);
-        }
-    }, [imgFile]);
-
     /* 
         Once the data URL is ready, the canvas is loaded for cropping the image; 
         cropping aspect ratio is locked to 4:3 for uniform profile photos
     */
-
     useEffect(() => {
         if (initialWidth && initialHeight) {
             
@@ -87,6 +78,26 @@ const UploadDogProfilePhoto = (props) => {
     }, [initialWidth, initialHeight, setCrop]);
 
     /* 
+        Converts the uploaded image file to base64 and rotates the image to a standardized exif; 
+        image data is then used in canvas element for image crop
+    */
+    useEffect(() => {
+        if (imgFile) {
+            loadImage(imgFile,
+                (img) => {
+                    const base64data = img.toDataURL('image/png');
+                    setUpImg(base64data);
+                },
+                { 
+                    orientation: true, 
+                    canvas: true,
+                    maxWidth: 800,
+                }
+            );
+        }
+    }, [imgFile, setUpImg]);
+
+    /* 
         Sets parent state so that no image is used in a profile; 
         if editing a profile, the old image is removed
     */
@@ -106,8 +117,8 @@ const UploadDogProfilePhoto = (props) => {
         const tmpCanvas = document.createElement('canvas');
         tmpCanvas.width = newWidth;
         tmpCanvas.height = newHeight;
-
         const ctx = tmpCanvas.getContext('2d');
+        
         ctx.drawImage(
             canvas,
             0,
@@ -173,7 +184,7 @@ const UploadDogProfilePhoto = (props) => {
             Sets the scale by which the preview will be larger/smaller
             than the cropped region shown while cropping
         */
-        const pixelRatio = 10;
+        const pixelRatio = 2;
 
         /* 
             Scales are used to properly set the cropped area's dimensions,
@@ -315,7 +326,7 @@ UploadDogProfilePhoto.propTypes = {
     setImgUrlP: PropTypes.func.isRequired, 
     setImgDataP: PropTypes.func.isRequired,
     uploadDogProfile: PropTypes.func.isRequired, 
-    apiError: PropTypes.string.isRequired,
+    apiError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
     setApiError: PropTypes.func.isRequired,
     suffix: PropTypes.string.isRequired, 
 };
