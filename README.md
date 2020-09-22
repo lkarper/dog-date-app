@@ -2,6 +2,7 @@
 
 ## Demo and API
 [Live Demo](https://dog-date-app.herokuapp.com/)
+
 [API](https://github.com/lkarper/dog-date-api)
 
 ## Summary
