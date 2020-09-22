@@ -17,7 +17,7 @@ exports[`ReviewFormStarRater component renders the UI as expected 1`] = `
     >
       <input
         checked={false}
-        className="ReviewFormStarRater__input"
+        className="ReviewFormStarRater__input "
         id="star1-"
         name="rate-"
         onChange={[Function]}
@@ -26,13 +26,8 @@ exports[`ReviewFormStarRater component renders the UI as expected 1`] = `
         value="1"
       />
       <label
-        className="ReviewFormStarRater__label"
+        className="ReviewFormStarRater__label not-selected"
         htmlFor="star1-"
-        style={
-          Object {
-            "color": "#ccc",
-          }
-        }
       >
         1 star
       </label>
@@ -47,13 +42,8 @@ exports[`ReviewFormStarRater component renders the UI as expected 1`] = `
         value="2"
       />
       <label
-        className="ReviewFormStarRater__label"
+        className="ReviewFormStarRater__label not-selected"
         htmlFor="star2-"
-        style={
-          Object {
-            "color": "#ccc",
-          }
-        }
       >
         2 stars
       </label>
@@ -68,13 +58,8 @@ exports[`ReviewFormStarRater component renders the UI as expected 1`] = `
         value="3"
       />
       <label
-        className="ReviewFormStarRater__label"
+        className="ReviewFormStarRater__label not-selected"
         htmlFor="star3-"
-        style={
-          Object {
-            "color": "#ccc",
-          }
-        }
       >
         3 stars
       </label>
@@ -89,13 +74,8 @@ exports[`ReviewFormStarRater component renders the UI as expected 1`] = `
         value="4"
       />
       <label
-        className="ReviewFormStarRater__label"
+        className="ReviewFormStarRater__label not-selected"
         htmlFor="star4-"
-        style={
-          Object {
-            "color": "#ccc",
-          }
-        }
       >
         4 stars
       </label>
@@ -110,13 +90,8 @@ exports[`ReviewFormStarRater component renders the UI as expected 1`] = `
         value="5"
       />
       <label
-        className="ReviewFormStarRater__label"
+        className="ReviewFormStarRater__label not-selected"
         htmlFor="star5-"
-        style={
-          Object {
-            "color": "#ccc",
-          }
-        }
       >
         5 stars
       </label>

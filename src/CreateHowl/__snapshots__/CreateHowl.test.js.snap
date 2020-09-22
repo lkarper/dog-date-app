@@ -708,6 +708,7 @@ exports[`CreateHowl component renders the UI as expected 1`] = `
                 <div>
                   <input
                     checked={false}
+                    className="CreateHowl__radio radio"
                     id="meet-once"
                     name="meeting-type"
                     onChange={[Function]}
@@ -724,6 +725,7 @@ exports[`CreateHowl component renders the UI as expected 1`] = `
                 <div>
                   <input
                     checked={true}
+                    className="CreateHowl__radio radio"
                     id="recurring-meeting"
                     name="meeting-type"
                     onChange={[Function]}
@@ -918,7 +920,7 @@ exports[`CreateHowl component renders the UI as expected 1`] = `
                           className="ValidateTime__validator error"
                           id="end-time-validator-0"
                         >
-                          You must set End time 1
+                          You must set end time 1
                         </p>
                       </li>
                     </ol>

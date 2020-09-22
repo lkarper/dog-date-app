@@ -221,85 +221,57 @@ exports[`RegistrationForm component renders the UI as expected 1`] = `
                     <li>
                       Be at least 8 characters in length 
                       <span
-                        style={
-                          Object {
-                            "color": "red",
-                          }
-                        }
+                        className="ex-mark error"
                       >
-                        ✖
+                        ✕︎
                       </span>
                     </li>
                     <li>
                       Be no more than 72 characters in length 
                       <span
-                        style={
-                          Object {
-                            "color": "hsl(245, 100%, 50%)",
-                          }
-                        }
+                        className="check-mark valid"
                       >
-                        ✔
+                        ✓︎
                       </span>
                     </li>
                     <li>
                       Not begin or end with a space 
                       <span
-                        style={
-                          Object {
-                            "color": "hsl(245, 100%, 50%)",
-                          }
-                        }
+                        className="check-mark valid"
                       >
-                        ✔
+                        ✓︎
                       </span>
                     </li>
                     <li>
                       Contain at least one lowercase letter 
                       <span
-                        style={
-                          Object {
-                            "color": "red",
-                          }
-                        }
+                        className="ex-mark error"
                       >
-                        ✖
+                        ✕︎
                       </span>
                     </li>
                     <li>
                       Contain at least one uppercase letter 
                       <span
-                        style={
-                          Object {
-                            "color": "red",
-                          }
-                        }
+                        className="ex-mark error"
                       >
-                        ✖
+                        ✕︎
                       </span>
                     </li>
                     <li>
                       Contain at least one number 
                       <span
-                        style={
-                          Object {
-                            "color": "red",
-                          }
-                        }
+                        className="ex-mark error"
                       >
-                        ✖
+                        ✕︎
                       </span>
                     </li>
                     <li>
                       Contain at least one special character (e.g. !, @, #, $, etc.) 
                       <span
-                        style={
-                          Object {
-                            "color": "red",
-                          }
-                        }
+                        className="ex-mark error"
                       >
-                        ✖
+                        ✕︎
                       </span>
                     </li>
                   </ul>

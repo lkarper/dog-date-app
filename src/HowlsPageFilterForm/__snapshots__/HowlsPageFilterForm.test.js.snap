@@ -351,7 +351,7 @@ exports[`HowlsPageFilterForm component renders the UI as expected 1`] = `
               className="ValidateZipCode__validator"
               id="zipcode-validator"
             >
-              Zip code is optional, but must be 5 digits in length if provided.
+              ZIP code is optional, but must be 5 digits in length if provided.
             </p>
           </ValidateZipCode>
         </div>
@@ -374,7 +374,7 @@ exports[`HowlsPageFilterForm component renders the UI as expected 1`] = `
           >
             <input
               checked={false}
-              className="ReviewFormStarRater__input"
+              className="ReviewFormStarRater__input "
               id="star1-sort"
               name="rate-sort"
               onChange={[Function]}
@@ -383,13 +383,8 @@ exports[`HowlsPageFilterForm component renders the UI as expected 1`] = `
               value="1"
             />
             <label
-              className="ReviewFormStarRater__label"
+              className="ReviewFormStarRater__label not-selected"
               htmlFor="star1-sort"
-              style={
-                Object {
-                  "color": "#ccc",
-                }
-              }
             >
               1 star
             </label>
@@ -404,13 +399,8 @@ exports[`HowlsPageFilterForm component renders the UI as expected 1`] = `
               value="2"
             />
             <label
-              className="ReviewFormStarRater__label"
+              className="ReviewFormStarRater__label not-selected"
               htmlFor="star2-sort"
-              style={
-                Object {
-                  "color": "#ccc",
-                }
-              }
             >
               2 stars
             </label>
@@ -425,13 +415,8 @@ exports[`HowlsPageFilterForm component renders the UI as expected 1`] = `
               value="3"
             />
             <label
-              className="ReviewFormStarRater__label"
+              className="ReviewFormStarRater__label not-selected"
               htmlFor="star3-sort"
-              style={
-                Object {
-                  "color": "#ccc",
-                }
-              }
             >
               3 stars
             </label>
@@ -446,13 +431,8 @@ exports[`HowlsPageFilterForm component renders the UI as expected 1`] = `
               value="4"
             />
             <label
-              className="ReviewFormStarRater__label"
+              className="ReviewFormStarRater__label not-selected"
               htmlFor="star4-sort"
-              style={
-                Object {
-                  "color": "#ccc",
-                }
-              }
             >
               4 stars
             </label>
@@ -467,13 +447,8 @@ exports[`HowlsPageFilterForm component renders the UI as expected 1`] = `
               value="5"
             />
             <label
-              className="ReviewFormStarRater__label"
+              className="ReviewFormStarRater__label not-selected"
               htmlFor="star5-sort"
-              style={
-                Object {
-                  "color": "#ccc",
-                }
-              }
             >
               5 stars
             </label>
