@@ -1,4 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Dog Date
+
+## Demo
+[Live Demo](https://dog-date-app.herokuapp.com/)
+
+## Summary
+Dog Date is a web app for users who want to find playmates for their dogs. Whether you have one or one-hundred dogs, you can create profiles for them on Dog Date. You can set a profile picture for your dog, characterize its energy-levels, obedience, experience with other dogs, and more! This allows others to decide if your dog is the right playmate for their dog! Other users can leave reviews of your dog(s) and their dates, and then you can comment on those reviews in response.
+
+## What can Dog Date do?
+
+### Howl about your dog and see what others are howling about!
+On Dog Date, you find playmates for your dog by [creating](https://dog-date-app.herokuapp.com/create-howl) and [viewing](https://dog-date-app.herokuapp.com/howls) "Howls". 
+
+![Create a howl](public\images\dog-date-screenshots\create_howl_1.png)
+![A howl](public\images\dog-date-screenshots\howl_view_1.png)
+
+Howls are essentially a message from a user that he or she is looking for playmates for his or her canine companion(s)! There are two types of Howls: "one-time" and "recurring" playdates. "One-time" playdates are requests for a playdate on a specific date. Users post a date, available time frames, and a proposed location, and then wait for other interested users to contact them. "Recurring" Howls, on the other hand, let users know that a user is generally available at certain times for a playdate (e.g. Saturdays from 11:00 am - 4:00 pm).
+
+On the Howls page users can filter howls by zipcode, state, or the average rating of dogs in the Howl (more on ratings below.)
+
+Note: At the moment, all of the Howls are demo requests and do not actually represent real-world dogs and users.
+
+## Get Started
+Get started by [registering](https://dog-date-app.herokuapp.com/register) for an account!
+
+## Created With
+* React
+* Node.js
+* HTML
+* CSS/SCSS
+* JavaScript
 
 ## Available Scripts
 
