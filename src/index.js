@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
+import 'normalize.css';
 import './index.css';
 import App from './App/App';
 import * as serviceWorker from './serviceWorker';
