@@ -27,12 +27,19 @@ const Map = (props) => {
     }
 
     const setMarkerToMyLocation = () => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            setMarkerCoordinates({
-                lat: position.coords.latitude,
-                lon: position.coords.longitude 
-            });
-        });
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setMarkerCoordinates({
+                    lat: position.coords.latitude,
+                    lon: position.coords.longitude 
+                });
+            }, 
+            (error) => window.alert(`Error: ${error.message}`),
+            { 
+                enableHighAccuracy: true,
+                timeout: 5000,
+            }
+        );
     }
 
     useEffect(() => {
