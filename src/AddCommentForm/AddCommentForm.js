@@ -37,6 +37,7 @@ const AddCommentForm = (props) => {
                         ...newComment,
                         id,
                         commenter: context.user.username,
+                        review_id: reviewId,
                     });
                     setCommentText('');
                     setComments(updatedComments);
