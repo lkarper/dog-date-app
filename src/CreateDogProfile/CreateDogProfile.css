@@ -94,4 +94,8 @@
     .CreateDogProfile__outer-section.edit.photo-container {
         width: 80%;
     }
+
+    .CreateDogProfile__button.button {
+        font-size: 20px;
+    }
 }
