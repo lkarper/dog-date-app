@@ -22,7 +22,7 @@ A typical dog profile:
 ![A dog profile](public/images/dog-date-screenshots/dog_profile_3.png)
 ![A dog profile](public/images/dog-date-screenshots/dog_profile_4.png)
 
-### Howl about your dog and see what others are howling about!
+### Howl about your dog and see what others are Howling about!
 On Dog Date, you find playmates for your dog by [creating](https://dog-date-app.herokuapp.com/create-howl) and [viewing](https://dog-date-app.herokuapp.com/howls) "Howls". 
 
 Create a Howl:
@@ -33,7 +33,7 @@ A typical Howl:
 ![A Howl](public/images/dog-date-screenshots/howl_view_2.png)
 ![A Howl](public/images/dog-date-screenshots/howl_view_3.png)
 
-Howls are essentially a message from a user that he or she is looking for playmates for his or her canine companion(s)! There are two types of Howls: "one-time" and "recurring" playdates. "One-time" playdates are requests for a playdate on a specific date. Users post a date, available time frames, and a proposed location, and then wait for other interested users to contact them. "Recurring" Howls, on the other hand, let users know that a user is generally available at certain times for a playdate (e.g. Saturdays from 11:00 am - 4:00 pm).
+Howls are essentially a message from a user that he or she is looking for playmates for his or her canine companion(s)! There are two types of Howls: "one-time" and "recurring" playdates. "One-time" playdates are requests for a playdate on a specific date. Users post a date, available time frames, and a proposed location, and then wait for other interested users to contact them. "Recurring" Howls, on the other hand, let users know that a user is generally available at certain times for a playdate (e.g. Saturdays, 11:00 am - 4:00 pm).
 
 On the Howls page users can filter Howls by ZIP code, state, or the average rating of dogs in the Howl (more on ratings below), as well as by availability.
 
@@ -52,7 +52,7 @@ A typical dog review:
 ![A dog review](public/images/dog-date-screenshots/review_3.png)
 
 ### Keep track of everything on your dashboard!
-Once you have an account, your dashboard keeps track of your dogs, howls, and members of your pack!
+Once you have an account, your [dashboard](https://dog-date-app.herokuapp.com/home) keeps track of your dogs, Howls, and members of your pack!
 
 ![Dashboard](public/images/dog-date-screenshots/dashboard_1.png)
 ![Dashboard](public/images/dog-date-screenshots/dashboard_2.png)
