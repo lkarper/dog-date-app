@@ -38,8 +38,8 @@ Howls are essentially a message from a user that he or she is looking for playma
 On the Howls page users can filter Howls by ZIP code, state, or the average rating of dogs in the Howl (more on ratings below), as well as by availability.
 
 Searching for Howls:
-![Searching for howls](public/images/dog-date-screenshots/howl_search_1.png)
-![Searching for howls](public/images/dog-date-screenshots/howl_search_2.png)
+![Searching for howls](public/images/dog-date-screenshots/howls_search_1.png)
+![Searching for howls](public/images/dog-date-screenshots/howls_search_2.png)
 
 Note: At the moment, all of the Howls are demo requests and do not actually represent real-world dogs and users.
 
