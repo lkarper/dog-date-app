@@ -240,8 +240,12 @@ const ReviewPage = (props) => {
                                         </div>        
                                     </li>
                                 </ul>
-                                <h3>This is what {reviewer} had to say about {dog_profile.name}</h3>
-                                <blockquote>{personal_message}</blockquote>
+                                {personal_message &&
+                                    <>
+                                        <h3>This is what {reviewer} had to say about {dog_profile.name}</h3>
+                                        <blockquote>{personal_message}</blockquote>
+                                    </>
+                                }
                         </section>
                         <section className='ReviewPage__section section'>
                             <header>
@@ -254,7 +258,11 @@ const ReviewPage = (props) => {
                                 <p>Location suitabilty for a playdate: </p>
                                 <StarRating rating={location_suitability} />
                             </div>
-                            <p>Location: {location.address}, {location.city}, {location.state}{' '}{location.zipcode}</p>
+                            <p 
+                                className='ReviewPage__location p'
+                            >
+                                Location: {location.address}, {location.city}, {location.state}{' '}{location.zipcode}
+                            </p>
                             {(location.lat && location.lon ) && (location.lat !== '0' && location.lon !== '0')
                                 ?
                                     <StaticMap 
@@ -264,7 +272,11 @@ const ReviewPage = (props) => {
                                 : <p>Sorry, no map available.</p>
                             }
                             <h3>Date and time:</h3> 
-                            <p>{moment(date).format("dddd, MMMM Do, YYYY")}</p>
+                            <p
+                                className='ReviewPage__date-time p'
+                            >
+                                {moment(date).format("dddd, MMMM Do, YYYY")}
+                            </p>
                             {<TimeWindow startTime={start_time} endTime={end_time} />}
                         </section>
                         <section className='ReviewPage__section section'>

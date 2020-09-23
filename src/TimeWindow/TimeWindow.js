@@ -30,7 +30,11 @@ const TimeWindow = (props) => {
         const displayEnd = `${endTimeHour}:${endTimeMin} ${endTimeAMPM}`;
 
         return (
-            <p>{displayStart}{' - '}{displayEnd}</p>
+            <p
+                className='TimeWindow__p'
+            >
+                {displayStart}{' - '}{displayEnd}
+            </p>
         );
     }
 }

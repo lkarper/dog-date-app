@@ -38,4 +38,12 @@
     .HowlPageDogProfile__img {
         width: 50%;
     }
+
+    .HowlPageDogProfile__li {
+        align-items: flex-start;
+    }
+
+    .HowlPageDogProfile__reviews-ul .DogReviewListItem__h3 {
+        flex-direction: row;
+    }
 }

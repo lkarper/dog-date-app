@@ -60,7 +60,7 @@ const HowlPageButtons = (props) => {
     if (howlSaved) {
         return (
             <div aria-live='polite'>
-                <p>Howl saved!</p>
+                <p className='HowlPageButtons__p valid'>Howl saved!</p>
                 <button
                     className='HowlPageButtons__button button'
                     type='button' 
