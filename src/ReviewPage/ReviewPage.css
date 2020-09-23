@@ -46,6 +46,13 @@
     list-style: none;
 }
 
+.ReviewPage__other-reviews-div .DogAverageRating__star-outer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (min-width: 750px) {
     .ReviewPage__section.section .ReviewPage__main-header p,
     .ReviewPage__date-time.p,

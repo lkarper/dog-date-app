@@ -269,7 +269,12 @@ const ReviewPage = (props) => {
                                         lat={location.lat}
                                         lon={location.lon}
                                     />
-                                : <p>Sorry, no map available.</p>
+                                : 
+                                    <p
+                                        className='ReviewPage__location p'
+                                    >
+                                        Sorry, no map available.
+                                    </p>
                             }
                             <h3>Date and time:</h3> 
                             <p
@@ -297,7 +302,9 @@ const ReviewPage = (props) => {
                             {context.user.id === dog_profile.owner_id || <Link to={`/leave-review/${dog_profile.id}`}>Leave your own review of {dog_profile.name}</Link>}
                             {(reviews && reviews.length > 1) 
                                 && 
-                                    <div>
+                                    <div
+                                        className='ReviewPage__other-reviews-div'
+                                    >
                                         <DogAverageRating 
                                             reviews={reviews}
                                         />
