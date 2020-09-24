@@ -1,12 +1,90 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
+import UserContext from '../contexts/UserContext';
+import AuthApiService from '../services/auth-api-service';
+import DogProfilesService from '../services/dog-profiles-service';
+import HowlsService from '../services/howls-service';
 import './Landing.css';
 
 const Landing = (props) => {
+    const context = useContext(UserContext);
+
+    const { 
+        forceUpdate,
+        history,
+    } = props;
+
+    const [loginError, setLoginError] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    });
+    }, [props]);
+
+    const onLoginSuccess = () => {
+        // Lets components know that basic user data is still being retrieved from the api
+        context.setLoading(true);
+
+        // Retrieves basic user data on login
+        Promise.all([
+                DogProfilesService.fetchUserDogs(), 
+                DogProfilesService.fetchPackMembers(),
+                HowlsService.fetchUserSavedHowls(),
+                HowlsService.fetchHowlsByUser(),
+            ])
+            .then(res => Promise.all(res.map(res => res.json())))
+            .then(values => {
+                const userDogs = values[0];
+                const packMembers = values[1];
+                const userSavedHowls = values[2];
+                const howls = values[3];
+                context.setDogs(userDogs);
+                context.setUserPackMembers(packMembers);
+                context.setUserSavedHowls(userSavedHowls);
+                context.setHowls(howls);
+                context.setLoading(false);
+                context.setError(false);
+                history.push('/home');
+                forceUpdate();
+            })
+            .catch(error => {
+                console.log(error);
+                setShowLoading(false);
+                context.setLoading(false);
+                context.setError(true);
+            });
+    }
+
+    const demoLogin = () => {
+        setLoginError(false);
+        setShowLoading(true);
+        AuthApiService.postLogin({
+            username: 'demoUser',
+            password: 'DemoPassword123!',
+        })
+            .then(res => {
+                const {
+                    id,
+                    username,
+                    email,
+                    phone,
+                } = res;
+                context.setUser({
+                    id,
+                    username,
+                    email,
+                    phone,
+                });
+                onLoginSuccess();
+            })
+            .catch(res => {
+                setLoginError(true);
+                setShowLoading(false);
+            });
+    }
     
     return (
         <>
@@ -22,7 +100,36 @@ const Landing = (props) => {
                     <h2>What is Dog Date?</h2>
                 </header>
                 <p>Dog Date is a web app for users who want to find playmates for their dogs. Whether you have one or one-hundred dogs, you can create profiles for them on Dog Date. You can set a profile picture for your dog, characterize its energy-levels, obedience, experience with other dogs, and more! This allows others to decide if your dog is the right playmate for their dog! Other users can leave reviews of your dog(s) and their dates, and then you can comment on those reviews in response.</p>
-                <p><b>Get started by <Link className='link' to='/register'>registering</Link> for an account.</b></p>
+            </section>
+            <section className='Landing__section section'>
+                <header>
+                    <h2>Want to jump right in?</h2>
+                </header>
+                <p>Try out Dog Date by using a demo account before creating an account of your own.</p>
+                <button
+                    className='Landing__demo button'
+                    type='button'
+                    onClick={demoLogin}
+                >
+                    Try Dog Date with a demo account
+                </button>
+                <div
+                    className='Landing__alert-div' 
+                    role='alert'
+                >
+                    {loginError 
+                        ? 
+                            <p 
+                                className='Landing__p error'
+                            >
+                                Error: Could not launch demo. Check your connection and try again.
+                            </p> 
+                        : 
+                            ''
+                    }
+                </div>
+                <p>(You can also go to the <Link className='link' to='/login'>login page</Link> and enter the Username "demoUser" and the Password "DemoPassword123!".)</p>
+                <p><b>Or you can get started by <Link className='link' to='/register'>registering</Link> for an account of your own!</b></p>
             </section>
             <section className='Landing__section section'>
                 <header>
@@ -62,8 +169,29 @@ const Landing = (props) => {
                     </header>
                 </section>
             </section>
+            {showLoading && 
+                <div className='Landing__loading-container'>
+                    <FontAwesomeIcon 
+                        className='Landing__loading' 
+                        icon={faSpinner} 
+                        spin 
+                    />
+                </div>
+            }
         </>
     );
 }
+
+Landing.defaultProps = {
+    forceUpdate: () => {},
+    history: {
+        push: () => {},
+    },
+};
+
+Landing.propTypes = {
+    forceUpdate: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
+};
 
 export default Landing;

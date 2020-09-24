@@ -141,7 +141,7 @@ const App = (props) => {
               <Switch>
                 <Route
                   exact path='/'
-                  component={Landing}
+                  render={rProps => <Landing {...rProps} forceUpdate={forceUpdate} />} 
                 />
                 <PublicOnlyRoute
                     path="/register"

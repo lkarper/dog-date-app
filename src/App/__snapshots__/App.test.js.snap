@@ -266,7 +266,6 @@ exports[`App component renders the UI as expected 1`] = `
           <ErrorBoundary>
             <Switch>
               <Route
-                component={[Function]}
                 computedMatch={
                   Object {
                     "isExact": true,
@@ -285,8 +284,10 @@ exports[`App component renders the UI as expected 1`] = `
                   }
                 }
                 path="/"
+                render={[Function]}
               >
                 <Landing
+                  forceUpdate={[Function]}
                   history={
                     Object {
                       "action": "POP",
@@ -342,9 +343,54 @@ exports[`App component renders the UI as expected 1`] = `
                     <p>
                       Dog Date is a web app for users who want to find playmates for their dogs. Whether you have one or one-hundred dogs, you can create profiles for them on Dog Date. You can set a profile picture for your dog, characterize its energy-levels, obedience, experience with other dogs, and more! This allows others to decide if your dog is the right playmate for their dog! Other users can leave reviews of your dog(s) and their dates, and then you can comment on those reviews in response.
                     </p>
+                  </section>
+                  <section
+                    className="Landing__section section"
+                  >
+                    <header>
+                      <h2>
+                        Want to jump right in?
+                      </h2>
+                    </header>
+                    <p>
+                      Try out Dog Date by using a demo account before creating an account of your own.
+                    </p>
+                    <button
+                      className="Landing__demo button"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Try Dog Date with a demo account
+                    </button>
+                    <div
+                      className="Landing__alert-div"
+                      role="alert"
+                    />
+                    <p>
+                      (You can also go to the 
+                      <Link
+                        className="link"
+                        to="/login"
+                      >
+                        <LinkAnchor
+                          className="link"
+                          href="/login"
+                          navigate={[Function]}
+                        >
+                          <a
+                            className="link"
+                            href="/login"
+                            onClick={[Function]}
+                          >
+                            login page
+                          </a>
+                        </LinkAnchor>
+                      </Link>
+                       and enter the Username "demoUser" and the Password "DemoPassword123!".)
+                    </p>
                     <p>
                       <b>
-                        Get started by 
+                        Or you can get started by 
                         <Link
                           className="link"
                           to="/register"
@@ -363,7 +409,7 @@ exports[`App component renders the UI as expected 1`] = `
                             </a>
                           </LinkAnchor>
                         </Link>
-                         for an account.
+                         for an account of your own!
                       </b>
                     </p>
                   </section>
