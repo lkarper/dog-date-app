@@ -121,7 +121,7 @@ const DogProfilePageHeaderButtons = (props) => {
                     aria-live='polite' 
                     className='DogProfilePageHeaderButtons__container'
                 >
-                    <p>{name} is a member of your pack!</p>
+                    <p className='DogProfilePage__p valid'>{name} is a member of your pack!</p>
                     <button
                         className='DogProfilePageHeaderButtons__button button' 
                         type='button'
