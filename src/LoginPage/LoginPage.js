@@ -72,7 +72,7 @@ const LoginPage = (props) => {
                     id,
                     username,
                     email,
-                    phone
+                    phone,
                 } = res;
                 setUsername('');
                 setPassword('');
